@@ -2,7 +2,7 @@
 name: Entwicklungsprozess Template
 about: Template for new Issues containing a suggestion to change the development process
 title: EntwicklungsProzess | <Titel>
-labels: ''
+labels: Prozessoptimierung
 assignees: JulianGommlich
 
 ---
