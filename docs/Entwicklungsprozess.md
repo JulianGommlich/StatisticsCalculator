@@ -43,4 +43,7 @@ Julian schaut täglich, ob es Issues mit diesem Label gibt und prüft diese. Die
 Issue gesprochen.
 
 ### Termine
-Zu klären...
+|                           |                  |
+| ------------------------- | ---------------- |
+| Wöchentlich fixer Termin: | Donnerstag 19:00 |
+| Blockerzeiten:            | Montag 19:00     |
