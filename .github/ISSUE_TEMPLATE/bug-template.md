@@ -2,7 +2,7 @@
 name: Bug Template
 about: Template for new Issues reporting a bug
 title: Bug | <Titel>
-labels: Für Entwicklung ausgewählt
+labels: bug, Für Entwicklung ausgewählt
 assignees: ''
 
 ---
