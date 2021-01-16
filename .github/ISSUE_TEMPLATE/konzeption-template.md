@@ -2,7 +2,7 @@
 name: Konzeption Template
 about: Template for new Issues aiming to create a concept for an implementation
 title: Konzeption | <Titel>
-labels: Für Entwicklung ausgewählt
+labels: Für Entwicklung ausgewählt, Conception/Architecture
 assignees: ''
 
 ---
