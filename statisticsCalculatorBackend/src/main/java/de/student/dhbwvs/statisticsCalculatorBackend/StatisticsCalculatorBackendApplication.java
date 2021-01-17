@@ -68,17 +68,28 @@ public class StatisticsCalculatorBackendApplication {
 
 
 	// Function takes an array as input
-    	public static double calcAverage(double[] array) {
+	public static double calcAverage(double[] array) {
 
-        	double sum = 0;
+		double sum = 0;
 
-        	// Add all Elements of array to the variable sum
-        	for(int i=0; i<array.length; i++ ) {
-            		sum += array[i];
-        	}
+		// Add all Elements of array to the variable sum
+		for(int i=0; i<array.length; i++ ) {
+			sum += array[i];
+		}
 
-        	// return the average by dividing the sum by the number of elements in the array
-        	return sum/array.length;
-    	}
+		// return the average by dividing the sum by the number of elements in the array
+		return sum/array.length;
+	}
+
+	@Test
+	public void testcalcMedian(){
+		double result1 = 2,5;
+		double result2 = 3;
+		double[] test1 = [1,1,2,2,3,3,4,4];
+		double[] test2 = [5,5,4,4,3,3,2,2,1];
+
+		Assert.assertEquals(result1, calcMedian(test1));
+		Assert.assertEquals(result2, calcMedian(test2));
+	}
 
 }

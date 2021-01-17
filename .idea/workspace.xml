@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Erster Entwurf für die Berechnung des Medians">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,6 +44,8 @@
       <workItem from="1610726675711" duration="1345000" />
       <workItem from="1610885880117" duration="1132000" />
       <workItem from="1610906779046" duration="2263000" />
+      <workItem from="1610909417941" duration="1250000" />
+      <workItem from="1610910874191" duration="346000" />
     </task>
     <servers />
   </component>
