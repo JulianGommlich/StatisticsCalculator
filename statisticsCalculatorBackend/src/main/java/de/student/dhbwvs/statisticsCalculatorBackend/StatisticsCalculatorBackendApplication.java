@@ -66,4 +66,19 @@ public class StatisticsCalculatorBackendApplication {
 		return median;
 	}
 
+
+	// Function takes an array as input
+    	public static double calcAverage(double[] array) {
+
+        	double sum = 0;
+
+        	// Add all Elements of array to the variable sum
+        	for(int i=0; i<array.length; i++ ) {
+            		sum += array[i];
+        	}
+
+        	// return the average by dividing the sum by the number of elements in the array
+        	return sum/array.length;
+    	}
+
 }
