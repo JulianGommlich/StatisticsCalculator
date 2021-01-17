@@ -29,8 +29,8 @@ public class StatisticsCalculatorBackendApplication {
 		return freqDist;
 	}
 	
-	//calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück, 
-	//die den entsprechenden value haben
+	/**calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,
+	die den entsprechenden value haben**/
 	public static List<Double> calcModal(Map<Double,Integer> freqDist) {
 		List<Double> modal = new ArrayList<>();
 		//durchsuche die map nach dem höchsten value, weise diesen der Variablen highest zu
@@ -45,6 +45,25 @@ public class StatisticsCalculatorBackendApplication {
 			}
 		}
 		return modal;
+	}
+	/**calcMedian berechnet den Median eines Arrays**/
+	public static double calcMedian(double[] values){
+		//Benenne einen Parameter für den späteren Median
+		median = 0;
+		//Bestimme die Länge des Arrays
+		count = values.length;
+		//Sortiere das Array aufsteigend
+		Arrays.sort(values);
+		//Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.
+		if(count % 2 == 0){
+			//Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter "median"
+			median = ((values[(count/2)] + values[((count/2)+1)])/2)
+		} else {
+			//Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter "median"
+			median = values[((count+1)/2)]
+		}
+		//Gebe den Median zurück
+		return median;
 	}
 
 }
