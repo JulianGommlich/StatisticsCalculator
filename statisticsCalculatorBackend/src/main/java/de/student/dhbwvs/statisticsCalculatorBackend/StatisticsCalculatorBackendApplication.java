@@ -81,6 +81,7 @@ public class StatisticsCalculatorBackendApplication {
 		return sum/array.length;
 	}
 
+	// Test fpr calculating the median
 	@Test
 	public void testcalcMedian(){
 		double result1 = 2,5;
@@ -91,5 +92,17 @@ public class StatisticsCalculatorBackendApplication {
 		Assert.assertEquals(result1, calcMedian(test1));
 		Assert.assertEquals(result2, calcMedian(test2));
 	}
+	
+	// Test for calculating the average
+	@Test
+   	public void testcalcAverage(){
+        	double result1 = 2.5;
+        	double result2 = 3;
+        	double[] testArray1 = {1, 1, 2, 2, 3, 3, 4, 4};
+        	double[] testArray2 = {5, 5, 4, 4, 3, 2, 2, 1};
+
+        	Assert.assertEquals(result1, calcMedian(testArray1));
+        	Assert.assertEquals(result2, calcMedian(testArray2));
+    	}
 
 }
