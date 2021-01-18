@@ -2,7 +2,8 @@
 
 ### Domain Model/Datenelement
 
-Da sowohl eine explizite Stichprobe als auch eine absolute Häufigkeitsverteilung als Input akzeptiert werden sollen und im Frontend nicht die Logik plaziert werden sollte, eine explizite Stichprobe in eine absolute Häufigkeitsverteilung umzurechnen, muss eine Lösung dafür gefunden werden, mit diesen zwei Unterschiedlichen Datenelementen umzugehen. Der Unterschied besteht vor allem darin, dass eine explizite Stichprobe als einfache Liste von Werten abgebildet werden kann und eine absolute Häufigkeitsverteilung als Liste von Tupeln oder HashMap (Wert, Häufigkeit) dargestellt werden muss.
+Da sowohl eine explizite Stichprobe als auch eine absolute Häufigkeitsverteilung als Input akzeptiert werden sollen und im Frontend nicht die Logik plaziert werden sollte, eine explizite Stichprobe in eine absolute Häufigkeitsverteilung umzurechnen, muss eine Lösung dafür gefunden werden, mit diesen zwei Unterschiedlichen Datenelementen umzugehen. Der Unterschied besteht vor allem darin, dass eine explizite Stichprobe als einfache Liste von Werten abgebildet werden kann und eine absolute Häufigkeitsverteilung als Liste von Tupeln oder HashMap (Wert, Häufigkeit) dargestellt werden muss.  
+Nachfolgend werden zwei Umsetzungsvarianten vorgestellt, wobei sich für Variante 1 entschieden wurde.
 
 #### Variante 1
 ![Domain Model Variante 1](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModelVariant1.PNG)
@@ -15,3 +16,15 @@ Das "type"-Attribut wird am Backend verwendet, um die Verarbeitung der in "value
 
 In dieser Variante wird eines von zwei verschiedenen Datenelementen erzeugt, um entweder eine "ExpliziteStichprobe" oder eine "Haeufigkeitsverteilung" abzubilden. Dementsprechend werden in "values" die Werte der Stichprobe bzw. in "valueAmountPairs" die Paare aus Wert und Häufigkeit abgebildet.  
 Der negative Effekt dieser Lösung ist, dass auch zwei API-Endpunkte vom Backend zur Verfügung gestellt werden müssen, um mit den jeweiligen Datenelementen umzugehen.
+
+### Schnittstellenspezifikation
+
+Noch zu verbessern...
+
+Von Frontend an Backend:
+- Es wird das Objekt aus Variante 1 im Body übertragen (Format _applicatin/json_)
+- Im Header befinden sich Informationen zu Content-Type und Accept-Content
+
+Von Backend an Frontend:
+- Objekt im Body wird noch konzipiert
+- Im Header befindet sich der Content-Type
