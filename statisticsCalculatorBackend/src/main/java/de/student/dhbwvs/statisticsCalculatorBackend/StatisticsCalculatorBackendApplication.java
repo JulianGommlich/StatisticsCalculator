@@ -86,8 +86,8 @@ public class StatisticsCalculatorBackendApplication {
 	public void testcalcMedian(){
 		double result1 = 2,5;
 		double result2 = 3;
-		double[] test1 = [1,1,2,2,3,3,4,4];
-		double[] test2 = [5,5,4,4,3,3,2,2,1];
+		double[] test1 = {1,1,2,2,3,3,4,4};
+		double[] test2 = {5,5,4,4,3,3,2,2,1};
 
 		Assert.assertEquals(result1, calcMedian(test1));
 		Assert.assertEquals(result2, calcMedian(test2));
