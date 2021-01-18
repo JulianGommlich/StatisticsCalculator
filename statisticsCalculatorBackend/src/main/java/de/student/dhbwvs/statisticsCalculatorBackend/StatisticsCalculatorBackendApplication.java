@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 
 @SpringBootApplication
 public class StatisticsCalculatorBackendApplication {
@@ -79,6 +81,18 @@ public class StatisticsCalculatorBackendApplication {
 
 		// return the average by dividing the sum by the number of elements in the array
 		return sum/array.length;
+	}
+	
+	// Test for calculating the modalvalue
+	@Test
+	public void testcalcModal(){
+		List<Double> result1 = Arrays.asList(2.4, 4.0);
+		List<Double> result1 = Arrays.asList(3.0);
+		double[] array1 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
+		double[] array2 = {5, 5, 4, 4, 3, 3, 3, 2, 2, 1};
+
+		Assert.assertEquals(result1, calcModal(freqDistribution(array1)));
+		Assert.assertEquals(result2, calcModal(freqDistribution(array2)));
 	}
 
 	// Test fpr calculating the median
