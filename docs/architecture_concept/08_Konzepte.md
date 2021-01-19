@@ -8,13 +8,13 @@ Nachfolgend werden zwei Umsetzungsvarianten vorgestellt, wobei sich für Variant
 #### Variante 1
 ![Domain Model Variante 1](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModelVariant1.PNG)
 
-In dieser Variante erstellt das Frontend ein Datenelement "Stichprobe" mit den Attributen "type" und "values". Das Attribute "type" gibt dabei an, ob es sich um eine "expliziteStichprobe" oder eine "haeufigkeitsverteilung" handelt. Das Attribut "values" stellt unabhängig davon eine Liste dar, in der sich entweder die expliziten Stichprobenwerte oder die Wertepaare aus Wert und Häufigkeit befinden.  
+In dieser Variante erstellt das Frontend ein Datenelement "Stichprobe" mit den Attributen "type" und "values". Das Attribute "type" gibt dabei an, ob es sich um eine "expliziteStichprobe" oder eine "haeufigkeitsverteilung" handelt. Das Attribut "values" stellt unabhängig davon eine Liste dar, in der sich entweder die expliziten Stichprobenwerte oder die Wertepaare aus Wert und Häufigkeit befinden. Das Attribut "z" ist unabhängig davon numerisch.  
 Das "type"-Attribut wird am Backend verwendet, um die Verarbeitung der in "values" mitgelieferten Daten entsprechend anzupassen.
 
 #### Variante 2
 ![Domain Model Variante 2](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModelVariant2.PNG)
 
-In dieser Variante wird eines von zwei verschiedenen Datenelementen erzeugt, um entweder eine "ExpliziteStichprobe" oder eine "Haeufigkeitsverteilung" abzubilden. Dementsprechend werden in "values" die Werte der Stichprobe bzw. in "valueAmountPairs" die Paare aus Wert und Häufigkeit abgebildet.  
+In dieser Variante wird eines von zwei verschiedenen Datenelementen erzeugt, um entweder eine "ExpliziteStichprobe" oder eine "Haeufigkeitsverteilung" abzubilden. Dementsprechend werden in "values" die Werte der Stichprobe bzw. in "valueAmountPairs" die Paare aus Wert und Häufigkeit abgebildet. Das Attribut "z" ist unabhängig davon numerisch.  
 Der negative Effekt dieser Lösung ist, dass auch zwei API-Endpunkte vom Backend zur Verfügung gestellt werden müssen, um mit den jeweiligen Datenelementen umzugehen.
 
 ### Schnittstellenspezifikation
@@ -32,6 +32,7 @@ Das Frontend erzeugt einen HTTP-Request mit folgenden Anforderungen:
 - BODY (Format: application/json)
     - type: enum (_ExpliziteStichprobe_ oder _Haeufigkeitsverteilung_)
     - values: array
+    - z: number
 
 Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
 - HEADER
