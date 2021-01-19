@@ -1,12 +1,18 @@
-<h1>Ich bin eine Überschrift!</h1>
+<h1>Rechenmodul für explizit gegebene Stichproben</h1>
 
-<input type="text" placeholder="Zahlenreihe"> <p>oder</p> <button>Datei auswählen</button>
+<input type="text" id="numSequence" placeholder="Zahlenreihe"> 
+oder 
+<input type="button" id="importFile" value="Datei auswählen">
+<br>
+<input type="number" id="meanDeviation" placeholder="Mittlere absolute Abweichung">
+<br>
 
-<input type="number" placeholder="Mittlere absolute Abweichung">
+
 
 <h2>Art der Stichprobe</h2>
 
-<input type="radio"> Explizite Stichprobe 
-<input type="radio"> Absolute Stichprobe
-
-<button>Anzeigen</button>
+<input type="radio" id="explSample"> Explizite Stichprobe 
+<input type="radio" id="absSample"> Absolute Stichprobe
+<br>
+<button id="show"> Anzeigen</button>
+<br>
