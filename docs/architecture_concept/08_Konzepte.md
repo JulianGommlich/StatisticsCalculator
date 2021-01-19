@@ -40,3 +40,7 @@ Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
     - Content-Language: de-DE
 - BODY (Format: application/json)
     - ...
+
+### Umgang mit der Variable _values_ am Backend
+Die Variable _values_ kann entweder eine explizite Stichprobe (Liste mit einzelnen Werten) oder eine absolute Häufigkeitsverteilung (Liste mit Wertepaaren - Wert & Häufigkeit) abbilden. Das Backend kann anhand des Attributs _type_ erkennen, um welche Art der Stichprobe es sich handelt.  
+Am Backend werden zwei Methoden zur Verfügung gestellt, die eine explizite Stichprobe in eine absolute Häufigkeitsverteilung umwandeln können und umgekehrt. Die Methoden zur Berechnung der statistischen Kennzahlen prüfen zu Beginn ab, ob es sich bei der Eingabe um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt (anhand der Variable _type_) und formen dann ggf. die Eingabe in das für die Berechnung günstigere Format um.
