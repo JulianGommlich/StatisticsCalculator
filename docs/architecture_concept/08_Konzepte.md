@@ -46,7 +46,16 @@ Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
     - Content-Type: application/json
     - Content-Language: de-DE
 - BODY (Format: application/json)
-    - ...
+    - expliziteStichprobe: array
+    - haeufigkeitsverteilung: array
+    - modalwert: number
+    - mittelwert: number
+    - median: number
+    - quantile: array
+    - varianz: number
+    - standardabweichung: number
+    - mittlereAbweichungZuZ: number
+    - giniKoeffizient: number
 
 ### Umgang mit der Variable _values_ am Backend
 Die Variable _values_ kann entweder eine explizite Stichprobe (Liste mit einzelnen Werten) oder eine absolute Häufigkeitsverteilung (Liste mit Wertepaaren - Wert & Häufigkeit) abbilden. Das Backend kann anhand des Attributs _type_ erkennen, um welche Art der Stichprobe es sich handelt.  
