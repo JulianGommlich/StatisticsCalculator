@@ -18,13 +18,25 @@ In dieser Variante wird eines von zwei verschiedenen Datenelementen erzeugt, um 
 Der negative Effekt dieser Lösung ist, dass auch zwei API-Endpunkte vom Backend zur Verfügung gestellt werden müssen, um mit den jeweiligen Datenelementen umzugehen.
 
 ### Schnittstellenspezifikation
+![Schnittstellendiagramm](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/InterfaceDiagram.PNG)
 
-Noch zu verbessern...
+Das Frontend erzeugt einen HTTP-Request mit folgenden Anforderungen:
+- METHOD
+    - POST
+- HEADER
+    - Accept: application/json
+    - Access-Control-Allow-Origin: *
+    - Cache-Control: no-cache
+    - Content-Type: application/json
+    - Content-Language: de-DE
+- BODY (Format: application/json)
+    - type: enum (_ExpliziteStichprobe_ oder _Haeufigkeitsverteilung_)
+    - values: array
 
-Von Frontend an Backend:
-- Es wird das Objekt aus Variante 1 im Body übertragen (Format _applicatin/json_)
-- Im Header befinden sich Informationen zu Content-Type und Accept-Content
-
-Von Backend an Frontend:
-- Objekt im Body wird noch konzipiert
-- Im Header befindet sich der Content-Type
+Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
+- HEADER
+    - Status-Code: 200
+    - Content-Type: application/json
+    - Content-Language: de-DE
+- BODY (Format: application/json)
+    - ...
