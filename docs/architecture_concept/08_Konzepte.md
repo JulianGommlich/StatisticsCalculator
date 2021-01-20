@@ -18,13 +18,29 @@ In dieser Variante wird eines von zwei verschiedenen Datenelementen erzeugt, um 
 Der negative Effekt dieser Lösung ist, dass auch zwei API-Endpunkte vom Backend zur Verfügung gestellt werden müssen, um mit den jeweiligen Datenelementen umzugehen.
 
 ### Schnittstellenspezifikation
+![Schnittstellendiagramm](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/InterfaceDiagram.PNG)
 
-Noch zu verbessern...
+Das Frontend erzeugt einen HTTP-Request mit folgenden Anforderungen:
+- METHOD
+    - POST
+- HEADER
+    - Accept: application/json
+    - Access-Control-Allow-Origin: *
+    - Cache-Control: no-cache
+    - Content-Type: application/json
+    - Content-Language: de-DE
+- BODY (Format: application/json)
+    - type: enum (_ExpliziteStichprobe_ oder _Haeufigkeitsverteilung_)
+    - values: array
 
-Von Frontend an Backend:
-- Es wird das Objekt aus Variante 1 im Body übertragen (Format _applicatin/json_)
-- Im Header befinden sich Informationen zu Content-Type und Accept-Content
+Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
+- HEADER
+    - Status-Code: 200
+    - Content-Type: application/json
+    - Content-Language: de-DE
+- BODY (Format: application/json)
+    - ...
 
-Von Backend an Frontend:
-- Objekt im Body wird noch konzipiert
-- Im Header befindet sich der Content-Type
+### Umgang mit der Variable _values_ am Backend
+Die Variable _values_ kann entweder eine explizite Stichprobe (Liste mit einzelnen Werten) oder eine absolute Häufigkeitsverteilung (Liste mit Wertepaaren - Wert & Häufigkeit) abbilden. Das Backend kann anhand des Attributs _type_ erkennen, um welche Art der Stichprobe es sich handelt.  
+Am Backend werden zwei Methoden zur Verfügung gestellt, die eine explizite Stichprobe in eine absolute Häufigkeitsverteilung umwandeln können und umgekehrt. Die Methoden zur Berechnung der statistischen Kennzahlen prüfen zu Beginn ab, ob es sich bei der Eingabe um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt (anhand der Variable _type_) und formen dann ggf. die Eingabe in das für die Berechnung günstigere Format um.
