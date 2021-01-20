@@ -91,22 +91,66 @@ public class StatisticsCalculatorBackendApplication {
 		return median;
     	}
 
-
-
-	// Function takes an array as input
-	public static double calcAverage(double[] array) {
-
-		double sum = 0;
-
-		// Add all Elements of array to the variable sum
-		for(int i=0; i<array.length; i++ ) {
-			sum += array[i];
-		}
-
-		// return the average by dividing the sum by the number of elements in the array
-		return sum/array.length;
-	}
 	
+	// Function takes an array as input
+    	public static double calcAverage(double[] values) {
+		/** 
+		* Berechnung des Durchschnitts eines Arrays
+		* Input: Array mit double-Werten
+		* Return: Durchschnitt als double-Wert
+		**/
+		
+        	double sum = 0;
 
+        	// Alle Elemente des Arrays in der Variable sum summieren
+        	for(int i=0; i<values.length; i++ ) {
+            		sum += values[i];
+        	}
 
+        	// Der Durchschnitt ist die Summe geteilt durch die Anzahl an Werten
+        	double average = sum / values.length;
+
+        	return average;
+    	}
+	
+	
+	public static double calcVariance(double[] values) {
+        	/** Varianz berechnen
+         	* Input: array mit double Werten
+         	* Return: Die berechnete Varianz als double
+         	**/
+
+        	// Den Durchschnitt berechnen lassen
+        	double average = calcAverage(values);
+
+        	// Variable Varianz deklarieren
+        	double variance = 0;
+
+        	for (int i = 0; i < values.length; i++) {
+            		// Von jedem Wert aus dem Array values muss der Durchschnitt des Array abgezogen werden
+            		// das Ergebnis wird dann mit 2 potenziert
+            		variance += Math.pow(values[i] - average, 2);
+        	}
+
+        	// Der return-Wert ist die Varianz
+        	variance /= values.length;
+		
+        	return variance;
+    	}
+	
+	
+	public static double calcStandardDeviation(double[] values) {
+        	/** Standardabweichung berechnen
+         	* Input: array mit double Werten
+         	* Return: Die berechnete Standardabweichung als double
+         	**/
+
+        	// Die Varianz berechnen lassen
+        	double variance = calcVariance(values);
+
+        	// Die Standardabweichung ist die Quadratwurzel der Varianz
+        	double stdDev =Math.sqrt(variance);
+
+        	return stdDev;
+    	}
 }
