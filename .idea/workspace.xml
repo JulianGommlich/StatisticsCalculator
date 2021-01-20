@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Erster Entwurf für die Berechnung des Medians">
+      <change beforePath="$PROJECT_DIR$/.idea/StatisticsCalculator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/StatisticsCalculator.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="GithubProjectSettings">
     <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="main" />
@@ -25,12 +48,87 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ChangesTree.GroupingKeys" value="module" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
+  </component>
+  <component name="RunManager" selected="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian">
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcModal" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="testcalcModal" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testDistributionToSample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="testDistributionToSample" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcMedian" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="testcalcMedian" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testDistributionToSample" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests" />
+        <item itemvalue="Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -63,7 +161,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="backend_tests" />
                       </list>
                     </value>
                   </entry>
@@ -79,5 +177,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Erster Entwurf für die Berechnung des Medians" />
     <option name="LAST_COMMIT_MESSAGE" value="Erster Entwurf für die Berechnung des Medians" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

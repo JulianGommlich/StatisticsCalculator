@@ -2,11 +2,9 @@ package de.student.dhbwvs.statisticsCalculatorBackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @SpringBootApplication
@@ -15,8 +13,9 @@ public class StatisticsCalculatorBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StatisticsCalculatorBackendApplication.class, args);
 	}
-	
-	/**freqDistribution übernimmt die Stichprobe als double-Array und gibt eine (unsortierte) Map zurück, mit den einzelnen Werten der Stichprobe 
+
+
+	/**freqDistribution übernimmt die Stichprobe als double-Array und gibt eine sortierte Map zurück, mit den einzelnen Werten der Stichprobe
 	als keys in Form double und ihrer jeweiligen Häufigkeit als values in der Form Integer**/
 	public static Map<Double,Integer> freqDistribution(double[] stichprobe) {
 		Map<Double, Integer> freqDist = new HashMap<>();
@@ -28,9 +27,31 @@ public class StatisticsCalculatorBackendApplication {
 				freqDist.put(i, 1);
 			}
 		}
-		return freqDist;
+		//Sortiervorgang aufsteigend
+		return freqDist.entrySet()
+				.stream()
+				.sorted(Map.Entry.<Double, Integer>comparingByKey())
+				.collect(Collectors.toMap(
+						Map.Entry::getKey,
+						Map.Entry::getValue,
+						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
-	
+
+	/**exp_sample übernimmt die Häufigkeitsverteilung als Map und gibt eine aufsteigend sortierte explizite Stichprobe als double-Array zurück**/
+
+	public static double[] expSample(Map<Double,Integer> freqDist) {
+
+		ArrayList<Double> exp_sample = new ArrayList<>();
+
+		for (double i : freqDist.keySet()) {
+			for(int j = freqDist.get(i); j > 0; j--){
+				exp_sample.add(i);
+			}
+		}
+		Collections.sort(exp_sample);
+		return exp_sample.stream().mapToDouble(d -> d).toArray();
+	}
+
 	/**calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,
 	die den entsprechenden value haben**/
 	public static List<Double> calcModal(Map<Double,Integer> freqDist) {
@@ -58,11 +79,13 @@ public class StatisticsCalculatorBackendApplication {
 		Arrays.sort(values);
 		//Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.
 		if(count % 2 == 0){
+
 	    		//Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter "median"
 	    		median = ((values[(count/2)-1] + values[((count/2))])/2);
 		} else {
 	    		//Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter "median"
 	    		median = values[((count+1)/2)-1];
+
 		}
 		//Gebe den Median zurück
 		return median;
@@ -84,40 +107,6 @@ public class StatisticsCalculatorBackendApplication {
 		return sum/array.length;
 	}
 	
-	// Test for calculating the modalvalue
-	@Test
-	public void testcalcModal(){
-		List<Double> result1 = Arrays.asList(2.4, 4.0);
-		List<Double> result1 = Arrays.asList(3.0);
-		double[] array1 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
-		double[] array2 = {5, 5, 4, 4, 3, 3, 3, 2, 2, 1};
 
-		Assert.assertEquals(result1, calcModal(freqDistribution(array1)));
-		Assert.assertEquals(result2, calcModal(freqDistribution(array2)));
-	}
-
-	// Test fpr calculating the median
-	@Test
-	public void testcalcMedian(){
-		double result1 = 2,5;
-		double result2 = 3;
-		double[] test1 = {1,1,2,2,3,3,4,4};
-		double[] test2 = {5,5,4,4,3,3,2,2,1};
-
-		Assert.assertEquals(result1, calcMedian(test1));
-		Assert.assertEquals(result2, calcMedian(test2));
-	}
-	
-	// Test for calculating the average
-	@Test
-   	public void testcalcAverage(){
-        	double result1 = 2.5;
-        	double result2 = 3;
-        	double[] testArray1 = {1, 1, 2, 2, 3, 3, 4, 4};
-        	double[] testArray2 = {5, 5, 4, 4, 3, 2, 2, 1};
-
-        	Assert.assertEquals(result1, calcMedian(testArray1));
-        	Assert.assertEquals(result2, calcMedian(testArray2));
-    	}
 
 }
