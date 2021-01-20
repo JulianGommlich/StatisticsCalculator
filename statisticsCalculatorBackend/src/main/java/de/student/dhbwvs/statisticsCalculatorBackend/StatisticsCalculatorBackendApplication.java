@@ -69,8 +69,8 @@ public class StatisticsCalculatorBackendApplication {
 		}
 		return modal;
 	}
-	/**calcMedian berechnet den Median eines Arrays**/
-	public static double calcMedian(double[] values){
+	// calcMedian berechnet den Median eines Arrays
+    	public static double calcMedian(double[] values){
 		//Benenne einen Parameter für den späteren Median
 		double median = 0;
 		//Bestimme die Länge des Arrays
@@ -79,15 +79,18 @@ public class StatisticsCalculatorBackendApplication {
 		Arrays.sort(values);
 		//Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.
 		if(count % 2 == 0){
-			//Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter "median"
-			median = ((values[(count/2)] + values[((count/2)+1)])/2);
+
+	    		//Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter "median"
+	    		median = ((values[(count/2)-1] + values[((count/2))])/2);
 		} else {
-			//Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter "median"
-			median = values[((count+1)/2)];
+	    		//Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter "median"
+	    		median = values[((count+1)/2)-1];
+
 		}
 		//Gebe den Median zurück
 		return median;
-	}
+    	}
+
 
 
 	// Function takes an array as input
