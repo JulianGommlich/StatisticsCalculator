@@ -6,13 +6,12 @@ import com.codeborne.selenide.logevents.SelenideLogger;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 
+import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class MainPageTest {
     private final MainPage mainPage = new MainPage();
@@ -20,40 +19,63 @@ public class MainPageTest {
     @BeforeAll
     public static void setUpAllure() {
         SelenideLogger.addListener("allure", new AllureSelenide());
+        open("http://localhost:4200/");
     }
 
     @BeforeEach
     public void setUp() {
         Configuration.startMaximized = true;
-        open("https://www.jetbrains.com/");
+        assertEquals("StatisticsCalculatorFrontend", Selenide.title());
     }
 
     @AfterEach
-    public void tearDown() {}
-
-    @Test
-    public void search() {
-        mainPage.searchButton.click();
-
-        $(byId("header-search")).sendKeys("Selenium");
-        $(byXpath("//button[@type='submit' and text()='Search']")).click();
-
-        $(byClassName("js-search-input")).shouldHave(attribute("value", "Selenium"));
+    public void reload() {
+        refresh();
     }
 
     @Test
-    public void toolsMenu() {
-        mainPage.toolsMenu.hover();
-
-        $(byClassName("menu-main__popup-wrapper")).shouldBe(visible);
+    public void clickOnImportFile() {
+        mainPage.buttonImportFile.shouldBe(visible);
+        mainPage.buttonImportFile.click();
     }
 
     @Test
-    public void navigationToAllTools() {
-        mainPage.seeAllToolsButton.click();
+    public void inputNum() {
+        mainPage.inputNumSequence.shouldBe(visible);
+        mainPage.inputNumSequence.hover();
 
-        $(byClassName("products-list")).shouldBe(visible);
+        mainPage.inputNumSequence.sendKeys("(29, 215, 155, 129, 1856)");
+    }
 
-        assertEquals("All Developer Tools and Products by JetBrains", Selenide.title());
+    @Test
+    public void inputDeviation() {
+        mainPage.inputMeanDeviation.shouldBe(visible);
+        mainPage.inputMeanDeviation.click();
+
+        mainPage.inputMeanDeviation.sendKeys("25185");
+    }
+
+    @Test
+    public void expSample() {
+        mainPage.radioExplSample.shouldBe(visible);
+        assertFalse(mainPage.radioExplSample.isSelected());
+        mainPage.radioExplSample.click();
+        assertTrue(mainPage.radioExplSample.isSelected());
+        assertFalse(mainPage.radioAbsSample.isSelected());
+    }
+
+    @Test
+    public void absSample() {
+        mainPage.radioAbsSample.shouldBe(visible);
+        assertFalse(mainPage.radioAbsSample.isSelected());
+        mainPage.radioAbsSample.click();
+        assertTrue(mainPage.radioAbsSample.isSelected());
+        assertFalse(mainPage.radioExplSample.isSelected());
+    }
+
+    @Test
+    public void buttonShowResults() {
+        mainPage.buttonShowResults.shouldBe(visible);
+        mainPage.buttonShowResults.click();
     }
 }

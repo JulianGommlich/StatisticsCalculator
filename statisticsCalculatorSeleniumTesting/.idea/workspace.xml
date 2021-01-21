@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9adc390a-ae34-4626-b60b-0fe7f043983b" name="Default Changelist" comment="" />
+    <list default="true" id="9adc390a-ae34-4626-b60b-0fe7f043983b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projekt/statisticsCalculatorTestingSelenium/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projekt/statisticsCalculatorTestingSelenium/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,13 +27,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android JUnit.MainPageTest">
     <configuration name="MainPageTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorTestingSelenium" />
       <extension name="coverage">
@@ -56,9 +62,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MainPageTest.expSample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorTestingSelenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projekt.statisticsCalculatorTestingSelenium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
+      <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
+      <option name="METHOD_NAME" value="expSample" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPageTest.inputDeviation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorTestingSelenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projekt.statisticsCalculatorTestingSelenium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
+      <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
+      <option name="METHOD_NAME" value="inputDeviation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Android JUnit.MainPageTest" />
+        <item itemvalue="JUnit.MainPageTest.inputDeviation" />
+        <item itemvalue="JUnit.MainPageTest.expSample" />
       </list>
     </recent_temporary>
   </component>
@@ -70,7 +110,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610994266019</updated>
-      <workItem from="1610994269783" duration="4954000" />
+      <workItem from="1610994269783" duration="10413000" />
     </task>
     <servers />
   </component>
@@ -87,5 +127,21 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
