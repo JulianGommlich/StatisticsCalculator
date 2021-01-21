@@ -13,3 +13,5 @@ export class View1Component implements OnInit {
   }
 
 }
+
+// onsubmit()--> mit Button verknüpfen ... Daten übergeeben 
