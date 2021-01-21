@@ -11,8 +11,3 @@ export class Stichprobe {
     }
 
 }
-
-
-// Wie kriegen wir die Daten aus der View in die stichprobe.ts
-// händisch auf IDs zugreifen 
-// Daten aus Form als Model rausholen 
