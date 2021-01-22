@@ -59,13 +59,13 @@ class StatisticsCalculatorBackendApplicationTests {
 	// Test for calculating the modalvalue
 	@Test
 	public void testcalcModal(){
-		List<Double> result1 = Arrays.asList(2.4, 4.0);
-		List<Double> result2 = Arrays.asList(3.0);
+		double[] result1 = {2.4, 4.0};
+		double[] result2 = {3.0};
 		double[] array1 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
 		double[] array2 = {5, 5, 4, 4, 3, 3, 3, 2, 2, 1};
 
-		Assertions.assertEquals(result1, calcModal(freqDistribution(array1)));
-		Assertions.assertEquals(result2, calcModal(freqDistribution(array2)));
+		Assertions.assertArrayEquals(result1,calcModal(freqDistribution(array1)));
+		Assertions.assertArrayEquals(result2,calcModal(freqDistribution(array2)));
 	}
 
 	// Test fpr calculating the median
