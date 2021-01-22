@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class StatisticsCalculator_calculations {
+public class calculations {
 
     /** freqDistribution übernimmt die Stichprobe als double-Array und gibt eine sortierte Map zurück, mit den einzelnen Werten der Stichprobe
      *  als keys in Form double und ihrer jeweiligen Häufigkeit als values in der Form Integer
