@@ -149,7 +149,7 @@ public class StatisticsCalculatorBackendApplication {
         	double variance = calcVariance(values);
 
         	// Die Standardabweichung ist die Quadratwurzel der Varianz
-        	double stdDev =Math.sqrt(variance);
+        	double stdDev = Math.sqrt(variance);
 
         	return stdDev;
     	}
