@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9adc390a-ae34-4626-b60b-0fe7f043983b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Projekt/statisticsCalculatorTestingSelenium/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projekt/statisticsCalculatorTestingSelenium/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +107,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610994266019</updated>
-      <workItem from="1610994269783" duration="10413000" />
+      <workItem from="1610994269783" duration="13072000" />
     </task>
     <servers />
   </component>
@@ -127,21 +124,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
