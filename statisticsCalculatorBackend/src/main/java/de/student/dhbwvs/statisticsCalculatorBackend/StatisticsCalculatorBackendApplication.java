@@ -53,22 +53,24 @@ public class StatisticsCalculatorBackendApplication {
 	}
 
 	/**calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,
-	die den entsprechenden value haben**/
-	public static List<Double> calcModal(Map<Double,Integer> freqDist) {
+	 die den entsprechenden value haben**/
+	public static double[] calcModal(Map<Double,Integer> freqDist) {
 		List<Double> modal = new ArrayList<>();
-		//durchsuche die map nach dem höchsten value, weise diesen der Variablen highest zu
-		int highest = 0;
+		//durchsuche die map nach dem höchsten value, weise diesen der Variablen highestValue zu
+		int highestValue = 0;
 		for (int i : freqDist.values()) {
-			highest = i > highest ? i : highest; 
+			highestValue = i > highestValue ? i : highestValue;
 		}
-		//durchsuche die map nach jedem key, bei dem highest == value; füge diese keys der List hinzu
+		//durchsuche die map nach jedem key, bei dem highestValue == value; füge diese keys der List hinzu
 		for (double j : freqDist.keySet()){
-			if (highest == freqDist.get(j)){
+			if (highestValue == freqDist.get(j)){
 				modal.add(j);
 			}
 		}
-		return modal;
+		Collections.sort(modal);
+		return modal.stream().mapToDouble(d -> d).toArray();
 	}
+
 	// calcMedian berechnet den Median eines Arrays
     	public static double calcMedian(double[] values){
 		//Benenne einen Parameter für den späteren Median
