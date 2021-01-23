@@ -152,16 +152,16 @@ public class calculations {
     }
 
 
-    public static double calcStandardDeviation(double[] values) {
+/**    public static double calcStandardDeviation(double[] values) {
         public static double calcStandardDeviation(double variance) {
         	/** Standardabweichung berechnen
          	* Input: berechnete Varianz als double
          	* Return: Die berechnete Standardabweichung als double
-         	**/
+
 
         	// Die Standardabweichung ist die Quadratwurzel der Varianz
         	double stdDev = Math.sqrt(variance);
 
         	return stdDev;
-    	}
+    	} **/
 }

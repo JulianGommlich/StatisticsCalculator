@@ -24,4 +24,7 @@ public class Ergebnisse {
     private double giniKoeffizient;
 
 
+    public Ergebnisse() {
+
+    }
 }
