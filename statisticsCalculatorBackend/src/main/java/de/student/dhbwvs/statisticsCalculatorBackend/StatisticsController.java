@@ -11,7 +11,6 @@ public class StatisticsController {
 
     Map<Double, Integer> map = new LinkedHashMap<>();
 
-    private static Integer customerId = 0;
     private static Ergebnisse ergebnisse = new Ergebnisse();
 
     @GetMapping
@@ -21,7 +20,6 @@ public class StatisticsController {
 
     @PostMapping
     public Ergebnisse createCustomer(@RequestBody Ergebnisse ergebnisse) {
-        ergebnisse.setMedian(customerId++);
         return ergebnisse;
     }
 }

@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-// import static de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication.*;
 import static de.student.dhbwvs.statisticsCalculatorBackend.calculations.*;
 
 
