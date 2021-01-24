@@ -14,7 +14,7 @@ public class StatisticsController {
         return "Hallo";
     }
 
-    //empfängt einen String und gibt ihn zurück
+    //empfängt probeweise einen int, weist ihn dem Ergebnis zu und gibt dieses zurück
     @PostMapping
     public Ergebnisse neuesErgebnis(@RequestBody int mittelwert) {
         ergebnisse.setMedian(6.7635);
