@@ -151,17 +151,27 @@ public class calculations {
         return variance;
     }
 
+    public static double calcQuantile(double percentage, double[] values){
+        double quantile = 0;
+        int count = values.length;
+        double np = (count*percentage);
+        int round = (int)(Math.floor(np));
+        if((np%2) == 0 ){
+            quantile = (1/2) * (values[round] + values[(round + 1)]);
+        } else {
+            quantile = values[round];
+        }
+        return quantile;
+    }
 
-    public static double calcStandardDeviation(double[] values) {
-        public static double calcStandardDeviation(double variance) {
-        	/** Standardabweichung berechnen
-         	* Input: berechnete Varianz als double
-         	* Return: Die berechnete Standardabweichung als double
-         	**/
 
-        	// Die Standardabweichung ist die Quadratwurzel der Varianz
-        	double stdDev = Math.sqrt(variance);
-
-        	return stdDev;
-    	}
+    public static double calcStandardDeviation(double variance) {
+        /** Standardabweichung berechnen
+        * Input: berechnete Varianz als double
+        * Return: Die berechnete Standardabweichung als double
+        **/
+      	// Die Standardabweichung ist die Quadratwurzel der Varianz
+       	double stdDev = Math.sqrt(variance);
+       	return stdDev;
+   	}
 }
