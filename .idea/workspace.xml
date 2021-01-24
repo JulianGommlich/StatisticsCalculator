@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API-Controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +109,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testDistributionToSample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcAverageDeviation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorBackend" />
       <extension name="coverage">
         <pattern>
@@ -118,7 +119,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testDistributionToSample" />
+      <option name="METHOD_NAME" value="testcalcAverageDeviation" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -143,10 +144,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcAverageDeviation" />
         <item itemvalue="Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testDistributionToSample" />
       </list>
     </recent_temporary>
   </component>
@@ -186,14 +187,7 @@
       <option name="project" value="LOCAL" />
       <updated>1611414304737</updated>
     </task>
-    <task id="LOCAL-00004" summary="API-Controller">
-      <created>1611414825201</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1611414825201</updated>
-    </task>
-    <option name="localTasksCounter" value="5" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,7 +204,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/backend-API-Endpunkt" />
+                        <option value="origin/backend_refactoring" />
                       </list>
                     </value>
                   </entry>

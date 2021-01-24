@@ -94,4 +94,19 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result2, calcAverage(testArray2));
 	}
 
+	//Test for calculating the average deviation to z
+	@Test
+	public void testcalcAverageDeviation(){
+
+		double[] array1 = {2, 2, 3, 4, 14};
+		double[] array2 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
+		double z1 = 2;
+		double z2 = 2.974;
+		double result1 = 3.0;
+		double result2 = 2.3728571428571428;
+
+		Assertions.assertEquals(result1, calcAverageDeviation(array1, z1));
+		Assertions.assertEquals(result2, calcAverageDeviation(array2, z2));
+	}
+
 }
