@@ -1,51 +1,56 @@
-<form id="view2Output">
-    <input type="textarea" id="explicitSequence" placeholder="Anzeige der Stichprobe als Liste (explizit)"> 
-    <input type="button" id="editButton1" value="Datei auswählen">
-    <input type="radio" id="checkBox1" name="sampleType" checked="checked">
-    <br>
-    <input type="textarea" id="absoluteSequence" placeholder="Anzeige der Stichprobe als Liste (absolut)"> 
-    <input type="button" id="editButton2" value="Datei auswählen">
-    <input type="radio" id="checkBox2" name="sampleType">
-    <br>
-    <input type="submit" id="ABSCHUSS" value="berechnen">
-</form>
-
 <form id="view2CalculatedValues">
+    <h2>Ausgabe:</h2>
     <div id="listOfCalculatedValues">
         <label>Modalwert:</label>
-        <!--Placeholder Modalwert-->
+        <input type="text" id="modalValue" value="Modalwert"> 
         <br>
         <label>Mittelwert:</label>
-        <!--Placeholder Mittelwert-->
+        <input type="text" id="meanValue" value="(Mittelwert)">
         <br>
         <label>Median:</label>
-        <!--Placeholder Median-->
-        <br>
-        <label>Mittlere absolute Abweichung (Wert Z):</label>
-        <!--Placeholder Mittlere absolute Abweichung (Wert Z)-->
+        <input type="text" id="medianValue" value="(Median)">
         <br>
         <label>Varianz:</label>
-        <!--Placeholder Varianz-->
+        <input type="text" id="varianceValue" value="(Varianz)">
         <br>
         <label>Standardabweichung:</label>
-        <!--Placeholder Modalwert-->
+        <input type="text" id="standardDeviation" value="(Standardabweichung)">
         <br>
         <label>Gini-Koeffizient:</label>
-        <!--Placeholder Gini-Koeffizient-->
-        <br>
+        <input type="text" id="giniValue" value="(Gini-Koeffizient)">
     </div>
     <div id="tableQuantile">
-        <!--IDK HOW TO DO DIS SHIAT WTF, FK OFF QUANTILE-->
+        <label>Quantil x<sub>0,05</sub>:</label>
+        <input type="text" id="quantil005" value="(Qunatil0,05)">
+        <br>
+        <label>Quantil x<sub>0,1</sub>:</label>
+        <input type="text" id="quantil01" value="(Qunatil0,1)">
+        <br>
+        <label>Quantil x<sub>0,25</sub>:</label>
+        <input type="text" id="quantil025" value="(Qunatil0,25)">
+        <br>
+        <label>Quantil x<sub>0,75</sub>:</label>
+        <input type="text" id="quantil075" value="(Qunatil0,75)">
+        <br>
+        <label>Quantil x<sub>0,9</sub>:</label>
+        <input type="text" id="quantil09" value="(Qunatil0,9)">
+        <br>
+        <label>Quantil x<sub>0,95</sub>:</label>
+        <input type="text" id="quantil095" value="(Qunatil0,95)">
+    </div>
+    <div>
+        <label>Mittlere absolute Abweichung (Wert Z):</label>
+        <input type="text" id="meanAbsoluteDeviation" value="(Wert Z)">
     </div>
     <div id="4HorsemenOfCharts">
         <!--Placeholder IDK how to do it-->
     </div>
 </form>
 
-<!--Speichern der Daten iwo hin-->
-<input type="button" id="saveData" value="Speichern">
-<!--Reset App-->
-<input type="button" id="resetApp" value="Beenden">
+<!--Neue Eingabe der Daten-->
+<input type="button" id="newData" value="Neue Eingabe">
+
+
 
 
 
