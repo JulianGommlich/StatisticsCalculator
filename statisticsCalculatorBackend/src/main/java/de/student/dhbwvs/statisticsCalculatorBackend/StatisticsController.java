@@ -8,7 +8,7 @@ public class StatisticsController {
 
     private static Ergebnisse ergebnisse = new Ergebnisse();
 
-    //ich verstehs nicht
+
     @GetMapping
     public String getErgebnisse() {
         return "Hallo";
