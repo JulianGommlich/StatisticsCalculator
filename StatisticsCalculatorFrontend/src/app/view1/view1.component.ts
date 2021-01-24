@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiEndpointService } from '../api-endpoint.service';
+import { Stichprobe } from '../stichprobe';
 
 @Component({
   selector: 'app-view1',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class View1Component implements OnInit {
 
-  constructor() { }
+  // Statisches Objekt für Testzwecke
+  testSample = new Stichprobe("absolut", [{0: 1}, {1: 2}], 3);
+  result: any;
+
+  constructor(public apiEndpoint: ApiEndpointService) { }
 
   ngOnInit(): void {
   }
 
+  // send sample to API-Endpoint-Service
+  addSample1(): void {
+    // statisches Objekt als Parameter zu Testzwecken
+    console.log("Button works");
+    this.apiEndpoint.addSample1(this.testSample).subscribe(sample => this.result = sample);
+  }
 }
