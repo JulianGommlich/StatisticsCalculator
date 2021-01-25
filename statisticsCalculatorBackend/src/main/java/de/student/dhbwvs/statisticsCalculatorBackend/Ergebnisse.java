@@ -1,7 +1,6 @@
 package de.student.dhbwvs.statisticsCalculatorBackend;
 
-
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,13 +8,13 @@ import java.util.Map;
 
 @Getter
 @Setter
-@AllArgsConstructor
 public class Ergebnisse {
 
     private Map<Double, Integer> haeufigkeitsverteilung;
     private double[] expliziteStichprobe;
     private double[] quantile;
     private double[] modalwert;
+    private double z;
     private double mittelwert;
     private double median;
     private double varianz;
@@ -23,7 +22,10 @@ public class Ergebnisse {
     private double mittlereAbweichungZuZ;
     private double giniKoeffizient;
 
-    public Ergebnisse() {
+    @JsonCreator
+    public Ergebnisse(double z, double[] stichprobe) {
+        this.z = z;
+        this.expliziteStichprobe = stichprobe;
     }
 
 }

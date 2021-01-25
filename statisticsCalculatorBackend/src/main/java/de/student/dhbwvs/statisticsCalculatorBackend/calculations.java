@@ -3,7 +3,6 @@ package de.student.dhbwvs.statisticsCalculatorBackend;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
 public class calculations {
 
     /** freqDistribution übernimmt die Stichprobe als double-Array und gibt eine sortierte Map zurück, mit den einzelnen Werten der Stichprobe
