@@ -93,5 +93,29 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result1, calcAverage(testArray1));
 		Assertions.assertEquals(result2, calcAverage(testArray2));
 	}
+	
+	// Test for calculating the standard deviation
+	@Test
+	public void calcStandardDeviation(){
+		double result1 = 4;
+		double result2 = 3;
+		double testValue1 = 16;
+		double testValue2 = 9;
+
+		Assertions.assertEquals(result1, calcStandardDeviation(testValue1));
+		Assertions.assertEquals(result2, calcStandardDeviation(testValue2));
+	}
+	
+	// Test for calculating the variance
+	@Test
+	public void calcVariance(){
+		double result1 = 8.25;
+		double result2 = 6.2826;
+		double[] testArray1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10;
+		double[] testArray2 = {1.25,2,5,4,8.35};
+
+		Assertions.assertEquals(result1, calcVariance(testArray1));
+		Assertions.assertEquals(result2, calcVariance(testArray2));
+	}
 
 }
