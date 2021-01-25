@@ -10,19 +10,19 @@ public class calculations {
      *  als keys in Form double und ihrer jeweiligen Häufigkeit als values in der Form Integer
      **/
     public static Map<Double,Integer> freqDistribution(double[] stichprobe) {
-        
+
         Map<Double, Integer> freqDist = new HashMap<>();
-        
+
         //für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
         for (double i : stichprobe) {
-            
+
             if (freqDist.containsKey(i)){
                 freqDist.replace(i, freqDist.get(i) + 1);
             } else {
                 freqDist.put(i, 1);
             }
         }
-        
+
         //Sortiervorgang aufsteigend
         return freqDist.entrySet()
                 .stream()
@@ -44,9 +44,9 @@ public class calculations {
                 exp_sample.add(i);
             }
         }
-        
+
         Collections.sort(exp_sample);
-        
+
         return exp_sample.stream().mapToDouble(d -> d).toArray();
     }
 
@@ -187,7 +187,6 @@ public class calculations {
         for (double i : stichprobe) {
             sum += Math.abs(i - z);
         }
-
         return sum/stichprobe.length;
     }
 

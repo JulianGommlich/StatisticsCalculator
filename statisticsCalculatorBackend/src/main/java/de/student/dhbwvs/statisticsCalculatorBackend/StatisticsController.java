@@ -6,20 +6,40 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping (path = "/exchange")
 public class StatisticsController {
 
-    private static Ergebnisse ergebnisse = new Ergebnisse();
+    private final Ergebnisse ergebnis = new Ergebnisse();
 
-
-    @GetMapping
-    public String getErgebnisse() {
-        return "Hallo";
-    }
-
-    //empfängt probeweise einen int, weist ihn dem Ergebnis zu und gibt dieses zurück
     @PostMapping
-    public Ergebnisse neuesErgebnis(@RequestBody int mittelwert) {
-        ergebnisse.setMedian(6.7635);
-        ergebnisse.setMittelwert(mittelwert);
-        return ergebnisse;
+    public Ergebnisse neuesErgebnis(@RequestBody Input input) {
+
+        //Ändern:
+        ergebnis.setExpliziteStichprobe(input.getStichprobe());
+
+        ergebnis.setHaeufigkeitsverteilung(calculations.freqDistribution(input.getStichprobe()));
+
+        ergebnis.setModalwert(calculations.calcModal(ergebnis.getHaeufigkeitsverteilung()));
+
+        /** ES FEHLEN:
+
+        ergebnis.setQuantile();
+        ergebnis.setGiniKoeffizient();
+
+         **/
+
+        //Fertig:
+
+        ergebnis.setMedian(calculations.calcMedian(input.getStichprobe()));
+
+        ergebnis.setMittelwert(calculations.calcAverage(input.getStichprobe()));
+
+        ergebnis.setVarianz(calculations.calcVariance(input.getStichprobe()));
+
+        ergebnis.setStandardabweichung(calculations.calcStandardDeviation(ergebnis.getVarianz()));
+
+        ergebnis.setMittlereAbweichungZuZ(calculations.calcAverageDeviation(input.getStichprobe(), input.getZ()));
+
+
+        return ergebnis;
+
     }
 }
 

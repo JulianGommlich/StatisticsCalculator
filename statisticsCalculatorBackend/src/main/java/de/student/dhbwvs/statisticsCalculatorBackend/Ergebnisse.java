@@ -23,8 +23,7 @@ public class Ergebnisse {
     private double mittlereAbweichungZuZ;
     private double giniKoeffizient;
 
-
     public Ergebnisse() {
-
     }
+
 }
