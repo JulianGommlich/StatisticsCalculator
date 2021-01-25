@@ -65,7 +65,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "StatisticsCalculatorFrontend:build"
+            "browserTarget": "StatisticsCalculatorFrontend:build",
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -118,15 +119,6 @@
           "configurations": {
             "production": {
               "devServerTarget": "StatisticsCalculatorFrontend:serve:production"
-            }
-          },
-          "architect": {
-            "serve": {
-              "builder": "@angular-devkit/build-angular:dev-server",
-              "options": {
-                "browserTarget": "your-application-name:build",
-                "proxyConfig": "src/proxy.conf.json"
-              }
             }
           }
         }
