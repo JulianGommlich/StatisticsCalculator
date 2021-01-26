@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Implementierung der Berechnung von Quantilen">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" afterDir="false" />
-    </list>
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,7 +28,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -169,7 +165,7 @@
       <workItem from="1610906779046" duration="2263000" />
       <workItem from="1610909417941" duration="1250000" />
       <workItem from="1610910874191" duration="346000" />
-      <workItem from="1611677990702" duration="715000" />
+      <workItem from="1611677990702" duration="1016000" />
     </task>
     <task id="LOCAL-00001" summary="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
       <created>1611151159525</created>
@@ -192,7 +188,21 @@
       <option name="project" value="LOCAL" />
       <updated>1611510005443</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung">
+      <created>1611678854094</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1611678854094</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung">
+      <created>1611678983771</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611678983771</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +237,7 @@
     <MESSAGE value="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests" />
     <MESSAGE value="Ergebnisseklasse erstellt" />
     <MESSAGE value="Implementierung der Berechnung von Quantilen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementierung der Berechnung von Quantilen" />
+    <MESSAGE value="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung" />
   </component>
 </project>
