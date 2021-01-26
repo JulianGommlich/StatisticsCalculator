@@ -105,8 +105,47 @@ class StatisticsCalculatorBackendApplicationTests {
 		double result1 = 3.0;
 		double result2 = 2.3728571428571428;
 
+
 		Assertions.assertEquals(result1, calcAverageDeviation(array1, z1));
 		Assertions.assertEquals(result2, calcAverageDeviation(array2, z2));
 	}
+	
+	@Test
+	public void testQuantile(){
+
+		double percentage1 = 0.05;
+		double percentage2 = 0.1;
+		double percentage3 = 0.25;
+		double percentage4 = 0.75;
+		double percentage5 = 0.9;
+		double percentage6 = 0.95;
+		double[] array1 = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
+		double ergebnis1 = 15;
+		double ergebnis2 = 18;
+		double ergebnis3 = 22;
+		double ergebnis4 = 36;
+		double ergebnis5 = 72;
+		double ergebnis6 = 98;
+		Assertions.assertEquals(ergebnis1, calcQuantile(percentage1, array1));
+		Assertions.assertEquals(ergebnis2, calcQuantile(percentage2, array1));
+		Assertions.assertEquals(ergebnis3, calcQuantile(percentage3, array1));
+		Assertions.assertEquals(ergebnis4, calcQuantile(percentage4, array1));
+		Assertions.assertEquals(ergebnis5, calcQuantile(percentage5, array1));
+		Assertions.assertEquals(ergebnis6, calcQuantile(percentage6, array1));
+
+	}
+
+	@Test
+	public void testCalcGiniCoefficient(){
+
+		double[] array1 = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
+		double ergebnis1 = 0.29;
+		double[] array2 = {15, 18, 20,65, 24, 1, 99};
+		double ergebnis2 = 0.4722550177095632;
+
+		Assertions.assertEquals(ergebnis2, calcGiniCoefficient(array2));
+
+	}
+	
 
 }
