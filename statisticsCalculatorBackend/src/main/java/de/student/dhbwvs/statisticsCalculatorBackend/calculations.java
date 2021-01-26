@@ -152,15 +152,26 @@ public class calculations {
     }
 
     public static double calcQuantile(double percentage, double[] values){
+        /** Quantile berechnen
+         * Input: array mit double Werten und Prozentzahl im double Format
+         * Return: Das berechnete Quantil für die entsprechende Prozentzahl
+         **/
         double quantile = 0;
+        // Länge des Arrays
         int count = values.length;
+        //Berechnung von Anzahl*Prozentzahl
         double np = (count*percentage);
+        //Abrunden der Zahl
         int round = (int)(Math.floor(np));
+        //Prüfe ob np ganzzahlig ist
         if((np%2) == 0 ){
+            //Wende die Formel für geradzahliges np an
             quantile = (1/2) * (values[round] + values[(round + 1)]);
         } else {
+            //Wende die Formel für ungerades np an
             quantile = values[round];
         }
+        //Gebe das Quantil zurück
         return quantile;
     }
 
@@ -174,4 +185,22 @@ public class calculations {
        	double stdDev = Math.sqrt(variance);
        	return stdDev;
    	}
+
+   	public static double calcGiniCoefficient(double[] values){
+        /** Gini Koeffizient berechnen berechnen
+         * Input: Array mit double Werten
+         * Return: Den berechneten Gini Koeffizient als double
+         **/
+        double gini = 0;
+        Arrays.sort(values);
+        double height = 0;
+        double area = 0;
+        for(int i = 0; i < values.length; i++){
+            height += values[i];
+            area += (height - values[i] / 2);
+        }
+        double fair_area = height * values.length / 2;
+        gini = (fair_area - area) / fair_area;
+        return gini;
+    }
 }
