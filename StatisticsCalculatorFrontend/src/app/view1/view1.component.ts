@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view1',
@@ -10,8 +11,11 @@ import { PopUpComponent } from '../pop-up/pop-up.component';
 })
 
 export class View1Component {
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private router: Router,) {
+  }
 
+  onSubmit(){
+    this.router.navigate(['/calculator'])
   }
 
   openDialog() {
