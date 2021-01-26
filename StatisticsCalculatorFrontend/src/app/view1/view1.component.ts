@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { SampleType, Stichprobe } from '../stichprobe';
+import { Stichprobe } from '../stichprobe';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
@@ -11,9 +11,10 @@ import { Router } from '@angular/router';
   templateUrl: './view1.component.html',
   styleUrls: ['./view1.component.css']
 })
-// Response vom Backend
-result: any;
+
 export class View1Component {
+  // Response vom Backend
+  result: any;
   constructor(public dialog: MatDialog, private router: Router, public apiEndpoint: ApiEndpointService) {
   }
 

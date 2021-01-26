@@ -24,7 +24,7 @@ import { PopUpInvalidComponent } from './pop-up-invalid/pop-up-invalid.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
     BrowserAnimationsModule,
     MatDialogModule
   ],
