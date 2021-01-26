@@ -9,8 +9,7 @@ import { SampleType, Stichprobe } from '../stichprobe';
 })
 export class View1Component implements OnInit {
 
-  // Statisches Objekt für Testzwecke
-  testSample = new Stichprobe(SampleType.absolute, [{0: 1}, {1: 2}], 3);
+  // Response vom Backend
   result: any;
 
   constructor(public apiEndpoint: ApiEndpointService) { }
@@ -19,9 +18,8 @@ export class View1Component implements OnInit {
   }
 
   // send sample to API-Endpoint-Service
-  addSample(): void {
-    // statisches Objekt als Parameter zu Testzwecken
-    console.log("Button works");
-    this.apiEndpoint.addSample1(this.testSample).subscribe(sample => this.result = sample);
+  startCalculation(): void {
+    // Für STICHPROBENOBJEKT müssen die Daten aus der View eingefügt werden (Issue 16) 
+    this.apiEndpoint.startCalculation(this.STICHPROBENOBJEKT).subscribe(sample => this.result = sample);
   }
 }
