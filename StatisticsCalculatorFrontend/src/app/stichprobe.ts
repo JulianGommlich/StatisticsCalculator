@@ -1,15 +1,10 @@
-export enum SampleType {
-  explicit, 
-  absolute
-}
-
 export class Stichprobe {
 
-  sampleType: SampleType;
+  sampleType: string;
   values: object[];
   z: number;
 
-  constructor(newSampleType: SampleType, newValues: object[], newZ: number) {
+  constructor(newSampleType: string, newValues: object[], newZ: number) {
     this.sampleType = newSampleType;
     this.values = newValues;
     this.z = newZ;
