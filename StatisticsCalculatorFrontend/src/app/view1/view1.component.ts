@@ -21,7 +21,7 @@ export class View1Component {
   openDialog() {
     console.log("test");
     const dialogRef = this.dialog.open(PopUpComponent, {
-      data: { fix: false, absolute: [1,2,3,4] }  //Auffang für Daten aus dem Backend
+      data: { fix: true, absolute: [1,2,3,4] }  //Auffang für Daten aus dem Backend
     });
 
     dialogRef.afterClosed().subscribe(result => {
