@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiEndpointService } from '../api-endpoint.service';
-import { Stichprobe } from '../stichprobe';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
@@ -13,9 +11,8 @@ import { Router } from '@angular/router';
 })
 
 export class View1Component {
-  // Response vom Backend
-  result: any;
-  constructor(public dialog: MatDialog, private router: Router, public apiEndpoint: ApiEndpointService) {
+  
+  constructor(public dialog: MatDialog, private router: Router) {
   }
 
   onSubmit(){
@@ -31,11 +28,5 @@ export class View1Component {
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-  }
-
-  // send sample to API-Endpoint-Service
-  startCalculation(): void {
-    // Für STICHPROBENOBJEKT müssen die Daten aus der View eingefügt werden (Issue 16) 
-    this.apiEndpoint.startCalculation(this.STICHPROBENOBJEKT).subscribe(sample => this.result = sample);
   }
 }
