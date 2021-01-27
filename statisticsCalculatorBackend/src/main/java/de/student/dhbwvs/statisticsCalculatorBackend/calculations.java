@@ -1,54 +1,8 @@
 package de.student.dhbwvs.statisticsCalculatorBackend;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class calculations {
-
-    /** freqDistribution übernimmt die Stichprobe als double-Array und gibt eine sortierte Map zurück, mit den einzelnen Werten der Stichprobe
-     *  als keys in Form double und ihrer jeweiligen Häufigkeit als values in der Form Integer
-     **/
-    public static Map<Double,Integer> freqDistribution(double[] stichprobe) {
-
-        Map<Double, Integer> freqDist = new HashMap<>();
-
-        //für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
-        for (double i : stichprobe) {
-
-            if (freqDist.containsKey(i)){
-                freqDist.replace(i, freqDist.get(i) + 1);
-            } else {
-                freqDist.put(i, 1);
-            }
-        }
-
-        //Sortiervorgang aufsteigend
-        return freqDist.entrySet()
-                .stream()
-                .sorted(Map.Entry.<Double, Integer>comparingByKey())
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        Map.Entry::getValue,
-                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
-    }
-
-
-    // exp_sample übernimmt die Häufigkeitsverteilung als Map und gibt eine aufsteigend sortierte explizite Stichprobe als double-Array zurück
-    public static double[] expSample(Map<Double,Integer> freqDist) {
-
-        ArrayList<Double> exp_sample = new ArrayList<>();
-
-        for (double i : freqDist.keySet()) {
-            for(int j = freqDist.get(i); j > 0; j--){
-                exp_sample.add(i);
-            }
-        }
-
-        Collections.sort(exp_sample);
-
-        return exp_sample.stream().mapToDouble(d -> d).toArray();
-    }
-
 
     /** calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,
      *  die den entsprechenden value haben
@@ -75,7 +29,6 @@ public class calculations {
         
         return modal.stream().mapToDouble(d -> d).toArray();
     }
-
 
     // calcMedian berechnet den Median eines Arrays
     public static double calcMedian(double[] values){

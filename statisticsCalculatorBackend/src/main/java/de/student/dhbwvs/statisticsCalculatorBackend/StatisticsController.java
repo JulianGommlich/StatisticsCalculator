@@ -12,9 +12,7 @@ public class StatisticsController {
     @PostMapping
     public Ergebnisse neuesErgebnis(@RequestBody Ergebnisse ergebnis) {
 
-        //Ändern:
-
-        ergebnis.setHaeufigkeitsverteilung(calculations.freqDistribution(ergebnis.getExpliziteStichprobe()));
+        //ergebnis.setHaeufigkeitsverteilung(calculations.freqDistribution(ergebnis.getExpliziteStichprobe()));
 
         ergebnis.setModalwert(calculations.calcModal(ergebnis.getHaeufigkeitsverteilung()));
 

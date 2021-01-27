@@ -10,11 +10,12 @@ import java.util.Map;
 @Setter
 public class Ergebnisse {
 
-    private Map<Double, Integer> haeufigkeitsverteilung;
+    private String sampleType;
     private double[] expliziteStichprobe;
+    private Map<Double, Integer> haeufigkeitsverteilung;
+    private double z;
     private double[] quantile;
     private double[] modalwert;
-    private double z;
     private double mittelwert;
     private double median;
     private double varianz;
@@ -23,9 +24,11 @@ public class Ergebnisse {
     private double giniKoeffizient;
 
     @JsonCreator
-    public Ergebnisse(double z, double[] stichprobe) {
-        this.z = z;
+    public Ergebnisse(String sampleType, double[] stichprobe, Map<Double, Integer> haeufigkeitsverteilung, double z) {
+        this.sampleType = sampleType;
         this.expliziteStichprobe = stichprobe;
+        this.haeufigkeitsverteilung = haeufigkeitsverteilung;
+        this.z = z;
     }
 
 }
