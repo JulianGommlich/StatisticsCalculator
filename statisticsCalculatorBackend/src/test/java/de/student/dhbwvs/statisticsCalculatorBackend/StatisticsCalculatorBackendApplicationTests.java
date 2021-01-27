@@ -6,7 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
 
-// import static de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication.*;
+
 import static de.student.dhbwvs.statisticsCalculatorBackend.calculations.*;
 
 
