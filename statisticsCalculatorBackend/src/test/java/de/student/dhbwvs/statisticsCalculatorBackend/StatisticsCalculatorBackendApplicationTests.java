@@ -9,7 +9,6 @@ import java.util.Map;
 
 import static de.student.dhbwvs.statisticsCalculatorBackend.calculations.*;
 
-
 @SpringBootTest
 class StatisticsCalculatorBackendApplicationTests {
 
@@ -144,6 +143,4 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(ergebnis2, calcGiniCoefficient(array2));
 
 	}
-	
-
 }

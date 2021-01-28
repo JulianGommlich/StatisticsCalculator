@@ -53,7 +53,7 @@ public class calculations {
     
         //Benenne einen Parameter für den späteren Median
         double median;
-        
+
         //Bestimme die Länge des Arrays
         int count = values.length;
         
@@ -69,7 +69,6 @@ public class calculations {
             median = values[((count+1)/2)-1];
 
         }
-        
         //Gebe den Median zurück
         return median;
     }
@@ -163,6 +162,4 @@ public class calculations {
         gini = (fair_area - area) / fair_area;
         return gini;
     }
-
-
 }

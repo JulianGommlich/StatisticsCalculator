@@ -137,6 +137,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StatisticsCalculatorBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="statisticsCalculatorBackend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
@@ -161,6 +168,7 @@
       <workItem from="1610906779046" duration="2263000" />
       <workItem from="1610909417941" duration="1250000" />
       <workItem from="1610910874191" duration="346000" />
+      <workItem from="1611677990702" duration="1016000" />
     </task>
     <task id="LOCAL-00001" summary="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
       <created>1611151159525</created>

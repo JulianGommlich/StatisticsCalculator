@@ -1,6 +1,8 @@
-<h1>Rechenmodul für explizit gegebene Stichproben</h1>
-
 <form id="inputValues">
+
+    <h2>Eingabe:</h2>
+    <P>Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
+    
     <input type="text" id="numSequence" placeholder="Zahlenreihe"> 
     oder 
     <input type="button" id="importFile" value="Datei auswählen">
@@ -8,14 +10,17 @@
     <input type="number" id="meanDeviation" placeholder="Mittlere absolute Abweichung">
     <br>
 
-
-    <h2>Art der Stichprobe</h2>
+    <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
     <input type="radio" id="explSample" name="sampleType" value="explicit"> 
     <label for="explSample">Explizite Stichprobe</label>
     <input type="radio" id="absSample" name="sampleType" value="absolute"> 
     <label for="absSample">Absolute Stichprobe</label>
     <br>
-    <input type="submit" id="show" value="Anzeigen">
+    <input type="button" id="show" value="Anzeigen" (click)="openDialog()">
+
+    <P>Wert z für die Berechnung der mittlleren absoluten Abweichung:</P>
+
+    <input type="text" id="valueZInput" placeholder="(Wert Z)">
 </form>
 
