@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung" />
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="backend_tests" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,8 +59,69 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal">
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcModal" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.StatisticsCalculatorBackendApplication">
+    <configuration name="StatisticsCalculatorBackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication" />
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="testCalcGiniCoefficient" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="testCalcStandardDeviation" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testQuantile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="testQuantile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcModal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorBackend" />
       <extension name="coverage">
         <pattern>
@@ -71,65 +132,6 @@
       <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
       <option name="METHOD_NAME" value="testcalcModal" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testDistributionToSample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testDistributionToSample" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcMedian" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testcalcMedian" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -144,10 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testDistributionToSample" />
+        <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testQuantile" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation" />
       </list>
     </recent_temporary>
   </component>
@@ -181,28 +184,63 @@
       <option name="project" value="LOCAL" />
       <updated>1611251109277</updated>
     </task>
-    <task id="LOCAL-00003" summary="Implementierung der Berechnung von Quantilen">
-      <created>1611510005443</created>
+    <task id="LOCAL-00003" summary="AP-Klasse">
+      <created>1611414304737</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1611510005443</updated>
+      <updated>1611414304737</updated>
     </task>
-    <task id="LOCAL-00004" summary="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung">
-      <created>1611678854094</created>
+    <task id="LOCAL-00004" summary="Mittlere absolute Abweichung zu z">
+      <created>1611518268549</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1611678854094</updated>
+      <updated>1611518268549</updated>
     </task>
-    <task id="LOCAL-00005" summary="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung">
-      <created>1611678983771</created>
+    <task id="LOCAL-00005" summary="Inputklasse mit Jsoncreator erstellt">
+      <created>1611584817951</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1611678983771</updated>
+      <updated>1611584817951</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Inputklasse rückgängig gemacht, überflüssiger Code gelöscht">
+      <created>1611585637668</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1611585637668</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Quantile wird befüllt, erstes ExceptionHandling für API, Test">
+      <created>1611691409147</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1611691409147</updated>
+    </task>
+    <task id="LOCAL-00008" summary="API funktioniert, Umrechnungen gelöscht">
+      <created>1611781901061</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1611781901061</updated>
+    </task>
+    <task id="LOCAL-00009" summary="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
+      <created>1611828850666</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611828850666</updated>
+    </task>
+    <task id="LOCAL-00010" summary="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
+      <created>1611835239980</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611835239980</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,7 +257,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="ergebnisklasse" />
+                        <option value="origin/Umrechnungslogik_Frontend" />
                       </list>
                     </value>
                   </entry>
@@ -236,8 +274,25 @@
     <MESSAGE value="Erster Entwurf für die Berechnung des Medians" />
     <MESSAGE value="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests" />
     <MESSAGE value="Ergebnisseklasse erstellt" />
-    <MESSAGE value="Implementierung der Berechnung von Quantilen" />
-    <MESSAGE value="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementierung der Berechnung des Gini Koeffizients und Kommentierung der Quantilberechnung" />
+    <MESSAGE value="AP-Klasse" />
+    <MESSAGE value="API-Controller" />
+    <MESSAGE value="Mittlere absolute Abweichung zu z" />
+    <MESSAGE value="Inputklasse mit Jsoncreator erstellt" />
+    <MESSAGE value="Inputklasse rückgängig gemacht, überflüssiger Code gelöscht" />
+    <MESSAGE value="Quantile wird befüllt, erstes ExceptionHandling für API, Test" />
+    <MESSAGE value="API funktioniert, Umrechnungen gelöscht" />
+    <MESSAGE value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
