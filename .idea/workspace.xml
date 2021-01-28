@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API funktioniert, Umrechnungen gelöscht">
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +63,20 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal">
+  <component name="RunManager" selected="Application.StatisticsCalculatorBackendApplication">
+    <configuration name="StatisticsCalculatorBackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication" />
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorBackend" />
       <extension name="coverage">
@@ -94,22 +104,6 @@
       <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
       <option name="METHOD_NAME" value="testCalcStandardDeviation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testCalcVariance" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testCalcVariance" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -149,11 +143,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testQuantile" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcVariance" />
       </list>
     </recent_temporary>
   </component>
@@ -228,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611781901061</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
+      <created>1611828850666</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611828850666</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +270,8 @@
     <MESSAGE value="Inputklasse rückgängig gemacht, überflüssiger Code gelöscht" />
     <MESSAGE value="Quantile wird befüllt, erstes ExceptionHandling für API, Test" />
     <MESSAGE value="API funktioniert, Umrechnungen gelöscht" />
-    <option name="LAST_COMMIT_MESSAGE" value="API funktioniert, Umrechnungen gelöscht" />
+    <MESSAGE value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
+    <option name="LAST_COMMIT_MESSAGE" value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
