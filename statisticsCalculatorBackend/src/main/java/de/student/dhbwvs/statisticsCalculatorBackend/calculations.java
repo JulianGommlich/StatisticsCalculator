@@ -15,7 +15,7 @@ public class calculations {
         int highestValue = 0;
         
         for (int i : freqDist.values()) {
-            highestValue = i > highestValue ? i : highestValue;
+            highestValue = Math.max(i, highestValue);
         }
         
         //durchsuche die map nach jedem key, bei dem highestValue == value; füge diese keys der List hinzu
@@ -30,11 +30,29 @@ public class calculations {
         return modal.stream().mapToDouble(d -> d).toArray();
     }
 
+    // Function takes an array as input
+    public static double calcAverage(double[] values) {
+        /*
+          Berechnung des Durchschnitts eines Arrays
+          Input: Array mit double-Werten
+          Return: Durchschnitt als double-Wert
+         */
+        double sum = 0;
+
+        // Alle Elemente des Arrays in der Variable sum summieren
+        for (double value : values) {
+            sum += value;
+        }
+
+        // Der Durchschnitt ist die Summe geteilt durch die Anzahl an Werten
+        return sum / values.length;
+    }
+
     // calcMedian berechnet den Median eines Arrays
     public static double calcMedian(double[] values){
     
         //Benenne einen Parameter für den späteren Median
-        double median = 0;
+        double median;
         
         //Bestimme die Länge des Arrays
         int count = values.length;
@@ -56,59 +74,12 @@ public class calculations {
         return median;
     }
 
-
-    // Function takes an array as input
-    public static double calcAverage(double[] values) {
-        /**
-         * Berechnung des Durchschnitts eines Arrays
-         * Input: Array mit double-Werten
-         * Return: Durchschnitt als double-Wert
-         **/
-
-        double sum = 0;
-
-        // Alle Elemente des Arrays in der Variable sum summieren
-        for(int i=0; i<values.length; i++ ) {
-            sum += values[i];
-        }
-
-        // Der Durchschnitt ist die Summe geteilt durch die Anzahl an Werten
-        double average = sum / values.length;
-
-        return average;
-    }
-
-
-    public static double calcVariance(double[] values) {
-        /** Varianz berechnen
-         * Input: array mit double Werten
-         * Return: Die berechnete Varianz als double
-         **/
-
-        // Den Durchschnitt berechnen lassen
-        double average = calcAverage(values);
-
-        // Variable Varianz deklarieren
-        double variance = 0;
-
-        for (int i = 0; i < values.length; i++) {
-            // Von jedem Wert aus dem Array values muss der Durchschnitt des Array abgezogen werden
-            // das Ergebnis wird dann mit 2 potenziert
-            variance += Math.pow(values[i] - average, 2);
-        }
-
-        // Der return-Wert ist die Varianz
-        variance /= values.length;
-
-        return variance;
-    }
-
     public static double calcQuantile(double percentage, double[] values){
-        /** Quantile berechnen
-         * Input: array mit double Werten und Prozentzahl im double Format
-         * Return: Das berechnete Quantil für die entsprechende Prozentzahl
-         **/
-        double quantile = 0;
+        /* Quantile berechnen
+          Input: array mit double Werten und Prozentzahl im double Format
+          Return: Das berechnete Quantil für die entsprechende Prozentzahl
+         */
+        double quantile;
         // Länge des Arrays
         int count = values.length;
         //Berechnung von Anzahl*Prozentzahl
@@ -118,7 +89,7 @@ public class calculations {
         //Prüfe ob np ganzzahlig ist
         if((np%2) == 0 ){
             //Wende die Formel für geradzahliges np an
-            quantile = (1/2) * (values[round] + values[(round + 1)]);
+            quantile = (0.5) * (values[round] + values[(round + 1)]);
         } else {
             //Wende die Formel für ungerades np an
             quantile = values[round];
@@ -127,22 +98,44 @@ public class calculations {
         return quantile;
     }
 
+    public static double calcVariance(double[] values) {
+        /* Varianz berechnen
+          Input: array mit double Werten
+          Return: Die berechnete Varianz als double
+         */
 
-    public static double calcStandardDeviation(double variance) {
-        /** Standardabweichung berechnen
-         * Input: berechnete Varianz als double
-         * Return: Die berechnete Standardabweichung als double
-         **/
-        // Die Standardabweichung ist die Quadratwurzel der Varianz
-        double stdDev = Math.sqrt(variance);
-        return stdDev;
+        // Den Durchschnitt berechnen lassen
+        double average = calcAverage(values);
+
+        // Variable Varianz deklarieren
+        double variance = 0;
+
+        for (double value : values) {
+            // Von jedem Wert aus dem Array values muss der Durchschnitt des Array abgezogen werden
+            // das Ergebnis wird dann mit 2 potenziert
+            variance += Math.pow(value - average, 2);
+        }
+
+        // Der return-Wert ist die Varianz
+        variance /= values.length;
+
+        return variance;
     }
 
-    /**Mittlere absolute Abweichung zu einem Wert z:
-     * Input: Stichprobe als double-Array, Wert z als double
-     * Vorgehen: für jeden Stichprobenwert Betrag von Stichprobenwert - z addieren,
-     *          durch die Anzahl der Werte dividieren
-     * Return: mittlere absolute Abweichung zu z als double
+    public static double calcStandardDeviation(double variance) {
+        /* Standardabweichung berechnen
+          Input: berechnete Varianz als double
+          Return: Die berechnete Standardabweichung als double
+         */
+        // Die Standardabweichung ist die Quadratwurzel der Varianz
+        return Math.sqrt(variance);
+    }
+
+    /* Mittlere absolute Abweichung zu einem Wert z:
+      Input: Stichprobe als double-Array, Wert z als double
+      Vorgehen: für jeden Stichprobenwert Betrag von Stichprobenwert - z addieren,
+               durch die Anzahl der Werte dividieren
+      Return: mittlere absolute Abweichung zu z als double
      */
     public static double calcAverageDeviation(double[] stichprobe, double z){
         double sum = 0;
@@ -154,17 +147,17 @@ public class calculations {
     }
 
     public static double calcGiniCoefficient(double[] values){
-        /** Gini Koeffizient berechnen berechnen
-         * Input: Array mit double Werten
-         * Return: Den berechneten Gini Koeffizient als double
-         **/
-        double gini = 0;
+        /* Gini Koeffizient berechnen berechnen
+          Input: Array mit double Werten
+          Return: Den berechneten Gini Koeffizient als double
+         */
+        double gini;
         Arrays.sort(values);
         double height = 0;
         double area = 0;
-        for(int i = 0; i < values.length; i++){
-            height += values[i];
-            area += (height - values[i] / 2);
+        for (double value : values) {
+            height += value;
+            area += (height - value / 2);
         }
         double fair_area = height * values.length / 2;
         gini = (fair_area - area) / fair_area;

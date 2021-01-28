@@ -17,74 +17,34 @@ class StatisticsCalculatorBackendApplicationTests {
 	void contextLoads() {
 	}
 
+	// Test for calculating the modal value
 	@Test
-	public void testSampleToDistribution() {
-
-		Map<Double, Integer> result1 = new LinkedHashMap<>();
-		result1.put(-4.5, 1);
-		result1.put(1.0, 2);
-		result1.put(2.0, 1);
-		result1.put(2.4, 3);
-		result1.put(3.4, 1);
-		result1.put(4.0, 3);
-		result1.put(6.0, 1);
-		result1.put(7.92, 1);
-		result1.put(10.6, 1);
-
-		double[] array1 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
-
-		Assertions.assertEquals(result1, freqDistribution(array1));
-	}
-
-	@Test
-	public void testDistributionToSample() {
-
-		double[] result = {-4.5, 1, 1, 2, 2.4, 2.4, 2.4, 3.4, 4, 4, 4, 6, 7.92, 10.6};
-
-		Map<Double, Integer> map = new LinkedHashMap<>();
-		map.put(-4.5, 1);
-		map.put(1.0, 2);
-		map.put(2.0, 1);
-		map.put(2.4, 3);
-		map.put(3.4, 1);
-		map.put(4.0, 3);
-		map.put(6.0, 1);
-		map.put(7.92, 1);
-		map.put(10.6, 1);
-
-		double[] method_result = expSample(map);
-
-		Assertions.assertArrayEquals(result,method_result);
-
-	}
-
-	// Test for calculating the modalvalue
-	@Test
-	public void testcalcModal(){
+	public void testCalcModal(){
 		double[] result1 = {2.4, 4.0};
 		double[] result2 = {3.0};
-		double[] array1 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
-		double[] array2 = {5, 5, 4, 4, 3, 3, 3, 2, 2, 1};
+		Map<Double, Integer> map1 = new LinkedHashMap<>();
+		map1.put(-4.5, 1);
+		map1.put(1.0, 2);
+		map1.put(2.0, 1);
+		map1.put(2.4, 3);
+		map1.put(3.4, 1);
+		map1.put(4.0, 3);
+		map1.put(6.0, 1);
+		map1.put(7.92, 1);
+		map1.put(10.6, 1);
+		Map<Double, Integer> map2 = new LinkedHashMap<>();
+		map2.put(3.0, 5);
+		map2.put(1.0, 2);
+		map2.put(2.0, 1);
+		map2.put(2.4, 3);
 
-		Assertions.assertArrayEquals(result1,calcModal(freqDistribution(array1)));
-		Assertions.assertArrayEquals(result2,calcModal(freqDistribution(array2)));
-	}
-
-	// Test fpr calculating the median
-	@Test
-	public void testcalcMedian(){
-		double result1 = 2.5;
-		double result2 = 3;
-		double[] test1 = {1,1,2,2,3,3,4,4};
-		double[] test2 = {5,5,4,4,3,3,2,2,1};
-
-		Assertions.assertEquals(result1, calcMedian(test1));
-		Assertions.assertEquals(result2, calcMedian(test2));
+		Assertions.assertArrayEquals(result1,calcModal(map1));
+		Assertions.assertArrayEquals(result2,calcModal(map2));
 	}
 
 	// Test for calculating the average
 	@Test
-	public void testcalcAverage(){
+	public void testCalcAverage(){
 		double result1 = 2.5;
 		double result2 = 3.25;
 		double[] testArray1 = {1, 1, 2, 2, 3, 3, 4, 4};
@@ -94,24 +54,21 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result2, calcAverage(testArray2));
 	}
 
-	//Test for calculating the average deviation to z
+	// Test for calculating the median
 	@Test
-	public void testcalcAverageDeviation(){
+	public void testCalcMedian(){
+		double result1 = 2.5;
+		double result2 = 3;
+		double[] test1 = {1,1,2,2,3,3,4,4};
+		double[] test2 = {5,5,4,4,3,3,2,2,1};
 
-		double[] array1 = {2, 2, 3, 4, 14};
-		double[] array2 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
-		double z1 = 2;
-		double z2 = 2.974;
-		double result1 = 3.0;
-		double result2 = 2.3728571428571428;
-
-
-		Assertions.assertEquals(result1, calcAverageDeviation(array1, z1));
-		Assertions.assertEquals(result2, calcAverageDeviation(array2, z2));
+		Assertions.assertEquals(result1, calcMedian(test1));
+		Assertions.assertEquals(result2, calcMedian(test2));
 	}
-	
+
+	//Test for calculating the quantile
 	@Test
-	public void testQuantile(){
+	public void testCalcQuantile(){
 
 		double percentage1 = 0.05;
 		double percentage2 = 0.1;
@@ -135,14 +92,55 @@ class StatisticsCalculatorBackendApplicationTests {
 
 	}
 
+	// Test for calculating the variance
+	@Test
+	public void testCalcVariance(){
+		double result1 = 8.25;
+		double result2 = 6.2825999999999995;
+		double[] testArray1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+		double[] testArray2 = {1.25,2,5,4,8.35};
+
+		Assertions.assertEquals(result1, calcVariance(testArray1));
+		Assertions.assertEquals(result2, calcVariance(testArray2));
+	}
+
+	// Test for calculating the standard deviation
+	@Test
+	public void testCalcStandardDeviation(){
+		double result1 = 4;
+		double result2 = 3;
+		double testValue1 = 16;
+		double testValue2 = 9;
+
+		Assertions.assertEquals(result1, calcStandardDeviation(testValue1));
+		Assertions.assertEquals(result2, calcStandardDeviation(testValue2));
+	}
+
+	//Test for calculating the average deviation to z
+	@Test
+	public void testCalcAverageDeviation(){
+
+		double[] array1 = {2, 2, 3, 4, 14};
+		double[] array2 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
+		double z1 = 2;
+		double z2 = 2.974;
+		double result1 = 3.0;
+		double result2 = 2.3728571428571428;
+
+		Assertions.assertEquals(result1, calcAverageDeviation(array1, z1));
+		Assertions.assertEquals(result2, calcAverageDeviation(array2, z2));
+	}
+
+	//Test for calculating the gini coefficient
 	@Test
 	public void testCalcGiniCoefficient(){
 
 		double[] array1 = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
-		double ergebnis1 = 0.29;
+		double ergebnis1 = 0.28969053934571176;
 		double[] array2 = {15, 18, 20,65, 24, 1, 99};
 		double ergebnis2 = 0.4722550177095632;
 
+		Assertions.assertEquals(ergebnis1, calcGiniCoefficient(array1));
 		Assertions.assertEquals(ergebnis2, calcGiniCoefficient(array2));
 
 	}

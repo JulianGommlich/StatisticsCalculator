@@ -14,10 +14,10 @@ public class Ergebnisse {
     private double[] expliziteStichprobe;
     private Map<Double, Integer> haeufigkeitsverteilung;
     private double z;
-    private double[] quantile;
     private double[] modalwert;
     private double mittelwert;
     private double median;
+    private double[] quantile;
     private double varianz;
     private double standardabweichung;
     private double mittlereAbweichungZuZ;
