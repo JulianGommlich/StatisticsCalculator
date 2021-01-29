@@ -18,7 +18,7 @@ export class PopUpComponent implements OnInit {
   result: any;
 
   // Test Input
-  inputData = new Stichprobe(SampleType.explicit, [1, 5, 1, 8, 1, 2, 9, 4, 6, 5, 6, 5, 4], { 2: 1, 5: 3, 4: 2, 1: 3, 8: 1, 9:1, 6: 2 }, 3);
+  inputData = new Stichprobe(SampleType.absolute, [1, 5, 1, 8, 1, 2, 9, 4, 6, 5, 6, 5, 4], { 2: 1, 5: 3, 4: 2, 1: 3, 8: 1, 9: 1, 6: 2 }, 3);
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[] }, private router: Router, public apiEndpoint: ApiEndpointService) {
@@ -38,13 +38,14 @@ export class PopUpComponent implements OnInit {
 
   // send sample to API-Endpoint-Service
   startCalculation(): void {
-    // Für STICHPROBENOBJEKT müssen die Daten aus der View eingefügt werden (Issue 16) --> Auskommentiert um Fehler zu vermeiden. 
-    //this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => this.result = sample);
-    
-    
-    // Auskommentiert fürs testen!!!!
-    this.inputData.setExpSample();
-    this.inputData.setFreqDistribution();
+    if (this.inputData.sampleType == "explicit") {
+      this.inputData.setFreqDistribution();
+    }
+    else if (this.inputData.sampleType == "absolute") {
+      this.inputData.setExpSample();
+    }
+
+    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => this.result = sample);
   }
 
 }
