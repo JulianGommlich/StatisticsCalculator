@@ -13,7 +13,6 @@ export class Stichprobe {
 
   sampleType: SampleType;
   explSample: number[];
-  //freqDist: object;
   freqDist: { [key: string]: number };
   z: number;
 
@@ -30,6 +29,7 @@ export class Stichprobe {
   // converts the explicit sample to frequency distribution
   setFreqDistribution(): void {
     let newFreqDist: { [key: string]: number } = {};
+    let sortedExplSample: number[] = [];
 
     // für jeden Wert im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
     this.explSample.forEach(function (key) {
@@ -41,10 +41,12 @@ export class Stichprobe {
       }
     });
 
-    // set the property "freqDist" to the new calulated frequency distribution
-    this.freqDist = newFreqDist;
+    // explSample sollte auch sortiert werden, falls die Eingabe von User nicht geordnet erfolgt ist
+    sortedExplSample = this.explSample.sort((n1, n2) => n1 - n2);
 
-    console.log(this.freqDist);
+    // set the property "freqDist" to the new calulated frequency distribution & set "explSample" to new sorted "explSample"-Array
+    this.freqDist = newFreqDist;
+    this.explSample = sortedExplSample;
   }
 
 
@@ -65,8 +67,6 @@ export class Stichprobe {
 
     // set the property "explSample" to the new calulated explicit Sample
     this.explSample = sortedExplSample;
-
-    console.log(this.explSample);
   }
 
 }
