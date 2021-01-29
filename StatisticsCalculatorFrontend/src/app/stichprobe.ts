@@ -8,7 +8,6 @@ export enum SampleType {
 
 
 export class Stichprobe {
-
   sampleType: SampleType;
   explSample: number[];
   freqDist: { [key: string]: number };
@@ -27,7 +26,6 @@ export class Stichprobe {
   // converts the explicit sample to frequency distribution
   setFreqDistribution(): void {
     let newFreqDist: { [key: string]: number } = {};
-    let sortedExplSample: number[] = [];
 
     // für jeden Wert im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
     this.explSample.forEach(function (key) {
@@ -39,19 +37,16 @@ export class Stichprobe {
       }
     });
 
-    // explSample sollte auch sortiert werden, falls die Eingabe von User nicht geordnet erfolgt ist
-    sortedExplSample = this.explSample.sort((n1, n2) => n1 - n2);
-
     // set the property "freqDist" to the new calulated frequency distribution & set "explSample" to new sorted "explSample"-Array
     this.freqDist = newFreqDist;
-    this.explSample = sortedExplSample;
+    // explSample sollte auch sortiert werden, falls die Eingabe von User nicht geordnet erfolgt ist
+    this.explSample = this.explSample.sort((n1, n2) => n1 - n2);
   }
 
 
   // converts the frequency distribution to explicit sample
   setExpSample(): void {
     let newExplSample: number[] = [];
-    let sortedExplSample: number[] = [];
 
     // für jeden key in der Häufigkeitsverteilung (Object) wird jeweils die Häufigkeit (values) an Werten (keys) in das Array gepusht. 
     for (let key in this.freqDist) {
@@ -60,11 +55,8 @@ export class Stichprobe {
       }
     }
 
-    // aufsteigende Sortierung des Arrays
-    sortedExplSample = newExplSample.sort((n1, n2) => n1 - n2);
-
-    // set the property "explSample" to the new calulated explicit Sample
-    this.explSample = sortedExplSample;
+    // set the property "explSample" to the new calulated explicit Sample, which is sorted in ascending order
+    this.explSample = newExplSample.sort((n1, n2) => n1 - n2);
   }
 
 }
