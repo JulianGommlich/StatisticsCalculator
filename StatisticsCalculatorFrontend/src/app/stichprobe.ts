@@ -1,12 +1,10 @@
 import { ValueConverter } from "@angular/compiler/src/render3/view/template";
 
 
-
 export enum SampleType {
   explicit = "explicit",
   absolute = "absolute"
 }
-
 
 
 export class Stichprobe {

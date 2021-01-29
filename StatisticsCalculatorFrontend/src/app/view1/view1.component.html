@@ -1,26 +1,27 @@
-<form id="inputValues">
+<!--Ich glaube die ID kann entfernt werden durch das "#"-->
+<form id="inputValues" [formGroup]="inputForm" (ngSubmit)="getInput()">
 
     <h2>Eingabe:</h2>
     <P>Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
     
-    <input type="text" id="numSequence" placeholder="Zahlenreihe"> 
+    <input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe"> 
     oder 
     <input type="button" id="importFile" value="Datei auswählen">
     <br>
-    <input type="number" id="meanDeviation" placeholder="Mittlere absolute Abweichung">
+    <input type="number" formControlName="meanDeviation" id="meanDeviation" placeholder="Mittlere absolute Abweichung">
     <br>
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
-    <input type="radio" id="explSample" name="sampleType" value="explicit"> 
+    <input type="radio" formControlName="sampleType" id="explSample" name="sampleType" value="explicit"> 
     <label for="explSample">Explizite Stichprobe</label>
-    <input type="radio" id="absSample" name="sampleType" value="absolute"> 
+    <input type="radio" formControlName="sampleType" id="absSample" name="sampleType" value="absolute"> 
     <label for="absSample">Absolute Stichprobe</label>
     <br>
-    <input type="button" id="show" value="Anzeigen" (click)="openDialog()">
+    <input type="submit" id="show" value="Anzeigen" (click)="openDialog()">
 
     <P>Wert z für die Berechnung der mittlleren absoluten Abweichung:</P>
 
-    <input type="text" id="valueZInput" placeholder="(Wert Z)">
+    <input type="text" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)">
 </form>
 
