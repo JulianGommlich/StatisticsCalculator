@@ -80,7 +80,7 @@ export class FourCharts implements OnInit {
 
   setBarAndPieChartValues(freqDistKeys: string[], freqDistValues: number[]) {
     // Durch sämtliche Wertepaare der absoluten Häufigkeitsverteilung iterieren und dann Key und Value
-    // als Parameter in das Diagramm einsetzen
+    // als Parameter ('name' und 'value') in das Diagramm einsetzen
     for (let index = 0; index < Object.keys(freqDist).length; index++) {
       this.barAndPieChartValues.push({
         'name': freqDistKeys[index],
@@ -95,7 +95,7 @@ export class FourCharts implements OnInit {
       'name': '0',
       'series': [
         {
-          'name': Number(freqDistKeys[0]) - 10,
+          'name': Number(freqDistKeys[0]) - 10,    // x-Koordinate, die um 10 kleiner ist als der kleineste Stichprobenwert
           'value': 0
         },
         {
@@ -105,8 +105,15 @@ export class FourCharts implements OnInit {
       ]
     });
 
+    // sumOfRelativeFrequencies beinhaltet die Summe der relativen Häufigkeiten der Stichprobenwerte, 
+    // die kleiner oder gleich dem Wert in der aktuellen Iteration sind
     let sumOfRelativeFrequencies = 0;
+
+    // Durch alle Wertepaare der absoluten Häufigkeitsverteilung (bis auf das letzte) iterieren, um
+    // die "Linien" der empirischen Verteilungsfunktion zu "zeichnen"
     for (let index = 0; index < Object.keys(freqDist).length-1; index++) {
+
+      // Eine relative Häufigkeit ergibt sich aus der Division der absoluten Häufigkeit durch die Gesamtanzahl an Stichprobenwerte 
       sumOfRelativeFrequencies += freqDistValues[index]/explSample.length;
       this.empiricalDistributionChartValues.push({
         'name': index + 1,
@@ -132,7 +139,7 @@ export class FourCharts implements OnInit {
           'value': 1
         },
         {
-          'name': Number(freqDistKeys[freqDistKeys.length-1]) + 10,
+          'name': Number(freqDistKeys[freqDistKeys.length-1]) + 10,    // x-Koordinate, die um 10 größer ist als der größte Stichprobenwert
           'value': 1
         }
       ]
@@ -140,21 +147,32 @@ export class FourCharts implements OnInit {
   }
 
   setLorenzChartValues(freqDistKeys: string[], freqDistValues: number[]) {
-    // Technische Schuld!
+    // In der Variable valueSeries wird der Verlauf der Lorenzkurve beschrieben. Sie wird hier initial erstellt.
+    // Die Lorenzkurze beginnt im Punkt (0|0)
     let valueSeries = [{
       'name': '0',
       'value': 0
     }];
 
+    // sumOfAbsoluteFrequencies beinhaltet die Summe der absoluten Häufigkeiten der Stichprobenwerte, 
+    // die kleiner oder gleich dem Wert in der aktuellen Iteration sind
     let sumOfAbsoluteFrequency = 0;
+
+    // Durch alle Wertepaare der absoluten Häufigkeitsverteilung iterieren, um
+    // den Verlauf der Lorenzkurve zu "zeichnen"
     for (let index = 0; index < Object.keys(freqDist).length; index++) {
+
+      // Eine absolute Häufigkeit stellt dar, wie oft ein bestimmter Stichprobenwert in einer Stichprobe vorkommt
+      // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
       sumOfAbsoluteFrequency += freqDistValues[index] * Number(freqDistKeys[index]);
       valueSeries.push({
-        'name': freqDistKeys[index],
+        'name': ((index + 1)/Object.keys(freqDist).length).toString(),
         'value': Math.round(sumOfAbsoluteFrequency/explSample.reduce((a, b) => a + b, 0) * 1000)/1000
       });
     }
 
+    // Hier wird die Variable valueSeries in das Diagramm eingesetzt.
+    // Danach wird die Referenzgerade "gezeichnet"
     this.lorenzChartValues.push({
         'name': 'Lorenzkurve',
         'series': valueSeries
@@ -167,7 +185,7 @@ export class FourCharts implements OnInit {
             'value': 0
           },
           {
-            'name': freqDistKeys[freqDistKeys.length-1],
+            'name': '1',
             'value': 1
           }
         ]
