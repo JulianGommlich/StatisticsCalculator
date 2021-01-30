@@ -32,31 +32,19 @@ export class View1Component {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(PopUpComponent, {
-      data: { fix: true, absolute: [1,2,3,4] }  //Auffang für Daten aus dem Backend
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
-  getInput(): void {
     let newSampleType: SampleType = this.inputForm.get('sampleType')?.value;
     let newExplSample: number[] = this.inputForm.get('numSequence')?.value;
     let newFreqDist: { [key: string]: number } = this.inputForm.get('meanDeviation')?.value;
     let newZ: number = this.inputForm.get('valueZInput')?.value;
 
-    let test = new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
-
-    //this.dataShare.sharedStichprobe = new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
-
-    console.log(test);
+    let inputData = new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
     
-    //this.stichprobe.sampleType = this.inputForm.get('sampleType')?.value;
-    //this.stichprobe.explSample = this.inputForm.get('numSequence')?.value;
-    //this.stichprobe.freqDist = this.inputForm.get('meanDeviation')?.value;
-    //this.stichprobe.z = this.inputForm.get('valueZInput')?.value;
-    
+    const dialogRef = this.dialog.open(PopUpComponent, {
+      data: { fix: true, absolute: [1,2,3,4], inputData }  //Auffang für Daten aus dem Backend
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

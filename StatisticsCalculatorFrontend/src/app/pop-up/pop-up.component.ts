@@ -1,9 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { SampleType, Stichprobe } from '../stichprobe';
-import { View1Component } from '../view1/view1.component'; 
 
 @Component({
   selector: 'app-pop-up',
@@ -17,17 +16,20 @@ export class PopUpComponent implements OnInit {
   explicite: number[] = [];
   // Response vom Backend
   result: any;
+  inputData: Stichprobe = new Stichprobe(SampleType.absolute, [], {}, 0);
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[] }, 
+
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe }, 
     private router: Router, 
-    public apiEndpoint: ApiEndpointService, 
-    private view1: View1Component
+    public apiEndpoint: ApiEndpointService
   ) {
     this.fix = data.fix;
     this.absolute = data.absolute;
     if (data.explicite) {
       this.explicite = data.explicite;
     }
+    this.inputData = data.inputData;
   }
   getResults() {
     // Create logic to get data
@@ -39,21 +41,32 @@ export class PopUpComponent implements OnInit {
 
   // send sample to API-Endpoint-Service
   startCalculation(): void {
-    let newSampleType: SampleType = this.view1.inputForm.get('sampleType')?.value;
-    let newExplSample: number[] = this.view1.inputForm.get('numSequence')?.value;
-    let newFreqDist: { [key: string]: number } = this.view1.inputForm.get('meanDeviation')?.value;
-    let newZ: number = this.view1.inputForm.get('valueZInput')?.value;
-    
-    let inputData = new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
-    
-    if (inputData.sampleType == "explicit") {
-      inputData.setFreqDistribution();
+
+    // explizite Stichprobe wird als String übergeben aufgrund des input-Feldes. Dennoch muss das Input Feld hier zu einem gecastet werden, da das Objekt sonst
+    // einen Fehler wirft, da für die explizite Stichprobe ein number-Array vorgegeben ist. 
+    this.getNumArray(String(this.inputData.explSample));
+
+    if (this.inputData.sampleType == "explicit") {
+      this.inputData.setFreqDistribution();
     }
-    else if (inputData.sampleType == "absolute") {
-      inputData.setExpSample();
+    else if (this.inputData.sampleType == "absolute") {
+      this.inputData.setExpSample();
     }
 
-    this.apiEndpoint.startCalculation(inputData).subscribe(sample => this.result = sample);
+    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => this.result = sample);
+  }
+
+  // Takes a String as Input and converts it to a number-Array
+  getNumArray(inputStr: String): void {
+    let numArr: number[] = [];
+     
+    for(let key in inputStr.split(";")) {
+      numArr.push(Number(inputStr.split(";")[key]));
+    }
+
+    this.inputData.explSample = numArr;
+
+    console.log(this.inputData.explSample)
   }
 
 }

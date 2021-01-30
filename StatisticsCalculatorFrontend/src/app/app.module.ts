@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { PopUpInvalidComponent } from './pop-up-invalid/pop-up-invalid.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { Stichprobe } from './stichprobe';
 
 @NgModule({
   declarations: [
