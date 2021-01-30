@@ -63,16 +63,47 @@ export class View1Component {
   }
   validateSequence(){
     let numSeq : string = (<HTMLInputElement>document.getElementById("numSequence")).value;   
-    var letters = /[A-Za-z]$/;
+    var letters = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\(\)\=\?\´\`\+\*\#\'\:\_\<\>\|]\d*$/;
     
     if (numSeq.length == 0){
-      return false
+      console.log("abrechnen 1")
+      return false;
     } else if (numSeq.match(letters)){
-      return false
+      console.log("abrechnen 2")
+      return false;
     }
-    let splittedSeq: string[] = numSeq.split(";", 100)
-    alert (splittedSeq);
+    var splittedSeq = numSeq.split(";", 100)
+    //var numbers = splittedSeq.match(/(?<number>\d*)/g);
+    if (this.countNumbers(splittedSeq) == false){
+      return false;
+    } else {
+      return true;
+    };
+
+    //return true;
   }
+  countNumbers(arraySeq){
+    let g:{ [key:string]:number} = {};
+    
+    arraySeq.forEach(function (key) {
+      if (Object.keys(g).includes(String(key))) {
+        g[key] += 1;
+      }
+      else {
+        Object.assign(g, { [key]: 1 });
+      }
+    });
+    console.log(Math.max(...Object.values(g)))
+    console.log(Math.max(...Object.values(g)) >= 30)
+    if (Math.max(...Object.values(g)) >= 30){
+      return false;
+    } else {
+      return true
+    }
+      
+   
+    }
+  
 }
   
 
