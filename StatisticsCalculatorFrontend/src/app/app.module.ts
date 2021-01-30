@@ -11,10 +11,12 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { PopUpInvalidComponent } from './pop-up-invalid/pop-up-invalid.component';
+import { FourCharts } from './charts/four-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FourCharts,
     View1Component,
     View2AnzeigeStichprobenComponent,
     HeaderComponent,
