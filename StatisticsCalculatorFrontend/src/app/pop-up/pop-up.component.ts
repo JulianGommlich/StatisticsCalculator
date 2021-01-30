@@ -16,7 +16,7 @@ export class PopUpComponent implements OnInit {
   explicite: number[] = [];
   // Response vom Backend
   result: any;
-  inputData: Stichprobe = new Stichprobe(SampleType.absolute, [], {}, 0);
+  inputData: Stichprobe = new Stichprobe(SampleType.explicit, [], {}, 0);
 
 
 
@@ -42,10 +42,6 @@ export class PopUpComponent implements OnInit {
   // send sample to API-Endpoint-Service
   startCalculation(): void {
 
-    // explizite Stichprobe wird als String übergeben aufgrund des input-Feldes. Dennoch muss das Input Feld hier zu einem gecastet werden, da das Objekt sonst
-    // einen Fehler wirft, da für die explizite Stichprobe ein number-Array vorgegeben ist. 
-    this.getNumArray(String(this.inputData.explSample));
-
     if (this.inputData.sampleType == "explicit") {
       this.inputData.setFreqDistribution();
     }
@@ -54,19 +50,6 @@ export class PopUpComponent implements OnInit {
     }
 
     this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => this.result = sample);
-  }
-
-  // Takes a String as Input and converts it to a number-Array
-  getNumArray(inputStr: String): void {
-    let numArr: number[] = [];
-     
-    for(let key in inputStr.split(";")) {
-      numArr.push(Number(inputStr.split(";")[key]));
-    }
-
-    this.inputData.explSample = numArr;
-
-    console.log(this.inputData.explSample)
   }
 
 }
