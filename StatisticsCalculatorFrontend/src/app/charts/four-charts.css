@@ -1,3 +1,3 @@
-div.row div {
+div.row * {
     display: inline-block;
 }
