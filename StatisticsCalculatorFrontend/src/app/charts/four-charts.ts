@@ -12,31 +12,62 @@ const freqDist = {'15': 3, '18': 4, '20': 5, '22': 7, '23': 10, '27': 10, '36': 
 })
 export class FourCharts implements OnInit {
 
+  // Größe der Diagramme
   view: [number, number] = [600, 400];
 
-  // options
+  // Farbschemata der Diagramme
+  bcColorScheme = {
+    domain: ['#0404B4']
+  };
+  pcColorScheme = {
+    domain: ['#0404B4', '#3494B4', '#84B4A4', '#B4C472', '#D1A442', '#C38212', '#BB3B0A', '#A9245A', '#A21790', '#8024A2']
+  };
+  lceColorScheme = {
+    domain: ['#000000']
+  };
+  lclColorScheme = {
+    domain: ['#A10A28', '#0404B4']
+  };
+
+  // Werte für die Diagramme
   barAndPieChartValues: any[] = [];
   empiricalDistributionChartValues: any[] = [];
   lorenzChartValues: any[] = [];
-  gradient: boolean = true;
-  showLegend: boolean = true;
-  showLabels: boolean = true;
-  isDoughnut: boolean = false;
-  legendPosition: string = 'right';
-  showXAxis = true;
-  showYAxis = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Stichprobenwert';
-  showYAxisLabel = true;
-  yAxisLabel = 'Absolute Häufigkeit';
-  timeline: boolean = true;
-  legend: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
 
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+  // barChart (bc)
+  bcGradient = true;
+  bcShowXAxis = true;
+  bcShowYAxis = true;
+  bcShowLegend = false;
+  bcShowXAxisLabel = true;
+  bcShowYAxisLabel = true;
+  bcXAxisLabel = 'Stichprobenwert';
+  bcYAxisLabel = 'Absolute Häufigkeit';
+
+  // pieChart (pc)
+  pcGradient = true;
+  pcShowLegend = false;
+  pcLegendPosition = 'right';
+  pcShowLabels = true;
+  pcIsDoughnut = false;
+
+  // lineChart (lc)
+  lcShowXAxisLabel = true;
+  lcShowYAxisLabel = true;
+  lcShowXAxis = true;
+  lcShowYAxis = true;
+  lcTimeline = true;
+
+  // lineChart - empirical distribution function (lce) 
+  lceLegend = false; 
+  lceXAxisLabel = 'Stichprobenwert';
+  lceYAxisLabel = 'Relative Häufigkeit';
+
+  // lineChart - lorenz curve (lcl)
+  lclLegend = false;
+  lclXAxisLabel = 'Stichprobenwert';
+  lclYAxisLabel = 'Gewicht';
+  
 
   constructor() {
     const freqDistKeys = Object.keys(freqDist);
@@ -48,21 +79,23 @@ export class FourCharts implements OnInit {
   }
 
   setBarAndPieChartValues(freqDistKeys: string[], freqDistValues: number[]) {
+    // Durch sämtliche Wertepaare der absoluten Häufigkeitsverteilung iterieren und dann Key und Value
+    // als Parameter in das Diagramm einsetzen
     for (let index = 0; index < Object.keys(freqDist).length; index++) {
       this.barAndPieChartValues.push({
         'name': freqDistKeys[index],
         'value': freqDistValues[index]
       });
     }
-    console.log(this.barAndPieChartValues);
   }
 
   setEmpiricalDistributionChartValues(freqDistKeys: string[], freqDistValues: number[]) {
+    // Am Anfang wird "eine Linie" gezogen, die den Wert 0 hat.
     this.empiricalDistributionChartValues.push({
       'name': '0',
       'series': [
         {
-          'name': '0',
+          'name': Number(freqDistKeys[0]) - 10,
           'value': 0
         },
         {
@@ -71,44 +104,48 @@ export class FourCharts implements OnInit {
         }
       ]
     });
-    let sumOfRelativeFrequency = 0;
+
+    let sumOfRelativeFrequencies = 0;
     for (let index = 0; index < Object.keys(freqDist).length-1; index++) {
-      sumOfRelativeFrequency += freqDistValues[index]/explSample.length;
+      sumOfRelativeFrequencies += freqDistValues[index]/explSample.length;
       this.empiricalDistributionChartValues.push({
-        'name': (index + 1).toString(),
+        'name': index + 1,
         'series': [
           {
             'name': freqDistKeys[index],
-            'value': Math.round(sumOfRelativeFrequency * 1000)/1000
+            'value': Math.round(sumOfRelativeFrequencies * 1000)/1000
           },
           {
             'name': freqDistKeys[index+1],
-            'value': Math.round(sumOfRelativeFrequency * 1000)/1000
+            'value': Math.round(sumOfRelativeFrequencies * 1000)/1000
           }
         ]
       });
     }
+
+    // Am Ende wird "eine Linie" gezogen, die den Wert 1 hat.
     this.empiricalDistributionChartValues.push({
-      'name': (Object.keys(freqDist).length + 1).toString(),
+      'name': Object.keys(freqDist).length + 1,
       'series': [
         {
           'name': freqDistKeys[freqDistKeys.length-1],
           'value': 1
         },
         {
-          'name': (Number(freqDistKeys[freqDistKeys.length-1]) + 10).toString(),
+          'name': Number(freqDistKeys[freqDistKeys.length-1]) + 10,
           'value': 1
         }
       ]
     });
-    console.log(this.empiricalDistributionChartValues);
   }
 
   setLorenzChartValues(freqDistKeys: string[], freqDistValues: number[]) {
+    // Technische Schuld!
     let valueSeries = [{
-      'name': "0",
+      'name': '0',
       'value': 0
     }];
+
     let sumOfAbsoluteFrequency = 0;
     for (let index = 0; index < Object.keys(freqDist).length; index++) {
       sumOfAbsoluteFrequency += freqDistValues[index] * Number(freqDistKeys[index]);
@@ -117,6 +154,7 @@ export class FourCharts implements OnInit {
         'value': Math.round(sumOfAbsoluteFrequency/explSample.reduce((a, b) => a + b, 0) * 1000)/1000
       });
     }
+
     this.lorenzChartValues.push({
         'name': 'Lorenzkurve',
         'series': valueSeries
@@ -135,7 +173,6 @@ export class FourCharts implements OnInit {
         ]
       }
     );
-    console.log(this.lorenzChartValues);
   }
 
   onSelect(data: any): void {
