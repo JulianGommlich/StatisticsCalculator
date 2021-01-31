@@ -13,6 +13,7 @@ import { PopUpComponent } from './pop-up/pop-up.component';
 import { PopUpInvalidComponent } from './pop-up-invalid/pop-up-invalid.component';
 import { FourCharts } from './charts/four-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     MatDialogModule,
     NgxChartsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
