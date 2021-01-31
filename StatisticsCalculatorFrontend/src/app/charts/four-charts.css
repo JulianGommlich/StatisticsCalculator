@@ -1,3 +1,5 @@
 div.row * {
     display: inline-block;
+    width: 600px;
+    margin: 3% 8%;
 }
