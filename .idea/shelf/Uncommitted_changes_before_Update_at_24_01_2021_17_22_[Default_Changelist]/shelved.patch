@@ -1,0 +1,71 @@
+Index: statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package de.student.dhbwvs.statisticsCalculatorBackend;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\nimport java.util.Map;\r\nimport java.util.HashMap;\r\nimport java.util.List;\r\nimport java.util.ArrayList;\r\nimport java.util.Arrays;\r\n\r\n\r\n@SpringBootApplication\r\npublic class StatisticsCalculatorBackendApplication {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\tSpringApplication.run(StatisticsCalculatorBackendApplication.class, args);\r\n\t}\r\n\t\r\n\t/**freqDistribution übernimmt die Stichprobe als double-Array und gibt eine (unsortierte) Map zurück, mit den einzelnen Werten der Stichprobe \r\n\tals keys in Form double und ihrer jeweiligen Häufigkeit als values in der Form Integer**/\r\n\tpublic static Map<Double,Integer> freqDistribution(double[] stichprobe) {\r\n\t\tMap<Double, Integer> freqDist = new HashMap<>();\r\n\t\t//für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:\r\n\t\tfor (double i : stichprobe) {\r\n\t\t\tif (freqDist.containsKey(i)){\r\n\t\t\t\tfreqDist.replace(i, freqDist.get(i) + 1);\r\n\t\t\t} else {\r\n\t\t\t\tfreqDist.put(i, 1);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn freqDist;\r\n\t}\r\n\t\r\n\t/**calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,\r\n\tdie den entsprechenden value haben**/\r\n\tpublic static List<Double> calcModal(Map<Double,Integer> freqDist) {\r\n\t\tList<Double> modal = new ArrayList<>();\r\n\t\t//durchsuche die map nach dem höchsten value, weise diesen der Variablen highest zu\r\n\t\tint highest = 0;\r\n\t\tfor (int i : freqDist.values()) {\r\n\t\t\thighest = i > highest ? i : highest; \r\n\t\t}\r\n\t\t//durchsuche die map nach jedem key, bei dem highest == value; füge diese keys der List hinzu\r\n\t\tfor (double j : freqDist.keySet()){\r\n\t\t\tif (highest == freqDist.get(j)){\r\n\t\t\t\tmodal.add(j);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn modal;\r\n\t}\r\n\t/**calcMedian berechnet den Median eines Arrays**/\r\n\tpublic static double calcMedian(double[] values){\r\n\t\t//Benenne einen Parameter für den späteren Median\r\n\t\tmedian = 0;\r\n\t\t//Bestimme die Länge des Arrays\r\n\t\tcount = values.length;\r\n\t\t//Sortiere das Array aufsteigend\r\n\t\tArrays.sort(values);\r\n\t\t//Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.\r\n\t\tif(count % 2 == 0){\r\n\t\t\t//Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter \"median\"\r\n\t\t\tmedian = ((values[(count/2)] + values[((count/2)+1)])/2)\r\n\t\t} else {\r\n\t\t\t//Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter \"median\"\r\n\t\t\tmedian = values[((count+1)/2)]\r\n\t\t}\r\n\t\t//Gebe den Median zurück\r\n\t\treturn median;\r\n\t}\r\n\r\n\r\n\t// Function takes an array as input\r\n\tpublic static double calcAverage(double[] array) {\r\n\r\n\t\tdouble sum = 0;\r\n\r\n\t\t// Add all Elements of array to the variable sum\r\n\t\tfor(int i=0; i<array.length; i++ ) {\r\n\t\t\tsum += array[i];\r\n\t\t}\r\n\r\n\t\t// return the average by dividing the sum by the number of elements in the array\r\n\t\treturn sum/array.length;\r\n\t}\r\n\t\r\n\t// Test for calculating the modalvalue\r\n\t@Test\r\n\tpublic void testcalcModal(){\r\n\t\tList<Double> result1 = Arrays.asList(2.4, 4.0);\r\n\t\tList<Double> result1 = Arrays.asList(3.0);\r\n\t\tdouble[] array1 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};\r\n\t\tdouble[] array2 = {5, 5, 4, 4, 3, 3, 3, 2, 2, 1};\r\n\r\n\t\tAssert.assertEquals(result1, calcModal(freqDistribution(array1)));\r\n\t\tAssert.assertEquals(result2, calcModal(freqDistribution(array2)));\r\n\t}\r\n\r\n\t// Test fpr calculating the median\r\n\t@Test\r\n\tpublic void testcalcMedian(){\r\n\t\tdouble result1 = 2,5;\r\n\t\tdouble result2 = 3;\r\n\t\tdouble[] test1 = {1,1,2,2,3,3,4,4};\r\n\t\tdouble[] test2 = {5,5,4,4,3,3,2,2,1};\r\n\r\n\t\tAssert.assertEquals(result1, calcMedian(test1));\r\n\t\tAssert.assertEquals(result2, calcMedian(test2));\r\n\t}\r\n\t\r\n\t// Test for calculating the average\r\n\t@Test\r\n   \tpublic void testcalcAverage(){\r\n        \tdouble result1 = 2.5;\r\n        \tdouble result2 = 3;\r\n        \tdouble[] testArray1 = {1, 1, 2, 2, 3, 3, 4, 4};\r\n        \tdouble[] testArray2 = {5, 5, 4, 4, 3, 2, 2, 1};\r\n\r\n        \tAssert.assertEquals(result1, calcMedian(testArray1));\r\n        \tAssert.assertEquals(result2, calcMedian(testArray2));\r\n    \t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java
+--- a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java	(revision 493803ff8856595f5bdf0b25adb29b7acc86e475)
++++ b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java	(date 1611155508072)
+@@ -51,9 +51,9 @@
+ 	/**calcMedian berechnet den Median eines Arrays**/
+ 	public static double calcMedian(double[] values){
+ 		//Benenne einen Parameter für den späteren Median
+-		median = 0;
++		double median = 0;
+ 		//Bestimme die Länge des Arrays
+-		count = values.length;
++		int count = values.length;
+ 		//Sortiere das Array aufsteigend
+ 		Arrays.sort(values);
+ 		//Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.
+@@ -95,7 +95,7 @@
+ 		Assert.assertEquals(result2, calcModal(freqDistribution(array2)));
+ 	}
+ 
+-	// Test fpr calculating the median
++	// Test for calculating the median
+ 	@Test
+ 	public void testcalcMedian(){
+ 		double result1 = 2,5;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"Erster Entwurf für die Berechnung des Medians\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"SET_USER_NAME_GLOBALLY\" value=\"false\" />\r\n  </component>\r\n  <component name=\"GithubProjectSettings\">\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_BRANCH\" value=\"main\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_USER\" value=\"JulianGommlich\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_NAME\" value=\"StatisticsCalculator\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1n4jUXluegyPotyifcz74GYZ0WL\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1610656275322</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1610656275322</updated>\r\n      <workItem from=\"1610656277974\" duration=\"48000\" />\r\n      <workItem from=\"1610726675711\" duration=\"1345000\" />\r\n      <workItem from=\"1610885880117\" duration=\"1132000\" />\r\n      <workItem from=\"1610906779046\" duration=\"2263000\" />\r\n      <workItem from=\"1610909417941\" duration=\"1250000\" />\r\n      <workItem from=\"1610910874191\" duration=\"346000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"main\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 493803ff8856595f5bdf0b25adb29b7acc86e475)
++++ b/.idea/workspace.xml	(date 1611505366297)
+@@ -13,6 +13,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+     <option name="SET_USER_NAME_GLOBALLY" value="false" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+   <component name="GithubProjectSettings">
+     <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="main" />
+@@ -32,6 +33,11 @@
+     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+     <property name="nodejs_package_manager_path" value="npm" />
+   </component>
++  <component name="RunAnythingCache">
++    <option name="myCommands">
++      <command value="testcalcmedian()" />
++    </option>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -45,7 +51,8 @@
+       <workItem from="1610885880117" duration="1132000" />
+       <workItem from="1610906779046" duration="2263000" />
+       <workItem from="1610909417941" duration="1250000" />
+-      <workItem from="1610910874191" duration="346000" />
++      <workItem from="1610910874191" duration="661000" />
++      <workItem from="1611155147368" duration="1756000" />
+     </task>
+     <servers />
+   </component>

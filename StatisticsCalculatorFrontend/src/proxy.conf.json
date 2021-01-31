@@ -1,6 +1,6 @@
 {
-  "/a811b01f-c4cc-43af-ab08-55c0112f2707": {
-      "target": "https://webhook.site",
+  "/exchange": {
+      "target": "http://localhost:8080",
       "secure": false,
       "logLevel": "debug"
   }

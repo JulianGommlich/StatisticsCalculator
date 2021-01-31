@@ -5,12 +5,12 @@
 #### Request-Element
 ![Domain Model Stichprobe](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModel1.PNG)
 
-Das Request-Element "Stichprobe" beinhaltet die Stichprobe sowohl als explizite Stichprobe als auch als absolute Häufigkeitsverteilung. Dies ist dem Umstand geschuldet, dass bereits vor der Berechnung der statistischen Kennzahlen beide Stichprobenarten angezeigt werden sollen. Neben diesen Stichprobenwerten wird auch der Wert "z" übergeben, der zur Berechnung der Kennzahl "Mittlere Abweichung von einem Wert 'z'" benötigt wird.
+Das Request-Element "Stichprobe" beinhaltet die Stichprobe sowohl als explizite Stichprobe als auch als absolute Häufigkeitsverteilung. Dies ist dem Umstand geschuldet, dass bereits vor der Berechnung der statistischen Kennzahlen beide Stichprobenarten angezeigt werden sollen. Neben diesen Stichprobenwerten wird auch der Wert "z" übergeben, der zur Berechnung der Kennzahl "Mittlere Abweichung von einem Wert 'z'" benötigt wird. Die Stichprobenart zeigt an, ob der Anwender eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung eingegeben hatte. Der Wert wird über die Schnittstelle geschickt, da er bei Zurückkehren auf die Eingabeseite im Frontend gebraucht wird.
 
 #### Response-Element
 ![Domain Model Ergebnisse](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModel2.PNG)
 
-Das Response-Element "Ergebnisse" beinhaltet die Stichprobe einmal als explizite Stichprobe sowie als absolute Häufigkeitsverteilung. Darüber hinaus beinhaltet "Ergebnisse" alle Berechnungsergebnisse der Businesslogik im Backend. Bei den Quantilen wurde sich entschieden, diese als Liste zu speichern.
+Das Response-Element "Ergebnisse" beinhaltet die Stichprobe einmal als explizite Stichprobe sowie als absolute Häufigkeitsverteilung sowie den Wert z. Darüber hinaus beinhaltet "Ergebnisse" alle Berechnungsergebnisse der Businesslogik im Backend. Bei den Quantilen wurde sich entschieden, diese als Liste zu speichern. Die Stichprobenart zeigt an, ob der Anwender eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung eingegeben hatte. Der Wert wird über die Schnittstelle geschickt, da er bei Zurückkehren auf die Eingabeseite im Frontend gebraucht wird.
 
 ### Schnittstellenspezifikation
 ![Schnittstellendiagramm](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/InterfaceDiagram.PNG)
@@ -25,6 +25,7 @@ Das Frontend erzeugt einen HTTP-Request mit folgenden Anforderungen:
     - Content-Type: application/json
     - Content-Language: de-DE
 - BODY (Format: application/json)
+    - stichprobenart: enum
     - expliziteStichprobe: array
     - haeufigkeitsverteilung: array
     - z: number
@@ -35,8 +36,10 @@ Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
     - Content-Type: application/json
     - Content-Language: de-DE
 - BODY (Format: application/json)
+    - stichprobenart: enum
     - expliziteStichprobe: array
     - haeufigkeitsverteilung: array
+    - z: number
     - modalwert: number
     - mittelwert: number
     - median: number
