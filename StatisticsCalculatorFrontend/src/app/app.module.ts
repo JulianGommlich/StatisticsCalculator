@@ -14,6 +14,7 @@ import { PopUpInvalidComponent } from './pop-up-invalid/pop-up-invalid.component
 import { FourCharts } from './charts/four-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     View2AnzeigeStichprobenComponent,
     HeaderComponent,
     PopUpComponent,
-    PopUpInvalidComponent
+    PopUpInvalidComponent,
+    PopUpDeleteComponent
     ],
   imports: [
     BrowserModule,
