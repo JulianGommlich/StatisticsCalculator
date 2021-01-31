@@ -16,7 +16,6 @@ export class View1Component {
   
   inputForm: FormGroup = new FormGroup ({
     numSequence: new FormControl(),
-    //meanDeviation: new FormControl(),
     sampleType: new FormControl(),
     valueZInput: new FormControl()
   });
@@ -26,10 +25,6 @@ export class View1Component {
     public dialog: MatDialog, 
     private router: Router,
   ) {}
-
-  onSubmit(){
-    this.router.navigate(['/calculator'])
-  }
 
   openDialog() {
     
@@ -45,14 +40,6 @@ export class View1Component {
       newFreqDist = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
     }
     
-    // explizite Stichprobe wird als String übergeben aufgrund des input-Feldes. Dennoch muss das Input Feld hier zu einem gecastet werden, da das Objekt sonst
-    // einen Fehler wirft, da für die explizite Stichprobe ein number-Array vorgegeben ist. 
-    //this.parseInputString(String(this.inputForm.get('sampleType')?.value));
-    
-    //let newExplSample: number[] = this.inputForm.get('numSequence')?.value;
-    //let newFreqDist: { [key: string]: number } = this.inputForm.get('meanDeviation')?.value;
-    
-
     let inputData = new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
     
     const dialogRef = this.dialog.open(PopUpComponent, {
@@ -64,7 +51,7 @@ export class View1Component {
     });
   }
 
-  // Takes a String as Input and converts it to a number-Array
+  // Takes a String as Input and converts it to a number-Array (explSample)
   parseExplSample(inputStr: String): number[] {
     let numArr: number[] = [];
     
@@ -75,6 +62,7 @@ export class View1Component {
     return numArr;
   }
 
+  // Takes a String as Input and converts it to a object (freqDist)
   parseFreqDist(inputStr: string): { [key: string]: number } {
     let freqDist: { [key: string]: number } = {};
     let matches = inputStr.matchAll(/\((?<value>\d*); ?(?<freq>\d*)\)/gm);

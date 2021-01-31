@@ -16,12 +16,13 @@ export class PopUpComponent implements OnInit {
   explicite: number[] = [];
   // Response vom Backend
   result: any;
-  inputData: Stichprobe = new Stichprobe(SampleType.explicit, [], {}, 0);
+  inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
 
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe }, 
-    private router: Router, 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
+    private router: Router,
     public apiEndpoint: ApiEndpointService
   ) {
     this.fix = data.fix;

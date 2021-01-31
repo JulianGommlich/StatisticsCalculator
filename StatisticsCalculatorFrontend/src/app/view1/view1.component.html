@@ -8,8 +8,6 @@
     oder 
     <input type="button" id="importFile" value="Datei auswählen">
     <br>
-    <!--<input type="number" formControlName="meanDeviation" id="meanDeviation" placeholder="Mittlere absolute Abweichung">
-    <br>-->
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
@@ -18,10 +16,10 @@
     <input type="radio" formControlName="sampleType" id="absSample" name="sampleType" value="absolute"> 
     <label for="absSample">Absolute Stichprobe</label>
     <br>
-    <input type="submit" id="show" value="Anzeigen" (click)="openDialog()">
-
-    <P>Wert z für die Berechnung der mittlleren absoluten Abweichung:</P>
+    <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
     <input type="text" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)">
+    <br> <br>
+    <input type="submit" id="show" value="Anzeigen" (click)="openDialog()">
 </form>
 
