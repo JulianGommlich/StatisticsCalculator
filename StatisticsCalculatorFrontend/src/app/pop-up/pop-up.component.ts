@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service';
@@ -16,28 +16,34 @@ export class PopUpComponent implements OnInit {
   explicite: number[] = [];
   // Response vom Backend
   result: any;
-
-  // Test Input
-  inputData = new Stichprobe(SampleType.absolute, [1, 5, 1, 8, 1, 2, 9, 4, 6, 5, 6, 5, 4], { 2: 1, 5: 3, 4: 2, 1: 3, 8: 1, 9: 1, 6: 2 }, 3);
+  inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[] }, private router: Router, public apiEndpoint: ApiEndpointService) {
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
+    private router: Router,
+    public apiEndpoint: ApiEndpointService
+  ) {
     this.fix = data.fix;
     this.absolute = data.absolute;
     if (data.explicite) {
       this.explicite = data.explicite;
     }
+    this.inputData = data.inputData;
   }
   getResults() {
     // Create logic to get data
-    this.router.navigate(['/results']);;
+    this.router.navigate(['/results']);
+    this.startCalculation();
   }
 
   ngOnInit(): void {
   }
 
   // send sample to API-Endpoint-Service
-  startCalculation(): void {
+  startCalculation() {
+
     if (this.inputData.sampleType == "explicit") {
       this.inputData.setFreqDistribution();
     }
@@ -45,7 +51,7 @@ export class PopUpComponent implements OnInit {
       this.inputData.setExpSample();
     }
 
-    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => this.result = sample);
+    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => console.log(sample));
   }
 
 }

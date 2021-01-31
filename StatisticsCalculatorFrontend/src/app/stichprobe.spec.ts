@@ -15,7 +15,7 @@ describe('Stichprobe', () => {
         stichprobe.setFreqDistribution();
 
         // Asserts
-        expect(stichprobe.freqDist).toEqual(freqDist);
+        expect(stichprobe.haeufigkeitsverteilung).toEqual(freqDist);
     });
 
     it('should convert frequency distribution to explicit sample', () => {
@@ -26,7 +26,7 @@ describe('Stichprobe', () => {
         stichprobe.setExpSample();
 
         // Asserts
-        expect(stichprobe.explSample).toEqual(explSample);
+        expect(stichprobe.expliziteStichprobe).toEqual(explSample);
     });
 
 });
