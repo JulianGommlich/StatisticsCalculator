@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { SampleType, Stichprobe } from '../stichprobe';
 
@@ -11,27 +12,27 @@ import { SampleType, Stichprobe } from '../stichprobe';
 })
 export class PopUpComponent implements OnInit {
 
-  fix = false;
+  fix: BehaviorSubject<boolean>;
   absolute: number[] = [];
   explicite: number[] = [];
+
   // Response vom Backend
   result: any;
   inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
-
-
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
     private router: Router,
     public apiEndpoint: ApiEndpointService
   ) {
-    this.fix = data.fix;
+    this.fix = new BehaviorSubject(data.fix);
     this.absolute = data.absolute;
     if (data.explicite) {
       this.explicite = data.explicite;
     }
     this.inputData = data.inputData;
   }
+  
   getResults() {
     // Create logic to get data
     this.router.navigate(['/results']);
