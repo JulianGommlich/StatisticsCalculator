@@ -8,7 +8,7 @@ describe('Four-Charts', () => {
 
     beforeAll(() => {
         fourCharts = new FourCharts();
-        fourCharts.explSample = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3];
+        fourCharts.expliziteStichprobe = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3];
     });
 
 

@@ -63,16 +63,16 @@ export class FourCharts implements OnInit {
   lclXAxisLabel = 'Stichprobenwert';
   lclYAxisLabel = 'Gewicht';
 
-  @Input() explSample: number[];
-  @Input() freqDist: { [key: string]: number };
+  @Input() expliziteStichprobe: number[];
+  @Input() haeufigkeitsverteilung: { [key: string]: number };
   
 
   constructor() {
   }
 
   ngOnInit() {
-    const freqDistKeys = Object.keys(this.freqDist);
-    const freqDistValues = Object.values(this.freqDist);
+    const freqDistKeys = Object.keys(this.haeufigkeitsverteilung);
+    const freqDistValues = Object.values(this.haeufigkeitsverteilung);
 
     this.setBarAndPieChartValues(freqDistKeys, freqDistValues);
     this.setEmpiricalDistributionChartValues(freqDistKeys, freqDistValues);
@@ -127,7 +127,7 @@ export class FourCharts implements OnInit {
     for (let index = 0; index < numberOfKeys - 1; index++) {
 
       // Eine relative Häufigkeit ergibt sich aus der Division der absoluten Häufigkeit durch die Gesamtanzahl an Stichprobenwerte 
-      sumOfRelativeFrequencies += freqDistValues[index]/this.explSample.length;
+      sumOfRelativeFrequencies += freqDistValues[index]/this.expliziteStichprobe.length;
       this.empiricalDistributionChartValues.push({
         'name': (index + 1).toString(),
         'series': [
@@ -186,8 +186,8 @@ export class FourCharts implements OnInit {
       // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
       characteristicSum += freqDistValues[index] * Number(freqDistKeys[index])
       valueSeries.push({
-        'name': (Math.round(sumOfAbsoluteFrequency/this.explSample.length * 1000)/1000).toString(),
-        'value': Math.round(characteristicSum/this.explSample.reduce((a, b) => a + b, 0) * 1000)/1000
+        'name': (Math.round(sumOfAbsoluteFrequency/this.expliziteStichprobe.length * 1000)/1000).toString(),
+        'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => a + b, 0) * 1000)/1000
       });
     }
 
