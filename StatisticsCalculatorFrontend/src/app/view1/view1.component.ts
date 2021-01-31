@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiEndpointService } from '../api-endpoint.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
-import { Router } from '@angular/router';
 import { FormControl, FormGroup } from "@angular/forms";
 import { SampleType, Stichprobe } from '../stichprobe';
 
@@ -22,13 +20,12 @@ export class View1Component {
     valueZInput: new FormControl()
   });
   
-  
   constructor(
-    public dialog: MatDialog, 
-    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   openDialog() {
+    let dialogRef;
     var fixData = null;
     var validationTrue = this.checkValidation();
     const expl = document.getElementById('explSample') as HTMLInputElement;
@@ -40,15 +37,15 @@ export class View1Component {
         fixData = false;
       }
       
-      let inputData = buildFormModel();
+      let inputData = this.buildFormModel();
       
-      const dialogRef = this.dialog.open(PopUpComponent, {
-        data: { fix: true, absolute: [1,2,3,4], inputData }  //Auffang für Daten aus dem Backend
+      dialogRef = this.dialog.open(PopUpComponent, {
+        data: { fix: true, absolute: [1,2,3,4], inputData }
       });
     } else {
-      const dialogRef = this.dialog.open(PopUpInvalidComponent, {
+      dialogRef = this.dialog.open(PopUpInvalidComponent, {
         data: {}
-      }) //Auffang für Daten aus dem Backend}
+      })
     }
   
     dialogRef.afterClosed().subscribe(result => {
@@ -73,21 +70,17 @@ export class View1Component {
   }
 
   checkValidation() {
-    var validation;
     const expl = document.getElementById('explSample') as HTMLInputElement;
     const abs = document.getElementById('absSample') as HTMLInputElement;
     const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
-    const deviation = document.getElementById('meanDeviation') as HTMLInputElement;
     if (expl.checked == false && abs.checked == false) {
-      return validation = false;
+      return false;
     } else if (valueZ.value.length == 0) {
-      return validation = false;
-    } else if (deviation.value.length == 0) {
-      return validation = false;
+      return false;
     } else if (this.validateSequence() == false) {
-      return validation = false;
+      return false;
     } else {
-      return validation = true;
+      return true;
     }
   }
     
