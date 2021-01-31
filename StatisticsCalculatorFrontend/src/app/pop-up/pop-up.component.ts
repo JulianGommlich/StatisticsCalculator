@@ -14,9 +14,11 @@ export class PopUpComponent implements OnInit {
   absolute: number[] = [];
   explicite: number[] = [];
   
-  constructor(@Inject(MAT_DIALOG_DATA) public data: {fix: boolean, absolute: number[], explicite?: number[]},
-   private router:Router) { 
-    this.fix =new BehaviorSubject(data.fix); 
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: {fix: boolean, absolute: number[], explicite?: number[]},
+    private router:Router
+  ) { 
+    this.fix = new BehaviorSubject(data.fix); 
     this.absolute=data.absolute; 
     if(data.explicite){
       this.explicite=data.explicite;
