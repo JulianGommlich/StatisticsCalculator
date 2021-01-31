@@ -34,14 +34,15 @@ export class PopUpComponent implements OnInit {
   }
   getResults() {
     // Create logic to get data
-    this.router.navigate(['/results']);;
+    this.router.navigate(['/results']);
+    this.startCalculation();
   }
 
   ngOnInit(): void {
   }
 
   // send sample to API-Endpoint-Service
-  startCalculation(): void {
+  startCalculation() {
 
     if (this.inputData.sampleType == "explicit") {
       this.inputData.setFreqDistribution();
@@ -50,7 +51,7 @@ export class PopUpComponent implements OnInit {
       this.inputData.setExpSample();
     }
 
-    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => this.result = sample);
+    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => console.log(sample));
   }
 
 }

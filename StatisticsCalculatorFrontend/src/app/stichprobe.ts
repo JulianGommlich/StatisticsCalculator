@@ -9,16 +9,16 @@ export enum SampleType {
 
 export class Stichprobe {
   sampleType: SampleType;
-  explSample: number[];
-  freqDist: { [key: string]: number };
+  expliziteStichprobe: number[];
+  haeufigkeitsverteilung: { [key: string]: number };
   z: number;
 
 
 
   constructor(newSampleType: SampleType, newExplSample: number[], newFreqDist: { [key: string]: number }, newZ: number) {
     this.sampleType = newSampleType;
-    this.explSample = newExplSample;
-    this.freqDist = newFreqDist;
+    this.expliziteStichprobe = newExplSample;
+    this.haeufigkeitsverteilung = newFreqDist;
     this.z = newZ;
   }
 
@@ -28,7 +28,7 @@ export class Stichprobe {
     let newFreqDist: { [key: string]: number } = {};
 
     // für jeden Wert im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
-    this.explSample.forEach(function (key) {
+    this.expliziteStichprobe.forEach(function (key) {
       if (Object.keys(newFreqDist).includes(String(key))) {
         newFreqDist[key] += 1;
       }
@@ -38,9 +38,9 @@ export class Stichprobe {
     });
 
     // set the property "freqDist" to the new calulated frequency distribution & set "explSample" to new sorted "explSample"-Array
-    this.freqDist = newFreqDist;
+    this.haeufigkeitsverteilung = newFreqDist;
     // explSample sollte auch sortiert werden, falls die Eingabe von User nicht geordnet erfolgt ist
-    this.explSample = this.explSample.sort((n1, n2) => n1 - n2);
+    this.expliziteStichprobe = this.expliziteStichprobe.sort((n1, n2) => n1 - n2);
   }
 
 
@@ -49,14 +49,14 @@ export class Stichprobe {
     let newExplSample: number[] = [];
 
     // für jeden key in der Häufigkeitsverteilung (Object) wird jeweils die Häufigkeit (values) an Werten (keys) in das Array gepusht. 
-    for (let key in this.freqDist) {
-      for (let i = this.freqDist[key]; i > 0; i--) {
+    for (let key in this.haeufigkeitsverteilung) {
+      for (let i = this.haeufigkeitsverteilung[key]; i > 0; i--) {
         newExplSample.push(Number(key));
       }
     }
 
     // set the property "explSample" to the new calulated explicit Sample, which is sorted in ascending order
-    this.explSample = newExplSample.sort((n1, n2) => n1 - n2);
+    this.expliziteStichprobe = newExplSample.sort((n1, n2) => n1 - n2);
   }
 
 }

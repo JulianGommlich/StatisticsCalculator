@@ -52,7 +52,7 @@ export class View1Component {
   }
 
   // Takes a String as Input and converts it to a number-Array (explSample)
-  parseExplSample(inputStr: String): number[] {
+  parseExplSample(inputStr: string): number[] {
     let numArr: number[] = [];
     
     for(let key in inputStr.split(";")) {
