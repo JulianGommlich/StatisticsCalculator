@@ -62,7 +62,7 @@ export class View1Component implements OnInit{
           numSequence += `(${secondSplit[0][index]}:${secondSplit[1][index]})`;
         }
       } else {
-        numSequence = inputValues[0]
+        numSequence = inputValues[0]?.replace(/,/gi, ';');
       }
 
       this.inputForm.setValue({
