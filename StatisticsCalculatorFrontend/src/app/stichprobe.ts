@@ -1,19 +1,14 @@
-import { ValueConverter } from "@angular/compiler/src/render3/view/template";
-
-
 export enum SampleType {
-  explicit = "explicit",
-  absolute = "absolute"
+  explicit = "explizit",
+  absolute = "absolut"
 }
 
-
 export class Stichprobe {
+
   sampleType: SampleType;
   expliziteStichprobe: number[];
   haeufigkeitsverteilung: { [key: string]: number };
   z: number;
-
-
 
   constructor(newSampleType: SampleType, newExplSample: number[], newFreqDist: { [key: string]: number }, newZ: number) {
     this.sampleType = newSampleType;
@@ -58,5 +53,4 @@ export class Stichprobe {
     // set the property "explSample" to the new calulated explicit Sample, which is sorted in ascending order
     this.expliziteStichprobe = newExplSample.sort((n1, n2) => n1 - n2);
   }
-
 }
