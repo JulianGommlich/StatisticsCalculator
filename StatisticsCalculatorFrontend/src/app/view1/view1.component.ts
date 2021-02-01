@@ -31,7 +31,6 @@ export class View1Component implements OnInit{
 
 
   ngOnInit() {
-    console.log("TEST");
     // Eingabefelder leeren
     this.inputForm.setValue({
       numSequence: '',
@@ -61,7 +60,7 @@ export class View1Component implements OnInit{
         for (let index = 0; index < secondSplit[0].length; index++) {
           numSequence += `(${secondSplit[0][index]}:${secondSplit[1][index]})`;
         }
-      } else {
+      } else if (inputValues[1] === 'explizit') {
         numSequence = inputValues[0]?.replace(/,/gi, ';');
       }
 
@@ -136,7 +135,7 @@ export class View1Component implements OnInit{
 
   validateSequence() {
     let numSeq: string = (<HTMLInputElement>document.getElementById("numSequence")).value;
-    var letters = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\(\)\=\?\´\`\+\*\#\'\:\_\<\>\|]\d*$/;
+    var letters = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\=\?\´\`\+\*\#\'\:\_\<\>\|]\d*$/;
 
     if (numSeq.length == 0) {
       return false;
