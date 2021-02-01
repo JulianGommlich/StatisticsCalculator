@@ -45,10 +45,10 @@ export class PopUpComponent implements OnInit {
   // send sample to API-Endpoint-Service
   startCalculation() {
 
-    if (this.inputData.sampleType == "explicit") {
+    if (this.inputData.sampleType == "explizit") {
       this.inputData.setFreqDistribution();
     }
-    else if (this.inputData.sampleType == "absolute") {
+    else if (this.inputData.sampleType == "absolut") {
       this.inputData.setExpSample();
     }
 

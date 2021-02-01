@@ -109,10 +109,10 @@ export class View1Component implements OnInit{
     let newFreqDist: { [key: string]: number } = {};
     let newZ: number = this.inputForm.get('valueZInput')?.value;
 
-    if (newSampleType == "explicit") {
+    if (newSampleType == "explizit") {
       newExplSample = this.parseExplSample(this.inputForm.get('numSequence')?.value);
     }
-    else if (newSampleType == "absolute") {
+    else if (newSampleType == "absolut") {
       newFreqDist = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
     }
 
