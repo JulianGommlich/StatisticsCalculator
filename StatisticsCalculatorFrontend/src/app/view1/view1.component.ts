@@ -6,8 +6,8 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { SampleType, Stichprobe } from '../stichprobe';
 import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 import { ActivatedRoute } from '@angular/router';
-import { sample, switchMap } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -26,17 +26,20 @@ export class View1Component implements OnInit{
 
   savedValues$: Observable<any>;
 
-  constructor(
-    public dialog: MatDialog,
-    private route: ActivatedRoute
-  ) { }
+
+  constructor( public dialog: MatDialog, private route: ActivatedRoute ) { }
+
 
   ngOnInit() {
+    console.log("TEST");
+    // Eingabefelder leeren
     this.inputForm.setValue({
       numSequence: '',
       sampleType: '',
       valueZInput: ''
     });
+
+    // Gespeicherte Werte aus den Parametern der URL erhalten
     this.savedValues$ = this.route.paramMap.pipe(
       switchMap(params => {
         let numSequence = params.get('numSequence');
@@ -45,15 +48,31 @@ export class View1Component implements OnInit{
         return [{ 'numSequence': numSequence, 'sampleType': sampleType, 'valueZInput': valueZInput}];
       })
     );
-    this.savedValues$.subscribe((values) => {
+
+    // Gespeicherte Werte in die Eingabefelder einsetzen
+    this.savedValues$.subscribe(values => {
       const inputValues: string[] = Object.values(values);
+      let numSequence = '';
+      if (inputValues[1] === 'absolut') {
+        let firstSplit = inputValues[0].split('|');
+        let secondSplit = [];
+        secondSplit.push(firstSplit[0].split(','));
+        secondSplit.push(firstSplit[1].split(','));
+        for (let index = 0; index < secondSplit[0].length; index++) {
+          numSequence += `(${secondSplit[0][index]}:${secondSplit[1][index]})`;
+        }
+      } else {
+        numSequence = inputValues[0]
+      }
+
       this.inputForm.setValue({
-        numSequence: inputValues[0],
+        numSequence: numSequence,
         sampleType: inputValues[1],
         valueZInput: inputValues[2]
       });
     });
   }
+
 
   openDialog() {
     let dialogRef;
@@ -176,5 +195,9 @@ export class View1Component implements OnInit{
 
   openDeleteDialog() {
     const dialogRef = this.dialog.open(PopUpDeleteComponent, {});
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

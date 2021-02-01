@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class View2AnzeigeStichprobenComponent implements OnInit {
 
+  // Testdaten
   public expliziteStichprobe = [15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23,
     23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36,
     36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98];
@@ -20,13 +21,17 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * Navigation zur Eingabeseite; nimmt die eingegebene Stichproben sowie Stichprobenart und z mit
+   */
   goBackToCalculator() {
-    const numSequence = (this.sampleType == "explizit") ? this.expliziteStichprobe : this.haeufigkeitsverteilung;
+    const numSequence = (this.sampleType == "explizit") ? this.expliziteStichprobe : `${Object.keys(this.haeufigkeitsverteilung)}|${Object.values(this.haeufigkeitsverteilung)}`;
+    
     this.router.navigate(['/calculator', {
       'numSequence': numSequence,
       'sampleType': this.sampleType,
       'valueZInput': this.z
-    }])
+    }]);
   }
 
 }
