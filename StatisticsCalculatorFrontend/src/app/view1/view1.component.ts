@@ -58,7 +58,10 @@ export class View1Component implements OnInit{
         secondSplit.push(firstSplit[0].split(','));
         secondSplit.push(firstSplit[1].split(','));
         for (let index = 0; index < secondSplit[0].length; index++) {
-          numSequence += `(${secondSplit[0][index]}:${secondSplit[1][index]})`;
+          numSequence += `(${secondSplit[0][index]};${secondSplit[1][index]})`;
+          if (index < secondSplit[0].length - 1) {
+            numSequence += ';';
+          }
         }
       } else if (inputValues[1] === 'explizit') {
         numSequence = inputValues[0]?.replace(/,/gi, ';');

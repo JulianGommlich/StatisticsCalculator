@@ -3,14 +3,12 @@ export enum SampleType {
   absolute = "absolut"
 }
 
-
 export class Stichprobe {
+
   sampleType: SampleType;
   expliziteStichprobe: number[];
   haeufigkeitsverteilung: { [key: string]: number };
   z: number;
-
-
 
   constructor(newSampleType: SampleType, newExplSample: number[], newFreqDist: { [key: string]: number }, newZ: number) {
     this.sampleType = newSampleType;
