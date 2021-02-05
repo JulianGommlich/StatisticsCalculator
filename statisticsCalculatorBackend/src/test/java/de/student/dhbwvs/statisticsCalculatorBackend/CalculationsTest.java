@@ -93,6 +93,7 @@ public class CalculationsTest {
           Return: Das berechnete Quantil für die entsprechende Prozentzahl
          */
         double quantile;
+        Arrays.sort(values);
         // Länge des Arrays
         int count = values.length;
         //Berechnung von Anzahl*Prozentzahl
@@ -100,11 +101,11 @@ public class CalculationsTest {
         //Abrunden der Zahl
         int round = (int)(Math.floor(np));
         //Prüfe ob np ganzzahlig ist
-        if((np%2) == 0 ){
-            //Wende die Formel für geradzahliges np an
-            quantile = (0.5) * (values[round] + values[(round + 1)]);
+        if((np%1) == 0 ){
+            //Wende die Formel für ganzzahliges np an
+            quantile = (0.5) * (values[round-1] + values[(round)]);
         } else {
-            //Wende die Formel für ungerades np an
+            //Wende die Formel für gebrochenes np an
             quantile = values[round];
         }
         //Gebe das Quantil zurück

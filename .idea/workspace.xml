@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Backend Unittests implementiert">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" afterDir="false" />
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -67,7 +65,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.StatisticsCalculatorBackendApplication">
+  <component name="RunManager" selected="JUnit.StatisticsCalculatorBackendApplicationTests">
     <configuration name="StatisticsCalculatorBackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication" />
       <module name="statisticsCalculatorBackend" />
@@ -92,6 +90,22 @@
       <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -128,22 +142,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcModal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testcalcModal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="StatisticsCalculatorBackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="statisticsCalculatorBackend" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication" />
@@ -153,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.contextLoads" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcQuantile" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
+        <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -261,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612176571258</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations">
+      <created>1612454788594</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1612454788609</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +309,8 @@
     <MESSAGE value="API funktioniert, Umrechnungen gelöscht" />
     <MESSAGE value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
     <MESSAGE value="Backend Unittests implementiert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Backend Unittests implementiert" />
+    <MESSAGE value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
+    <option name="LAST_COMMIT_MESSAGE" value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

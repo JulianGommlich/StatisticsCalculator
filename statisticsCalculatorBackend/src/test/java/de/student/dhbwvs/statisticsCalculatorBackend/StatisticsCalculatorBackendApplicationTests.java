@@ -19,7 +19,7 @@ class StatisticsCalculatorBackendApplicationTests {
 	}
 
 	double[] W_Optimal = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
-	double[] W_Negativ = {-5, -3, -1, -1};
+	double[] W_Negativ = {-1, -1, -5, -3};
 	double[] W_Null= {0};
 	double[] W_Einzelwert = {5};
 	double[] W_Gleich = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
@@ -106,7 +106,7 @@ class StatisticsCalculatorBackendApplicationTests {
 		double[] percentages = {0.05, 0.1, 0.25, 0.75, 0.9, 0.95};
 
 		double[] result_optimal = {15, 18, 22, 36, 72, 98};
-		double[] result_negativ = {-5, -5, -3, -1, -1, -1};
+		double[] result_negativ = {-5, -5, -4, -1, -1, -1};
 		double[] result_null = {0, 0, 0, 0, 0, 0};
 		double[] result_einzelwert = {5, 5, 5, 5, 5, 5};
 		double[] result_gleich = {1, 1, 1, 1, 1, 1};
@@ -206,7 +206,6 @@ class StatisticsCalculatorBackendApplicationTests {
 		double result_gleich_Z_null = 1;
 
 
-
 		Assertions.assertEquals(result_optimal_Z_optimal, calcAverageDeviation(W_Optimal, Z_Optimal));
 		Assertions.assertEquals(result_optimal_Z_negativ, calcAverageDeviation(W_Optimal, Z_Negativ));
 		Assertions.assertEquals(result_optimal_Z_null, calcAverageDeviation(W_Optimal, Z_Null));
@@ -234,8 +233,8 @@ class StatisticsCalculatorBackendApplicationTests {
 	public void testCalcGiniCoefficient(){
 
 		double result_optimal = 0.29;
-		//double result_negativ = -; auf Exception testen
-		//double result_null = -; auf Exception testen
+		//double result_negativ = -0.35; //auf Exception testen
+		//double result_null = 0; //auf Exception testen
 		double result_einzelwert = 0;
 		double result_gleich = 0;
 
