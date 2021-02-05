@@ -7,16 +7,16 @@ body {
 }
 
 .radioBtn {
-    width: 15px;
-    height: 15px;
-    border: 1px solid #444;
+    width: 13px;
+    height: 13px;
+    border: 3px solid black;
     border-radius: 50%;
-    display: flex;
+    display: flex; /*vorher flex*/
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    margin: 5px 30px 5px 30px;
-    float: left;
+    margin-left: 50%;
+    margin-right: 50%;
 }
 
 .radioBtn input {
@@ -35,5 +35,26 @@ body {
 
 .radioBtn input:checked + span.checkmark {
     opacity: 1;
-    background-color: black;
+    background-color: black;   
+    width: 9px;
+    height: 9px; 
+}
+
+.radioContainer {
+    width: auto;
+    height: 75px;
+    text-align: center;
+    margin: 15px 50px 15px 50px;
+}
+
+.radioLine {
+    display: inline-flex;
+}
+
+.radioLabel {
+    margin-top: 10px;
+    margin-left: 16px;
+    margin-right: 0px;
+    display: block;
+    width: 150px;
 }
