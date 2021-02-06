@@ -5,7 +5,7 @@
       font-weight: light;
     }
   
-  input.closeButton{
+  input.Button1{
     background-color: #000000;
     color: #FFFFFF;
     width: 100px;
@@ -19,3 +19,64 @@
     right: -80%;
     bottom:-80%;
   }
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.radioBtn {
+    width: 13px;
+    height: 13px;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex; /*vorher flex*/
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
+.radioBtn input {
+    display: none;
+}
+
+.radioBtn .checkmark {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.radioBtn input:checked + span.checkmark {
+    opacity: 1;
+    background-color: black;   
+    width: 9px;
+    height: 9px; 
+}
+
+.radioContainer {
+    width: auto;
+    height: 75px;
+    text-align: center;
+    margin: 15px 50px 15px 50px;
+}
+
+.radioLine {
+    display: inline-flex;
+}
+
+.radioLabel {
+    margin-top: 10px;
+    margin-left: 16px;
+    margin-right: 0px;
+    display: block;
+    width: 150px;
+}
