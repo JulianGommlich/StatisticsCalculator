@@ -5,7 +5,7 @@
     
     <input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe" required> 
     oder 
-    <input type="button" id="importFile" value="Datei auswählen">
+    <input class="Button1" type="button" id="importFile" value="(.csv-Datei auswählen)">
     <br>
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
@@ -13,7 +13,7 @@
     <div class="radioLine">
         <div class="radioContainer">
             <label class="radioBtn"> 
-                <input type="radio" id="explSample" name="sampleType" value="explicit">
+                <input type="radio" id="explSample" name="sampleType" value="explizit">
                 <span class="checkmark"></span>
             </label>
             <div>
@@ -22,7 +22,7 @@
         </div>
         <div class="radioContainer">
             <label class="radioBtn"> 
-                <input type="radio" id="absSample" name="sampleType" value="absolute">
+                <input type="radio" id="absSample" name="sampleType" value="absolut">
                 <span class="checkmark"></span>
             </label>
             <div class="radioLabel">
@@ -32,10 +32,11 @@
     </div>
   
     <br>
+
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
     <input type="number" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)" required>
     <br> <br>
-    <input type="submit" id="delete" value="Löschen" (click)="openDeleteDialog()">
-    <input type="submit" id="show" value="Anzeigen" (click)="openDialog()">
+    <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
+    <input type="submit" id="show" value="Starten" class="Button1" (click)="openDialog()">
 </form>

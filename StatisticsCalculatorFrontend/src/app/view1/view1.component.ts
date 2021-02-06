@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-view1',
   templateUrl: './view1.component.html',
-  styleUrls: ['./view1.component.css']
+  styleUrls: ['./view1.component.css', '../app.component.css']
 })
 
 export class View1Component implements OnInit{
