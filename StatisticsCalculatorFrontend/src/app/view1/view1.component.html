@@ -10,10 +10,27 @@
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
-    <input type="radio" formControlName="sampleType" id="explSample" name="sampleType" value="explizit"> 
-    <label for="explSample">Explizite Stichprobe</label>
-    <input type="radio" formControlName="sampleType" id="absSample" name="sampleType" value="absolut"> 
-    <label for="absSample">Absolute Stichprobe</label>
+    <div class="radioLine">
+        <div class="radioContainer">
+            <label class="radioBtn"> 
+                <input type="radio" id="explSample" name="sampleType" value="explicit" checked>
+                <span class="checkmark"></span>
+            </label>
+            <div>
+                <span class="radioLabel">explizite Häufigkeitsverteilung</span>
+            </div>
+        </div>
+        <div class="radioContainer">
+            <label class="radioBtn"> 
+                <input type="radio" id="absSample" name="sampleType" value="absolute">
+                <span class="checkmark"></span>
+            </label>
+            <div class="radioLabel">
+                <span>absolute Häufigkeitsverteilung</span>
+            </div>
+        </div>
+    </div>
+  
     <br>
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
