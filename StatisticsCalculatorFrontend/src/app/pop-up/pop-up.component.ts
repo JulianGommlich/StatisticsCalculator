@@ -21,15 +21,10 @@ export class PopUpComponent implements OnInit {
   inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
+    @Inject(MAT_DIALOG_DATA) public data: {inputData: Stichprobe },
     private router: Router,
     public apiEndpoint: ApiEndpointService
   ) {
-    this.fix = new BehaviorSubject(data.fix);
-    this.absolute = data.absolute;
-    if (data.explicite) {
-      this.explicite = data.explicite;
-    }
     this.inputData = data.inputData;
   }
   
@@ -52,7 +47,7 @@ export class PopUpComponent implements OnInit {
       this.inputData.setExpSample();
     }
 
-    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => console.log(sample));
+    this.apiEndpoint.startCalculation(this.inputData);
   }
 
 }

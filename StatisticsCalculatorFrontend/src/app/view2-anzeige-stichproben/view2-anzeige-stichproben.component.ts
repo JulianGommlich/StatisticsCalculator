@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Ergebnisse } from '../ergebnisse';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ApiEndpointService } from '../api-endpoint.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-view2-anzeige-stichproben',
@@ -10,14 +12,13 @@ import { Router } from '@angular/router';
 })
 export class View2AnzeigeStichprobenComponent implements OnInit {
 
-  ErgebnisseFormGroup: FormGroup;
-  inputFromBackend: Ergebnisse; //Ergebnisse
+  ergebnisseFormGroup: FormGroup;
+  inputFromBackend = new Subject<Ergebnisse>(); //Ergebnisse
 
   
 
-  constructor(newInputFromBackend: Ergebnisse, private fb: FormBuilder, private router: Router) { 
-    this.inputFromBackend = newInputFromBackend;
-    this.ErgebnisseFormGroup = this.buildForm();
+  constructor(private apiEndpoint: ApiEndpointService, private fb: FormBuilder, private router: Router) { 
+    this.buildForm();
   }
   
   // Testdaten
@@ -28,23 +29,27 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
   sampleType = "explizit";
   z = 25;
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.apiEndpoint.getSubject().subscribe((data: Ergebnisse) => this.inputFromBackend.next(data));
+   }
 
-  buildForm(): FormGroup{
-    return this.fb.group({
-      sampleType: [this.inputFromBackend.sampleType],
-      explSample: [this.inputFromBackend.explSample],
-      freqDist: [this.inputFromBackend.freqDist],
-      z: [this.inputFromBackend.z],
-      modalValue: [this.inputFromBackend.modalValue],
-      meanValue: [this.inputFromBackend.meanValue],
-      median: [this.inputFromBackend.median],
-      quantile: [this.inputFromBackend.quantile],
-      variance: [this.inputFromBackend.variance],
-      standardDev: [this.inputFromBackend.standardDev],
-      meanAbsoluteDeviation: [this.inputFromBackend.meanAbsoluteDeviation],
-      giniValue: [this.inputFromBackend.giniValue]
-    })
+  buildForm(): void{
+    this.inputFromBackend.subscribe(data => {
+      this.ergebnisseFormGroup = this.fb.group({
+        sampleType: [data.sampleType],
+        explSample: [data.explSample],
+        freqDist: [data.freqDist],
+        z: [data.z],
+        modalValue: [data.modalValue],
+        meanValue: [data.meanValue],
+        median: [data.median],
+        quantile: [data.quantile],
+        variance: [data.variance],
+        standardDev: [data.standardDev],
+        meanAbsoluteDeviation: [data.meanAbsoluteDeviation],
+        giniValue: [data.giniValue]
+      });
+    });
   }
 
   /**

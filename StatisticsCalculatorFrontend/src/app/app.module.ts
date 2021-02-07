@@ -15,6 +15,7 @@ import { FourCharts } from './charts/four-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
+import { ApiEndpointService } from './api-endpoint.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
     NgxChartsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ApiEndpointService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

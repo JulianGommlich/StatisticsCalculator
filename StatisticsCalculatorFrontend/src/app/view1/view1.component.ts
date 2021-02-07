@@ -90,6 +90,7 @@ export class View1Component implements OnInit{
       }
 
       let inputData = this.buildFormModel();
+      console.log(inputData);
 
       dialogRef = this.dialog.open(PopUpComponent, {
         data: { fix: true, absolute: [1, 2, 3, 4], inputData }
@@ -110,12 +111,16 @@ export class View1Component implements OnInit{
     let newExplSample: number[] = [];
     let newFreqDist: { [key: string]: number } = {};
     let newZ: number = this.inputForm.get('valueZInput')?.value;
+    console.log(newSampleType);
 
     if (newSampleType == "explizit") {
       newExplSample = this.parseExplSample(this.inputForm.get('numSequence')?.value);
+    console.log(newExplSample);
     }
+    
     else if (newSampleType == "absolut") {
       newFreqDist = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
+      console.log(newFreqDist);
     }
 
     return new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
