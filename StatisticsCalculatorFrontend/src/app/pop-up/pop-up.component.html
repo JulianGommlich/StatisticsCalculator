@@ -1,6 +1,6 @@
 <mat-dialog-content class="mat-typography">
 
-    <div *ngIf="fix"> 
+    <div *ngIf="(fix|async)"> 
         <h2>Wollen Sie Änderungen vornehmen?</h2>
         <label>Explizite Stichprobe:</label>
         <br>
@@ -11,7 +11,7 @@
         <input type="text" id="absoluteFrequencyFix" readonly value="">   
     </div>
 
-    <div *ngIf="!fix"> 
+    <div *ngIf="!(fix|async)"> 
         <h2>Wollen Sie Änderungen vornehmen?</h2>
         <label>Absolute Häufigkeit:</label>
         <br>
@@ -21,5 +21,5 @@
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="true" (click)="getResults(); startCalculation()" cdkFocusInitial>Berechnen</button>
+    <button mat-button [mat-dialog-close]="true" (click)="getResults()" cdkFocusInitial>Berechnen</button>
 </mat-dialog-actions>

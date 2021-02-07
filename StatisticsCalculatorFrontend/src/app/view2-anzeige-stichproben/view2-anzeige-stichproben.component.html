@@ -43,12 +43,12 @@
         <input type="text" id="meanAbsoluteDeviation" formControlName="z" readonly>
     </div>
     <div id="4HorsemenOfCharts">
-        <!--Placeholder IDK how to do it-->
+        <app-four-charts [expliziteStichprobe]="expliziteStichprobe" [haeufigkeitsverteilung]="haeufigkeitsverteilung"></app-four-charts>
     </div>
 </form>
 
 <!--Neue Eingabe der Daten-->
-<input type="button" id="newData" value="Neue Eingabe" routerLink="/calculator">
+<input class="Button1" type="button" id="newData" value="Zurück" (click)="goBackToCalculator()">
 
 
 

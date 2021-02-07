@@ -24,7 +24,7 @@ export class ApiEndpointService {
 
   // post a sample to the java backend
   startCalculation(sample: Stichprobe): Observable<Stichprobe>{
-    return this.http.post<Stichprobe>("/a811b01f-c4cc-43af-ab08-55c0112f2707", sample, httpOptions);
+    return this.http.post<Stichprobe>("/exchange", sample, httpOptions);
   }
 
 }
