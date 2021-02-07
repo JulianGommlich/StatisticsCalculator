@@ -118,7 +118,7 @@ public class calculations {
         // Der return-Wert ist die Varianz
         variance /= values.length;
 
-        return variance;
+        return Math.round(100.00 * variance) / 100.00;
     }
 
     public static double calcStandardDeviation(double variance) {
@@ -127,7 +127,7 @@ public class calculations {
           Return: Die berechnete Standardabweichung als double
          */
         // Die Standardabweichung ist die Quadratwurzel der Varianz
-        return Math.sqrt(variance);
+        return Math.round(100.00 * Math.sqrt(variance)) / 100.00;
     }
 
     /* Mittlere absolute Abweichung zu einem Wert z:
