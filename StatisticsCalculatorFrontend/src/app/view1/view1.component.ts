@@ -176,8 +176,13 @@ export class View1Component implements OnInit{
   parseExplSample(inputStr: string): number[] {
     let numArr: number[] = [];
 
-    for (let key in inputStr.split(";")) {
-      numArr.push(Number(inputStr.split(";")[key]));
+    for (let key of inputStr.split(";")) {
+      if ((/.*\d+.*/gm).test(key)) {
+        numArr.push(Number(key));
+      }
+      else {
+        continue;
+      }
     }
 
     return numArr;
@@ -201,5 +206,31 @@ export class View1Component implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  uploadFile($event: any) {
+    let fileContent: any = [];  
+    let files = $event.srcElement.files;  
+ 
+    let input = $event.target;  
+    let reader = new FileReader();  
+    reader.readAsText(input.files[0]); 
+
+    reader.onload = () => {  
+      let csvData = reader.result;  
+      let csvRecordsArray = (<string>csvData).split(/\n/); 
+      for (let i of csvRecordsArray) {
+        if ((/\((?<value>\d*); ?(?<freq>\d*)\)/gm).test(i)) {
+          fileContent.push(this.parseFreqDist(i))
+        }
+        else if ((/(\d+\;{0,1} {0,1})+$/m).test(i)) {
+          fileContent.push(this.parseExplSample(i))
+        }
+      }
+    };
+
+    console.log(fileContent)
+
+    // Daten sind vorhanden. Müssen jetzt noch in der entsprechenden Property gespeichert werden 
   }
 }
