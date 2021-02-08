@@ -6,7 +6,7 @@
     z-index:10;
     position: relative;
     margin-top: 2%;
-    margin-bottom: comp(1000px, 2%, 500px);
+    margin-bottom: 5%;
     box-shadow: 0 8px 7px -5px lightgray;
 }
 
