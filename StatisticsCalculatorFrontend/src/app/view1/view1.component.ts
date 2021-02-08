@@ -90,10 +90,9 @@ export class View1Component implements OnInit{
       }
 
       let inputData = this.buildFormModel();
-      console.log(inputData);
 
       dialogRef = this.dialog.open(PopUpComponent, {
-        data: { fix: true, absolute: [1, 2, 3, 4], inputData }
+        data: { inputData }
       });
     } else {
       dialogRef = this.dialog.open(PopUpInvalidComponent, {
@@ -108,22 +107,22 @@ export class View1Component implements OnInit{
 
   buildFormModel() {
     let newSampleType: SampleType = this.inputForm.get('sampleType')?.value;
-    let newExplSample: number[] = [];
-    let newFreqDist: { [key: string]: number } = {};
     let newZ: number = this.inputForm.get('valueZInput')?.value;
     console.log(newSampleType);
 
+    let stichprobe = new Stichprobe(newSampleType, [], {}, newZ);
+
     if (newSampleType == "explizit") {
-      newExplSample = this.parseExplSample(this.inputForm.get('numSequence')?.value);
-    console.log(newExplSample);
+      stichprobe.expliziteStichprobe = this.parseExplSample(this.inputForm.get('numSequence')?.value);
+      stichprobe.setFreqDistribution();
     }
     
     else if (newSampleType == "absolut") {
-      newFreqDist = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
-      console.log(newFreqDist);
+      stichprobe.haeufigkeitsverteilung = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
+      stichprobe.setExpSample();
     }
 
-    return new Stichprobe(newSampleType, newExplSample, newFreqDist, newZ);
+    return stichprobe;
   }
 
   checkValidation() {
@@ -188,7 +187,7 @@ export class View1Component implements OnInit{
     return numArr;
   }
 
-  // Takes a String as Input and converts it to a object (freqDist)
+  // Takes a String as Input and converts it to an object (freqDist)
   parseFreqDist(inputStr: string): { [key: string]: number } {
     let freqDist: { [key: string]: number } = {};
     let matches = inputStr.matchAll(/\((?<value>\d*); ?(?<freq>\d*)\)/gm);

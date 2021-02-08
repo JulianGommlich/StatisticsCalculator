@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { Subject } from 'rxjs';
+import { Stichprobe } from '../stichprobe';
 
 @Component({
   selector: 'app-view2-anzeige-stichproben',
@@ -14,20 +15,11 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
 
   ergebnisseFormGroup: FormGroup;
   inputFromBackend = new Subject<Ergebnisse>(); //Ergebnisse
-
-  
+  public stichprobendaten: Stichprobe;
 
   constructor(private apiEndpoint: ApiEndpointService, private fb: FormBuilder, private router: Router) { 
     this.buildForm();
   }
-  
-  // Testdaten
-  public expliziteStichprobe = [15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23,
-    23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36,
-    36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98];
-  public haeufigkeitsverteilung = {'15': 3, '18': 4, '20': 5, '22': 7, '23': 10, '27': 10, '36': 7, '49': 5, '72': 4, '98': 3};
-  sampleType = "explizit";
-  z = 25;
 
   ngOnInit(): void {
     this.apiEndpoint.getSubject().subscribe((data: Ergebnisse) => this.inputFromBackend.next(data));
@@ -56,19 +48,26 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         meanAbsoluteDeviation: [data.mittlereAbweichungZuZ],
         giniValue: [data.giniKoeffizient]
       });
+
+      this.stichprobendaten.expliziteStichprobe = data.explSample;
+      this.stichprobendaten.haeufigkeitsverteilung = data.freqDist;
+      this.stichprobendaten.sampleType = data.sampleType;
+      this.stichprobendaten.z = data.z;
     });
   }
 
   /**
    * Navigation zur Eingabeseite; nimmt die eingegebene Stichproben sowie Stichprobenart und z mit
    */
-  goBackToCalculator() {
-    const numSequence = (this.sampleType == "explizit") ? this.expliziteStichprobe : `${Object.keys(this.haeufigkeitsverteilung)}|${Object.values(this.haeufigkeitsverteilung)}`;
+  goBackToCalculator(): void {
+    const numSequence = (this.stichprobendaten.sampleType == "explizit") 
+      ? this.stichprobendaten.expliziteStichprobe 
+      : `${Object.keys(this.stichprobendaten.haeufigkeitsverteilung)}|${Object.values(this.stichprobendaten.haeufigkeitsverteilung)}`;
     
     this.router.navigate(['/calculator', {
       'numSequence': numSequence,
-      'sampleType': this.sampleType,
-      'valueZInput': this.z
+      'sampleType': this.stichprobendaten.sampleType,
+      'valueZInput': this.stichprobendaten.z
     }]);
   }
 
