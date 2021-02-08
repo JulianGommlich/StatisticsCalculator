@@ -1,4 +1,4 @@
-<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues">
+<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues" *ngIf ="ergebnisseFormGroup">
     <h2>Ausgabe:</h2>
     <div id="listOfCalculatedValues">
         <label>Modalwert:</label>
@@ -19,33 +19,35 @@
         <label>Gini-Koeffizient:</label>
         <input type="text" id="giniValue" formControlName="giniValue" readonly>
     </div>
-    <div id="tableQuantile"> <!-- Quantile-Keys überprüfen! -->
+    <div id="tableQuantile">
         <label>Quantil x<sub>0,05</sub>:</label>
-        <input type="text" id="quantil005" formControlName="quantile['005']" readonly>
+        <input type="text" id="quantil005" formControlName="quantile005" readonly>
         <br>
         <label>Quantil x<sub>0,1</sub>:</label>
-        <input type="text" id="quantil01" formControlName="quantile['01']" readonly>
+        <input type="text" id="quantil01" formControlName="quantile01" readonly>
         <br>
         <label>Quantil x<sub>0,25</sub>:</label>
-        <input type="text" id="quantil025" formControlName="quantile['025']" readonly>
+        <input type="text" id="quantil025" formControlName="quantile025" readonly>
         <br>
         <label>Quantil x<sub>0,75</sub>:</label>
-        <input type="text" id="quantil075" formControlName="quantile['075']" readonly>
+        <input type="text" id="quantil075" formControlName="quantile075" readonly>
         <br>
         <label>Quantil x<sub>0,9</sub>:</label>
-        <input type="text" id="quantil09" formControlName="quantile['09']" readonly>
+        <input type="text" id="quantil09" formControlName="quantile09" readonly>
         <br>
         <label>Quantil x<sub>0,95</sub>:</label>
-        <input type="text" id="quantil095" formControlName="quantile['095']" readonly>
+        <input type="text" id="quantil095" formControlName="quantile095" readonly>
     </div>
     <div>
         <label>Mittlere absolute Abweichung (Wert Z):</label>
         <input type="text" id="meanAbsoluteDeviation" formControlName="z" readonly>
     </div>
+        
     <div id="4HorsemenOfCharts">
         <app-four-charts [expliziteStichprobe]="expliziteStichprobe" [haeufigkeitsverteilung]="haeufigkeitsverteilung"></app-four-charts>
-    </div>
+    </div> 
 </form>
+
 
 <!--Neue Eingabe der Daten-->
 <input class="Button1" type="button" id="newData" value="Zurück" (click)="goBackToCalculator()">

@@ -5,32 +5,32 @@ export enum SampleType {
 
 export class Ergebnisse {
     sampleType: SampleType;
-    explSample: number[];
+    expliziteStichprobe: number[];
     freqDist: { [key: string]: number };
     z: number;
-    modalValue: number;
-    meanValue: number;
+    modalwert: number;
+    mittelwert: number;
     median: number;
     quantile: { [key: string]: number };
-    variance: number;
-    standardDev: number;
-    meanAbsoluteDeviation: number;
-    giniValue: number;
+    varianz: number;
+    standardabweichung: number;
+    mittlereAbweichungZuZ: number;
+    giniKoeffizient: number;
 
     constructor(newSampleType: SampleType, newExplSample: number[], newFreqDist: { [key: string]: number }, newZ: number, newModalValue: number, newMeanValue: number, 
         newMedian: number, newQuantile: { [key: string]: number }, newVariance: number, newStandardDev: number, newMeanAbsoluteDeviation: number, newGiniValue: number){
         this.sampleType = newSampleType;
-        this.explSample = newExplSample;
+        this.expliziteStichprobe = newExplSample;
         this.freqDist = newFreqDist;
         this.z = newZ;
-        this.modalValue = newModalValue;
-        this.meanValue = newMeanValue;
+        this.modalwert = newModalValue;
+        this.mittelwert = newMeanValue;
         this.median = newMedian;
         this.quantile = newQuantile;
-        this.variance = newVariance;
-        this.standardDev = newStandardDev;
-        this.meanAbsoluteDeviation = newMeanAbsoluteDeviation;
-        this.giniValue = newGiniValue;
-      }
-
+        this.varianz = newVariance;
+        this.standardabweichung = newStandardDev;
+        this.mittlereAbweichungZuZ = newMeanAbsoluteDeviation;
+        this.giniKoeffizient = newGiniValue;
+        console.log(this.quantile);
+      }    
 }  

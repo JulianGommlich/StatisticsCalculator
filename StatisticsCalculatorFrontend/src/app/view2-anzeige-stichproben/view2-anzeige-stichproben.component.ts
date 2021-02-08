@@ -31,23 +31,30 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiEndpoint.getSubject().subscribe((data: Ergebnisse) => this.inputFromBackend.next(data));
+    //this.buildForm();
    }
 
   buildForm(): void{
-    this.inputFromBackend.subscribe(data => {
+    this.inputFromBackend.subscribe((data : Ergebnisse) => {
+      console.log(data);
       this.ergebnisseFormGroup = this.fb.group({
         sampleType: [data.sampleType],
-        explSample: [data.explSample],
+        explSample: [data.expliziteStichprobe],
         freqDist: [data.freqDist],
         z: [data.z],
-        modalValue: [data.modalValue],
-        meanValue: [data.meanValue],
+        modalValue: [data.modalwert],
+        meanValue: [data.mittelwert],
         median: [data.median],
-        quantile: [data.quantile],
-        variance: [data.variance],
-        standardDev: [data.standardDev],
-        meanAbsoluteDeviation: [data.meanAbsoluteDeviation],
-        giniValue: [data.giniValue]
+        quantile005: [data.quantile[0]],
+        quantile01: [data.quantile[1]],
+        quantile025: [data.quantile[2]],
+        quantile075: [data.quantile[3]],
+        quantile09: [data.quantile[4]],
+        quantile095: [data.quantile[5]],
+        variance: [data.varianz],
+        standardDev: [data.standardabweichung],
+        meanAbsoluteDeviation: [data.mittlereAbweichungZuZ],
+        giniValue: [data.giniKoeffizient]
       });
     });
   }

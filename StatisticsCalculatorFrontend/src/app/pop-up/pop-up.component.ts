@@ -26,6 +26,7 @@ export class PopUpComponent implements OnInit {
     public apiEndpoint: ApiEndpointService
   ) {
     this.inputData = data.inputData;
+    console.log(this.inputData);
   }
   
   getResults() {
