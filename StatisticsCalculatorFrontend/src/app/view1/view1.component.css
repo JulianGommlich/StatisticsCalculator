@@ -1,13 +1,17 @@
-/* Macht das hier irgendwas? --> es gibt keinen Body?  */
-body {
-    width: 80%;
+:host {
+    display: block;
+    width: 75%;
     margin: auto;
     height: auto;
-    /* width: 100vw;
+}
+
+/* Macht das hier irgendwas? --> es gibt keinen Body?  */
+body {
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;*/
+    align-items: center;
 }
 
 input.Button1 {

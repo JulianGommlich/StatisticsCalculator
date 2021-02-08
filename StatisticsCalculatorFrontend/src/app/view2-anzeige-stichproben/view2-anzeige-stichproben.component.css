@@ -1,4 +1,44 @@
+:host {
+    display: block;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 input.Button1 {
     left: 85%;
     margin-right: 2%;
+}
+
+.outputFlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.outputLabel {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    width: 250px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+input {
+    width: 300px;
+}
+
+.outputFlexElement {
+    display: inline-flex;
+    white-space: nowrap;
+    margin: 5px 2% 10px 0px;
+}
+
+#tableQuantile {
+    margin-bottom: 50px;
+}
+
+#newData {
+    margin-bottom: 60px;
 }
