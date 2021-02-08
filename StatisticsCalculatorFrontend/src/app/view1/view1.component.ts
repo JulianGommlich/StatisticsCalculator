@@ -209,7 +209,10 @@ export class View1Component implements OnInit{
   }
 
   uploadFile($event: any) {
-    let fileContent: any = [];  
+    let newNumSeq: String;
+    let newSampleType: String;
+    let newZ: Number;
+
     let files = $event.srcElement.files;  
  
     let input = $event.target;  
@@ -218,19 +221,23 @@ export class View1Component implements OnInit{
 
     reader.onload = () => {  
       let csvData = reader.result;  
-      let csvRecordsArray = (<string>csvData).split(/\n/); 
-      for (let i of csvRecordsArray) {
-        if ((/\((?<value>\d*); ?(?<freq>\d*)\)/gm).test(i)) {
-          fileContent.push(this.parseFreqDist(i))
-        }
-        else if ((/(\d+\;{0,1} {0,1})+$/m).test(i)) {
-          fileContent.push(this.parseExplSample(i))
-        }
+      let csvRecordsArray = (<string>csvData).split(","); 
+      if ((/\((\d*); ?(\d*)\)/gm).test(csvRecordsArray[0])) {
+        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
+        newSampleType = "absolut";
       }
+      else if ((/\"(\d+\;{0,1} {0,1})+\"$/gm).test(csvRecordsArray[0])) {
+        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
+        newSampleType = "explizit";
+      }
+
+      newZ = Number(csvRecordsArray[1].replace(/\"/g, ""));
+
+      this.inputForm.setValue({
+        numSequence: newNumSeq,
+        sampleType: newSampleType,
+        valueZInput: newZ
+      });
     };
-
-    console.log(fileContent)
-
-    // Daten sind vorhanden. Müssen jetzt noch in der entsprechenden Property gespeichert werden 
   }
 }
