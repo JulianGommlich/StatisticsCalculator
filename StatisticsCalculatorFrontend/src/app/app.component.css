@@ -1,0 +1,23 @@
+input {
+    width: 300px;
+    height: 35px;
+    font-size: 20;
+    font-weight: light;
+}
+  
+input.Button1, button {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 100px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+
+mat-dialog-content {
+    width: 50vw;
+}

@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-pop-up-delete',
-    templateUrl: './pop-up-delete.component.html'
+    templateUrl: './pop-up-delete.component.html',
+    styleUrls: ['./pop-up-delete.component.css', '../app.component.css']
 })
 export class PopUpDeleteComponent implements OnInit {
 

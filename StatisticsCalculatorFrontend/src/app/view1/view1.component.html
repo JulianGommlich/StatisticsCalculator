@@ -8,20 +8,39 @@
     <!--Der Button-Text von Type "File" kann nicht geändert werden. Damit der Text dennoch dem Design entspricht wird der 
         Upload-Button versteckt und durch einen separaten Button getriggert-->
     <input type="file" id="importFile" accept=".csv" multiple="false" (change)="uploadFile($event)">
-    <input type="button" id="loadFile" value="Datei auswählen" onclick="document.getElementById('importFile').click();">
+    <input class="Button1" type="button" id="loadFile" value="(.csv-Datei auswählen)" onclick="document.getElementById('importFile').click();">
+
     <br>
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
-    <input type="radio" formControlName="sampleType" id="explSample" name="sampleType" value="explizit"> 
-    <label for="explSample">Explizite Stichprobe</label>
-    <input type="radio" formControlName="sampleType" id="absSample" name="sampleType" value="absolut"> 
-    <label for="absSample">Absolute Stichprobe</label>
+    <div class="radioLine">
+        <div class="radioContainer">
+            <label class="radioBtn"> 
+                <input type="radio" id="explSample" name="sampleType" value="explizit">
+                <span class="checkmark"></span>
+            </label>
+            <div>
+                <span class="radioLabel">explizite Häufigkeitsverteilung</span>
+            </div>
+        </div>
+        <div class="radioContainer">
+            <label class="radioBtn"> 
+                <input type="radio" id="absSample" name="sampleType" value="absolut">
+                <span class="checkmark"></span>
+            </label>
+            <div class="radioLabel">
+                <span>absolute Häufigkeitsverteilung</span>
+            </div>
+        </div>
+    </div>
+  
     <br>
+
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
     <input type="number" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)" required>
     <br> <br>
-    <input type="submit" id="delete" value="Löschen" (click)="openDeleteDialog()">
-    <input type="submit" id="show" value="Anzeigen" (click)="openDialog()">
+    <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
+    <input type="submit" id="show" value="Starten" class="Button1" (click)="openDialog()">
 </form>

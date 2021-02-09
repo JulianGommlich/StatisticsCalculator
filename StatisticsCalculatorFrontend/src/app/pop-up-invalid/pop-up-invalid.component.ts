@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-pop-up-invalid',
   templateUrl: './pop-up-invalid.component.html',
-  styleUrls: ['./pop-up-invalid.component.css']
+  styleUrls: ['./pop-up-invalid.component.css', '../app.component.css']
 })
 export class PopUpInvalidComponent implements OnInit {
 
