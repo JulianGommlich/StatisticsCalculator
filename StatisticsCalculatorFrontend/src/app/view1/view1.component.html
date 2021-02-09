@@ -5,7 +5,11 @@
     
     <input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe" required> 
     oder 
-    <input class="Button1" type="button" id="importFile" value="(.csv-Datei auswählen)">
+    <!--Der Button-Text von Type "File" kann nicht geändert werden. Damit der Text dennoch dem Design entspricht wird der 
+        Upload-Button versteckt und durch einen separaten Button getriggert-->
+    <input type="file" id="importFile" accept=".csv" multiple="false" (change)="uploadFile($event)">
+    <input class="Button1" type="button" id="loadFile" value="(.csv-Datei auswählen)" onclick="document.getElementById('importFile').click();">
+
     <br>
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
