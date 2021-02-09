@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="backend-API-Endpunkt" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -51,6 +56,7 @@
     <property name="ChangesTree.GroupingKeys" value="module" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -59,7 +65,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.StatisticsCalculatorBackendApplication">
+  <component name="RunManager" selected="JUnit.StatisticsCalculatorBackendApplicationTests">
     <configuration name="StatisticsCalculatorBackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication" />
       <module name="statisticsCalculatorBackend" />
@@ -69,6 +75,37 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="StatisticsCalculatorBackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorBackend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
+      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -89,7 +126,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StatisticsCalculatorBackendApplicationTests.testCalcQuantile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorBackend" />
       <extension name="coverage">
         <pattern>
@@ -99,39 +136,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
       <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testCalcStandardDeviation" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testQuantile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testQuantile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcModal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorBackend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.student.dhbwvs.statisticsCalculatorBackend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend" />
-      <option name="MAIN_CLASS_NAME" value="de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests" />
-      <option name="METHOD_NAME" value="testcalcModal" />
+      <option name="METHOD_NAME" value="testCalcQuantile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -146,11 +151,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcQuantile" />
         <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testQuantile" />
-        <item itemvalue="JUnit.StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation" />
+        <item itemvalue="Application.StatisticsCalculatorBackendApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -240,7 +245,28 @@
       <option name="project" value="LOCAL" />
       <updated>1611835239980</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
+      <created>1611835279538</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1611835279538</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Backend Unittests implementiert">
+      <created>1612176571258</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1612176571258</updated>
+    </task>
+    <task id="LOCAL-00013" summary="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations">
+      <created>1612454788594</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1612454788609</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,7 +283,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Umrechnungslogik_Frontend" />
+                        <option value="origin/Unittests" />
                       </list>
                     </value>
                   </entry>
@@ -282,7 +308,9 @@
     <MESSAGE value="Quantile wird befüllt, erstes ExceptionHandling für API, Test" />
     <MESSAGE value="API funktioniert, Umrechnungen gelöscht" />
     <MESSAGE value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
-    <option name="LAST_COMMIT_MESSAGE" value="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
+    <MESSAGE value="Backend Unittests implementiert" />
+    <MESSAGE value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
+    <option name="LAST_COMMIT_MESSAGE" value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
