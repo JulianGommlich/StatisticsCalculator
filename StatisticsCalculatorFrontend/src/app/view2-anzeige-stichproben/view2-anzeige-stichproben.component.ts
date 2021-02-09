@@ -23,7 +23,6 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiEndpoint.getSubject().subscribe((data: Ergebnisse) => this.inputFromBackend.next(data));
-    //this.buildForm();
    }
 
   buildForm(): void{
@@ -48,11 +47,8 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         meanAbsoluteDeviation: [data.mittlereAbweichungZuZ],
         giniValue: [data.giniKoeffizient]
       });
-
-      this.stichprobendaten.expliziteStichprobe = data.explSample;
-      this.stichprobendaten.haeufigkeitsverteilung = data.freqDist;
-      this.stichprobendaten.sampleType = data.sampleType;
-      this.stichprobendaten.z = data.z;
+      
+      this.stichprobendaten = new Stichprobe(data.sampleType, data.expliziteStichprobe, data.freqDist, data.z);
     });
   }
 
