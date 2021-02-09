@@ -1,14 +1,6 @@
 <form id="inputValues" [formGroup]="inputForm">
 
     <h2>Eingabe:</h2>
-    <P id="introduction">Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
-    
-    <div id="buttonLine">
-        <input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe" required>  
-        <input class="Button1" type="button" id="importFile" value="(.csv-Datei auswählen)"> 
-    </div>
-    
-    <br>
 
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
@@ -33,7 +25,13 @@
         </div>
     </div>
 
+    <P id="introduction">Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
+    
+    <input class="Button1" type="button" id="importFile" value="(.csv-Datei auswählen)"> 
     <br>
+
+    <!--Hier kommt mal die Tabell hin-->
+    <input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe" required>  
 
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
