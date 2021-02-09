@@ -49,7 +49,7 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         giniValue: [data.giniKoeffizient]
       });
 
-      this.stichprobendaten.expliziteStichprobe = data.explSample;
+      this.stichprobendaten.expliziteStichprobe = data.expliziteStichprobe;
       this.stichprobendaten.haeufigkeitsverteilung = data.freqDist;
       this.stichprobendaten.sampleType = data.sampleType;
       this.stichprobendaten.z = data.z;
