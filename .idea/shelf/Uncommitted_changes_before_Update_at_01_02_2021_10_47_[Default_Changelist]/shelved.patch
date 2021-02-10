@@ -1,0 +1,513 @@
+Index: statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package de.student.dhbwvs.statisticsCalculatorBackend;\r\n\r\nimport java.util.*;\r\n\r\npublic class calculations {\r\n\r\n    /** calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,\r\n     *  die den entsprechenden value haben\r\n     **/\r\n    public static double[] calcModal(Map<Double,Integer> freqDist) {\r\n    \r\n        List<Double> modal = new ArrayList<>();\r\n        \r\n        //durchsuche die map nach dem höchsten value, weise diesen der Variablen highestValue zu\r\n        int highestValue = 0;\r\n        \r\n        for (int i : freqDist.values()) {\r\n            highestValue = Math.max(i, highestValue);\r\n        }\r\n        \r\n        //durchsuche die map nach jedem key, bei dem highestValue == value; füge diese keys der List hinzu\r\n        for (double j : freqDist.keySet()){\r\n            if (highestValue == freqDist.get(j)){\r\n                modal.add(j);\r\n            }\r\n        }\r\n        \r\n        Collections.sort(modal);\r\n        \r\n        return modal.stream().mapToDouble(d -> d).toArray();\r\n    }\r\n\r\n    // Function takes an array as input\r\n    public static double calcAverage(double[] values) {\r\n        /*\r\n          Berechnung des Durchschnitts eines Arrays\r\n          Input: Array mit double-Werten\r\n          Return: Durchschnitt als double-Wert\r\n         */\r\n        double sum = 0;\r\n\r\n        // Alle Elemente des Arrays in der Variable sum summieren\r\n        for (double value : values) {\r\n            sum += value;\r\n        }\r\n\r\n        // Der Durchschnitt ist die Summe geteilt durch die Anzahl an Werten\r\n        return sum / values.length;\r\n    }\r\n\r\n    // calcMedian berechnet den Median eines Arrays\r\n    public static double calcMedian(double[] values){\r\n    \r\n        //Benenne einen Parameter für den späteren Median\r\n        double median;\r\n        \r\n        //Bestimme die Länge des Arrays\r\n        int count = values.length;\r\n        \r\n        //Sortiere das Array aufsteigend\r\n        Arrays.sort(values);\r\n        \r\n        //Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.\r\n        if(count % 2 == 0){\r\n            //Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter \"median\"\r\n            median = ((values[(count/2)-1] + values[((count/2))])/2);\r\n        } else {\r\n            //Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter \"median\"\r\n            median = values[((count+1)/2)-1];\r\n\r\n        }\r\n        \r\n        //Gebe den Median zurück\r\n        return median;\r\n    }\r\n\r\n    public static double calcQuantile(double percentage, double[] values){\r\n        /* Quantile berechnen\r\n          Input: array mit double Werten und Prozentzahl im double Format\r\n          Return: Das berechnete Quantil für die entsprechende Prozentzahl\r\n         */\r\n        double quantile;\r\n        // Länge des Arrays\r\n        int count = values.length;\r\n        //Berechnung von Anzahl*Prozentzahl\r\n        double np = (count*percentage);\r\n        //Abrunden der Zahl\r\n        int round = (int)(Math.floor(np));\r\n        //Prüfe ob np ganzzahlig ist\r\n        if((np%2) == 0 ){\r\n            //Wende die Formel für geradzahliges np an\r\n            quantile = (0.5) * (values[round] + values[(round + 1)]);\r\n        } else {\r\n            //Wende die Formel für ungerades np an\r\n            quantile = values[round];\r\n        }\r\n        //Gebe das Quantil zurück\r\n        return quantile;\r\n    }\r\n\r\n    public static double calcVariance(double[] values) {\r\n        /* Varianz berechnen\r\n          Input: array mit double Werten\r\n          Return: Die berechnete Varianz als double\r\n         */\r\n\r\n        // Den Durchschnitt berechnen lassen\r\n        double average = calcAverage(values);\r\n\r\n        // Variable Varianz deklarieren\r\n        double variance = 0;\r\n\r\n        for (double value : values) {\r\n            // Von jedem Wert aus dem Array values muss der Durchschnitt des Array abgezogen werden\r\n            // das Ergebnis wird dann mit 2 potenziert\r\n            variance += Math.pow(value - average, 2);\r\n        }\r\n\r\n        // Der return-Wert ist die Varianz\r\n        variance /= values.length;\r\n\r\n        return variance;\r\n    }\r\n\r\n    public static double calcStandardDeviation(double variance) {\r\n        /* Standardabweichung berechnen\r\n          Input: berechnete Varianz als double\r\n          Return: Die berechnete Standardabweichung als double\r\n         */\r\n        // Die Standardabweichung ist die Quadratwurzel der Varianz\r\n        return Math.sqrt(variance);\r\n    }\r\n\r\n    /* Mittlere absolute Abweichung zu einem Wert z:\r\n      Input: Stichprobe als double-Array, Wert z als double\r\n      Vorgehen: für jeden Stichprobenwert Betrag von Stichprobenwert - z addieren,\r\n               durch die Anzahl der Werte dividieren\r\n      Return: mittlere absolute Abweichung zu z als double\r\n     */\r\n    public static double calcAverageDeviation(double[] stichprobe, double z){\r\n        double sum = 0;\r\n\r\n        for (double i : stichprobe) {\r\n            sum += Math.abs(i - z);\r\n        }\r\n        return sum/stichprobe.length;\r\n    }\r\n\r\n    public static double calcGiniCoefficient(double[] values){\r\n        /* Gini Koeffizient berechnen berechnen\r\n          Input: Array mit double Werten\r\n          Return: Den berechneten Gini Koeffizient als double\r\n         */\r\n        double gini;\r\n        Arrays.sort(values);\r\n        double height = 0;\r\n        double area = 0;\r\n        for (double value : values) {\r\n            height += value;\r\n            area += (height - value / 2);\r\n        }\r\n        double fair_area = height * values.length / 2;\r\n        gini = (fair_area - area) / fair_area;\r\n        return gini;\r\n    }\r\n\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java
+--- a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java	(date 1611860657925)
+@@ -163,6 +163,4 @@
+         gini = (fair_area - area) / fair_area;
+         return gini;
+     }
+-
+-
+ }
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46__Default_Changelist_.xml	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ /dev/null	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]" date="1611513970442" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 24.01.2021 19:46 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21__Default_Changelist_.xml	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ /dev/null	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]" date="1611321692017" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 22.01.2021 14:21 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]/shelved.patch	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ /dev/null	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
+@@ -1,106 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"Erster Entwurf für die Berechnung des Medians\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/StatisticsCalculator.iml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/StatisticsCalculator.iml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/modules.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/modules.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"SET_USER_NAME_GLOBALLY\" value=\"false\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"GithubProjectSettings\">\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_BRANCH\" value=\"main\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_USER\" value=\"JulianGommlich\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_NAME\" value=\"StatisticsCalculator\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1n4jUXluegyPotyifcz74GYZ0WL\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ChangesTree.GroupingKeys\" value=\"module\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian\">\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcModal\" type=\"AndroidJUnit\" factoryName=\"Android JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcModal\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_DIR$\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testDistributionToSample\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testDistributionToSample\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcMedian\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcMedian\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testDistributionToSample\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests\" />\r\n        <item itemvalue=\"Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1610656275322</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1610656275322</updated>\r\n      <workItem from=\"1610656277974\" duration=\"48000\" />\r\n      <workItem from=\"1610726675711\" duration=\"1345000\" />\r\n      <workItem from=\"1610885880117\" duration=\"1132000\" />\r\n      <workItem from=\"1610906779046\" duration=\"2263000\" />\r\n      <workItem from=\"1610909417941\" duration=\"1250000\" />\r\n      <workItem from=\"1610910874191\" duration=\"346000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"backend_tests\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java</url>\r\n          <line>34</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 68dc3aa516c7e7d16c64f1a06bfae7464b8b75a0)
+-+++ b/.idea/workspace.xml	(date 1611158431190)
+-@@ -4,13 +4,9 @@
+-     <option name="autoReloadType" value="SELECTIVE" />
+-   </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Erster Entwurf für die Berechnung des Medians">
+--      <change beforePath="$PROJECT_DIR$/.idea/StatisticsCalculator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/StatisticsCalculator.iml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+-+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
+-+      <change afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -20,10 +16,17 @@
+-   <component name="CodeInsightWorkspaceSettings">
+-     <option name="optimizeImportsOnTheFly" value="true" />
+-   </component>
+-+  <component name="FileTemplateManagerImpl">
+-+    <option name="RECENT_TEMPLATES">
+-+      <list>
+-+        <option value="Class" />
+-+      </list>
+-+    </option>
+-+  </component>
+-   <component name="Git.Settings">
+-     <option name="RECENT_BRANCH_BY_REPOSITORY">
+-       <map>
+--        <entry key="$PROJECT_DIR$" value="main" />
+-+        <entry key="$PROJECT_DIR$" value="backend_tests" />
+-       </map>
+-     </option>
+-     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-@@ -55,6 +58,9 @@
+-     <property name="aspect.path.notification.shown" value="true" />
+-     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+-     <property name="nodejs_package_manager_path" value="npm" />
+-+    <property name="project.structure.last.edited" value="Modules" />
+-+    <property name="project.structure.proportion" value="0.0" />
+-+    <property name="project.structure.side.proportion" value="0.0" />
+-   </component>
+-   <component name="RunManager" selected="JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian">
+-     <configuration name="StatisticsCalculatorBackendApplicationTests.testcalcModal" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+-@@ -145,6 +151,14 @@
+-       <workItem from="1610909417941" duration="1250000" />
+-       <workItem from="1610910874191" duration="346000" />
+-     </task>
+-+    <task id="LOCAL-00001" summary="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
+-+      <created>1611151159525</created>
+-+      <option name="number" value="00001" />
+-+      <option name="presentableId" value="LOCAL-00001" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1611151159525</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="2" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -161,7 +175,7 @@
+-                   <entry key="branch">
+-                     <value>
+-                       <list>
+--                        <option value="backend_tests" />
+-+                        <option value="ergebnisklasse" />
+-                       </list>
+-                     </value>
+-                   </entry>
+-@@ -176,7 +190,8 @@
+-   </component>
+-   <component name="VcsManagerConfiguration">
+-     <MESSAGE value="Erster Entwurf für die Berechnung des Medians" />
+--    <option name="LAST_COMMIT_MESSAGE" value="Erster Entwurf für die Berechnung des Medians" />
+-+    <MESSAGE value="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests" />
+-   </component>
+-   <component name="XDebuggerManager">
+-     <breakpoint-manager>
+-Index: statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java
+-new file mode 100644
+---- /dev/null	(date 1611158586862)
+-+++ b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java	(date 1611158586862)
+-@@ -0,0 +1,7 @@
+-+package de.student.dhbwvs.statisticsCalculatorBackend;
+-+
+-+public class Ergebnisse {
+-+
+-+
+-+
+-+}
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13__Default_Changelist_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13__Default_Changelist_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13__Default_Changelist_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13__Default_Changelist_.xml	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ /dev/null	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]" date="1611249196168" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 21.01.2021 18:13 [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]/shelved.patch	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ /dev/null	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
+@@ -1,198 +0,0 @@
+-Index: statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package de.student.dhbwvs.statisticsCalculatorBackend;\r\n\r\nimport java.util.Map;\r\n\r\npublic class Ergebnisse {\r\n\r\n    private Map<Double, Integer> haeufigkeitsverteilung;\r\n    private double[] expliziteStichprobe;\r\n    private double[] quantile;\r\n    private double modalwert;\r\n    private double mittelwert;\r\n    private double median;\r\n    private double varianz;\r\n    private double standardabweichung;\r\n    private double mittlereAbweichungZuZ;\r\n    private double giniKoeffizient;\r\n\r\n\r\n    public Ergebnisse(Map<Double, Integer> haeufigkeitsverteilung, double[] expliziteStichprobe, double[] quantile,\r\n                      double modalwert, double mittelwert, double median, double varianz,\r\n                      double standardabweichung, double mittlereAbweichungZuZ, double giniKoeffizient) {\r\n\r\n        this.haeufigkeitsverteilung = haeufigkeitsverteilung;\r\n        this.expliziteStichprobe = expliziteStichprobe;\r\n        this.quantile = quantile;\r\n        this.modalwert = modalwert;\r\n        this.mittelwert = mittelwert;\r\n        this.median = median;\r\n        this.varianz = varianz;\r\n        this.standardabweichung = standardabweichung;\r\n        this.mittlereAbweichungZuZ = mittlereAbweichungZuZ;\r\n        this.giniKoeffizient = giniKoeffizient;\r\n    }\r\n\r\n    public Map<Double, Integer> getHaeufigkeitsverteilung() {\r\n        return haeufigkeitsverteilung;\r\n    }\r\n\r\n    public void setHaeufigkeitsverteilung(Map<Double, Integer> haeufigkeitsverteilung) {\r\n        this.haeufigkeitsverteilung = haeufigkeitsverteilung;\r\n    }\r\n\r\n    public double[] getExpliziteStichprobe() {\r\n        return expliziteStichprobe;\r\n    }\r\n\r\n    public void setExpliziteStichprobe(double[] expliziteStichprobe) {\r\n        this.expliziteStichprobe = expliziteStichprobe;\r\n    }\r\n\r\n    public double[] getQuantile() {\r\n        return quantile;\r\n    }\r\n\r\n    public void setQuantile(double[] quantile) {\r\n        this.quantile = quantile;\r\n    }\r\n\r\n    public double getModalwert() {\r\n        return modalwert;\r\n    }\r\n\r\n    public void setModalwert(double modalwert) {\r\n        this.modalwert = modalwert;\r\n    }\r\n\r\n    public double getMittelwert() {\r\n        return mittelwert;\r\n    }\r\n\r\n    public void setMittelwert(double mittelwert) {\r\n        this.mittelwert = mittelwert;\r\n    }\r\n\r\n    public double getMedian() {\r\n        return median;\r\n    }\r\n\r\n    public void setMedian(double median) {\r\n        this.median = median;\r\n    }\r\n\r\n    public double getVarianz() {\r\n        return varianz;\r\n    }\r\n\r\n    public void setVarianz(double varianz) {\r\n        this.varianz = varianz;\r\n    }\r\n\r\n    public double getStandardabweichung() {\r\n        return standardabweichung;\r\n    }\r\n\r\n    public void setStandardabweichung(double standardabweichung) {\r\n        this.standardabweichung = standardabweichung;\r\n    }\r\n\r\n    public double getMittlereAbweichungZuZ() {\r\n        return mittlereAbweichungZuZ;\r\n    }\r\n\r\n    public void setMittlereAbweichungZuZ(double mittlereAbweichungZuZ) {\r\n        this.mittlereAbweichungZuZ = mittlereAbweichungZuZ;\r\n    }\r\n\r\n    public double getGiniKoeffizient() {\r\n        return giniKoeffizient;\r\n    }\r\n\r\n    public void setGiniKoeffizient(double giniKoeffizient) {\r\n        this.giniKoeffizient = giniKoeffizient;\r\n    }\r\n\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java
+---- a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java	(revision 47b03b9d72800f8cc9d3cb87d0b67e7f2b695113)
+-+++ b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java	(date 1611318892699)
+-@@ -1,7 +1,15 @@
+- package de.student.dhbwvs.statisticsCalculatorBackend;
+- 
+-+
+-+import lombok.AllArgsConstructor;
+-+import lombok.Getter;
+-+import lombok.Setter;
+-+
+- import java.util.Map;
+- 
+-+@Getter
+-+@Setter
+-+@AllArgsConstructor
+- public class Ergebnisse {
+- 
+-     private Map<Double, Integer> haeufigkeitsverteilung;
+-@@ -15,101 +23,4 @@
+-     private double mittlereAbweichungZuZ;
+-     private double giniKoeffizient;
+- 
+--
+--    public Ergebnisse(Map<Double, Integer> haeufigkeitsverteilung, double[] expliziteStichprobe, double[] quantile,
+--                      double modalwert, double mittelwert, double median, double varianz,
+--                      double standardabweichung, double mittlereAbweichungZuZ, double giniKoeffizient) {
+--
+--        this.haeufigkeitsverteilung = haeufigkeitsverteilung;
+--        this.expliziteStichprobe = expliziteStichprobe;
+--        this.quantile = quantile;
+--        this.modalwert = modalwert;
+--        this.mittelwert = mittelwert;
+--        this.median = median;
+--        this.varianz = varianz;
+--        this.standardabweichung = standardabweichung;
+--        this.mittlereAbweichungZuZ = mittlereAbweichungZuZ;
+--        this.giniKoeffizient = giniKoeffizient;
+--    }
+--
+--    public Map<Double, Integer> getHaeufigkeitsverteilung() {
+--        return haeufigkeitsverteilung;
+--    }
+--
+--    public void setHaeufigkeitsverteilung(Map<Double, Integer> haeufigkeitsverteilung) {
+--        this.haeufigkeitsverteilung = haeufigkeitsverteilung;
+--    }
+--
+--    public double[] getExpliziteStichprobe() {
+--        return expliziteStichprobe;
+--    }
+--
+--    public void setExpliziteStichprobe(double[] expliziteStichprobe) {
+--        this.expliziteStichprobe = expliziteStichprobe;
+--    }
+--
+--    public double[] getQuantile() {
+--        return quantile;
+--    }
+--
+--    public void setQuantile(double[] quantile) {
+--        this.quantile = quantile;
+--    }
+--
+--    public double getModalwert() {
+--        return modalwert;
+--    }
+--
+--    public void setModalwert(double modalwert) {
+--        this.modalwert = modalwert;
+--    }
+--
+--    public double getMittelwert() {
+--        return mittelwert;
+--    }
+--
+--    public void setMittelwert(double mittelwert) {
+--        this.mittelwert = mittelwert;
+--    }
+--
+--    public double getMedian() {
+--        return median;
+--    }
+--
+--    public void setMedian(double median) {
+--        this.median = median;
+--    }
+--
+--    public double getVarianz() {
+--        return varianz;
+--    }
+--
+--    public void setVarianz(double varianz) {
+--        this.varianz = varianz;
+--    }
+--
+--    public double getStandardabweichung() {
+--        return standardabweichung;
+--    }
+--
+--    public void setStandardabweichung(double standardabweichung) {
+--        this.standardabweichung = standardabweichung;
+--    }
+--
+--    public double getMittlereAbweichungZuZ() {
+--        return mittlereAbweichungZuZ;
+--    }
+--
+--    public void setMittlereAbweichungZuZ(double mittlereAbweichungZuZ) {
+--        this.mittlereAbweichungZuZ = mittlereAbweichungZuZ;
+--    }
+--
+--    public double getGiniKoeffizient() {
+--        return giniKoeffizient;
+--    }
+--
+--    public void setGiniKoeffizient(double giniKoeffizient) {
+--        this.giniKoeffizient = giniKoeffizient;
+--    }
+--
+- }
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\">\r\n      <change afterPath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"backend_tests\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"SET_USER_NAME_GLOBALLY\" value=\"false\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"GithubProjectSettings\">\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_BRANCH\" value=\"main\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_USER\" value=\"JulianGommlich\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_NAME\" value=\"StatisticsCalculator\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1n4jUXluegyPotyifcz74GYZ0WL\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ChangesTree.GroupingKeys\" value=\"module\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian\">\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcModal\" type=\"AndroidJUnit\" factoryName=\"Android JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcModal\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_DIR$\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testDistributionToSample\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testDistributionToSample\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcMedian\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcMedian\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testDistributionToSample\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests\" />\r\n        <item itemvalue=\"Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1610656275322</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1610656275322</updated>\r\n      <workItem from=\"1610656277974\" duration=\"48000\" />\r\n      <workItem from=\"1610726675711\" duration=\"1345000\" />\r\n      <workItem from=\"1610885880117\" duration=\"1132000\" />\r\n      <workItem from=\"1610906779046\" duration=\"2263000\" />\r\n      <workItem from=\"1610909417941\" duration=\"1250000\" />\r\n      <workItem from=\"1610910874191\" duration=\"346000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\">\r\n      <created>1611151159525</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611151159525</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"ergebnisklasse\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n    <MESSAGE value=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 47b03b9d72800f8cc9d3cb87d0b67e7f2b695113)
+-+++ b/.idea/workspace.xml	(date 1611320385377)
+-@@ -5,8 +5,9 @@
+-   </component>
+-   <component name="ChangeListManager">
+-     <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
+--      <change afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" afterDir="false" />
+-+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -158,7 +159,14 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1611151159525</updated>
+-     </task>
+--    <option name="localTasksCounter" value="2" />
+-+    <task id="LOCAL-00002" summary="Ergebnisseklasse erstellt">
+-+      <created>1611251109277</created>
+-+      <option name="number" value="00002" />
+-+      <option name="presentableId" value="LOCAL-00002" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1611251109277</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="3" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -191,6 +199,7 @@
+-   <component name="VcsManagerConfiguration">
+-     <MESSAGE value="Erster Entwurf für die Berechnung des Medians" />
+-     <MESSAGE value="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests" />
+--    <option name="LAST_COMMIT_MESSAGE" value="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests" />
+-+    <MESSAGE value="Ergebnisseklasse erstellt" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="Ergebnisseklasse erstellt" />
+-   </component>
+- </project>
+-\ No newline at end of file
+-Index: statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package de.student.dhbwvs.statisticsCalculatorBackend;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\n\r\nimport java.util.*;\r\nimport java.util.stream.Collectors;\r\n\r\n\r\n@SpringBootApplication\r\npublic class StatisticsCalculatorBackendApplication {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\tSpringApplication.run(StatisticsCalculatorBackendApplication.class, args);\r\n\t}\r\n\r\n\r\n\t/**freqDistribution übernimmt die Stichprobe als double-Array und gibt eine sortierte Map zurück, mit den einzelnen Werten der Stichprobe\r\n\tals keys in Form double und ihrer jeweiligen Häufigkeit als values in der Form Integer**/\r\n\tpublic static Map<Double,Integer> freqDistribution(double[] stichprobe) {\r\n\t\tMap<Double, Integer> freqDist = new HashMap<>();\r\n\t\t//für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:\r\n\t\tfor (double i : stichprobe) {\r\n\t\t\tif (freqDist.containsKey(i)){\r\n\t\t\t\tfreqDist.replace(i, freqDist.get(i) + 1);\r\n\t\t\t} else {\r\n\t\t\t\tfreqDist.put(i, 1);\r\n\t\t\t}\r\n\t\t}\r\n\t\t//Sortiervorgang aufsteigend\r\n\t\treturn freqDist.entrySet()\r\n\t\t\t\t.stream()\r\n\t\t\t\t.sorted(Map.Entry.<Double, Integer>comparingByKey())\r\n\t\t\t\t.collect(Collectors.toMap(\r\n\t\t\t\t\t\tMap.Entry::getKey,\r\n\t\t\t\t\t\tMap.Entry::getValue,\r\n\t\t\t\t\t\t(oldValue, newValue) -> oldValue, LinkedHashMap::new));\r\n\t}\r\n\r\n\t/**exp_sample übernimmt die Häufigkeitsverteilung als Map und gibt eine aufsteigend sortierte explizite Stichprobe als double-Array zurück**/\r\n\r\n\tpublic static double[] expSample(Map<Double,Integer> freqDist) {\r\n\r\n\t\tArrayList<Double> exp_sample = new ArrayList<>();\r\n\r\n\t\tfor (double i : freqDist.keySet()) {\r\n\t\t\tfor(int j = freqDist.get(i); j > 0; j--){\r\n\t\t\t\texp_sample.add(i);\r\n\t\t\t}\r\n\t\t}\r\n\t\tCollections.sort(exp_sample);\r\n\t\treturn exp_sample.stream().mapToDouble(d -> d).toArray();\r\n\t}\r\n\r\n\t/**calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,\r\n\tdie den entsprechenden value haben**/\r\n\tpublic static List<Double> calcModal(Map<Double,Integer> freqDist) {\r\n\t\tList<Double> modal = new ArrayList<>();\r\n\t\t//durchsuche die map nach dem höchsten value, weise diesen der Variablen highest zu\r\n\t\tint highest = 0;\r\n\t\tfor (int i : freqDist.values()) {\r\n\t\t\thighest = i > highest ? i : highest; \r\n\t\t}\r\n\t\t//durchsuche die map nach jedem key, bei dem highest == value; füge diese keys der List hinzu\r\n\t\tfor (double j : freqDist.keySet()){\r\n\t\t\tif (highest == freqDist.get(j)){\r\n\t\t\t\tmodal.add(j);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn modal;\r\n\t}\r\n\t// calcMedian berechnet den Median eines Arrays\r\n    \tpublic static double calcMedian(double[] values){\r\n\t\t//Benenne einen Parameter für den späteren Median\r\n\t\tdouble median = 0;\r\n\t\t//Bestimme die Länge des Arrays\r\n\t\tint count = values.length;\r\n\t\t//Sortiere das Array aufsteigend\r\n\t\tArrays.sort(values);\r\n\t\t//Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.\r\n\t\tif(count % 2 == 0){\r\n\r\n\t    \t\t//Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter \"median\"\r\n\t    \t\tmedian = ((values[(count/2)-1] + values[((count/2))])/2);\r\n\t\t} else {\r\n\t    \t\t//Berechne den Median für einen ungerade Array und speichere den Wert unter dem Parameter \"median\"\r\n\t    \t\tmedian = values[((count+1)/2)-1];\r\n\r\n\t\t}\r\n\t\t//Gebe den Median zurück\r\n\t\treturn median;\r\n    \t}\r\n\r\n\t\r\n\t// Function takes an array as input\r\n    \tpublic static double calcAverage(double[] values) {\r\n\t\t/** \r\n\t\t* Berechnung des Durchschnitts eines Arrays\r\n\t\t* Input: Array mit double-Werten\r\n\t\t* Return: Durchschnitt als double-Wert\r\n\t\t**/\r\n\t\t\r\n        \tdouble sum = 0;\r\n\r\n        \t// Alle Elemente des Arrays in der Variable sum summieren\r\n        \tfor(int i=0; i<values.length; i++ ) {\r\n            \t\tsum += values[i];\r\n        \t}\r\n\r\n        \t// Der Durchschnitt ist die Summe geteilt durch die Anzahl an Werten\r\n        \tdouble average = sum / values.length;\r\n\r\n        \treturn average;\r\n    \t}\r\n\t\r\n\t\r\n\tpublic static double calcVariance(double[] values) {\r\n        \t/** Varianz berechnen\r\n         \t* Input: array mit double Werten\r\n         \t* Return: Die berechnete Varianz als double\r\n         \t**/\r\n\r\n        \t// Den Durchschnitt berechnen lassen\r\n        \tdouble average = calcAverage(values);\r\n\r\n        \t// Variable Varianz deklarieren\r\n        \tdouble variance = 0;\r\n\r\n        \tfor (int i = 0; i < values.length; i++) {\r\n            \t\t// Von jedem Wert aus dem Array values muss der Durchschnitt des Array abgezogen werden\r\n            \t\t// das Ergebnis wird dann mit 2 potenziert\r\n            \t\tvariance += Math.pow(values[i] - average, 2);\r\n        \t}\r\n\r\n        \t// Der return-Wert ist die Varianz\r\n        \tvariance /= values.length;\r\n\t\t\r\n        \treturn variance;\r\n    \t}\r\n\t\r\n\t\r\n\tpublic static double calcStandardDeviation(double[] values) {\r\n        \t/** Standardabweichung berechnen\r\n         \t* Input: array mit double Werten\r\n         \t* Return: Die berechnete Standardabweichung als double\r\n         \t**/\r\n\r\n        \t// Die Varianz berechnen lassen\r\n        \tdouble variance = calcVariance(values);\r\n\r\n        \t// Die Standardabweichung ist die Quadratwurzel der Varianz\r\n        \tdouble stdDev =Math.sqrt(variance);\r\n\r\n        \treturn stdDev;\r\n    \t}\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java
+---- a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java	(revision 47b03b9d72800f8cc9d3cb87d0b67e7f2b695113)
+-+++ b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java	(date 1611320384908)
+-@@ -57,9 +57,9 @@
+- 	public static List<Double> calcModal(Map<Double,Integer> freqDist) {
+- 		List<Double> modal = new ArrayList<>();
+- 		//durchsuche die map nach dem höchsten value, weise diesen der Variablen highest zu
+--		int highest = 0;
+--		for (int i : freqDist.values()) {
+--			highest = i > highest ? i : highest; 
+-+		int highestValue = 0;
+-+		for (Map.Entry<Double, Integer> entry : freqDist.entrySet()) {
+-+			if(entry.getValue() > highestValue)
+- 		}
+- 		//durchsuche die map nach jedem key, bei dem highest == value; füge diese keys der List hinzu
+- 		for (double j : freqDist.keySet()){
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]/shelved.patch	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ /dev/null	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
+@@ -1,73 +0,0 @@
+-Index: statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package de.student.dhbwvs.statisticsCalculatorBackend;\r\n\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\n@RestController\r\n@RequestMapping (path = \"/exchange\")\r\npublic class StatisticsController {\r\n\r\n    private static Ergebnisse ergebnisse = new Ergebnisse();\r\n\r\n    //ich verstehs nicht\r\n    @GetMapping\r\n    public String getErgebnisse() {\r\n        return \"Hallo\";\r\n    }\r\n\r\n    //empfängt einen String und gibt ihn zurück\r\n    @PostMapping\r\n    public Ergebnisse neuesErgebnis(@RequestBody int mittelwert) {\r\n        ergebnisse.setMedian(6.7635);\r\n        ergebnisse.setMittelwert(mittelwert);\r\n        return ergebnisse;\r\n    }\r\n}\r\n\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java
+---- a/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java	(revision cdf3be7ee93e41ef343444cf523d5ec8de9caa63)
+-+++ b/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java	(date 1611513848914)
+-@@ -8,7 +8,7 @@
+- 
+-     private static Ergebnisse ergebnisse = new Ergebnisse();
+- 
+--    //ich verstehs nicht
+-+
+-     @GetMapping
+-     public String getErgebnisse() {
+-         return "Hallo";
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"API-Controller\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"SET_USER_NAME_GLOBALLY\" value=\"false\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"GithubProjectSettings\">\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_BRANCH\" value=\"main\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_USER\" value=\"JulianGommlich\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_NAME\" value=\"StatisticsCalculator\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1n4jUXluegyPotyifcz74GYZ0WL\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ChangesTree.GroupingKeys\" value=\"module\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.StatisticsCalculatorBackendApplication\">\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcModal\" type=\"AndroidJUnit\" factoryName=\"Android JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcModal\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <option name=\"WORKING_DIRECTORY\" value=\"$MODULE_DIR$\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication\" />\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testDistributionToSample\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testDistributionToSample\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcMedian\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcMedian\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.StatisticsCalculatorBackendApplication\" />\r\n        <item itemvalue=\"Android JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testcalcMedian\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testDistributionToSample\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1610656275322</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1610656275322</updated>\r\n      <workItem from=\"1610656277974\" duration=\"48000\" />\r\n      <workItem from=\"1610726675711\" duration=\"1345000\" />\r\n      <workItem from=\"1610885880117\" duration=\"1132000\" />\r\n      <workItem from=\"1610906779046\" duration=\"2263000\" />\r\n      <workItem from=\"1610909417941\" duration=\"1250000\" />\r\n      <workItem from=\"1610910874191\" duration=\"346000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\">\r\n      <created>1611151159525</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611151159525</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Ergebnisseklasse erstellt\">\r\n      <created>1611251109277</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611251109277</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"AP-Klasse\">\r\n      <created>1611414304737</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611414304737</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"API-Controller\">\r\n      <created>1611414825201</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611414825201</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/backend-API-Endpunkt\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n    <MESSAGE value=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\" />\r\n    <MESSAGE value=\"Ergebnisseklasse erstellt\" />\r\n    <MESSAGE value=\"AP-Klasse\" />\r\n    <MESSAGE value=\"API-Controller\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"API-Controller\" />\r\n  </component>\r\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision cdf3be7ee93e41ef343444cf523d5ec8de9caa63)
+-+++ b/.idea/workspace.xml	(date 1611513848930)
+-@@ -6,6 +6,9 @@
+-   <component name="ChangeListManager">
+-     <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API-Controller">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-+    </list>
+-+    <list id="cd69c039-379a-46f1-9152-3bd194dfc4a0" name="Revert &quot;API-Controller&quot;" comment="Revert &quot;API-Controller&quot;&#10;&#10;This reverts commit cdf3be7e">
+-+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-@@ -44,6 +47,17 @@
+-     <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="main" />
+-     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="JulianGommlich" />
+-     <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="StatisticsCalculator" />
+-+  </component>
+-+  <component name="LineStatusTrackerManager">
+-+    <file path="$PROJECT_DIR$/.idea/workspace.xml">
+-+      <ranges>
+-+        <range start1="8" end1="8" start2="8" end2="11" changelist="443c654d-daa9-4071-a33a-a7d363de4aae" />
+-+        <range start1="46" end1="46" start2="49" end2="59" changelist="443c654d-daa9-4071-a33a-a7d363de4aae" />
+-+        <range start1="188" end1="196" start2="201" end2="202" changelist="cd69c039-379a-46f1-9152-3bd194dfc4a0" />
+-+        <range start1="212" end1="213" start2="218" end2="219" changelist="cd69c039-379a-46f1-9152-3bd194dfc4a0" />
+-+        <range start1="230" end1="232" start2="236" end2="237" changelist="cd69c039-379a-46f1-9152-3bd194dfc4a0" />
+-+      </ranges>
+-+    </file>
+-   </component>
+-   <component name="ProjectId" id="1n4jUXluegyPotyifcz74GYZ0WL" />
+-   <component name="ProjectViewState">
+-@@ -186,14 +200,7 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1611414304737</updated>
+-     </task>
+--    <task id="LOCAL-00004" summary="API-Controller">
+--      <created>1611414825201</created>
+--      <option name="number" value="00004" />
+--      <option name="presentableId" value="LOCAL-00004" />
+--      <option name="project" value="LOCAL" />
+--      <updated>1611414825201</updated>
+--    </task>
+--    <option name="localTasksCounter" value="5" />
+-+    <option name="localTasksCounter" value="4" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeInsightWorkspaceSettings\">\r\n    <option name=\"optimizeImportsOnTheFly\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n    <option name=\"SET_USER_NAME_GLOBALLY\" value=\"false\" />\r\n  </component>\r\n  <component name=\"GitSEFilterConfiguration\">\r\n    <file-type-list>\r\n      <filtered-out-file-type name=\"LOCAL_BRANCH\" />\r\n      <filtered-out-file-type name=\"REMOTE_BRANCH\" />\r\n      <filtered-out-file-type name=\"TAG\" />\r\n      <filtered-out-file-type name=\"COMMIT_BY_MESSAGE\" />\r\n    </file-type-list>\r\n  </component>\r\n  <component name=\"GithubProjectSettings\">\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_BRANCH\" value=\"main\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_USER\" value=\"JulianGommlich\" />\r\n    <option name=\"CREATE_PULL_REQUEST_DEFAULT_REPO_NAME\" value=\"StatisticsCalculator\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1n4jUXluegyPotyifcz74GYZ0WL\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ChangesTree.GroupingKeys\" value=\"module\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"Modules\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.0\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.0\" />\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Application.StatisticsCalculatorBackendApplication\">\r\n    <configuration name=\"StatisticsCalculatorBackendApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplication\" />\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testCalcGiniCoefficient\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testCalcStandardDeviation\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testQuantile\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testQuantile\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"StatisticsCalculatorBackendApplicationTests.testcalcModal\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"statisticsCalculatorBackend\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"de.student.dhbwvs.statisticsCalculatorBackend.StatisticsCalculatorBackendApplicationTests\" />\r\n      <option name=\"METHOD_NAME\" value=\"testcalcModal\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.StatisticsCalculatorBackendApplication\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testcalcModal\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testCalcGiniCoefficient\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testQuantile\" />\r\n        <item itemvalue=\"JUnit.StatisticsCalculatorBackendApplicationTests.testCalcStandardDeviation\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"443c654d-daa9-4071-a33a-a7d363de4aae\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1610656275322</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1610656275322</updated>\r\n      <workItem from=\"1610656277974\" duration=\"48000\" />\r\n      <workItem from=\"1610726675711\" duration=\"1345000\" />\r\n      <workItem from=\"1610885880117\" duration=\"1132000\" />\r\n      <workItem from=\"1610906779046\" duration=\"2263000\" />\r\n      <workItem from=\"1610909417941\" duration=\"1250000\" />\r\n      <workItem from=\"1610910874191\" duration=\"346000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\">\r\n      <created>1611151159525</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611151159525</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Ergebnisseklasse erstellt\">\r\n      <created>1611251109277</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611251109277</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"AP-Klasse\">\r\n      <created>1611414304737</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611414304737</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Mittlere absolute Abweichung zu z\">\r\n      <created>1611518268549</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611518268549</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Inputklasse mit Jsoncreator erstellt\">\r\n      <created>1611584817951</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611584817951</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Inputklasse rückgängig gemacht, überflüssiger Code gelöscht\">\r\n      <created>1611585637668</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611585637668</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"Quantile wird befüllt, erstes ExceptionHandling für API, Test\">\r\n      <created>1611691409147</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611691409147</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"API funktioniert, Umrechnungen gelöscht\">\r\n      <created>1611781901061</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611781901061</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen\">\r\n      <created>1611828850666</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611828850666</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen\">\r\n      <created>1611835239980</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1611835239980</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"11\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/Umrechnungslogik_Frontend\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Erster Entwurf für die Berechnung des Medians\" />\r\n    <MESSAGE value=\"Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests\" />\r\n    <MESSAGE value=\"Ergebnisseklasse erstellt\" />\r\n    <MESSAGE value=\"AP-Klasse\" />\r\n    <MESSAGE value=\"API-Controller\" />\r\n    <MESSAGE value=\"Mittlere absolute Abweichung zu z\" />\r\n    <MESSAGE value=\"Inputklasse mit Jsoncreator erstellt\" />\r\n    <MESSAGE value=\"Inputklasse rückgängig gemacht, überflüssiger Code gelöscht\" />\r\n    <MESSAGE value=\"Quantile wird befüllt, erstes ExceptionHandling für API, Test\" />\r\n    <MESSAGE value=\"API funktioniert, Umrechnungen gelöscht\" />\r\n    <MESSAGE value=\"API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java</url>\r\n          <line>6</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 56fc7a9902f60e614228b0f8dd747522a454bc6b)
++++ b/.idea/workspace.xml	(date 1612172681153)
+@@ -4,7 +4,16 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen" />
++    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_21_01_2021_18_13__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_22_01_2021_14_21__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46_[Default_Changelist]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_01_2021_19_46__Default_Changelist_.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/calculations.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -23,7 +32,7 @@
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="main" />
++        <entry key="$PROJECT_DIR$" value="backend-API-Endpunkt" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+@@ -232,7 +241,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1611835239980</updated>
+     </task>
+-    <option name="localTasksCounter" value="11" />
++    <task id="LOCAL-00011" summary="API funktioniert, Umrechnungen gelöscht, kleinere Verbesserungen">
++      <created>1611835279538</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1611835279538</updated>
++    </task>
++    <option name="localTasksCounter" value="12" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -249,7 +265,7 @@
+                   <entry key="branch">
+                     <value>
+                       <list>
+-                        <option value="origin/Umrechnungslogik_Frontend" />
++                        <option value="Unittests" />
+                       </list>
+                     </value>
+                   </entry>
