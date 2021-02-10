@@ -24,6 +24,7 @@ button.h1{
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
     position: absolute;
+    max-width:40%;
 
   }
 
