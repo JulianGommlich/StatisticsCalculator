@@ -23,14 +23,14 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiEndpoint.getSubject().subscribe((data: Ergebnisse) => this.inputFromBackend.next(data));
-   }
+  }
 
-  buildForm(): void{
-    this.inputFromBackend.subscribe((data : Ergebnisse) => {
+  buildForm(): void {
+    this.inputFromBackend.subscribe((data: Ergebnisse) => {
       this.ergebnisseFormGroup = this.fb.group({
         sampleType: [data.sampleType],
         explSample: [data.expliziteStichprobe],
-        freqDist: [data.freqDist],
+        freqDist: [data.haeufigkeitsverteilung],
         z: [data.z],
         modalValue: [data.modalwert],
         meanValue: [data.mittelwert],
@@ -47,7 +47,7 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         giniValue: [data.giniKoeffizient]
       });
       
-      this.stichprobendaten = new Stichprobe(data.sampleType, data.expliziteStichprobe, data.freqDist, data.z);
+      this.stichprobendaten = new Stichprobe(data.sampleType, data.expliziteStichprobe, data.haeufigkeitsverteilung, data.z);
     });
   }
 
@@ -55,7 +55,7 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
    * Navigation zur Eingabeseite; nimmt die eingegebene Stichproben sowie Stichprobenart und z mit
    */
   goBackToCalculator(): void {
-    const numSequence = (this.stichprobendaten.sampleType == "explizit") 
+    const numSequence = this.stichprobendaten.sampleType === 'explizit'
       ? this.stichprobendaten.expliziteStichprobe 
       : `${Object.keys(this.stichprobendaten.haeufigkeitsverteilung)}|${Object.values(this.stichprobendaten.haeufigkeitsverteilung)}`;
     
@@ -65,5 +65,4 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
       'valueZInput': this.stichprobendaten.z
     }]);
   }
-
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable, ReplaySubject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { Stichprobe } from './stichprobe';
 import { Ergebnisse } from './ergebnisse';
 
@@ -25,11 +25,8 @@ export class ApiEndpointService {
 
   // post a sample to the java backend
   startCalculation(sample: Stichprobe): void {
-    this.http.post<Ergebnisse>(
-      "/exchange", sample, 
-      httpOptions
-      ).subscribe((data: Ergebnisse) => {this.subject.next(data);
-      });
+    this.http.post<Ergebnisse>("/exchange", sample, httpOptions)
+      .subscribe((data: Ergebnisse) => { this.subject.next(data); });
   }
 
   getSubject(): ReplaySubject<Ergebnisse> {

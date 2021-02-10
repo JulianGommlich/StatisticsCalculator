@@ -1,21 +1,21 @@
 <mat-dialog-content class="mat-typography">
 
-    <div *ngIf="inputData.sampleType=='explizit'"> 
+    <div *ngIf="inputData.sampleType === 'explizit'"> 
         <h2>Wollen Sie Änderungen vornehmen?</h2>
-        <label>Explizite Stichprobe:</label>
+        <label for="explicitSample">Explizite Stichprobe:</label>
         <br>
-        <input type="text" id="explicitInput" value="{{inputData.expliziteStichprobe}}">
+        <input type="text" id="explicitSample" value="{{inputData.expliziteStichprobe}}">
         <br>
-        <label>Absolute Häufigkeit:</label>
+        <label for="absoluteFrequencyReadonly">Absolute Häufigkeit:</label>
         <br>
-        <input type="text" id="absoluteFrequencyFix" readonly value="{{absoluteHaeufigkeitsverteilung}}">
+        <input type="text" id="absoluteFrequencyReadonly" value="{{absoluteHaeufigkeitsverteilung}}" readonly>
     </div>
 
-    <div *ngIf="inputData.sampleType=='absolut'"> 
+    <div *ngIf="inputData.sampleType === 'absolut'"> 
         <h2>Wollen Sie Änderungen vornehmen?</h2>
-        <label>Absolute Häufigkeit:</label>
+        <label for="absoluteFrequency">Absolute Häufigkeit:</label>
         <br>
-        <input type="text" id="absoluteFrequencyFix" value="{{absoluteHaeufigkeitsverteilung}}">
+        <input type="text" id="absoluteFrequency" value="{{absoluteHaeufigkeitsverteilung}}">
     </div>
 
 </mat-dialog-content>

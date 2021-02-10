@@ -5,7 +5,7 @@ import { View2AnzeigeStichprobenComponent} from "./view2-anzeige-stichproben/vie
 import { PopUpComponent} from "./pop-up/pop-up.component";
 
 const routes: Routes = [
-  { path: 'calculator', component:View1Component, children:[
+  { path: 'calculator', component:View1Component, children: [
     {path: 'popup', component:PopUpComponent} 
   ] },
   { path: 'results', component:View2AnzeigeStichprobenComponent },
