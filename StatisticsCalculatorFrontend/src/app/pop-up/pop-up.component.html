@@ -18,8 +18,12 @@
         <input type="text" id="absoluteFrequency" value="{{absoluteHaeufigkeitsverteilung}}">
     </div>
 
+    <div *ngIf="error">
+        <p id="errorMessage">Die eingegebene Stichprobe ist nicht valide.</p>
+    </div>
+
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
-    <button mat-button [mat-dialog-close]="true" (click)="getResults()" cdkFocusInitial>Berechnen</button>
+    <button mat-button mat-dialog-close (click)="getResults()" cdkFocusInitial>Berechnen</button>
 </mat-dialog-actions>

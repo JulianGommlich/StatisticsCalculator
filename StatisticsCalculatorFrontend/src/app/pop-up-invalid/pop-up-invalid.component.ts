@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pop-up-invalid',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PopUpInvalidComponent implements OnInit {
 
-  constructor() { }
+  caseIsForm: boolean;
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { case: string },) { 
+    if (data.case === 'pop-up') {
+      this.caseIsForm = false;
+    } else if (data.case === 'form') {
+      this.caseIsForm = true;
+    }
+  }
 
   ngOnInit(): void {}
 }

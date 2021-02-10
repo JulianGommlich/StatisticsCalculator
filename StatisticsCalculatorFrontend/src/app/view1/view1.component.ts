@@ -10,6 +10,7 @@ import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SampleType } from '../sampleType';
 import { Validation } from "../validation";
+import { SampleParser } from '../sampleParser';
 
 @Component({
   selector: 'app-view1',
@@ -88,7 +89,7 @@ export class View1Component implements OnInit{
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
-      this.dialog.open(PopUpInvalidComponent, { data: {} });
+      this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
     }
   }
 
@@ -98,45 +99,19 @@ export class View1Component implements OnInit{
 
     let stichprobe = new Stichprobe(newSampleType, [], {}, newZ);
 
+    const sampleParser = new SampleParser();
+
     if (newSampleType === 'explizit') {
-      stichprobe.expliziteStichprobe = this.parseExplSample(this.inputForm.get('numSequence')?.value);
+      stichprobe.expliziteStichprobe = sampleParser.parseExplSample(this.inputForm.get('numSequence')?.value);
       stichprobe.setFreqDistribution();
     }
     else if (newSampleType === 'absolut') {
-      stichprobe.haeufigkeitsverteilung = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
+      stichprobe.haeufigkeitsverteilung = sampleParser.parseFreqDist(this.inputForm.get('numSequence')?.value);
       stichprobe.setExpSample();
     }
     // else... Fehlerhandling
 
     return stichprobe;
-  }
-
-  // Takes a String as Input and converts it to a number-Array (explSample)
-  parseExplSample(inputStr: string): number[] {
-    let numArr: number[] = [];
-
-    for (let key of inputStr.split(";")) {
-      if ((/.*\d+.*/gm).test(key)) {
-        numArr.push(Number(key));
-      }
-      else {
-        continue;
-      }
-    }
-
-    return numArr;
-  }
-
-  // Takes a String as Input and converts it to an object (freqDist)
-  parseFreqDist(inputStr: string): { [key: string]: number } {
-    let freqDist: { [key: string]: number } = {};
-    let matches = inputStr.matchAll(/\((?<value>\d*); ?(?<freq>\d*)\)/gm);
-
-    for (let match of matches) {
-      Object.assign(freqDist, { [String(match[1])]: Number(match[2]) })
-    }
-
-    return freqDist;
   }
 
   openDeleteDialog(): void {
