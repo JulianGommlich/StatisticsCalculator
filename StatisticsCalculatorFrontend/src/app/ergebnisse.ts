@@ -31,6 +31,5 @@ export class Ergebnisse {
         this.standardabweichung = newStandardDev;
         this.mittlereAbweichungZuZ = newMeanAbsoluteDeviation;
         this.giniKoeffizient = newGiniValue;
-        console.log(this.quantile);
       }    
 }  

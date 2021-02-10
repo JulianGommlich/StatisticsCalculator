@@ -28,7 +28,6 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
 
   buildForm(): void{
     this.inputFromBackend.subscribe((data : Ergebnisse) => {
-      console.log(data);
       this.ergebnisseFormGroup = this.fb.group({
         sampleType: [data.sampleType],
         explSample: [data.expliziteStichprobe],

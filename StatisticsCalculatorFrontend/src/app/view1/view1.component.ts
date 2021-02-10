@@ -108,7 +108,6 @@ export class View1Component implements OnInit{
   buildFormModel() {
     let newSampleType: SampleType = this.inputForm.get('sampleType')?.value;
     let newZ: number = this.inputForm.get('valueZInput')?.value;
-    console.log(newSampleType);
 
     let stichprobe = new Stichprobe(newSampleType, [], {}, newZ);
 
