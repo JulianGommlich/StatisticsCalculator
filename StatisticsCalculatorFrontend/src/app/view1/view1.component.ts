@@ -3,12 +3,13 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { FormControl, FormGroup } from "@angular/forms";
-import { SampleType, Stichprobe } from '../stichprobe';
+import { Stichprobe } from '../stichprobe';
 import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-
+import { SampleType } from '../sampleType';
+import { Validation } from "../validation";
 
 @Component({
   selector: 'app-view1',
@@ -76,7 +77,14 @@ export class View1Component implements OnInit{
 
 
   openDialog(): void {
-    if (this.checkValidation()) {
+    const numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
+    const expl = document.getElementById('explSample') as HTMLInputElement;
+    const abs = document.getElementById('absSample') as HTMLInputElement;
+    const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
+
+    const validation = new Validation();
+
+    if (validation.checkValidation(numSeq, expl, abs, valueZ)) {
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
@@ -101,54 +109,6 @@ export class View1Component implements OnInit{
     // else... Fehlerhandling
 
     return stichprobe;
-  }
-
-  checkValidation(): boolean {
-    const expl = document.getElementById('explSample') as HTMLInputElement;
-    const abs = document.getElementById('absSample') as HTMLInputElement;
-    const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
-    if (expl.checked === false && abs.checked === false) {
-      return false;
-    }
-    if (valueZ.value.length === 0) {
-      return false;
-    } 
-    if (!this.validateSequence()) {
-      return false;
-    }
-    return true;
-  }
-
-  validateSequence(): boolean {
-    let numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
-    var symbols = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\=\?\´\`\+\*\#\'\:\_\<\>\|\!]\d*$/;
-
-    if (numSeq.length === 0 || numSeq.match(symbols)) {
-      return false;
-    }
-    
-    var splittedSeq = numSeq.split(';', 100)
-    if (!this.countNumbers(splittedSeq)) {
-      return false;
-    }
-    return true;
-  }
-
-  countNumbers(arraySeq: string[]): boolean {
-    let newArraySequence: { [key: string]: number } = {};
-
-    arraySeq.forEach(function (key) {
-      if (Object.keys(newArraySequence).includes(String(key))) {
-        newArraySequence[key] += 1;
-      }
-      else {
-        Object.assign(newArraySequence, { [key]: 1 });
-      }
-    });
-    if (Math.max(...Object.values(newArraySequence)) >= 30) {
-      return false;
-    }
-    return true;
   }
 
   // Takes a String as Input and converts it to a number-Array (explSample)
