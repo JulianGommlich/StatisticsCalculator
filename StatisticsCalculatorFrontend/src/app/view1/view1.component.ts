@@ -18,6 +18,7 @@ import { Observable } from 'rxjs';
 
 export class View1Component implements OnInit{
 
+  sampleType: boolean|null = null;
   inputForm: FormGroup = new FormGroup({
     numSequence: new FormControl(),
     sampleType: new FormControl(),
@@ -29,7 +30,30 @@ export class View1Component implements OnInit{
 
   constructor( public dialog: MatDialog, private route: ActivatedRoute ) { }
 
+    this.sampleType = true;
+  }
 
+  changeTypeToAbs() {
+    this.sampleType = false;
+  }
+
+  createNewRow(types: string){
+    var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
+    var row = relevant_table.insertRow(-1);
+    var cell1 =row.insertCell(-1);
+    var cell2 = row.insertCell(-1);
+
+    switch (types){
+      case "abs":
+        cell1.innerHTML = "<input type='text'>";
+        cell2.innerHTML = "<input type='text'>";
+        break;
+      case "expl":
+        cell1.innerHTML = "<input type='number'>";
+        cell2.innerHTML = "<input type='number'>";
+        break;
+    }
+  }
   ngOnInit() {
     // Eingabefelder leeren
     this.inputForm.setValue({
