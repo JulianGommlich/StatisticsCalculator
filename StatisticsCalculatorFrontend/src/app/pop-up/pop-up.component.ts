@@ -12,25 +12,26 @@ import { SampleType, Stichprobe } from '../stichprobe';
 })
 export class PopUpComponent implements OnInit {
 
-  fix: BehaviorSubject<boolean>;
-  absolute: number[] = [];
-  explicite: number[] = [];
+  absoluteHaeufigkeitsverteilung: string;
 
   // Response vom Backend
-  result: any;
   inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
+    @Inject(MAT_DIALOG_DATA) public data: { inputData: Stichprobe },
     private router: Router,
     public apiEndpoint: ApiEndpointService
   ) {
-    this.fix = new BehaviorSubject(data.fix);
-    this.absolute = data.absolute;
-    if (data.explicite) {
-      this.explicite = data.explicite;
-    }
     this.inputData = data.inputData;
+
+    this.absoluteHaeufigkeitsverteilung = "";
+    const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
+    for (let i = 0; i < keys.length; i++) {
+      this.absoluteHaeufigkeitsverteilung += `(${keys[i]}; ${this.inputData.haeufigkeitsverteilung[keys[i]]})`;
+      if (i < keys.length-1) {
+        this.absoluteHaeufigkeitsverteilung += ';';
+      }
+    }
   }
   
   getResults() {
@@ -44,15 +45,7 @@ export class PopUpComponent implements OnInit {
 
   // send sample to API-Endpoint-Service
   startCalculation() {
-
-    if (this.inputData.sampleType == "explizit") {
-      this.inputData.setFreqDistribution();
-    }
-    else if (this.inputData.sampleType == "absolut") {
-      this.inputData.setExpSample();
-    }
-
-    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => console.log(sample));
+    this.apiEndpoint.startCalculation(this.inputData);
   }
 
 }
