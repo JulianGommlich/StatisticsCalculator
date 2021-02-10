@@ -26,11 +26,10 @@ export class View1Component implements OnInit{
 
   savedValues$: Observable<any>;
 
-
   constructor( public dialog: MatDialog, private route: ActivatedRoute ) { }
 
 
-  ngOnInit() {
+  ngOnInit(): void {
     // Eingabefelder leeren
     this.inputForm.setValue({
       numSequence: '',
@@ -76,88 +75,66 @@ export class View1Component implements OnInit{
   }
 
 
-  openDialog() {
-    let dialogRef;
-    var fixData = null;
-    var validationTrue = this.checkValidation();
-    const expl = document.getElementById('explSample') as HTMLInputElement;
-    const abs = document.getElementById('absSample') as HTMLInputElement;
-    if (validationTrue == true) {
-      if (expl.checked == true && abs.checked == false) {
-        fixData = true;
-      } else if (expl.checked == false && abs.checked == true) {
-        fixData = false;
-      }
-
+  openDialog(): void {
+    if (this.checkValidation()) {
       let inputData = this.buildFormModel();
-
-      dialogRef = this.dialog.open(PopUpComponent, {
-        data: { inputData }
-      });
+      this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
-      dialogRef = this.dialog.open(PopUpInvalidComponent, {
-        data: {}
-      })
+      this.dialog.open(PopUpInvalidComponent, { data: {} });
     }
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
-  buildFormModel() {
+  buildFormModel(): Stichprobe {
     let newSampleType: SampleType = this.inputForm.get('sampleType')?.value;
     let newZ: number = this.inputForm.get('valueZInput')?.value;
 
     let stichprobe = new Stichprobe(newSampleType, [], {}, newZ);
 
-    if (newSampleType == "explizit") {
+    if (newSampleType === 'explizit') {
       stichprobe.expliziteStichprobe = this.parseExplSample(this.inputForm.get('numSequence')?.value);
       stichprobe.setFreqDistribution();
     }
-    
-    else if (newSampleType == "absolut") {
+    else if (newSampleType === 'absolut') {
       stichprobe.haeufigkeitsverteilung = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
       stichprobe.setExpSample();
     }
+    // else... Fehlerhandling
 
     return stichprobe;
   }
 
-  checkValidation() {
+  checkValidation(): boolean {
     const expl = document.getElementById('explSample') as HTMLInputElement;
     const abs = document.getElementById('absSample') as HTMLInputElement;
     const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
-    if (expl.checked == false && abs.checked == false) {
+    if (expl.checked === false && abs.checked === false) {
       return false;
-    } else if (valueZ.value.length == 0) {
-      return false;
-    } else if (this.validateSequence() == false) {
-      return false;
-    } else {
-      return true;
     }
+    if (valueZ.value.length === 0) {
+      return false;
+    } 
+    if (!this.validateSequence()) {
+      return false;
+    }
+    return true;
   }
 
-  validateSequence() {
-    let numSeq: string = (<HTMLInputElement>document.getElementById("numSequence")).value;
-    var letters = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\=\?\´\`\+\*\#\'\:\_\<\>\|]\d*$/;
+  validateSequence(): boolean {
+    let numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
+    var symbols = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\=\?\´\`\+\*\#\'\:\_\<\>\|\!]\d*$/;
 
-    if (numSeq.length == 0) {
-      return false;
-    } else if (numSeq.match(letters)) {
+    if (numSeq.length === 0 || numSeq.match(symbols)) {
       return false;
     }
-    var splittedSeq = numSeq.split(";", 100)
-    //var numbers = splittedSeq.match(/(?<number>\d*)/g);
-    if (this.countNumbers(splittedSeq) == false) {
+    
+    var splittedSeq = numSeq.split(';', 100)
+    if (!this.countNumbers(splittedSeq)) {
       return false;
-    } else {
-      return true;
     }
+    return true;
   }
 
-  countNumbers(arraySeq: string[]) {
+  countNumbers(arraySeq: string[]): boolean {
     let newArraySequence: { [key: string]: number } = {};
 
     arraySeq.forEach(function (key) {
@@ -170,9 +147,8 @@ export class View1Component implements OnInit{
     });
     if (Math.max(...Object.values(newArraySequence)) >= 30) {
       return false;
-    } else {
-      return true
     }
+    return true;
   }
 
   // Takes a String as Input and converts it to a number-Array (explSample)
@@ -203,20 +179,14 @@ export class View1Component implements OnInit{
     return freqDist;
   }
 
-  openDeleteDialog() {
-    const dialogRef = this.dialog.open(PopUpDeleteComponent, {});
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  openDeleteDialog(): void {
+    this.dialog.open(PopUpDeleteComponent, {});
   }
 
-  uploadFile($event: any) {
+  uploadFile($event: any): void {
     let newNumSeq: String;
     let newSampleType: String;
     let newZ: Number;
-
-    let files = $event.srcElement.files;  
  
     let input = $event.target;  
     let reader = new FileReader();  

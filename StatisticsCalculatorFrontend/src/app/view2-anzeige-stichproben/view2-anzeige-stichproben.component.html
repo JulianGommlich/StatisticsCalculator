@@ -1,45 +1,45 @@
-<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues" *ngIf ="ergebnisseFormGroup">
+<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues">
     <h2>Ausgabe:</h2>
     <div id="listOfCalculatedValues">
-        <label>Modalwert:</label>
+        <label for="modalValue">Modalwert:</label>
         <input type="text" id="modalValue" formControlName="modalValue" readonly> 
         <br>
-        <label>Mittelwert:</label>
+        <label for="meanValue">Mittelwert:</label>
         <input type="text" id="meanValue" formControlName="meanValue" readonly>
         <br>
-        <label>Median:</label>
+        <label for="medianValue">Median:</label>
         <input type="text" id="medianValue" formControlName="median" readonly>
         <br>
-        <label>Varianz:</label>
+        <label for="varianceValue">Varianz:</label>
         <input type="text" id="varianceValue" formControlName="variance" readonly>
         <br>
-        <label>Standardabweichung:</label>
+        <label for="standardDeviation">Standardabweichung:</label>
         <input type="text" id="standardDeviation" formControlName="standardDev" readonly>
         <br>
-        <label>Gini-Koeffizient:</label>
+        <label for="giniValue">Gini-Koeffizient:</label>
         <input type="text" id="giniValue" formControlName="giniValue" readonly>
     </div>
     <div id="tableQuantile">
-        <label>Quantil x<sub>0,05</sub>:</label>
+        <label for="quantil005">Quantil x<sub>0,05</sub>:</label>
         <input type="text" id="quantil005" formControlName="quantile005" readonly>
         <br>
-        <label>Quantil x<sub>0,1</sub>:</label>
+        <label for="quantil01">Quantil x<sub>0,1</sub>:</label>
         <input type="text" id="quantil01" formControlName="quantile01" readonly>
         <br>
-        <label>Quantil x<sub>0,25</sub>:</label>
+        <label for="quantil025">Quantil x<sub>0,25</sub>:</label>
         <input type="text" id="quantil025" formControlName="quantile025" readonly>
         <br>
-        <label>Quantil x<sub>0,75</sub>:</label>
+        <label for="quantil075">Quantil x<sub>0,75</sub>:</label>
         <input type="text" id="quantil075" formControlName="quantile075" readonly>
         <br>
-        <label>Quantil x<sub>0,9</sub>:</label>
+        <label for="quantil09">Quantil x<sub>0,9</sub>:</label>
         <input type="text" id="quantil09" formControlName="quantile09" readonly>
         <br>
-        <label>Quantil x<sub>0,95</sub>:</label>
+        <label for="quantil095">Quantil x<sub>0,95</sub>:</label>
         <input type="text" id="quantil095" formControlName="quantile095" readonly>
     </div>
     <div>
-        <label>Mittlere absolute Abweichung (Wert Z):</label>
+        <label for="meanAbsoluteDeviation">Mittlere absolute Abweichung (Wert Z):</label>
         <input type="text" id="meanAbsoluteDeviation" formControlName="z" readonly>
     </div>
         
@@ -49,7 +49,7 @@
 </form>
 
 <!--Neue Eingabe der Daten-->
-<input class="Button1" type="button" id="newData" value="Zurück" (click)="goBackToCalculator()">
+<input class="Button1" type="button" id="return" value="Zurück" (click)="goBackToCalculator()">
 
 
 

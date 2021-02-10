@@ -13,10 +13,9 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  backToCalculator() {
-    this.router.navigate(['/calculator', {}]);
-}
-
+  backToCalculator(): void {
+    this.router.navigate(['/calculator']);
+  }
 }
 
 
