@@ -1,32 +1,46 @@
 package de.student.dhbwvs.statisticsCalculatorBackend;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
-public class calculations {
+public class CalculationsTest {
+
+    /**
+     * limitDecimals, in eigene Klasse auslagern????
+     * @param value als double
+     * @return b als double, auf zwei Nachkommastellen gerundet
+     */
+
+    public static double limitDecimals(double value){
+        BigDecimal b = BigDecimal.valueOf(value);
+        b = b.setScale(2, RoundingMode.HALF_UP);
+        return b.doubleValue();
+    }
 
     /** calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,
      *  die den entsprechenden value haben
      **/
     public static double[] calcModal(Map<Double,Integer> freqDist) {
-    
+
         List<Double> modal = new ArrayList<>();
-        
+
         //durchsuche die map nach dem höchsten value, weise diesen der Variablen highestValue zu
         int highestValue = 0;
-        
+
         for (int i : freqDist.values()) {
             highestValue = Math.max(i, highestValue);
         }
-        
+
         //durchsuche die map nach jedem key, bei dem highestValue == value; füge diese keys der List hinzu
         for (double j : freqDist.keySet()){
             if (highestValue == freqDist.get(j)){
                 modal.add(j);
             }
         }
-        
+
         Collections.sort(modal);
-        
+
         return modal.stream().mapToDouble(d -> d).toArray();
     }
 
@@ -45,21 +59,21 @@ public class calculations {
         }
 
         // Der Durchschnitt ist die Summe geteilt durch die Anzahl an Werten
-        return sum / values.length;
+        return limitDecimals(sum / values.length);
     }
 
     // calcMedian berechnet den Median eines Arrays
     public static double calcMedian(double[] values){
-    
+
         //Benenne einen Parameter für den späteren Median
         double median;
 
         //Bestimme die Länge des Arrays
         int count = values.length;
-        
+
         //Sortiere das Array aufsteigend
         Arrays.sort(values);
-        
+
         //Prüfe ob es sich um einen gerade oder um eine ungerade Array handelt.
         if(count % 2 == 0){
             //Berechne den Median für einen gerade Array und speichere den Wert unter dem Parameter "median"
@@ -70,7 +84,7 @@ public class calculations {
 
         }
         //Gebe den Median zurück
-        return median;
+        return limitDecimals(median);
     }
 
     public static double calcQuantile(double percentage, double[] values){
@@ -79,6 +93,7 @@ public class calculations {
           Return: Das berechnete Quantil für die entsprechende Prozentzahl
          */
         double quantile;
+        Arrays.sort(values);
         // Länge des Arrays
         int count = values.length;
         //Berechnung von Anzahl*Prozentzahl
@@ -86,15 +101,15 @@ public class calculations {
         //Abrunden der Zahl
         int round = (int)(Math.floor(np));
         //Prüfe ob np ganzzahlig ist
-        if((np%2) == 0 ){
-            //Wende die Formel für geradzahliges np an
-            quantile = (0.5) * (values[round] + values[(round + 1)]);
+        if((np%1) == 0 ){
+            //Wende die Formel für ganzzahliges np an
+            quantile = (0.5) * (values[round-1] + values[(round)]);
         } else {
-            //Wende die Formel für ungerades np an
+            //Wende die Formel für gebrochenes np an
             quantile = values[round];
         }
         //Gebe das Quantil zurück
-        return quantile;
+        return limitDecimals(quantile);
     }
 
     public static double calcVariance(double[] values) {
@@ -118,7 +133,7 @@ public class calculations {
         // Der return-Wert ist die Varianz
         variance /= values.length;
 
-        return variance;
+        return limitDecimals(variance);
     }
 
     public static double calcStandardDeviation(double variance) {
@@ -127,7 +142,7 @@ public class calculations {
           Return: Die berechnete Standardabweichung als double
          */
         // Die Standardabweichung ist die Quadratwurzel der Varianz
-        return Math.sqrt(variance);
+        return limitDecimals(Math.sqrt(variance));
     }
 
     /* Mittlere absolute Abweichung zu einem Wert z:
@@ -142,7 +157,7 @@ public class calculations {
         for (double i : stichprobe) {
             sum += Math.abs(i - z);
         }
-        return sum/stichprobe.length;
+        return limitDecimals(sum/stichprobe.length);
     }
 
     public static double calcGiniCoefficient(double[] values){
@@ -160,6 +175,6 @@ public class calculations {
         }
         double fair_area = height * values.length / 2;
         gini = (fair_area - area) / fair_area;
-        return gini;
+        return limitDecimals(gini);
     }
 }

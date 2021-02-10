@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-view1',
   templateUrl: './view1.component.html',
-  styleUrls: ['./view1.component.css']
+  styleUrls: ['./view1.component.css', '../app.component.css']
 })
 
 export class View1Component implements OnInit{
@@ -176,8 +176,13 @@ export class View1Component implements OnInit{
   parseExplSample(inputStr: string): number[] {
     let numArr: number[] = [];
 
-    for (let key in inputStr.split(";")) {
-      numArr.push(Number(inputStr.split(";")[key]));
+    for (let key of inputStr.split(";")) {
+      if ((/.*\d+.*/gm).test(key)) {
+        numArr.push(Number(key));
+      }
+      else {
+        continue;
+      }
     }
 
     return numArr;
@@ -201,5 +206,38 @@ export class View1Component implements OnInit{
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  uploadFile($event: any) {
+    let newNumSeq: String;
+    let newSampleType: String;
+    let newZ: Number;
+
+    let files = $event.srcElement.files;  
+ 
+    let input = $event.target;  
+    let reader = new FileReader();  
+    reader.readAsText(input.files[0]); 
+
+    reader.onload = () => {  
+      let csvData = reader.result;  
+      let csvRecordsArray = (<string>csvData).split(","); 
+      if ((/\((\d*); ?(\d*)\)/gm).test(csvRecordsArray[0])) {
+        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
+        newSampleType = "absolut";
+      }
+      else if ((/\"(\d+\;{0,1} {0,1})+\"$/gm).test(csvRecordsArray[0])) {
+        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
+        newSampleType = "explizit";
+      }
+
+      newZ = Number(csvRecordsArray[1].replace(/\"/g, ""));
+
+      this.inputForm.setValue({
+        numSequence: newNumSeq,
+        sampleType: newSampleType,
+        valueZInput: newZ
+      });
+    };
   }
 }

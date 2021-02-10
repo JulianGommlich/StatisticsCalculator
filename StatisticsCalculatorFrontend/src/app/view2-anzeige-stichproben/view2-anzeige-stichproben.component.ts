@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-view2-anzeige-stichproben',
   templateUrl: './view2-anzeige-stichproben.component.html',
-  styleUrls: ['./view2-anzeige-stichproben.component.css']
+  styleUrls: ['./view2-anzeige-stichproben.component.css', '../app.component.css']
 })
 export class View2AnzeigeStichprobenComponent implements OnInit {
 
