@@ -58,9 +58,9 @@ export class View1Component implements OnInit{
         secondSplit.push(firstSplit[0].split(','));
         secondSplit.push(firstSplit[1].split(','));
         for (let index = 0; index < secondSplit[0].length; index++) {
-          numSequence += `(${secondSplit[0][index]};${secondSplit[1][index]})`;
+          numSequence += `(${secondSplit[0][index].replace('.', ',')};${secondSplit[1][index]})`;
           if (index < secondSplit[0].length - 1) {
-            numSequence += ';';
+            numSequence += '; ';
           }
         }
       } else if (inputValues[1] === 'explizit') {
@@ -171,7 +171,7 @@ export class View1Component implements OnInit{
   // Takes a String as Input and converts it to an object (freqDist)
   parseFreqDist(inputStr: string): { [key: string]: number } {
     let freqDist: { [key: string]: number } = {};
-    let matches = inputStr.matchAll(/\((?<value>\d*); ?(?<freq>\d*)\)/gm);
+    let matches = inputStr.matchAll(/\((?<value>\d*[.,]\d*); ?(?<freq>\d*)\)/gm);
 
     for (let match of matches) {
       Object.assign(freqDist, { [String(match[1])]: Number(match[2]) })

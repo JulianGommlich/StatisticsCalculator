@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_10_47_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_01_02_2021_10_47__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_01_2021_14_27__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_01_2021_14_27__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/charts/four-charts.html" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/charts/four-charts.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/charts/four-charts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/charts/four-charts.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/view1/view1.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/view1/view1.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/view2-anzeige-stichproben/view2-anzeige-stichproben.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/view2-anzeige-stichproben/view2-anzeige-stichproben.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/view2-anzeige-stichproben/view2-anzeige-stichproben.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/StatisticsCalculatorFrontend/src/app/view2-anzeige-stichproben/view2-anzeige-stichproben.component.ts" afterDir="false" />
-    </list>
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -318,16 +308,5 @@
     <MESSAGE value="Backend Unittests implementiert" />
     <MESSAGE value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
     <option name="LAST_COMMIT_MESSAGE" value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java</url>
-          <line>6</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
