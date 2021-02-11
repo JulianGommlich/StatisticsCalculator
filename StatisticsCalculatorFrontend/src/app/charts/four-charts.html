@@ -10,7 +10,8 @@
         [showXAxisLabel]="bcShowXAxisLabel"
         [showYAxisLabel]="bcShowYAxisLabel"
         [xAxisLabel]="bcXAxisLabel"
-        [yAxisLabel]="bcYAxisLabel"/>
+        [yAxisLabel]="bcYAxisLabel">
+    </ngx-charts-bar-vertical>
     <ngx-charts-pie-chart
         [view]="view"
         [scheme]="pcColorScheme"
@@ -19,7 +20,8 @@
         [legend]="pcShowLegend"
         [legendPosition]="pcLegendPosition"
         [labels]="pcShowLabels"
-        [doughnut]="pcIsDoughnut"/>
+        [doughnut]="pcIsDoughnut">
+    </ngx-charts-pie-chart>
 </div>
 <div class="row">
     <ngx-charts-line-chart
@@ -33,7 +35,8 @@
         [xAxisLabel]="lceXAxisLabel"
         [yAxisLabel]="lceYAxisLabel"
         [timeline]="lcTimeline"
-        [results]="empiricalDistributionChartValues"/>
+        [results]="empiricalDistributionChartValues">
+    </ngx-charts-line-chart>
     <ngx-charts-line-chart
         [view]="view"
         [scheme]="lclColorScheme"
@@ -45,5 +48,6 @@
         [xAxisLabel]="lclXAxisLabel"
         [yAxisLabel]="lclYAxisLabel"
         [timeline]="lcTimeline"
-        [results]="lorenzChartValues"/>
+        [results]="lorenzChartValues">
+    </ngx-charts-line-chart>
 </div>

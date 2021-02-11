@@ -20,17 +20,23 @@ const httpOptions = {
 export class ApiEndpointService {
 
   subject = new ReplaySubject<Ergebnisse>();
+  sample: Stichprobe;
 
   constructor(private http: HttpClient) { }
 
   // post a sample to the java backend
   startCalculation(sample: Stichprobe): void {
+    this.sample = sample;
     this.http.post<Ergebnisse>("/exchange", sample, httpOptions)
       .subscribe((data: Ergebnisse) => { this.subject.next(data); });
   }
 
   getSubject(): ReplaySubject<Ergebnisse> {
     return this.subject;
+  }
+
+  getSample(): Stichprobe {
+    return this.sample;
   }
 
 }

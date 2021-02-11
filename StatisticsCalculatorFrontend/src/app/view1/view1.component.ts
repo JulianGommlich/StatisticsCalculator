@@ -3,11 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { FormControl, FormGroup } from "@angular/forms";
-import { SampleType, Stichprobe } from '../stichprobe';
+import { Stichprobe } from '../stichprobe';
 import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { SampleType } from '../sampleType';
 
 
 @Component({
