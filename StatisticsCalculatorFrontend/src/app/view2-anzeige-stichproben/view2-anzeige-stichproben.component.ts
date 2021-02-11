@@ -15,9 +15,9 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
 
   ergebnisseFormGroup: FormGroup;
   inputFromBackend = new Subject<Ergebnisse>(); //Ergebnisse
-  public stichprobendaten: Stichprobe;
+  stichprobendaten: Stichprobe;
 
-  constructor(private apiEndpoint: ApiEndpointService, private fb: FormBuilder, private router: Router) { 
+  constructor(private apiEndpoint: ApiEndpointService, private fb: FormBuilder, private router: Router) {
     this.buildForm();
   }
 
@@ -46,7 +46,7 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         meanAbsoluteDeviation: [data.mittlereAbweichungZuZ],
         giniValue: [data.giniKoeffizient]
       });
-      
+
       this.stichprobendaten = new Stichprobe(data.sampleType, data.expliziteStichprobe, data.haeufigkeitsverteilung, data.z);
     });
   }
@@ -56,9 +56,9 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
    */
   goBackToCalculator(): void {
     const numSequence = this.stichprobendaten.sampleType === 'explizit'
-      ? this.stichprobendaten.expliziteStichprobe 
+      ? this.stichprobendaten.expliziteStichprobe
       : `${Object.keys(this.stichprobendaten.haeufigkeitsverteilung)}|${Object.values(this.stichprobendaten.haeufigkeitsverteilung)}`;
-    
+
     this.router.navigate(['/calculator', {
       'numSequence': numSequence,
       'sampleType': this.stichprobendaten.sampleType,

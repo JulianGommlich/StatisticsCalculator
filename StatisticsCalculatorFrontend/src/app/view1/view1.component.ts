@@ -59,9 +59,9 @@ export class View1Component implements OnInit{
         secondSplit.push(firstSplit[0].split(','));
         secondSplit.push(firstSplit[1].split(','));
         for (let index = 0; index < secondSplit[0].length; index++) {
-          numSequence += `(${secondSplit[0][index]};${secondSplit[1][index]})`;
+          numSequence += `(${secondSplit[0][index].replace('.', ',')};${secondSplit[1][index]})`;
           if (index < secondSplit[0].length - 1) {
-            numSequence += ';';
+            numSequence += '; ';
           }
         }
       } else if (inputValues[1] === 'explizit') {
@@ -113,7 +113,7 @@ export class View1Component implements OnInit{
 
     return stichprobe;
   }
-
+    
   openDeleteDialog(): void {
     this.dialog.open(PopUpDeleteComponent, {});
   }
