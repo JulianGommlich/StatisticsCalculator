@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service';
@@ -14,6 +14,7 @@ import { Validation } from '../validation';
 })
 export class PopUpComponent implements OnInit {
 
+  expliziteStichprobe: string;
   absoluteHaeufigkeitsverteilung: string;
   error = false;
 
@@ -28,6 +29,7 @@ export class PopUpComponent implements OnInit {
   ) {
     this.inputData = data.inputData;
 
+    this.expliziteStichprobe = this.inputData.expliziteStichprobe.toString().replace(',', ';');
     this.absoluteHaeufigkeitsverteilung = '';
     const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
     for (let index = 0; index < keys.length; index++) {
@@ -52,6 +54,7 @@ export class PopUpComponent implements OnInit {
       const sampleParser = new SampleParser();
       if (this.inputData.sampleType === 'explizit') {
         calculationData.expliziteStichprobe = sampleParser.parseExplSample(sampleInput);
+        console.log(calculationData.expliziteStichprobe);
         calculationData.setFreqDistribution();
       }
       else if (this.inputData.sampleType === 'absolut') {

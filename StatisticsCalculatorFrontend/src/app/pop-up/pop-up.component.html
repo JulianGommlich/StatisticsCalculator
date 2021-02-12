@@ -4,7 +4,7 @@
         <h2>Wollen Sie Änderungen vornehmen?</h2>
         <label for="explicitSample">Explizite Stichprobe:</label>
         <br>
-        <input type="text" id="explicitSample" value="{{inputData.expliziteStichprobe}}">
+        <input type="text" id="explicitSample" value="{{expliziteStichprobe}}">
         <br>
         <label for="absoluteFrequencyReadonly">Absolute Häufigkeit:</label>
         <br>
@@ -16,10 +16,6 @@
         <label for="absoluteFrequency">Absolute Häufigkeit:</label>
         <br>
         <input type="text" id="absoluteFrequency" value="{{absoluteHaeufigkeitsverteilung}}">
-    </div>
-
-    <div *ngIf="error">
-        <p id="errorMessage">Die eingegebene Stichprobe ist nicht valide.</p>
     </div>
 
 </mat-dialog-content>

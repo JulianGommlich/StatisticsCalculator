@@ -6,7 +6,7 @@ export class SampleParser {
     parseExplSample(inputStr: string): number[] {
         let numArr: number[] = [];
 
-        for (let key of inputStr.split(";")) {
+        for (let key of inputStr.split(';')) {
             if ((/.*\d+.*/gm).test(key)) {
                 numArr.push(Number(key));
             }

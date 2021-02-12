@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -171,6 +173,8 @@
       <workItem from="1611677990702" duration="1016000" />
       <workItem from="1612969368259" duration="26000" />
       <workItem from="1613028112640" duration="637000" />
+      <workItem from="1613158414902" duration="127000" />
+      <workItem from="1613159690614" duration="380000" />
     </task>
     <task id="LOCAL-00001" summary="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
       <created>1611151159525</created>
