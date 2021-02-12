@@ -29,7 +29,7 @@ export class PopUpComponent implements OnInit {
   ) {
     this.inputData = data.inputData;
 
-    this.expliziteStichprobe = this.inputData.expliziteStichprobe.toString().replace(',', ';');
+    this.expliziteStichprobe = this.inputData.expliziteStichprobe.join(';');
     this.absoluteHaeufigkeitsverteilung = '';
     const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
     for (let index = 0; index < keys.length; index++) {
