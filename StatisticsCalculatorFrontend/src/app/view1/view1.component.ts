@@ -9,7 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { SampleType } from '../sampleType';
-
+import { Validation } from "../validation";
+import { SampleParser } from '../sampleParser';
 
 @Component({
   selector: 'app-view1',
@@ -77,11 +78,18 @@ export class View1Component implements OnInit{
 
 
   openDialog(): void {
-    if (this.checkValidation()) {
+    const numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
+    const expl = document.getElementById('explSample') as HTMLInputElement;
+    const abs = document.getElementById('absSample') as HTMLInputElement;
+    const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
+
+    const validation = new Validation();
+
+    if (validation.checkValidation(numSeq, expl, abs, valueZ)) {
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
-      this.dialog.open(PopUpInvalidComponent, { data: {} });
+      this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
     }
   }
 
@@ -91,95 +99,21 @@ export class View1Component implements OnInit{
 
     let stichprobe = new Stichprobe(newSampleType, [], {}, newZ);
 
+    const sampleParser = new SampleParser();
+
     if (newSampleType === 'explizit') {
-      stichprobe.expliziteStichprobe = this.parseExplSample(this.inputForm.get('numSequence')?.value);
+      stichprobe.expliziteStichprobe = sampleParser.parseExplSample(this.inputForm.get('numSequence')?.value);
       stichprobe.setFreqDistribution();
     }
     else if (newSampleType === 'absolut') {
-      stichprobe.haeufigkeitsverteilung = this.parseFreqDist(this.inputForm.get('numSequence')?.value);
+      stichprobe.haeufigkeitsverteilung = sampleParser.parseFreqDist(this.inputForm.get('numSequence')?.value);
       stichprobe.setExpSample();
     }
     // else... Fehlerhandling
 
     return stichprobe;
   }
-
-  checkValidation(): boolean {
-    const expl = document.getElementById('explSample') as HTMLInputElement;
-    const abs = document.getElementById('absSample') as HTMLInputElement;
-    const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
-    if (expl.checked === false && abs.checked === false) {
-      return false;
-    }
-    if (valueZ.value.length === 0) {
-      return false;
-    } 
-    if (!this.validateSequence()) {
-      return false;
-    }
-    return true;
-  }
-
-  validateSequence(): boolean {
-    let numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
-    var symbols = /\d*[A-Za-z\:\°\^\"\§\$\%\&\{\}\[\]\=\?\´\`\+\*\#\'\:\_\<\>\|\!]\d*$/;
-
-    if (numSeq.length === 0 || numSeq.match(symbols)) {
-      return false;
-    }
     
-    var splittedSeq = numSeq.split(';', 100)
-    if (!this.countNumbers(splittedSeq)) {
-      return false;
-    }
-    return true;
-  }
-
-  countNumbers(arraySeq: string[]): boolean {
-    let newArraySequence: { [key: string]: number } = {};
-
-    arraySeq.forEach(function (key) {
-      if (Object.keys(newArraySequence).includes(String(key))) {
-        newArraySequence[key] += 1;
-      }
-      else {
-        Object.assign(newArraySequence, { [key]: 1 });
-      }
-    });
-    if (Math.max(...Object.values(newArraySequence)) >= 30) {
-      return false;
-    }
-    return true;
-  }
-
-  // Takes a String as Input and converts it to a number-Array (explSample)
-  parseExplSample(inputStr: string): number[] {
-    let numArr: number[] = [];
-
-    for (let key of inputStr.split(";")) {
-      if ((/.*\d+.*/gm).test(key)) {
-        numArr.push(Number(key));
-      }
-      else {
-        continue;
-      }
-    }
-
-    return numArr;
-  }
-
-  // Takes a String as Input and converts it to an object (freqDist)
-  parseFreqDist(inputStr: string): { [key: string]: number } {
-    let freqDist: { [key: string]: number } = {};
-    let matches = inputStr.matchAll(/\((?<value>\d*[.,]\d*); ?(?<freq>\d*)\)/gm);
-
-    for (let match of matches) {
-      Object.assign(freqDist, { [String(match[1])]: Number(match[2]) })
-    }
-
-    return freqDist;
-  }
-
   openDeleteDialog(): void {
     this.dialog.open(PopUpDeleteComponent, {});
   }
