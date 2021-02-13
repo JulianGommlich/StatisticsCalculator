@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-
 import { MatDialogModule } from '@angular/material/dialog';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +14,7 @@ import { FourCharts } from './charts/four-charts';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
+import { ApiEndpointService } from './api-endpoint.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
     PopUpComponent,
     PopUpInvalidComponent,
     PopUpDeleteComponent
-    ],
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,7 +36,9 @@ import { PopUpDeleteComponent } from './pop-up-delete/pop-up-delete.component';
     NgxChartsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    ApiEndpointService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

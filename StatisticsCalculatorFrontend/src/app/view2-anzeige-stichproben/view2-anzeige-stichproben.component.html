@@ -1,4 +1,4 @@
-<form id="view2CalculatedValues">
+<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues">
     <h2>Ausgabe:</h2>
     <div id="listOfCalculatedValues" class="outputFlexContainer">
         <div class="outputFlexElement">
@@ -63,12 +63,12 @@
     </div>
     
     <div id="4HorsemenOfCharts">
-        <app-four-charts [expliziteStichprobe]="expliziteStichprobe" [haeufigkeitsverteilung]="haeufigkeitsverteilung"></app-four-charts>
+        <app-four-charts></app-four-charts>
     </div>
 </form>
 
 <!--Neue Eingabe der Daten-->
-<input class="Button1" type="button" id="newData" value="Zurück" (click)="goBackToCalculator()">
+<input class="Button1" type="button" id="return" value="Zurück" (click)="goBackToCalculator()">
 
 
 

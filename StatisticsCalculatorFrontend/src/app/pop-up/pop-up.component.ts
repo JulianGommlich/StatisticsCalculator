@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { SampleType, Stichprobe } from '../stichprobe';
+import { Stichprobe } from '../stichprobe';
 
 @Component({
   selector: 'app-pop-up',
@@ -12,47 +11,34 @@ import { SampleType, Stichprobe } from '../stichprobe';
 })
 export class PopUpComponent implements OnInit {
 
-  fix: BehaviorSubject<boolean>;
-  absolute: number[] = [];
-  explicite: number[] = [];
+  absoluteHaeufigkeitsverteilung: string;
 
   // Response vom Backend
-  result: any;
-  inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
+  inputData: Stichprobe;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
-    private router: Router,
-    public apiEndpoint: ApiEndpointService
+    @Inject(MAT_DIALOG_DATA) public data: { inputData: Stichprobe },
+    public apiEndpoint: ApiEndpointService,
+    private router: Router    
   ) {
-    this.fix = new BehaviorSubject(data.fix);
-    this.absolute = data.absolute;
-    if (data.explicite) {
-      this.explicite = data.explicite;
-    }
     this.inputData = data.inputData;
+
+    this.absoluteHaeufigkeitsverteilung = '';
+    const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
+    for (let index = 0; index < keys.length; index++) {
+      this.absoluteHaeufigkeitsverteilung += `(${keys[index]}; ${this.inputData.haeufigkeitsverteilung[keys[index]]})`;
+      if (index < keys.length-1) {
+        this.absoluteHaeufigkeitsverteilung += '; ';
+      }
+    }
   }
+
+  ngOnInit(): void {}
   
-  getResults() {
+  getResults(): void {
     // Create logic to get data
     this.router.navigate(['/results']);
-    this.startCalculation();
-  }
-
-  ngOnInit(): void {
-  }
-
-  // send sample to API-Endpoint-Service
-  startCalculation() {
-
-    if (this.inputData.sampleType == "explizit") {
-      this.inputData.setFreqDistribution();
-    }
-    else if (this.inputData.sampleType == "absolut") {
-      this.inputData.setExpSample();
-    }
-
-    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => console.log(sample));
-  }
-
+    //send sample data to backend
+    this.apiEndpoint.startCalculation(this.inputData);
+  }  
 }

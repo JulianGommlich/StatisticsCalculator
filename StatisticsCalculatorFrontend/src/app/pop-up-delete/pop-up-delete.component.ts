@@ -10,16 +10,15 @@ export class PopUpDeleteComponent implements OnInit {
 
     constructor(private router: Router) { }
 
-    ngOnInit(): void {
-    }
+    ngOnInit(): void {}
 
     /**
      * Leert sämtliche Eingabefelder, indem die Seite ohne Daten neugeladen wird.
      */
-    deleteFormInput() {
+    deleteFormInput(): void {
         // Kleiner Hack: Es wird kurz auf eine andere Seite navigiert, die aber nicht angezeigt wird
         this.router.navigateByUrl('/results', { skipLocationChange: true }).then(() => {
             this.router.navigate(['/calculator']);
-        }); 
+        });
     }
 }

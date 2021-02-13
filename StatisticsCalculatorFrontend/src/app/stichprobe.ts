@@ -1,7 +1,4 @@
-export enum SampleType {
-  explicit = "explizit",
-  absolute = "absolut"
-}
+import { SampleType } from "./sampleType";
 
 export class Stichprobe {
 
@@ -25,9 +22,8 @@ export class Stichprobe {
     // für jeden Wert im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
     this.expliziteStichprobe.forEach(function (key) {
       if (Object.keys(newFreqDist).includes(String(key))) {
-        newFreqDist[key] += 1;
-      }
-      else {
+        newFreqDist[key]++;
+      } else {
         Object.assign(newFreqDist, { [key]: 1 });
       }
     });

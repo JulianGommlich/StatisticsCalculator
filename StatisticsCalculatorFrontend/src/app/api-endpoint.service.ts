@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { Stichprobe } from './stichprobe';
+import { Ergebnisse } from './ergebnisse';
 
 
 
@@ -15,16 +16,27 @@ const httpOptions = {
   })
 };
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiEndpointService {
+
+  subject = new ReplaySubject<Ergebnisse>();
+  sample: Stichprobe;
 
   constructor(private http: HttpClient) { }
 
   // post a sample to the java backend
-  startCalculation(sample: Stichprobe): Observable<Stichprobe>{
-    return this.http.post<Stichprobe>("/exchange", sample, httpOptions);
+  startCalculation(sample: Stichprobe): void {
+    this.sample = sample;
+    this.http.post<Ergebnisse>("/exchange", sample, httpOptions)
+      .subscribe((data: Ergebnisse) => { this.subject.next(data); });
+  }
+
+  getSubject(): ReplaySubject<Ergebnisse> {
+    return this.subject;
+  }
+
+  getSample(): Stichprobe {
+    return this.sample;
   }
 
 }

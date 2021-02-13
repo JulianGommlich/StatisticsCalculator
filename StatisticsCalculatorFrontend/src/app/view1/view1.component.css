@@ -1,3 +1,4 @@
+
 :host {
     display: block;
     width: 75%;
@@ -22,6 +23,12 @@ input.Button1 {
 input#importFile {
     width: 320px;
     height: 37px;
+    display: none;
+}
+
+input#loadFile {
+    width: 300px;
+    height: 35px;
     color: white;
     background-color: black;
     font-style: italic;
