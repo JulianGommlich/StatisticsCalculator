@@ -10,8 +10,7 @@
         [showXAxisLabel]="bcShowXAxisLabel"
         [showYAxisLabel]="bcShowYAxisLabel"
         [xAxisLabel]="bcXAxisLabel"
-        [yAxisLabel]="bcYAxisLabel"
-        (select)="onSelect($event)">
+        [yAxisLabel]="bcYAxisLabel">
     </ngx-charts-bar-vertical>
     <ngx-charts-pie-chart
         [view]="view"
@@ -21,10 +20,7 @@
         [legend]="pcShowLegend"
         [legendPosition]="pcLegendPosition"
         [labels]="pcShowLabels"
-        [doughnut]="pcIsDoughnut"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)">
+        [doughnut]="pcIsDoughnut">
     </ngx-charts-pie-chart>
 </div>
 <div class="row">
@@ -39,10 +35,7 @@
         [xAxisLabel]="lceXAxisLabel"
         [yAxisLabel]="lceYAxisLabel"
         [timeline]="lcTimeline"
-        [results]="empiricalDistributionChartValues"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)">
+        [results]="empiricalDistributionChartValues">
     </ngx-charts-line-chart>
     <ngx-charts-line-chart
         [view]="view"
@@ -55,9 +48,6 @@
         [xAxisLabel]="lclXAxisLabel"
         [yAxisLabel]="lclYAxisLabel"
         [timeline]="lcTimeline"
-        [results]="lorenzChartValues"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)">
+        [results]="lorenzChartValues">
     </ngx-charts-line-chart>
 </div>

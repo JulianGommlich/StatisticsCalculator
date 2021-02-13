@@ -1,58 +1,73 @@
 import { Component, OnInit, Inject, Input } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 import { ApiEndpointService } from '../api-endpoint.service';
-import { SampleType, Stichprobe } from '../stichprobe';
+import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
+import { SampleParser } from '../sampleParser';
+import { Stichprobe } from '../stichprobe';
+import { Validation } from '../validation';
 
 @Component({
   selector: 'app-pop-up',
   templateUrl: './pop-up.component.html',
-  styleUrls: ['./pop-up.component.css']
+  styleUrls: ['./pop-up.component.css', '../app.component.css']
 })
 export class PopUpComponent implements OnInit {
 
-  fix: BehaviorSubject<boolean>;
-  absolute: number[] = [];
-  explicite: number[] = [];
+  expliziteStichprobe: string;
+  absoluteHaeufigkeitsverteilung: string;
+  error = false;
 
   // Response vom Backend
-  result: any;
-  inputData = new Stichprobe(SampleType.explicit, [], {}, 0);
+  inputData: Stichprobe;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: { fix: boolean, absolute: number[], explicite?: number[], inputData: Stichprobe },
+    @Inject(MAT_DIALOG_DATA) public data: { inputData: Stichprobe },
+    public apiEndpoint: ApiEndpointService,
     private router: Router,
-    public apiEndpoint: ApiEndpointService
+    private dialog: MatDialog
   ) {
-    this.fix = new BehaviorSubject(data.fix);
-    this.absolute = data.absolute;
-    if (data.explicite) {
-      this.explicite = data.explicite;
-    }
     this.inputData = data.inputData;
-  }
-  
-  getResults() {
-    // Create logic to get data
-    this.router.navigate(['/results']);
-    this.startCalculation();
-  }
 
-  ngOnInit(): void {
-  }
-
-  // send sample to API-Endpoint-Service
-  startCalculation() {
-
-    if (this.inputData.sampleType == "explizit") {
-      this.inputData.setFreqDistribution();
+    this.expliziteStichprobe = this.inputData.expliziteStichprobe.join(';');
+    this.absoluteHaeufigkeitsverteilung = '';
+    const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
+    for (let index = 0; index < keys.length; index++) {
+      this.absoluteHaeufigkeitsverteilung += `(${keys[index]}; ${this.inputData.haeufigkeitsverteilung[keys[index]]})`;
+      if (index < keys.length - 1) {
+        this.absoluteHaeufigkeitsverteilung += '; ';
+      }
     }
-    else if (this.inputData.sampleType == "absolut") {
-      this.inputData.setExpSample();
-    }
-
-    this.apiEndpoint.startCalculation(this.inputData).subscribe(sample => console.log(sample));
   }
 
+  ngOnInit(): void { }
+
+  getResults(): void {
+    const validation = new Validation();
+    const sampleInput = this.inputData.sampleType === 'explizit'
+      ? (<HTMLInputElement>document.getElementById('explicitSample')).value
+      : (<HTMLInputElement>document.getElementById('absoluteFrequency')).value;
+
+    if (validation.validateSequence(sampleInput)) {
+      const calculationData = new Stichprobe(this.inputData.sampleType, [], {}, this.inputData.z);
+
+      const sampleParser = new SampleParser();
+      if (this.inputData.sampleType === 'explizit') {
+        calculationData.expliziteStichprobe = sampleParser.parseExplSample(sampleInput);
+        console.log(calculationData.expliziteStichprobe);
+        calculationData.setFreqDistribution();
+      }
+      else if (this.inputData.sampleType === 'absolut') {
+        calculationData.haeufigkeitsverteilung = sampleParser.parseFreqDist(sampleInput);
+        calculationData.setExpSample();
+      }
+
+      // Create logic to get data
+      this.router.navigate(['/results']);
+      //send sample data to backend
+      this.apiEndpoint.startCalculation(calculationData);
+    } else {
+      this.dialog.open( PopUpInvalidComponent, { data: { case: 'pop-up' } } );
+    }
+  }
 }

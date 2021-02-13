@@ -4,10 +4,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-import static de.student.dhbwvs.statisticsCalculatorBackend.calculations.*;
+import static de.student.dhbwvs.statisticsCalculatorBackend.CalculationsTest.*;
 
 @SpringBootTest
 class StatisticsCalculatorBackendApplicationTests {
@@ -16,131 +18,230 @@ class StatisticsCalculatorBackendApplicationTests {
 	void contextLoads() {
 	}
 
-	// Test for calculating the modal value
+	double[] W_Optimal = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
+	double[] W_Negativ = {-1, -1, -5, -3};
+	double[] W_Null= {0};
+	double[] W_Einzelwert = {5};
+	double[] W_Gleich = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	double Z_Optimal = 25;
+	double Z_Negativ = -3;
+	double Z_Null = 0;
+
+	//Umwandlungsmethode für den Modalwert
+	public static Map<Double,Integer> freqDistribution(double[] stichprobe) {
+
+		Map<Double, Integer> freqDist = new HashMap<>();
+
+		//für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
+		for (double i : stichprobe) {
+
+			if (freqDist.containsKey(i)){
+				freqDist.replace(i, freqDist.get(i) + 1);
+			} else {
+				freqDist.put(i, 1);
+			}
+		}
+		//Sortiervorgang aufsteigend
+		return freqDist.entrySet()
+				.stream()
+				.sorted(Map.Entry.<Double, Integer>comparingByKey())
+				.collect(Collectors.toMap(
+						Map.Entry::getKey,
+						Map.Entry::getValue,
+						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+	}
+
+	// Test for calculating the modal value --- BESTANDEN
 	@Test
 	public void testCalcModal(){
-		double[] result1 = {2.4, 4.0};
-		double[] result2 = {3.0};
-		Map<Double, Integer> map1 = new LinkedHashMap<>();
-		map1.put(-4.5, 1);
-		map1.put(1.0, 2);
-		map1.put(2.0, 1);
-		map1.put(2.4, 3);
-		map1.put(3.4, 1);
-		map1.put(4.0, 3);
-		map1.put(6.0, 1);
-		map1.put(7.92, 1);
-		map1.put(10.6, 1);
-		Map<Double, Integer> map2 = new LinkedHashMap<>();
-		map2.put(3.0, 5);
-		map2.put(1.0, 2);
-		map2.put(2.0, 1);
-		map2.put(2.4, 3);
+		double[] result_optimal = {23,27};
+		double[] result_negativ = {-1};
+		double[] result_null = {0};
+		double[] result_einzelwert = {5};
+		double[] result_gleich = {1};
 
-		Assertions.assertArrayEquals(result1,calcModal(map1));
-		Assertions.assertArrayEquals(result2,calcModal(map2));
+		Assertions.assertArrayEquals(result_optimal,calcModal(freqDistribution(W_Optimal)));
+		Assertions.assertArrayEquals(result_negativ,calcModal(freqDistribution(W_Negativ)));
+		Assertions.assertArrayEquals(result_null,calcModal(freqDistribution(W_Null)));
+		Assertions.assertArrayEquals(result_einzelwert,calcModal(freqDistribution(W_Einzelwert)));
+		Assertions.assertArrayEquals(result_gleich,calcModal(freqDistribution(W_Gleich)));
 	}
 
 	// Test for calculating the average
 	@Test
 	public void testCalcAverage(){
-		double result1 = 2.5;
-		double result2 = 3.25;
-		double[] testArray1 = {1, 1, 2, 2, 3, 3, 4, 4};
-		double[] testArray2 = {5, 5, 4, 4, 3, 2, 2, 1};
+		double result_optimal = 33.62;
+		double result_negativ = -2.5;
+		double result_null = 0;
+		double result_einzelwert = 5;
+		double result_gleich = 1;
 
-		Assertions.assertEquals(result1, calcAverage(testArray1));
-		Assertions.assertEquals(result2, calcAverage(testArray2));
+		Assertions.assertEquals(result_optimal, calcAverage(W_Optimal));
+		Assertions.assertEquals(result_negativ, calcAverage(W_Negativ));
+		Assertions.assertEquals(result_null, calcAverage(W_Null));
+		Assertions.assertEquals(result_einzelwert, calcAverage(W_Einzelwert));
+		Assertions.assertEquals(result_gleich, calcAverage(W_Gleich));
 	}
 
-	// Test for calculating the median
+	// Test for calculating the median --- BESTANDEN
 	@Test
 	public void testCalcMedian(){
-		double result1 = 2.5;
-		double result2 = 3;
-		double[] test1 = {1,1,2,2,3,3,4,4};
-		double[] test2 = {5,5,4,4,3,3,2,2,1};
+		double result_optimal = 25;
+		double result_negativ = -2;
+		double result_null = 0;
+		double result_einzelwert = 5;
+		double result_gleich = 1;
 
-		Assertions.assertEquals(result1, calcMedian(test1));
-		Assertions.assertEquals(result2, calcMedian(test2));
+		Assertions.assertEquals(result_optimal, calcMedian(W_Optimal));
+		Assertions.assertEquals(result_negativ, calcMedian(W_Negativ));
+		Assertions.assertEquals(result_null, calcMedian(W_Null));
+		Assertions.assertEquals(result_einzelwert, calcMedian(W_Einzelwert));
+		Assertions.assertEquals(result_gleich, calcMedian(W_Gleich));
 	}
 
 	//Test for calculating the quantile
 	@Test
 	public void testCalcQuantile(){
 
-		double percentage1 = 0.05;
-		double percentage2 = 0.1;
-		double percentage3 = 0.25;
-		double percentage4 = 0.75;
-		double percentage5 = 0.9;
-		double percentage6 = 0.95;
-		double[] array1 = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
-		double ergebnis1 = 15;
-		double ergebnis2 = 18;
-		double ergebnis3 = 22;
-		double ergebnis4 = 36;
-		double ergebnis5 = 72;
-		double ergebnis6 = 98;
-		Assertions.assertEquals(ergebnis1, calcQuantile(percentage1, array1));
-		Assertions.assertEquals(ergebnis2, calcQuantile(percentage2, array1));
-		Assertions.assertEquals(ergebnis3, calcQuantile(percentage3, array1));
-		Assertions.assertEquals(ergebnis4, calcQuantile(percentage4, array1));
-		Assertions.assertEquals(ergebnis5, calcQuantile(percentage5, array1));
-		Assertions.assertEquals(ergebnis6, calcQuantile(percentage6, array1));
+		double[] percentages = {0.05, 0.1, 0.25, 0.75, 0.9, 0.95};
 
+		double[] result_optimal = {15, 18, 22, 36, 72, 98};
+		double[] result_negativ = {-5, -5, -4, -1, -1, -1};
+		double[] result_null = {0, 0, 0, 0, 0, 0};
+		double[] result_einzelwert = {5, 5, 5, 5, 5, 5};
+		double[] result_gleich = {1, 1, 1, 1, 1, 1};
+
+		double[] quantilen_optimal = new double[6];
+		for (int i=0; i<quantilen_optimal.length; i++){
+			quantilen_optimal[i] = calcQuantile(percentages[i], W_Optimal);
+		}
+
+		double[] quantilen_negativ = new double[6];
+		for (int i=0; i<quantilen_negativ.length; i++){
+			quantilen_negativ[i] = calcQuantile(percentages[i], W_Negativ);
+		}
+
+		double[] quantilen_null = new double[6];
+		for (int i=0; i<quantilen_null.length; i++){
+			quantilen_null[i] = calcQuantile(percentages[i], W_Null);
+		}
+
+		double[] quantilen_einzelwert = new double[6];
+		for (int i=0; i<quantilen_einzelwert.length; i++){
+			quantilen_einzelwert[i] = calcQuantile(percentages[i], W_Einzelwert);
+		}
+
+		double[] quantilen_gleich = new double[6];
+		for (int i=0; i<quantilen_gleich.length; i++){
+			quantilen_gleich[i] = calcQuantile(percentages[i], W_Gleich);
+		}
+
+		Assertions.assertArrayEquals(result_optimal, quantilen_optimal);
+		Assertions.assertArrayEquals(result_negativ, quantilen_negativ);
+		Assertions.assertArrayEquals(result_null, quantilen_null);
+		Assertions.assertArrayEquals(result_einzelwert, quantilen_einzelwert);
+		Assertions.assertArrayEquals(result_gleich, quantilen_gleich);
 	}
 
 	// Test for calculating the variance
 	@Test
 	public void testCalcVariance(){
-		double result1 = 8.25;
-		double result2 = 6.2825999999999995;
-		double[] testArray1 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-		double[] testArray2 = {1.25,2,5,4,8.35};
+		double result_optimal = 438.66;
+		double result_negativ = 3.67;
+		double result_null = 0;
+		double result_einzelwert = 5;
+		double result_gleich = 0;
 
-		Assertions.assertEquals(result1, calcVariance(testArray1));
-		Assertions.assertEquals(result2, calcVariance(testArray2));
+		Assertions.assertEquals(result_optimal, calcVariance(W_Optimal));
+		Assertions.assertEquals(result_negativ, calcVariance(W_Negativ));
+		Assertions.assertEquals(result_null, calcVariance(W_Null));
+		Assertions.assertEquals(result_einzelwert, calcVariance(W_Einzelwert));
+		Assertions.assertEquals(result_gleich, calcVariance(W_Gleich));
 	}
 
 	// Test for calculating the standard deviation
 	@Test
 	public void testCalcStandardDeviation(){
-		double result1 = 4;
-		double result2 = 3;
-		double testValue1 = 16;
-		double testValue2 = 9;
+		double var_optimal = 438.66;
+		double var_negativ = 3.67;
+		double var_null = 0;
+		double var_einzelwert = 5;
+		double var_gleich = 0;
 
-		Assertions.assertEquals(result1, calcStandardDeviation(testValue1));
-		Assertions.assertEquals(result2, calcStandardDeviation(testValue2));
+		double result_optimal = 20.94;
+		double result_negativ = 1.92;
+		double result_null = 0;
+		double result_einzelwert = 2.24;
+		double result_gleich = 0;
+
+		Assertions.assertEquals(result_optimal, calcStandardDeviation(var_optimal));
+		Assertions.assertEquals(result_negativ, calcStandardDeviation(var_negativ));
+		Assertions.assertEquals(result_null, calcStandardDeviation(var_null));
+		Assertions.assertEquals(result_einzelwert, calcStandardDeviation(var_einzelwert));
+		Assertions.assertEquals(result_gleich, calcStandardDeviation(var_gleich));
 	}
 
 	//Test for calculating the average deviation to z
 	@Test
 	public void testCalcAverageDeviation(){
 
-		double[] array1 = {2, 2, 3, 4, 14};
-		double[] array2 = {2.4, 3.4, 1.0, 6, 1, 2, 10.6, 7.92, -4.5, 2.4, 2.4, 4, 4, 4};
-		double z1 = 2;
-		double z2 = 2.974;
-		double result1 = 3.0;
-		double result2 = 2.3728571428571428;
+		double result_optimal_Z_optimal = 12.9;
+		double result_optimal_Z_negativ = 36.62;
+		double result_optimal_Z_null = 33.62;
 
-		Assertions.assertEquals(result1, calcAverageDeviation(array1, z1));
-		Assertions.assertEquals(result2, calcAverageDeviation(array2, z2));
+		double result_negativ_Z_optimal = 27.5;
+		double result_negativ_Z_negativ = 1.5;
+		double result_negativ_Z_null = 2.5;
+
+		double result_null_Z_optimal = 25;
+		double result_null_Z_negativ = 3;
+		double result_null_Z_null = 0;
+
+		double result_einzelwert_Z_optimal = 20;
+		double result_einzelwert_Z_negativ = 8;
+		double result_einzelwert_Z_null = 5;
+
+		double result_gleich_Z_optimal = 24;
+		double result_gleich_Z_negativ = 4;
+		double result_gleich_Z_null = 1;
+
+
+		Assertions.assertEquals(result_optimal_Z_optimal, calcAverageDeviation(W_Optimal, Z_Optimal));
+		Assertions.assertEquals(result_optimal_Z_negativ, calcAverageDeviation(W_Optimal, Z_Negativ));
+		Assertions.assertEquals(result_optimal_Z_null, calcAverageDeviation(W_Optimal, Z_Null));
+
+		Assertions.assertEquals(result_negativ_Z_optimal, calcAverageDeviation(W_Negativ, Z_Optimal));
+		Assertions.assertEquals(result_negativ_Z_negativ, calcAverageDeviation(W_Negativ, Z_Negativ));
+		Assertions.assertEquals(result_negativ_Z_null, calcAverageDeviation(W_Negativ, Z_Null));
+
+		Assertions.assertEquals(result_null_Z_optimal, calcAverageDeviation(W_Null, Z_Optimal));
+		Assertions.assertEquals(result_null_Z_negativ, calcAverageDeviation(W_Null, Z_Negativ));
+		Assertions.assertEquals(result_null_Z_null, calcAverageDeviation(W_Null, Z_Null));
+
+		Assertions.assertEquals(result_einzelwert_Z_optimal, calcAverageDeviation(W_Einzelwert, Z_Optimal));
+		Assertions.assertEquals(result_einzelwert_Z_negativ, calcAverageDeviation(W_Einzelwert, Z_Negativ));
+		Assertions.assertEquals(result_einzelwert_Z_null, calcAverageDeviation(W_Einzelwert, Z_Null));
+
+		Assertions.assertEquals(result_gleich_Z_optimal, calcAverageDeviation(W_Gleich, Z_Optimal));
+		Assertions.assertEquals(result_gleich_Z_negativ, calcAverageDeviation(W_Gleich, Z_Negativ));
+		Assertions.assertEquals(result_gleich_Z_null, calcAverageDeviation(W_Gleich, Z_Null));
+
 	}
 
 	//Test for calculating the gini coefficient
 	@Test
 	public void testCalcGiniCoefficient(){
 
-		double[] array1 = {15, 15, 15, 18, 18, 18, 18, 20, 20, 20, 20, 20, 22, 22, 22, 22, 22, 22, 22, 23, 23, 23, 23, 23, 23, 23, 23, 23, 23, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 36, 36, 36, 36, 36, 36, 36, 49, 49, 49, 49, 49, 72, 72, 72, 72, 98, 98, 98};
-		double ergebnis1 = 0.28969053934571176;
-		double[] array2 = {15, 18, 20,65, 24, 1, 99};
-		double ergebnis2 = 0.4722550177095632;
+		double result_optimal = 0.29;
+		//double result_negativ = -0.35; //auf Exception testen
+		//double result_null = 0; //auf Exception testen
+		double result_einzelwert = 0;
+		double result_gleich = 0;
 
-		Assertions.assertEquals(ergebnis1, calcGiniCoefficient(array1));
-		Assertions.assertEquals(ergebnis2, calcGiniCoefficient(array2));
-
+		Assertions.assertEquals(result_optimal, calcGiniCoefficient(W_Optimal));
+		//Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
+		//Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
+		Assertions.assertEquals(result_einzelwert, calcGiniCoefficient(W_Einzelwert));
+		Assertions.assertEquals(result_gleich, calcGiniCoefficient(W_Gleich));
 	}
 }

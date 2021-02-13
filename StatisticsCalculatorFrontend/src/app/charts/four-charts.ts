@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ApiEndpointService } from '../api-endpoint.service';
+import { Stichprobe } from '../stichprobe';
 
 @Component({
   selector: 'app-four-charts',
@@ -63,20 +65,24 @@ export class FourCharts implements OnInit {
   lclXAxisLabel = 'Stichprobenwert';
   lclYAxisLabel = 'Gewicht';
 
-  @Input() expliziteStichprobe: number[];
-  @Input() haeufigkeitsverteilung: { [key: string]: number };
-  
+  stichprobendaten: Stichprobe;
+  expliziteStichprobe: number[];
+  haeufigkeitsverteilung: { [key: string]: number };
 
-  constructor() {
-  }
+  constructor(private apiEndpoint: ApiEndpointService) {}
 
   ngOnInit() {
+    this.stichprobendaten = this.apiEndpoint.getSample();
+
+    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe;
+    this.haeufigkeitsverteilung = this.stichprobendaten.haeufigkeitsverteilung;
+
     const freqDistKeys = Object.keys(this.haeufigkeitsverteilung);
     const freqDistValues = Object.values(this.haeufigkeitsverteilung);
 
     this.setBarAndPieChartValues(freqDistKeys, freqDistValues);
     this.setEmpiricalDistributionChartValues(freqDistKeys, freqDistValues);
-    this.setLorenzChartValues(freqDistKeys, freqDistValues);
+    this.setLorenzChartValues(freqDistKeys, freqDistValues)
   }
 
   /**
@@ -212,17 +218,4 @@ export class FourCharts implements OnInit {
       }
     );
   }
-
-  onSelect(data: any): void {
-    console.log('Item clicked', JSON.parse(JSON.stringify(data)));
-  }
-
-  onActivate(data: any): void {
-    console.log('Activate', JSON.parse(JSON.stringify(data)));
-  }
-
-  onDeactivate(data: any): void {
-    console.log('Deactivate', JSON.parse(JSON.stringify(data)));
-  }
-
 }
