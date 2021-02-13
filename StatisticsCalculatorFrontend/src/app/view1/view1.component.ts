@@ -8,6 +8,7 @@ import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { table } from 'console';
 
 
 @Component({
@@ -26,12 +27,13 @@ export class View1Component implements OnInit{
   });
 
   savedValues$: Observable<any>;
-
+  
 
   constructor( public dialog: MatDialog, private route: ActivatedRoute ) { }
 
+  changeTypeToExpl(){
     this.sampleType = true;
-  }
+  }  
 
   changeTypeToAbs() {
     this.sampleType = false;
@@ -40,19 +42,34 @@ export class View1Component implements OnInit{
   createNewRow(types: string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
     var row = relevant_table.insertRow(-1);
-    var cell1 =row.insertCell(-1);
+    var cell1 = row.insertCell(-1);
     var cell2 = row.insertCell(-1);
+    var cell3 = row.insertCell(-1);
+    var cell4 = row.insertCell(-1);
+    var cell5 = row.insertCell(-1);
 
     switch (types){
       case "abs":
-        cell1.innerHTML = "<input type='text'>";
-        cell2.innerHTML = "<input type='text'>";
+        cell1.innerHTML = "<input type='number'>";
+        cell2.innerHTML = "<input type='number'>";
         break;
       case "expl":
         cell1.innerHTML = "<input type='number'>";
         cell2.innerHTML = "<input type='number'>";
+        cell3.innerHTML = "<input type='number'>";
+        cell4.innerHTML = "<input type='number'>";
+        cell5.innerHTML = "<input type='number'>";
         break;
     }
+  }
+  removeRow(types : string){
+    var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
+    if (relevant_table.rows.length > 2){
+      relevant_table.deleteRow(-1);
+    } else {
+      alert("Es kann keine weitere Reihe gelöscht werden!")
+    }
+
   }
   ngOnInit() {
     // Eingabefelder leeren
@@ -113,6 +130,7 @@ export class View1Component implements OnInit{
         fixData = false;
       }
 
+      
       let inputData = this.buildFormModel();
 
       dialogRef = this.dialog.open(PopUpComponent, {

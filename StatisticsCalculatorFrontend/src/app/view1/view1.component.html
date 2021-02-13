@@ -19,21 +19,18 @@
     
     <br>
 
-
     <br>
-
-    
-    
-    <!--<input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe" required><-->
-    
     <div *ngIf="sampleType !=null">
         <div *ngIf="sampleType">
             <table id=expl>
                 <tr>
-                    <th colspan="1">Manuelle Eingabe der Stichprobe</th>
-                    <th><input type= Button value="+" (click)="createNewRow('expl')"></th>
+                    <th colspan="4">Manuelle Eingabe der Stichprobe</th>
+                    <th><input type= Button value="+" (click)="createNewRow('expl')"><input type=Button value="-" (click)="removeRow('expl')"></th>
                 </tr>
                 <tr>
+                  <td><input type="number" ></td>
+                  <td><input type="number" ></td>
+                  <td><input type="number" ></td>
                   <td><input type="number" ></td>
                   <td><input type="number" ></td> 
                 </tr>
@@ -43,11 +40,11 @@
             <table id=abs>
                 <tr>
                     <th colspan="1">Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit)</th>
-                    <th><input type= Button value="+" (click)="createNewRow('abs')"></th>
+                    <th><input type= Button value="+" (click)="createNewRow('abs')"><input type=Button value="-" (click)="removeRow('abs')"></th>
                 </tr>
                 <tr>
-                  <td><input type="text"></td>
-                  <td><input type="text"></td> 
+                  <td><input type="number"></td>
+                  <td><input type="number"></td> 
                 </tr>
             </table>
         </div>
