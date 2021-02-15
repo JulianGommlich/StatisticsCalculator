@@ -106,7 +106,7 @@ class StatisticsCalculatorBackendApplicationTests {
 		double[] percentages = {0.05, 0.1, 0.25, 0.75, 0.9, 0.95};
 
 		double[] result_optimal = {15, 18, 22, 36, 72, 98};
-		double[] result_negativ = {-5, -5, -4, -1, -1, -1};
+		double[] result_negativ = {-5, -5, -3, -1, -1, -1};
 		double[] result_null = {0, 0, 0, 0, 0, 0};
 		double[] result_einzelwert = {5, 5, 5, 5, 5, 5};
 		double[] result_gleich = {1, 1, 1, 1, 1, 1};

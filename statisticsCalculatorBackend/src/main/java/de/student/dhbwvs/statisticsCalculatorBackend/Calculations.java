@@ -101,7 +101,7 @@ public class Calculations {
         //Abrunden der Zahl
         int round = (int)(Math.floor(np));
         //Prüfe ob np ganzzahlig ist
-        if((np%1) == 0 ){
+        if((np%2) == 0 ){
             //Wende die Formel für ganzzahliges np an
             quantile = (0.5) * (values[round-1] + values[(round)]);
         } else {
@@ -173,7 +173,7 @@ public class Calculations {
         for(double calc : values){
             gms += calc;
         }
-        if(values[0] < 0 || gms < 0){
+        if(values[0] < 0 || gms <= 0){
             return -1;
         } else {
             for (double value : values) {
@@ -181,13 +181,8 @@ public class Calculations {
                 area += (height - value / 2);
             }
             double fair_area = height * values.length / 2;
-            if (fair_area == 0){
-                return -1;
-            }
-            else {
-                gini = (fair_area - area) / fair_area;
-                return limitDecimals(gini);
-            }
+            gini = (fair_area - area) / fair_area;
+            return limitDecimals(gini);
         }
     }
 }
