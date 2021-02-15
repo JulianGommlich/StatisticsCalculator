@@ -146,10 +146,10 @@ class StatisticsCalculatorBackendApplicationTests {
 	// Test for calculating the variance
 	@Test
 	public void testCalcVariance(){
-		double result_optimal = 438.66;
-		double result_negativ = 3.67;
+		double result_optimal = 431.1;
+		double result_negativ = 2.75;
 		double result_null = 0;
-		double result_einzelwert = 5;
+		double result_einzelwert = 0;
 		double result_gleich = 0;
 
 		Assertions.assertEquals(result_optimal, calcVariance(W_Optimal));

@@ -181,8 +181,14 @@ public class CalculationsTest {
                 area += (height - value / 2);
             }
             double fair_area = height * values.length / 2;
-            gini = (fair_area - area) / fair_area;
-            return limitDecimals(gini);
+            if (fair_area == 0){
+                return -1;
+            }
+            else {
+                gini = (fair_area - area) / fair_area;
+                return limitDecimals(gini);
+            }
         }
     }
 }
+
