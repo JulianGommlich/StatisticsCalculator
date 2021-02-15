@@ -173,7 +173,7 @@ public class Calculations {
         for(double calc : values){
             gms += calc;
         }
-        if(values[0] < 0 || gms < 0){
+        if(values[0] <= 0 || gms < 0){
             return -1;
         } else {
             for (double value : values) {
