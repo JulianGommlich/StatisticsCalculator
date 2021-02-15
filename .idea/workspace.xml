@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Gini-Koeffizient" />
     <list id="28bd7f61-8422-4e75-93f7-62ebcec7904b" name="Korrekte Quantilen-Berechnung ist eine philosophische Frage" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -274,7 +274,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613394470053</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Gini-Koeffizient">
+      <created>1613394550227</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1613394550227</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -319,6 +326,7 @@
     <MESSAGE value="Backend Unittests implementiert" />
     <MESSAGE value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
     <MESSAGE value="Korrekte Quantilen-Berechnung ist eine philosophische Frage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Korrekte Quantilen-Berechnung ist eine philosophische Frage" />
+    <MESSAGE value="Gini-Koeffizient" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gini-Koeffizient" />
   </component>
 </project>

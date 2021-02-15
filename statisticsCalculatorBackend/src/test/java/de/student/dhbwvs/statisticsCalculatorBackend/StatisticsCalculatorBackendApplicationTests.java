@@ -233,14 +233,14 @@ class StatisticsCalculatorBackendApplicationTests {
 	public void testCalcGiniCoefficient(){
 
 		double result_optimal = 0.29;
-		//double result_negativ = -0.35; //auf Exception testen
-		//double result_null = 0; //auf Exception testen
+		double result_negativ = -1;
+		double result_null = -1;
 		double result_einzelwert = 0;
 		double result_gleich = 0;
 
 		Assertions.assertEquals(result_optimal, calcGiniCoefficient(W_Optimal));
-		//Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
-		//Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
+		Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
+		Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
 		Assertions.assertEquals(result_einzelwert, calcGiniCoefficient(W_Einzelwert));
 		Assertions.assertEquals(result_gleich, calcGiniCoefficient(W_Gleich));
 	}
