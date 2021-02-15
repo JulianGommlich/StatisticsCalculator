@@ -27,7 +27,8 @@
 
     <P id="introduction">Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
     
-    <input class="Button1" type="button" id="importFile" value="(.csv-Datei auswählen)"> 
+    <input type="file" id="importFile" accept=".csv" multiple="false" (change)="uploadFile($event)">
+    <input type="button" class="Button1" id="loadFile" value="(.csv-Datei auswählen)" onclick="document.getElementById('importFile').click();"> 
     <br>
 
     <!--Hier kommt mal die Tabell hin-->

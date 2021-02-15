@@ -4,6 +4,7 @@ input {
     height: 34px;
     font-size: 20;
     font-weight: light;
+    text-align: center;
 }
 
 /* Löschen/Starten Button */
