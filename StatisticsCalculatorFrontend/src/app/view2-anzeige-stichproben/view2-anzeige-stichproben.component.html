@@ -1,4 +1,4 @@
-<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues">
+<form [formGroup]="ergebnisseFormGroup" *ngIf="ergebnisseFormGroup" id="view2CalculatedValues">
     <h2>Ausgabe:</h2>
     <div id="listOfCalculatedValues">
         <label for="modalValue">Modalwert:</label>
@@ -17,7 +17,8 @@
         <input type="text" id="standardDeviation" formControlName="standardDev" readonly>
         <br>
         <label for="giniValue">Gini-Koeffizient:</label>
-        <input type="text" id="giniValue" formControlName="giniValue" readonly>
+        <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value != '-1'" type="text" id="giniValue" formControlName="giniValue" readonly>
+        <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value == '-1'" type="text" id="giniValue" value="Der Gini-Koeffizient konnte nicht berechnet werden." readonly>
     </div>
     <div id="tableQuantile">
         <label for="quantil005">Quantil x<sub>0,05</sub>:</label>
