@@ -118,34 +118,49 @@ export class View1Component implements OnInit{
     this.dialog.open(PopUpDeleteComponent, {});
   }
 
+  /* Importiert eine CSV-Datei und schreibt die Werte in das Eingabeformular. */
   uploadFile($event: any): void {
-    let newNumSeq: String;
+    let explSample: Number[] = [];
+    let absSample: { [key: string]: number } = {};
     let newSampleType: String;
-    let newZ: Number;
  
     let input = $event.target;  
     let reader = new FileReader();  
     reader.readAsText(input.files[0]); 
 
     reader.onload = () => {  
-      let csvData = reader.result;  
-      let csvRecordsArray = (<string>csvData).split(","); 
-      if ((/\((\d*); ?(\d*)\)/gm).test(csvRecordsArray[0])) {
-        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
-        newSampleType = "absolut";
-      }
-      else if ((/\"(\d+\;{0,1} {0,1})+\"$/gm).test(csvRecordsArray[0])) {
-        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
+      let csvData = reader.result; 
+      let csvRecordsArray = (<string>csvData).split("\n"); 
+
+      if ((/explizite Stichprobe/gm).test(csvRecordsArray[0])) {
         newSampleType = "explizit";
-      }
+        for (let line of csvRecordsArray) {
+          if ((/\d+/gm).test(line)) {
+            explSample.push(Number(line));
+          }
+          else {
+            continue;
+          }
+        }
+      } 
+      else if ((/Absolute Häufigkeitsverteilung/gm).test(csvRecordsArray[0])) {
+        newSampleType = "absolut";
+        for (let line of csvRecordsArray) {
+          if ((/\d+\;\d+/gm).test(line)) {
+            let splittedLine = line.split(";");
+            Object.assign(absSample, { [String(splittedLine[0])]: Number(splittedLine[1]) });
+          }
+          else {
+            continue;
+          }
+        }
+      }     
 
-      newZ = Number(csvRecordsArray[1].replace(/\"/g, ""));
-
-      this.inputForm.setValue({
-        numSequence: newNumSeq,
-        sampleType: newSampleType,
-        valueZInput: newZ
-      });
+      // this.inputForm.setValue({
+      //   numSequence: newNumSeq,
+      //   sampleType: newSampleType,
+      //   valueZInput: newZ
+      // });
     };
   }
 }
