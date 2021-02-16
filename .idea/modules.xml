@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/StatisticsCalculator.iml" filepath="$PROJECT_DIR$/.idea/StatisticsCalculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/statisticsCalculatorBackend/statisticsCalculatorBackend.iml" filepath="$PROJECT_DIR$/statisticsCalculatorBackend/statisticsCalculatorBackend.iml" />
     </modules>
   </component>
 </project>

@@ -2,20 +2,15 @@
 
 ### Domain Model/Datenelement
 
-Da sowohl eine explizite Stichprobe als auch eine absolute Häufigkeitsverteilung als Input akzeptiert werden sollen und im Frontend nicht die Logik plaziert werden sollte, eine explizite Stichprobe in eine absolute Häufigkeitsverteilung umzurechnen, muss eine Lösung dafür gefunden werden, mit diesen zwei Unterschiedlichen Datenelementen umzugehen. Der Unterschied besteht vor allem darin, dass eine explizite Stichprobe als einfache Liste von Werten abgebildet werden kann und eine absolute Häufigkeitsverteilung als Liste von Tupeln oder HashMap (Wert, Häufigkeit) dargestellt werden muss.  
-Nachfolgend werden zwei Umsetzungsvarianten vorgestellt, wobei sich für Variante 1 entschieden wurde.
+#### Request-Element
+![Domain Model Stichprobe](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModel1.PNG)
 
-#### Variante 1
-![Domain Model Variante 1](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModelVariant1.PNG)
+Das Request-Element "Stichprobe" beinhaltet die Stichprobe sowohl als explizite Stichprobe als auch als absolute Häufigkeitsverteilung. Dies ist dem Umstand geschuldet, dass bereits vor der Berechnung der statistischen Kennzahlen beide Stichprobenarten angezeigt werden sollen. Neben diesen Stichprobenwerten wird auch der Wert "z" übergeben, der zur Berechnung der Kennzahl "Mittlere Abweichung von einem Wert 'z'" benötigt wird. Die Stichprobenart zeigt an, ob der Anwender eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung eingegeben hatte. Der Wert wird über die Schnittstelle geschickt, da er bei Zurückkehren auf die Eingabeseite im Frontend gebraucht wird.
 
-In dieser Variante erstellt das Frontend ein Datenelement "Stichprobe" mit den Attributen "type" und "values". Das Attribute "type" gibt dabei an, ob es sich um eine "expliziteStichprobe" oder eine "haeufigkeitsverteilung" handelt. Das Attribut "values" stellt unabhängig davon eine Liste dar, in der sich entweder die expliziten Stichprobenwerte oder die Wertepaare aus Wert und Häufigkeit befinden.  
-Das "type"-Attribut wird am Backend verwendet, um die Verarbeitung der in "values" mitgelieferten Daten entsprechend anzupassen.
+#### Response-Element
+![Domain Model Ergebnisse](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModel2.PNG)
 
-#### Variante 2
-![Domain Model Variante 2](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/DomainModelVariant2.PNG)
-
-In dieser Variante wird eines von zwei verschiedenen Datenelementen erzeugt, um entweder eine "ExpliziteStichprobe" oder eine "Haeufigkeitsverteilung" abzubilden. Dementsprechend werden in "values" die Werte der Stichprobe bzw. in "valueAmountPairs" die Paare aus Wert und Häufigkeit abgebildet.  
-Der negative Effekt dieser Lösung ist, dass auch zwei API-Endpunkte vom Backend zur Verfügung gestellt werden müssen, um mit den jeweiligen Datenelementen umzugehen.
+Das Response-Element "Ergebnisse" beinhaltet die Stichprobe einmal als explizite Stichprobe sowie als absolute Häufigkeitsverteilung sowie den Wert z. Darüber hinaus beinhaltet "Ergebnisse" alle Berechnungsergebnisse der Businesslogik im Backend. Bei den Quantilen wurde sich entschieden, diese als Liste zu speichern. Die Stichprobenart zeigt an, ob der Anwender eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung eingegeben hatte. Der Wert wird über die Schnittstelle geschickt, da er bei Zurückkehren auf die Eingabeseite im Frontend gebraucht wird.
 
 ### Schnittstellenspezifikation
 ![Schnittstellendiagramm](https://github.com/JulianGommlich/StatisticsCalculator/blob/main/docs/architecture_concept/assets/InterfaceDiagram.PNG)
@@ -30,8 +25,10 @@ Das Frontend erzeugt einen HTTP-Request mit folgenden Anforderungen:
     - Content-Type: application/json
     - Content-Language: de-DE
 - BODY (Format: application/json)
-    - type: enum (_ExpliziteStichprobe_ oder _Haeufigkeitsverteilung_)
-    - values: array
+    - stichprobenart: enum
+    - expliziteStichprobe: array
+    - haeufigkeitsverteilung: array
+    - z: number
 
 Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
 - HEADER
@@ -39,8 +36,18 @@ Das Backend erzeugt eine HTTP-Response mit folgenden Anforderungen:
     - Content-Type: application/json
     - Content-Language: de-DE
 - BODY (Format: application/json)
-    - ...
+    - stichprobenart: enum
+    - expliziteStichprobe: array
+    - haeufigkeitsverteilung: array
+    - z: number
+    - modalwert: number
+    - mittelwert: number
+    - median: number
+    - quantile: array
+    - varianz: number
+    - standardabweichung: number
+    - mittlereAbweichungZuZ: number
+    - giniKoeffizient: number
 
-### Umgang mit der Variable _values_ am Backend
-Die Variable _values_ kann entweder eine explizite Stichprobe (Liste mit einzelnen Werten) oder eine absolute Häufigkeitsverteilung (Liste mit Wertepaaren - Wert & Häufigkeit) abbilden. Das Backend kann anhand des Attributs _type_ erkennen, um welche Art der Stichprobe es sich handelt.  
-Am Backend werden zwei Methoden zur Verfügung gestellt, die eine explizite Stichprobe in eine absolute Häufigkeitsverteilung umwandeln können und umgekehrt. Die Methoden zur Berechnung der statistischen Kennzahlen prüfen zu Beginn ab, ob es sich bei der Eingabe um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt (anhand der Variable _type_) und formen dann ggf. die Eingabe in das für die Berechnung günstigere Format um.
+### Umgang mit der Stichprobe am Backend
+Das Backend nimmt beide Stichprobenarten an und verwendet für jede Methode diejenige, welche sich für die Berechnung der Kennzahl besser eignet. Zum Beispiel ist es einfacher, einen Mittelwert aus einer expliziten Stichprobe zu errechnen, aber ein Modalwert lässt sich besser aus einer absoluten Häufigkeitsverteilung berechnen.

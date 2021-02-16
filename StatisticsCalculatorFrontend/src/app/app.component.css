@@ -1,0 +1,29 @@
+/* Eingabefeld */
+input {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* Löschen/Starten Button */
+input.Button1, button {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+
+
+
+mat-dialog-content {
+    width: 50vw;
+}
