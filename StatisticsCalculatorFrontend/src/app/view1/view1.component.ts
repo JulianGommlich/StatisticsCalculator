@@ -66,16 +66,7 @@ export class View1Component implements OnInit{
   }
   removeRow(types : string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
-    if (relevant_table.rows.length > 2){
-/*       console.log(relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0].value);
-      let pp: HTMLInputElement;
-      pp = relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0];
-      if (pp.value==""){
-        console.log("Value ist ''")
-      }
-      pp.valueAsNumber = 8;
-      console.log(pp.type); */
-      
+    if (relevant_table.rows.length > 2){ 
       relevant_table.deleteRow(-1);
     } else {
       alert("Es kann keine weitere Reihe gelöscht werden!")
@@ -127,6 +118,14 @@ export class View1Component implements OnInit{
     });
   }
 
+  /*       console.log(relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0].value);
+      let pp: HTMLInputElement;
+      pp = relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0];
+      if (pp.value==""){
+        console.log("Value ist ''")
+      }
+      pp.valueAsNumber = 8;
+      console.log(pp.type); */
 
   openDialog(): void {
     const numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
@@ -134,16 +133,50 @@ export class View1Component implements OnInit{
     const abs = document.getElementById('absSample') as HTMLInputElement;
     const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
 
-      
-      let inputData = this.buildFormModel();
+    let tempType = '';
+
+    if(this.sampleType){
+      tempType = 'expl';
+    } else {
+      tempType = 'abs';
+    }
+
+    var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(tempType);
+
+    let temp_string = '';
+
+    if(tempType == 'expl'){
+      for(let i=1; i < relevant_table.rows.length; i++){
+        for(let j=0; j < relevant_table.rows[0].cells.length; j++){
+          if(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value){
+            temp_string += String(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value)+';';
+          }        
+        }
+      }
+    } else {
+      for(let i=1; i < relevant_table.rows.length; i++){
+        const temp_stichprobenWert = relevant_table.rows[i].cells.item(0)!.getElementsByTagName("input")[0].value;
+        const temp_absHäufigkeit = relevant_table.rows[i].cells.item(1)!.getElementsByTagName("input")[0].value;
+        if(temp_stichprobenWert && temp_absHäufigkeit){
+          temp_string += '('+ temp_stichprobenWert + ';' + temp_absHäufigkeit + ');';
+        }        
+      }
+    }
+    
+
+    
+
+    let inputData = this.buildFormModel();
     const validation = new Validation();
 
-    if (validation.checkValidation(numSeq, expl, abs, valueZ)) {
+    if (validation.checkValidation(temp_string, expl, abs, valueZ)) {
+      this.inputForm.patchValue({numSequence: temp_string});
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
       this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
     }
+
   }
 
   buildFormModel(): Stichprobe {
