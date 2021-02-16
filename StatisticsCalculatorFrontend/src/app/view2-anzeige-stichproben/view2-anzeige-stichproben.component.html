@@ -1,64 +1,60 @@
-<form [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues">
+<form [formGroup]="ergebnisseFormGroup" *ngIf="ergebnisseFormGroup" id="view2CalculatedValues">
     <h2>Ausgabe:</h2>
     <div id="listOfCalculatedValues" class="outputFlexContainer">
         <div class="outputFlexElement">
-            <div class="outputLabel">Modalwert:</div>
-            <input type="text" id="modalValue" value="Modalwert" readonly>
+            <label for="modalValue">Modalwert:</label>
+            <input type="text" id="modalValue" formControlName="modalValue" readonly>
         </div>
         <div class="outputFlexElement">
-            <div class="outputLabel">Mittelwert:</div>
-            <input type="text" id="meanValue" value="(Mittelwert)" readonly>
+            <label for="meanValue">Mittelwert:</label>
+            <input type="text" id="meanValue" formControlName="meanValue" readonly>
         </div>
         <div class="outputFlexElement">
-            <div class="outputLabel">Median:</div>
-            <input type="text" id="medianValue" value="(Median)" readonly>
+            <label for="medianValue">Median:</label>
+            <input type="text" id="medianValue" formControlName="median" readonly>
         </div>
         <div class="outputFlexElement">
-            <div class="outputLabel">Varianz:</div>
-            <input type="text" id="varianceValue" value="(Varianz)" readonly>
+            <label for="varianceValue">Varianz:</label>
+            <input type="text" id="varianceValue" formControlName="variance" readonly>
         </div>
         <div class="outputFlexElement">
-            <div class="outputLabel">Standardabweichung:</div>
-            <input type="text" id="standardDeviation" value="(Standardabweichung)" readonly>
+            <label for="standardDeviation">Standardabweichung:</label>
+            <input type="text" id="standardDeviation" formControlName="standardDev" readonly>
         </div>
         <div class="outputFlexElement">
-            <div class="outputLabel">Gini-Koeffizient:</div>
-            <input type="text" id="giniValue" value="(Gini-Koeffizient)" readonly>
+            <label for="giniValue">Gini-Koeffizient:</label>
+            <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value != '-1'" type="text" id="giniValue" formControlName="giniValue" readonly>
+            <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value == '-1'" type="text" id="giniValue" value="Der Gini-Koeffizient konnte nicht berechnet werden." readonly>
         </div>
     </div>
     <div id="tableQuantile" class="outputFlexContainer">
         <div class="outputFlexElement">
-            <div class="outputLabel">Quantil x<sub>0,05</sub>:</div>
-            <input type="text" id="quantil005" value="(Qunatil0,05)" readonly>
-        </div>
-        
-        <div class="outputFlexElement">
-            <div class="outputLabel">Quantil x<sub>0,1</sub>:</div>
-            <input type="text" id="quantil01" value="(Qunatil0,1)" readonly>
-        </div>
-        
-        <div class="outputFlexElement">
-            <div class="outputLabel">Quantil x<sub>0,25</sub>:</div>
-            <input type="text" id="quantil025" value="(Qunatil0,25)" readonly>
-        </div>
-        
-        <div class="outputFlexElement">
-            <div class="outputLabel">Quantil x<sub>0,75</sub>:</div>
-            <input type="text" id="quantil075" value="(Qunatil0,75)" readonly>
-        </div>
-        
-        <div class="outputFlexElement">
-            <div class="outputLabel">Quantil x<sub>0,9</sub>:</div>
-            <input type="text" id="quantil09" value="(Qunatil0,9)" readonly>
-        </div>
-        
-        <div class="outputFlexElement">
-            <div class="outputLabel">Quantil x<sub>0,95</sub>:</div>
-            <input type="text" id="quantil095" value="(Qunatil0,95)" readonly>
+            <label for="quantil005">Quantil x<sub>0,05</sub>:</label>
+            <input type="text" id="quantil005" formControlName="quantile005" readonly>
         </div>
         <div class="outputFlexElement">
-            <div class="outputLabel">Mittlere absolute Abweichung (Wert Z):</div>
-            <input type="text" id="meanAbsoluteDeviation" value="(Wert Z)" readonly>
+            <label for="quantil01">Quantil x<sub>0,1</sub>:</label>
+            <input type="text" id="quantil01" formControlName="quantile01" readonly>
+        </div>
+        <div class="outputFlexElement">
+            <label for="quantil025">Quantil x<sub>0,25</sub>:</label>
+            <input type="text" id="quantil025" formControlName="quantile025" readonly>
+        </div>
+        <div class="outputFlexElement">
+            <label for="quantil075">Quantil x<sub>0,75</sub>:</label>
+            <input type="text" id="quantil075" formControlName="quantile075" readonly>
+        </div>
+        <div class="outputFlexElement">
+            <label for="quantil09">Quantil x<sub>0,9</sub>:</label>
+            <input type="text" id="quantil09" formControlName="quantile09" readonly>
+        </div>
+        <div class="outputFlexElement">
+            <label for="quantil095">Quantil x<sub>0,95</sub>:</label>
+            <input type="text" id="quantil095" formControlName="quantile095" readonly>
+        </div>
+        <div class="outputFlexElement">
+            <label for="meanAbsoluteDeviation">Mittlere absolute Abweichung (Wert Z):</label>
+            <input type="text" id="meanAbsoluteDeviation" formControlName="z" readonly>
         </div>
     </div>
     

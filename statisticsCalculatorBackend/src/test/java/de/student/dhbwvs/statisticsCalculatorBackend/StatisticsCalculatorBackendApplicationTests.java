@@ -106,7 +106,7 @@ class StatisticsCalculatorBackendApplicationTests {
 		double[] percentages = {0.05, 0.1, 0.25, 0.75, 0.9, 0.95};
 
 		double[] result_optimal = {15, 18, 22, 36, 72, 98};
-		double[] result_negativ = {-5, -5, -4, -1, -1, -1};
+		double[] result_negativ = {-5, -5, -3, -1, -1, -1};
 		double[] result_null = {0, 0, 0, 0, 0, 0};
 		double[] result_einzelwert = {5, 5, 5, 5, 5, 5};
 		double[] result_gleich = {1, 1, 1, 1, 1, 1};
@@ -146,10 +146,10 @@ class StatisticsCalculatorBackendApplicationTests {
 	// Test for calculating the variance
 	@Test
 	public void testCalcVariance(){
-		double result_optimal = 438.66;
-		double result_negativ = 3.67;
+		double result_optimal = 431.1;
+		double result_negativ = 2.75;
 		double result_null = 0;
-		double result_einzelwert = 5;
+		double result_einzelwert = 0;
 		double result_gleich = 0;
 
 		Assertions.assertEquals(result_optimal, calcVariance(W_Optimal));
@@ -233,14 +233,14 @@ class StatisticsCalculatorBackendApplicationTests {
 	public void testCalcGiniCoefficient(){
 
 		double result_optimal = 0.29;
-		//double result_negativ = -0.35; //auf Exception testen
-		//double result_null = 0; //auf Exception testen
+		double result_negativ = -1;
+		double result_null = -1;
 		double result_einzelwert = 0;
 		double result_gleich = 0;
 
 		Assertions.assertEquals(result_optimal, calcGiniCoefficient(W_Optimal));
-		//Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
-		//Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
+		Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
+		Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
 		Assertions.assertEquals(result_einzelwert, calcGiniCoefficient(W_Einzelwert));
 		Assertions.assertEquals(result_gleich, calcGiniCoefficient(W_Gleich));
 	}
