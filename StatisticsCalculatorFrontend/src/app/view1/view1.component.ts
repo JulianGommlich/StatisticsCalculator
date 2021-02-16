@@ -32,15 +32,22 @@ export class View1Component implements OnInit{
 
 
   constructor( public dialog: MatDialog, private route: ActivatedRoute ) { }
-
+  /**
+   * Changes the SampleType to Expl to show the right table
+   */
   changeTypeToExpl(){
     this.sampleType = true;
   }  
-
+  /**
+   * Changes the Sampletype to Abs to show the right table
+   */
   changeTypeToAbs() {
     this.sampleType = false;
   }
-
+  /**
+   * Creates a new row in selected table
+   * @param types gives eather type "expl" of "abs" for selection of the right table
+   */
   createNewRow(types: string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
     var row = relevant_table.insertRow(-1);
@@ -64,23 +71,17 @@ export class View1Component implements OnInit{
         break;
     }
   }
+  /**
+   * Removes a row in selected table, but doesnt allow entire deletion.
+   * @param types gives eather type "expl" of "abs" for selection of the right table
+   */
   removeRow(types : string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
-    if (relevant_table.rows.length > 2){
-/*       console.log(relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0].value);
-      let pp: HTMLInputElement;
-      pp = relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0];
-      if (pp.value==""){
-        console.log("Value ist ''")
-      }
-      pp.valueAsNumber = 8;
-      console.log(pp.type); */
-      
+    if (relevant_table.rows.length > 2){   
       relevant_table.deleteRow(-1);
     } else {
       alert("Es kann keine weitere Reihe gelöscht werden!")
     }
-
   }
   ngOnInit() {
     // Eingabefelder leeren
@@ -129,7 +130,6 @@ export class View1Component implements OnInit{
 
 
   openDialog(): void {
-    const numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
     const expl = document.getElementById('explSample') as HTMLInputElement;
     const abs = document.getElementById('absSample') as HTMLInputElement;
     const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
@@ -138,7 +138,7 @@ export class View1Component implements OnInit{
       let inputData = this.buildFormModel();
     const validation = new Validation();
 
-    if (validation.checkValidation(numSeq, expl, abs, valueZ)) {
+    if (validation.checkValidation(expl, abs, valueZ)) {
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
