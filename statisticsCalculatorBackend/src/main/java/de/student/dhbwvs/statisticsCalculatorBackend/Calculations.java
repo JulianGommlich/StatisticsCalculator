@@ -101,7 +101,7 @@ public class Calculations {
         //Abrunden der Zahl
         int round = (int)(Math.floor(np));
         //Prüfe ob np ganzzahlig ist
-        if((np%1) == 0 ){
+        if((np%2) == 0 ){
             //Wende die Formel für ganzzahliges np an
             quantile = (0.5) * (values[round-1] + values[(round)]);
         } else {

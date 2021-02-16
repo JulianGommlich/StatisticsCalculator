@@ -101,7 +101,7 @@ public class CalculationsTest {
         //Abrunden der Zahl
         int round = (int)(Math.floor(np));
         //Prüfe ob np ganzzahlig ist
-        if((np%1) == 0 ){
+        if((np%2) == 0 ){
             //Wende die Formel für ganzzahliges np an
             quantile = (0.5) * (values[round-1] + values[(round)]);
         } else {
@@ -169,12 +169,21 @@ public class CalculationsTest {
         Arrays.sort(values);
         double height = 0;
         double area = 0;
-        for (double value : values) {
-            height += value;
-            area += (height - value / 2);
+        double gms = 0;
+        for(double calc : values){
+            gms += calc;
         }
-        double fair_area = height * values.length / 2;
-        gini = (fair_area - area) / fair_area;
-        return limitDecimals(gini);
+        if(values[0] < 0 || gms <= 0){
+            return -1;
+        } else {
+            for (double value : values) {
+                height += value;
+                area += (height - value / 2);
+            }
+            double fair_area = height * values.length / 2;
+            gini = (fair_area - area) / fair_area;
+            return limitDecimals(gini);
+        }
     }
 }
+
