@@ -74,8 +74,8 @@ export class FourCharts implements OnInit {
   ngOnInit() {
     this.stichprobendaten = this.apiEndpoint.getSample();
 
-    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe;
-    this.haeufigkeitsverteilung = this.stichprobendaten.haeufigkeitsverteilung;
+    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe.sort();
+    this.haeufigkeitsverteilung = this.sortObject(this.stichprobendaten.haeufigkeitsverteilung);
 
     const freqDistKeys = Object.keys(this.haeufigkeitsverteilung);
     const freqDistValues = Object.values(this.haeufigkeitsverteilung);
@@ -83,6 +83,21 @@ export class FourCharts implements OnInit {
     this.setBarAndPieChartValues(freqDistKeys, freqDistValues);
     this.setEmpiricalDistributionChartValues(freqDistKeys, freqDistValues);
     this.setLorenzChartValues(freqDistKeys, freqDistValues)
+  }
+
+  sortObject(object: { [key: string]: number }): { [key: string]: number } {
+    let returnObject: { [key: string]: number } = {};
+    const objectKeys = Object.keys(object);
+    let objectKeysNumeric: number[] = [];
+
+    objectKeys.forEach((key: string) => { objectKeysNumeric.push(Number(key));} );
+    objectKeysNumeric.sort((first, second) => first - second);
+
+    objectKeysNumeric.forEach((key: number) => {
+      Object.assign(returnObject, { [key]: object[key] });
+    })
+
+    return returnObject;
   }
 
   /**
@@ -195,6 +210,7 @@ export class FourCharts implements OnInit {
         'name': (Math.round(sumOfAbsoluteFrequency/this.expliziteStichprobe.length * 1000)/1000).toString(),
         'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => a + b, 0) * 1000)/1000
       });
+      console.log(this.expliziteStichprobe.reduce((a, b) => a + b, 0));
     }
 
     // Hier wird die Variable valueSeries in das Diagramm eingesetzt.
