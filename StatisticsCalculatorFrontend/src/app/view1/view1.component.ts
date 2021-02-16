@@ -67,6 +67,14 @@ export class View1Component implements OnInit{
   removeRow(types : string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
     if (relevant_table.rows.length > 2){ 
+       /*       console.log(relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0].value);
+      let pp: HTMLInputElement;
+      pp = relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0];
+      if (pp.value==""){
+        console.log("Value ist ''")
+      }
+      pp.valueAsNumber = 8;
+      console.log(pp.type); */
       relevant_table.deleteRow(-1);
     } else {
       alert("Es kann keine weitere Reihe gelöscht werden!")
@@ -117,15 +125,6 @@ export class View1Component implements OnInit{
       });
     });
   }
-
-  /*       console.log(relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0].value);
-      let pp: HTMLInputElement;
-      pp = relevant_table.rows[2].cells.item(0)!.getElementsByTagName("input")[0];
-      if (pp.value==""){
-        console.log("Value ist ''")
-      }
-      pp.valueAsNumber = 8;
-      console.log(pp.type); */
 
   openDialog(): void {
     const numSeq: string = (<HTMLInputElement>document.getElementById('numSequence')).value;
