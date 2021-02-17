@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Quantilen und Gini-Koeffizient funktionieren">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_01_2021_14_27__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_23_01_2021_14_27__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" afterDir="false" />
     </list>
     <list id="28bd7f61-8422-4e75-93f7-62ebcec7904b" name="Korrekte Quantilen-Berechnung ist eine philosophische Frage" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +32,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -179,6 +180,7 @@
       <workItem from="1613159690614" duration="380000" />
       <workItem from="1613209128701" duration="698000" />
       <workItem from="1613406897318" duration="303000" />
+      <workItem from="1613570992246" duration="740000" />
     </task>
     <task id="LOCAL-00001" summary="Implementierung der Umwandlung von absoluter Häufigkeit nach Stichprobe&#10;Beide Umwandlungen geben jetzt ein nach Größe aufsteigendes Ergebnis zurück&#10;Implementierung einiger Tests">
       <created>1611151159525</created>
@@ -316,7 +318,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="backend_docstrings" />
+                        <option value="origin/backend_docstrings" />
                       </list>
                     </value>
                   </entry>

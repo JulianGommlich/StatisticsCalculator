@@ -46,13 +46,13 @@ public class Calculations {
         return modal.stream().mapToDouble(d -> d).toArray();
     }
 
-    // Function takes an array as input
+    /**
+     * This method adds up all values inside the array "values" and divides them through the length of the array
+     * @param values The Array transmitted  by the frontend
+     * @return value of calculated Average
+     **/
     public static double calcAverage(double[] values) {
-        /*
-          Berechnung des Durchschnitts eines Arrays
-          Input: Array mit double-Werten
-          Return: Durchschnitt als double-Wert
-         */
+
         double sum = 0;
 
         // Alle Elemente des Arrays in der Variable sum summieren
@@ -64,7 +64,11 @@ public class Calculations {
         return limitDecimals(sum / values.length);
     }
 
-    // calcMedian berechnet den Median eines Arrays
+    /**
+     * This method searches for the value, which is in the middle of the array.
+     * @param values The Array transmitted  by the frontend
+     * @return value of the calculated median
+     **/
     public static double calcMedian(double[] values){
     
         //Benenne einen Parameter für den späteren Median
@@ -88,12 +92,14 @@ public class Calculations {
         //Gebe den Median zurück
         return limitDecimals(median);
     }
-
+    /**
+     * This method calculates the quantiles for a given percentage out of the array values
+     * @param values The array transmitted by the frontend
+     * @param percentage The percentage transmitted by the frontend
+     * @return value of the calculated quantile
+     **/
     public static double calcQuantile(double percentage, double[] values){
-        /* Quantile berechnen
-          Input: array mit double Werten und Prozentzahl im double Format
-          Return: Das berechnete Quantil für die entsprechende Prozentzahl
-         */
+
         double quantile;
         Arrays.sort(values);
         // Länge des Arrays
@@ -161,7 +167,11 @@ public class Calculations {
         }
         return limitDecimals(sum/stichprobe.length);
     }
-
+    /**
+     * This method calculates the gini coefficient for the array values
+     * @param values The array transmitted by the frontend
+     * @return the value of the calculated gini coefficient or -1 in case of an error
+     **/
     public static double calcGiniCoefficient(double[] values){
         /* Gini Koeffizient berechnen berechnen
           Input: Array mit double Werten
