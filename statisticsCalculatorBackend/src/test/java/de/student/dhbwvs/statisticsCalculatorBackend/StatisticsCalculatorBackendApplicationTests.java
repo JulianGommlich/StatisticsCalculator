@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 import static de.student.dhbwvs.statisticsCalculatorBackend.CalculationsTest.*;
 
+/**
+ * This class is for Unittests only. The calculation methods are tested using the test concept created by group 4.
+ */
+
 @SpringBootTest
 class StatisticsCalculatorBackendApplicationTests {
 
@@ -51,7 +55,7 @@ class StatisticsCalculatorBackendApplicationTests {
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
 
-	// Test for calculating the modal value --- BESTANDEN
+	// Test for calculating the modal value
 	@Test
 	public void testCalcModal(){
 		double[] result_optimal = {23,27};
@@ -83,7 +87,7 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcAverage(W_Gleich));
 	}
 
-	// Test for calculating the median --- BESTANDEN
+	// Test for calculating the median
 	@Test
 	public void testCalcMedian(){
 		double result_optimal = 25;

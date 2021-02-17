@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 
+/**
+ * This class contains all the methods used to calculate the required statistical data.
+ * Additionally it contains a helper class to standardise the results.
+ */
+
 public class Calculations {
 
     /**
@@ -22,12 +27,10 @@ public class Calculations {
      * As the amount of modal values is unknown in the beginning, they are temporarily stored in a resizeable ArrayList.
      * @param freqDist The frequency distribution transmitted by the frontend
      * @return array of the 1 to 30 modal values as doubles
-     **/
+     */
     public static double[] calcModal(Map<Double,Integer> freqDist) {
     
         List<Double> modal = new ArrayList<>();
-        
-
         int highestValue = 0;
         //search for the highest value and assign it to highestValue
         for (int i : freqDist.values()) {
@@ -152,7 +155,7 @@ public class Calculations {
       @param stichprobe The first parameter is the sample as an array of doubles
       @param z The second parameter is the value z as a double
       @return The calculated average deviation as a double
-     **/
+     */
     public static double calcAverageDeviation(double[] stichprobe, double z){
         double sum = 0;
 

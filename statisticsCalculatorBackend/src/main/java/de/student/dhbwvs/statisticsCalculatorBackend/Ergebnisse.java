@@ -6,6 +6,15 @@ import lombok.Setter;
 
 import java.util.Map;
 
+/**This class produces an object that functions as a container for both the transmitted data as well as the
+ * results of the different calculations.
+ * Once the calculations are complete, the object gets sent to the frontend
+ *
+ * The @JsonCreator annotation makes sure the constructor takes the values for sampleType, stichprobe,
+ * hauefigkeitsverteilung and z right out of the JSON file that was transmitted by the frontend.
+ *
+ */
+
 @Getter
 @Setter
 public class Ergebnisse {

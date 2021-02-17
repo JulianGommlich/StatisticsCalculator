@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Quantilen und Gini-Koeffizient funktionieren">
+    <list default="true" id="443c654d-daa9-4071-a33a-a7d363de4aae" name="Default Changelist" comment="Docstrings hinzugefügt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Calculations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/Ergebnisse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/main/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/CalculationsTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java" afterDir="false" />
     </list>
     <list id="28bd7f61-8422-4e75-93f7-62ebcec7904b" name="Korrekte Quantilen-Berechnung ist eine philosophische Frage" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -299,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613394983819</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Docstrings hinzugefügt">
+      <created>1613556468837</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1613556468837</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,14 +356,15 @@
     <MESSAGE value="CalculationsTest Klasse, Begrenzung Dezimalzahlen, calculations -&gt; Calculations" />
     <MESSAGE value="Korrekte Quantilen-Berechnung ist eine philosophische Frage" />
     <MESSAGE value="Gini-Koeffizient" />
-    <option name="LAST_COMMIT_MESSAGE" value="Gini-Koeffizient" />
+    <MESSAGE value="Docstrings hinzugefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Docstrings hinzugefügt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/statisticsCalculatorBackend/src/test/java/de/student/dhbwvs/statisticsCalculatorBackend/StatisticsCalculatorBackendApplicationTests.java</url>
-          <line>14</line>
+          <line>18</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
