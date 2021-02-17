@@ -75,9 +75,9 @@ export class Validation {
                 while (row!=rowsLength){
                     var x = relevant_table.rows[row].cells.item(0)!.getElementsByTagName("input")[0].value
                     var y = relevant_table.rows[row].cells.item(1)!.getElementsByTagName("input")[0].value
-                    if (x == null){ //if table is not full
+                    if (x == ""){ //if table is not full
                         return false;
-                    } if (y == null){ // if table is not full
+                    } if(y == ""){ // if table is not full
                         return false;
                     }
                     // convert x to number
