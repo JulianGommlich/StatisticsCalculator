@@ -14,6 +14,7 @@ public class MainPage {
     public SelenideElement spanExplSample = $("#explSampleSpan");
     public SelenideElement radioAbsSample = $("#absSample");
     public SelenideElement spanAbsSample = $("#absSampleSpan");
+    public SelenideElement inputZ = $("#valueZInput");
     public SelenideElement buttonDelete = $("#delete");
     public SelenideElement buttonShowResults = $("#show");
 
@@ -36,16 +37,18 @@ public class MainPage {
     public SelenideElement varianz = $("#varianceValue");
     public SelenideElement standardabweichung = $("#standardDeviation");
     public SelenideElement giniKoeffizient = $("#giniValue");
-    public SelenideElement quantil005 = $("#quantile005");
-    public SelenideElement quantil01 = $("#quantile01");
-    public SelenideElement quantil025 = $("#quantile025");
-    public SelenideElement quantil075 = $("#quantile075");
-    public SelenideElement quantil09 = $("#quantile09");
-    public SelenideElement quantil095 = $("#quantile095");
+    public SelenideElement quantil005 = $("#quantil005");
+    public SelenideElement quantil01 = $("#quantil01");
+    public SelenideElement quantil025 = $("#quantil025");
+    public SelenideElement quantil075 = $("#quantil075");
+    public SelenideElement quantil09 = $("#quantil09");
+    public SelenideElement quantil095 = $("#quantil095");
     public SelenideElement mittlereAbweichungZuZ = $("#meanAbsoluteDeviation");
 
     public SelenideElement barChart = $("#barChart");
     public SelenideElement pieChart = $("#pieChart");
     public SelenideElement empiricalDistributionChart = $("#empiricalDistributionChart");
     public SelenideElement lorenzChart = $("#lorenzChart");
+
+    public SelenideElement buttonReturn = $("#return");
 }

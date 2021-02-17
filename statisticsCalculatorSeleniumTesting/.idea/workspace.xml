@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9adc390a-ae34-4626-b60b-0fe7f043983b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Projekt/statisticsCalculatorTestingSelenium/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Projekt/statisticsCalculatorTestingSelenium/MainPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Projekt/statisticsCalculatorTestingSelenium/MainPageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/statisticsCalculatorTestingSelenium.iml" beforeDir="false" afterPath="$PROJECT_DIR$/statisticsCalculatorTestingSelenium.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,23 +35,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Android JUnit.MainPageTest">
-    <configuration name="MainPageTest" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
-      <module name="statisticsCalculatorTestingSelenium" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Projekt.statisticsCalculatorTestingSelenium.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
-      <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.MainPageTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -60,7 +47,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainPageTest.expSample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MainPageTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorTestingSelenium" />
       <extension name="coverage">
         <pattern>
@@ -70,13 +57,28 @@
       </extension>
       <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
       <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
-      <option name="METHOD_NAME" value="expSample" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPageTest.correctResultsForAbsoluteDistribution" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorTestingSelenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projekt.statisticsCalculatorTestingSelenium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
+      <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
+      <option name="METHOD_NAME" value="correctResultsForAbsoluteDistribution" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MainPageTest.inputDeviation" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MainPageTest.correctResultsForExplicitSample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="statisticsCalculatorTestingSelenium" />
       <extension name="coverage">
         <pattern>
@@ -86,7 +88,39 @@
       </extension>
       <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
       <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
-      <option name="METHOD_NAME" value="inputDeviation" />
+      <option name="METHOD_NAME" value="correctResultsForExplicitSample" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPageTest.diagramsAreShown" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorTestingSelenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projekt.statisticsCalculatorTestingSelenium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
+      <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
+      <option name="METHOD_NAME" value="diagramsAreShown" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainPageTest.headerLeadsToViewOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="statisticsCalculatorTestingSelenium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Projekt.statisticsCalculatorTestingSelenium.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Projekt.statisticsCalculatorTestingSelenium" />
+      <option name="MAIN_CLASS_NAME" value="Projekt.statisticsCalculatorTestingSelenium.MainPageTest" />
+      <option name="METHOD_NAME" value="headerLeadsToViewOne" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -94,9 +128,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Android JUnit.MainPageTest" />
-        <item itemvalue="JUnit.MainPageTest.inputDeviation" />
-        <item itemvalue="JUnit.MainPageTest.expSample" />
+        <item itemvalue="JUnit.MainPageTest" />
+        <item itemvalue="JUnit.MainPageTest.diagramsAreShown" />
+        <item itemvalue="JUnit.MainPageTest.headerLeadsToViewOne" />
+        <item itemvalue="JUnit.MainPageTest.correctResultsForAbsoluteDistribution" />
+        <item itemvalue="JUnit.MainPageTest.correctResultsForExplicitSample" />
       </list>
     </recent_temporary>
   </component>
