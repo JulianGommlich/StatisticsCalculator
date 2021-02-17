@@ -146,8 +146,9 @@ export class View1Component implements OnInit{
 
     if(tempType == 'expl'){
       for(let i=1; i < relevant_table.rows.length; i++){
-        for(let j=0; j < relevant_table.rows[0].cells.length; j++){
+        for(let j=0; j < relevant_table.rows[i].cells.length; j++){
           if(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value){
+            console.log(relevant_table.rows[0]);
             temp_string += String(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value)+';';
           }        
         }
