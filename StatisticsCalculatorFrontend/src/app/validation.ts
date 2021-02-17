@@ -54,7 +54,6 @@ export class Validation {
                     }
                     row +=1;
                 }
-                console.log("Werte insgesammt sind:" +i);
                 //if more than 100 numbers
                 if (i>100){
                     return false;
@@ -72,7 +71,6 @@ export class Validation {
                 if (rowsLength > 30){
                     return false;
                 }
-                // verliere ich hier die letzte row?
                 while (row!=rowsLength){
                     var x = relevant_table.rows[row].cells.item(0)!.getElementsByTagName("input")[0].value
                     var y = relevant_table.rows[row].cells.item(1)!.getElementsByTagName("input")[0].value
