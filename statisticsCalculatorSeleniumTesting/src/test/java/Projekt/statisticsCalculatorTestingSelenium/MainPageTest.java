@@ -40,35 +40,21 @@ public class MainPageTest {
     }
 
     @Test
-    public void inputNum() {
-        mainPage.inputNumSequence.shouldBe(visible);
-        mainPage.inputNumSequence.hover();
-
-        mainPage.inputNumSequence.sendKeys("(29, 215, 155, 129, 1856)");
-    }
-
-    @Test
-    public void inputDeviation() {
-        mainPage.inputMeanDeviation.shouldBe(visible);
-        mainPage.inputMeanDeviation.click();
-
-        mainPage.inputMeanDeviation.sendKeys("25185");
-    }
-
-    @Test
     public void expSample() {
-        mainPage.radioExplSample.shouldBe(visible);
+        mainPage.spanExplSample.shouldNotBe(visible);
         assertFalse(mainPage.radioExplSample.isSelected());
-        mainPage.radioExplSample.click();
+        mainPage.spanExplSample.click();
+        mainPage.spanExplSample.shouldBe(visible);
         assertTrue(mainPage.radioExplSample.isSelected());
         assertFalse(mainPage.radioAbsSample.isSelected());
     }
 
     @Test
     public void absSample() {
-        mainPage.radioAbsSample.shouldBe(visible);
+        mainPage.spanAbsSample.shouldNotBe(visible);
         assertFalse(mainPage.radioAbsSample.isSelected());
-        mainPage.radioAbsSample.click();
+        mainPage.spanAbsSample.click();
+        mainPage.spanAbsSample.shouldBe(visible);
         assertTrue(mainPage.radioAbsSample.isSelected());
         assertFalse(mainPage.radioExplSample.isSelected());
     }
