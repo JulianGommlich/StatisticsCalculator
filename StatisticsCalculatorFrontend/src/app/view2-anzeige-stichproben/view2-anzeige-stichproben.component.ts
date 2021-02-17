@@ -32,19 +32,19 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         explSample: [data.expliziteStichprobe],
         freqDist: [data.haeufigkeitsverteilung],
         z: [data.z],
-        modalValue: [data.modalwert],
-        meanValue: [data.mittelwert],
-        median: [data.median],
-        quantile005: [data.quantile[0]],
-        quantile01: [data.quantile[1]],
-        quantile025: [data.quantile[2]],
-        quantile075: [data.quantile[3]],
-        quantile09: [data.quantile[4]],
-        quantile095: [data.quantile[5]],
-        variance: [data.varianz],
-        standardDev: [data.standardabweichung],
-        meanAbsoluteDeviation: [data.mittlereAbweichungZuZ],
-        giniValue: [data.giniKoeffizient]
+        modalValue: [data.modalwert.toString().replace(',', ', ')],
+        meanValue: [data.mittelwert.toLocaleString("de-DE")],
+        median: [data.median.toLocaleString("de-DE")],
+        quantile005: [data.quantile[0].toLocaleString("de-DE")],
+        quantile01: [data.quantile[1].toLocaleString("de-DE")],
+        quantile025: [data.quantile[2].toLocaleString("de-DE")],
+        quantile075: [data.quantile[3].toLocaleString("de-DE")],
+        quantile09: [data.quantile[4].toLocaleString("de-DE")],
+        quantile095: [data.quantile[5].toLocaleString("de-DE")],
+        variance: [data.varianz.toLocaleString("de-DE")],
+        standardDev: [data.standardabweichung.toLocaleString("de-DE")],
+        meanAbsoluteDeviation: [data.mittlereAbweichungZuZ.toLocaleString("de-DE")],
+        giniValue: [data.giniKoeffizient.toLocaleString("de-DE")]
       });
 
       this.stichprobendaten = new Stichprobe(data.sampleType, data.expliziteStichprobe, data.haeufigkeitsverteilung, data.z);

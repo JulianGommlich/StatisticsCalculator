@@ -210,7 +210,6 @@ export class FourCharts implements OnInit {
         'name': (Math.round(sumOfAbsoluteFrequency/this.expliziteStichprobe.length * 1000)/1000).toString(),
         'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => a + b, 0) * 1000)/1000
       });
-      console.log(this.expliziteStichprobe.reduce((a, b) => a + b, 0));
     }
 
     // Hier wird die Variable valueSeries in das Diagramm eingesetzt.

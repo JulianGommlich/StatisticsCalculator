@@ -1,6 +1,7 @@
 <div class="flexContainer">
     <div>
         <ngx-charts-bar-vertical
+            id="barChart"
             [view]="view"
             [scheme]="bcColorScheme"
             [results]="barAndPieChartValues"
@@ -16,6 +17,7 @@
     </div>
     <div>
         <ngx-charts-pie-chart
+            id="pieChart"
             [view]="view"
             [scheme]="pcColorScheme"
             [results]="barAndPieChartValues"
@@ -28,6 +30,7 @@
     </div>
     <div>
         <ngx-charts-line-chart
+            id="empiricalDistributionChart"
             [view]="view"
             [scheme]="lceColorScheme"
             [legend]="lceLegend"
@@ -43,6 +46,7 @@
     </div>
     <div>
         <ngx-charts-line-chart
+            id="lorenzChart"
             [view]="view"
             [scheme]="lclColorScheme"
             [legend]="lclLegend"

@@ -1,8 +1,10 @@
-<mat-dialog-content class="mat-typography">
-  <h2 *ngIf="caseIsForm">Bitte füllen Sie alle Felder aus damit Ihre Stichprobe berechnet werden kann!</h2>
-  <h2 *ngIf="!caseIsForm">Die Daten, die im Pop-Up erfasst wurden, konnten nicht verarbeitet werden!</h2>
-</mat-dialog-content>
-
-<mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Zurück</button>
-</mat-dialog-actions>
+<div id="popUpInvalid">
+  <mat-dialog-content class="mat-typography">
+    <h2 *ngIf="caseIsForm">Bitte füllen Sie alle Felder aus damit Ihre Stichprobe berechnet werden kann!</h2>
+    <h2 *ngIf="!caseIsForm">Die Daten, die im Pop-Up erfasst wurden, konnten nicht verarbeitet werden!</h2>
+  </mat-dialog-content>
+  
+  <mat-dialog-actions align="end">
+    <button mat-button [mat-dialog-close]="true" id="buttonPopUpInvalidClose" cdkFocusInitial>Zurück</button>
+  </mat-dialog-actions>
+</div>
