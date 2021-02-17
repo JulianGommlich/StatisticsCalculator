@@ -77,3 +77,7 @@ input#loadFile {
     display: block;
     width: 150px;
 }
+
+#delete {
+    margin-bottom: 30px;
+}
