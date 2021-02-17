@@ -6,7 +6,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { Stichprobe } from '../stichprobe';
 import { PopUpDeleteComponent } from '../pop-up-delete/pop-up-delete.component';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { delay, sample, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 //import { table } from 'console';
 import { SampleType } from '../sampleType';
@@ -19,9 +19,9 @@ import { SampleParser } from '../sampleParser';
   styleUrls: ['./view1.component.css', '../app.component.css']
 })
 
-export class View1Component implements OnInit{
+export class View1Component implements OnInit {
 
-  sampleType: boolean|null = null;
+  sampleType: boolean | null = null;
   inputForm: FormGroup = new FormGroup({
     numSequence: new FormControl(),
     sampleType: new FormControl(),
@@ -29,7 +29,6 @@ export class View1Component implements OnInit{
   });
 
   savedValues$: Observable<any>;
-
 
   constructor( public dialog: MatDialog, private route: ActivatedRoute ) { }
   /**
@@ -57,7 +56,7 @@ export class View1Component implements OnInit{
     var cell4 = row.insertCell(-1);
     var cell5 = row.insertCell(-1);
 
-    switch (types){
+    switch (types) {
       case "abs":
         cell1.innerHTML = "<input type='number'>";
         cell2.innerHTML = "<input type='number'>";
@@ -78,6 +77,7 @@ export class View1Component implements OnInit{
   removeRow(types : string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
     if (relevant_table.rows.length > 2){   
+
       relevant_table.deleteRow(-1);
     } else {
       alert("Es kann keine weitere Reihe gelöscht werden!")
@@ -100,7 +100,7 @@ export class View1Component implements OnInit{
         let numSequence = params.get('numSequence');
         let sampleType = params.get('sampleType');
         let valueZInput = params.get('valueZInput');
-        return [{ 'numSequence': numSequence, 'sampleType': sampleType, 'valueZInput': valueZInput}];
+        return [{ 'numSequence': numSequence, 'sampleType': sampleType, 'valueZInput': valueZInput }];
       })
     );
 
@@ -137,8 +137,8 @@ export class View1Component implements OnInit{
     const abs = document.getElementById('absSample') as HTMLInputElement;
     const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
 
-      
-      let inputData = this.buildFormModel();
+
+    let inputData = this.buildFormModel();
     const validation = new Validation();
 
     if (validation.checkValidation(expl, abs, valueZ)) {
@@ -169,39 +169,98 @@ export class View1Component implements OnInit{
 
     return stichprobe;
   }
-    
+
   openDeleteDialog(): void {
     this.dialog.open(PopUpDeleteComponent, {});
   }
 
-  uploadFile($event: any): void {
-    let newNumSeq: String;
+
+
+
+  /* Importiert eine CSV-Datei und schreibt die Werte in die Eingabe-Tabelle. */
+  async uploadFile($event: any) {
+    let explSample: Number[] = [];
+    let absSample: { [key: string]: number } = {};
     let newSampleType: String;
-    let newZ: Number;
- 
-    let input = $event.target;  
-    let reader = new FileReader();  
-    reader.readAsText(input.files[0]); 
 
-    reader.onload = () => {  
-      let csvData = reader.result;  
-      let csvRecordsArray = (<string>csvData).split(","); 
-      if ((/\((\d*); ?(\d*)\)/gm).test(csvRecordsArray[0])) {
-        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
-        newSampleType = "absolut";
-      }
-      else if ((/\"(\d+\;{0,1} {0,1})+\"$/gm).test(csvRecordsArray[0])) {
-        newNumSeq = csvRecordsArray[0].replace(/\"/g, "")
+    function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+
+    /* Liest die Werte aus der CSV-Datei aus. */
+    let input = $event.target;
+    let reader = new FileReader();
+    reader.readAsText(input.files[0]);
+
+    reader.onload = () => {
+      let csvData = reader.result;
+      let csvRecordsArray = (<string>csvData).split("\n");
+
+      if ((/explizite Stichprobe/gm).test(csvRecordsArray[0])) {
         newSampleType = "explizit";
+        this.sampleType = true;
+        for (let line of csvRecordsArray) {
+          if ((/\d+/gm).test(line)) {
+            explSample.push(Number(line));
+          }
+          else {
+            continue;
+          }
+        }
       }
-
-      newZ = Number(csvRecordsArray[1].replace(/\"/g, ""));
-
+      else if ((/Absolute Häufigkeitsverteilung/gm).test(csvRecordsArray[0])) {
+        newSampleType = "absolut";
+        this.sampleType = false;
+        for (let line of csvRecordsArray) {
+          if ((/\d+\;\d+/gm).test(line)) {
+            let splittedLine = line.split(";");
+            Object.assign(absSample, { [String(splittedLine[0])]: Number(splittedLine[1]) });
+          }
+          else {
+            continue;
+          }
+        }
+      }
       this.inputForm.setValue({
-        numSequence: newNumSeq,
+        numSequence: "",            // kann nach dem Entfernen des Input-Feldes gelöscht werden.
         sampleType: newSampleType,
-        valueZInput: newZ
-      });
+        valueZInput: ""             // Soll über die GUI eingegeben werden. 
+      });      
     };
+
+    await delay(400);
+
+    /* Schreibt die Werte in die Eingabe-Tabelle hinein. */
+    // Wenn eine explizite Stichprobe gegeben ist:
+    if (this.sampleType) {
+      let table: HTMLTableElement = <HTMLTableElement> document.getElementById("expl");
+      let tableCell: HTMLInputElement;
+      let rowNum = Math.ceil(explSample.length / 5);
+      for (let r = 1; r <= rowNum; r++) {
+        if (r != 1) {
+          this.createNewRow("expl");
+        }
+        for (let c = 0; c < 5; c++) {
+          tableCell = table.rows[r].cells.item(c)!.getElementsByTagName("input")[0]
+          tableCell.valueAsNumber = Number(explSample[c+5*(r-1)]);
+        }
+      }
+    }
+    // Sonst wenn eine abs. Stichprobe gegeben ist:
+    else if (!this.sampleType) {
+      let table: HTMLTableElement = <HTMLTableElement> document.getElementById("abs");
+      let tableCellKey, tableCellValue: HTMLInputElement;
+      let rowNum = Math.ceil(Object.keys(absSample).length / 5);
+      let i = 0;
+      for (let i = 0; i < Object.keys(absSample).length; i++) {
+        if (i != 0) {
+          this.createNewRow("abs");
+        }
+        tableCellKey = table.rows[i+1].cells.item(0)!.getElementsByTagName("input")[0];
+        tableCellKey.valueAsNumber = Number(Object.keys(absSample)[i]);
+        tableCellValue = table.rows[i+1].cells.item(1)!.getElementsByTagName("input")[0];
+        tableCellValue.valueAsNumber = Number(Object.values(absSample)[i]);
+      }
+    }
   }
 }
