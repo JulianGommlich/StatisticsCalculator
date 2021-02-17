@@ -59,6 +59,7 @@ export class Validation {
                 if (i>100){
                     return false;
                 }
+                //if more than 30
                 list.sort();
                 if (!this.countNumbers(list)){
                     return false;
@@ -109,9 +110,10 @@ export class Validation {
                 Object.assign(newArraySequence, { [key]: 1 });
             }
         });
-        if (Math.max(...Object.values(newArraySequence)) >= 30) {
+        if (Object.keys(newArraySequence).length > 30) {
             return false;
         }
         return true;
     }
 }
+//Math.max(...Object.values(newArraySequence)) >= 30
