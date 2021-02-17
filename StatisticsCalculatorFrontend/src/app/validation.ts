@@ -1,3 +1,5 @@
+import { preserveWhitespacesDefault } from "@angular/compiler";
+
 export class Validation {
 
     constructor() {}
@@ -35,12 +37,13 @@ export class Validation {
                 var i=0;
                 var row=1;
                 var list=[];
+                var counts = { };
+                //check each row if each cell has number. if yes, add to i.
                 while (row!=rowsLength){
                     var cell = 0;
                     while (cell!=5){
                         var value = relevant_table.rows[row].cells.item(cell)!.getElementsByTagName("input")[0].value;
-                        if (value == null){
-                            break;
+                        if (value == ""){
                         } else {
                             list.push(value);
                             i += 1;
@@ -49,13 +52,20 @@ export class Validation {
                     }
                     row +=1;
                 }
+                console.log("Werte insgesammt sind:" +i);
+                //if more than 100 numbers
                 if (i>100){
                     return false;
                 }
+                list.sort();
+                
+
+
                return true;
             case "abs":
                 var row=1;
                 var scope:number = 0;
+                // over 30 rows equals to over 30 different values (if typed correctly, forcing to use all cells!) 
                 if (rowsLength > 30){
                     return false;
                 }
@@ -63,15 +73,17 @@ export class Validation {
                 while (row!=rowsLength){
                     var x = relevant_table.rows[row].cells.item(0)!.getElementsByTagName("input")[0].value
                     var y = relevant_table.rows[row].cells.item(1)!.getElementsByTagName("input")[0].value
-                    if (x == null){
+                    if (x == null){ //if table is not full
                         return false;
-                    } if (y == null){
+                    } if (y == null){ // if table is not full
                         return false;
                     }
+                    // convert x to number
                     var xNumber:number =+x;
                     scope += xNumber;
                     row += 1;
                 }
+                // if scope bigger than 100
                 if (scope > 100)
                     return false;
                 break;
