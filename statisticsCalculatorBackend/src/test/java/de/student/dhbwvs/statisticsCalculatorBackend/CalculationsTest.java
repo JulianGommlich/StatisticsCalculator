@@ -83,8 +83,8 @@ public class CalculationsTest {
             median = ((values[(count/2)-1] + values[((count/2))])/2);
         } else {
             median = values[((count+1)/2)-1];
-
         }
+        
         return limitDecimals(median);
     }
 
