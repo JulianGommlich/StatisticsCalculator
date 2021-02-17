@@ -7,32 +7,34 @@ import java.util.*;
 public class CalculationsTest {
 
     /**
-     * limitDecimals, in eigene Klasse auslagern????
-     * @param value als double
-     * @return b als double, auf zwei Nachkommastellen gerundet
+     * This helper method limits the number of decimals of the results produced by the calculation methods.
+     * @param value This is the result of a calculation and the only parameter for the limitDecimals method
+     * @return double limited to two decimals
      */
-
     public static double limitDecimals(double value){
         BigDecimal b = BigDecimal.valueOf(value);
         b = b.setScale(2, RoundingMode.HALF_UP);
         return b.doubleValue();
     }
 
-    /** calcModal übernimmt die Map aus freqDistribution, durchsucht diese nach dem höchsten value und gibt eine List mit allen keys zurück,
-     *  die den entsprechenden value haben
+    /**
+     * This method searches for the highest value in the map haeufigkeitsverteilung and returns an array of all the keys with said value.
+     * As the amount of modal values is unknown in the beginning, they are temporarily stored in a resizeable ArrayList.
+     * @param freqDist The frequency distribution transmitted by the frontend
+     * @return array of the 1 to 30 modal values as doubles
      **/
     public static double[] calcModal(Map<Double,Integer> freqDist) {
 
         List<Double> modal = new ArrayList<>();
 
-        //durchsuche die map nach dem höchsten value, weise diesen der Variablen highestValue zu
-        int highestValue = 0;
 
+        int highestValue = 0;
+        //search for the highest value and assign it to highestValue
         for (int i : freqDist.values()) {
             highestValue = Math.max(i, highestValue);
         }
 
-        //durchsuche die map nach jedem key, bei dem highestValue == value; füge diese keys der List hinzu
+        //search through the map for every key, where the corresponding value is equal to highestValue, add those keys to the ArrayLIst
         for (double j : freqDist.keySet()){
             if (highestValue == freqDist.get(j)){
                 modal.add(j);
@@ -102,10 +104,10 @@ public class CalculationsTest {
         int round = (int)(Math.floor(np));
         //Prüfe ob np ganzzahlig ist
         if((np%2) == 0 ){
-            //Wende die Formel für ganzzahliges np an
+            //Wende die Formel für geradzahliges np an
             quantile = (0.5) * (values[round-1] + values[(round)]);
         } else {
-            //Wende die Formel für gebrochenes np an
+            //Wende die Formel für ungerades np an
             quantile = values[round];
         }
         //Gebe das Quantil zurück
@@ -145,12 +147,12 @@ public class CalculationsTest {
         return limitDecimals(Math.sqrt(variance));
     }
 
-    /* Mittlere absolute Abweichung zu einem Wert z:
-      Input: Stichprobe als double-Array, Wert z als double
-      Vorgehen: für jeden Stichprobenwert Betrag von Stichprobenwert - z addieren,
-               durch die Anzahl der Werte dividieren
-      Return: mittlere absolute Abweichung zu z als double
-     */
+    /**
+     * This method calculates the average deviation of the sample to a user given value z.
+     @param stichprobe The first parameter is the sample as an array of doubles
+     @param z The second parameter is the value z as a double
+     @return The calculated average deviation as a double
+     **/
     public static double calcAverageDeviation(double[] stichprobe, double z){
         double sum = 0;
 
