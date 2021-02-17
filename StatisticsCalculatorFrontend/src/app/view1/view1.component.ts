@@ -83,6 +83,9 @@ export class View1Component implements OnInit{
       alert("Es kann keine weitere Reihe gelöscht werden!")
     }
   }
+  /**
+   * on init the inside of components is removed
+   */
   ngOnInit() {
     // Eingabefelder leeren
     this.inputForm.setValue({

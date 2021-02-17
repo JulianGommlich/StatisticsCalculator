@@ -28,7 +28,10 @@ export class Validation {
         }
         return true;
     }
-    
+    /**
+     * Checks if more than 100 or if more than 30 different values
+     * @param types if expl or abs
+     */
     validateSequence(types: string): boolean {
         var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
         var rowsLength :number = relevant_table.rows.length; 
@@ -37,7 +40,6 @@ export class Validation {
                 var i=0;
                 var row=1;
                 var list=[];
-                var counts = { };
                 //check each row if each cell has number. if yes, add to i.
                 while (row!=rowsLength){
                     var cell = 0;
@@ -58,9 +60,9 @@ export class Validation {
                     return false;
                 }
                 list.sort();
-                
-
-
+                if (!this.countNumbers(list)){
+                    return false;
+                };
                return true;
             case "abs":
                 var row=1;
@@ -90,14 +92,13 @@ export class Validation {
         }
         return true;
         
-/*      
-        if (!this.countNumbers(splittedSeq)) {
-            return false;
-        }
-        return true; */
     }
-
-/*     countNumbers(arraySeq: string[]): boolean {
+    /**
+     * Converts array to object with key as number and value as count
+     * gives back boolean if more than 30 numbers false
+     * @param arraySeq is our list of numbers
+     */
+    countNumbers(arraySeq: string[]): boolean {
         let newArraySequence: { [key: string]: number } = {};
 
         arraySeq.forEach(function (key) {
@@ -112,5 +113,5 @@ export class Validation {
             return false;
         }
         return true;
-    } */
+    }
 }
