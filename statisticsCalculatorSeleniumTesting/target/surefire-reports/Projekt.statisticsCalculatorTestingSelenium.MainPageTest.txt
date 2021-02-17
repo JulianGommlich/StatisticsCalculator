@@ -1,0 +1,55 @@
+-------------------------------------------------------------------------------
+Test set: Projekt.statisticsCalculatorTestingSelenium.MainPageTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 4, Errors: 0, Skipped: 0, Time elapsed: 60.367 s <<< FAILURE! - in Projekt.statisticsCalculatorTestingSelenium.MainPageTest
+clickOnImportFile  Time elapsed: 4.774 s  <<< FAILURE!
+com.codeborne.selenide.ex.ElementShould: 
+Element should be visible {#importFile}
+Element: '<input _ngcontent-yyi-c77 accept=".csv" id="importFile" multiple="false" type="file" value displayed:false></input>'
+Actual value: visible:false
+Screenshot: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499439980.0.png
+Page source: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499439980.0.html
+Timeout: 4 s.
+	at Projekt.statisticsCalculatorTestingSelenium.MainPageTest.clickOnImportFile(MainPageTest.java:38)
+
+inputDeviation  Time elapsed: 4.877 s  <<< FAILURE!
+com.codeborne.selenide.ex.ElementNotFound: 
+Element not found {#meanDeviation}
+Expected: visible
+Screenshot: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499444859.1.png
+Page source: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499444859.1.html
+Timeout: 4 s.
+Caused by: NoSuchElementException: no such element: Unable to locate element: {"method":"css selector","selector":"#meanDeviation"}
+	at Projekt.statisticsCalculatorTestingSelenium.MainPageTest.inputDeviation(MainPageTest.java:52)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+no such element: Unable to locate element: {"method":"css selector","selector":"#meanDeviation"}
+  (Session info: chrome=88.0.4324.150)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-23QVBVH', ip: '192.168.43.201', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '15.0.2'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: true, browserName: chrome, browserVersion: 88.0.4324.150, chrome: {chromedriverVersion: 88.0.4324.96 (68dba2d8a0b14..., userDataDir: C:\Users\User\AppData\Local...}, goog:chromeOptions: {debuggerAddress: localhost:63283}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 1d255de957ba3034868c7d43aaace7ca
+*** Element info: {Using=css selector, value=#meanDeviation}
+	at Projekt.statisticsCalculatorTestingSelenium.MainPageTest.inputDeviation(MainPageTest.java:52)
+
+expSample  Time elapsed: 4.698 s  <<< FAILURE!
+com.codeborne.selenide.ex.ElementShould: 
+Element should be visible {#explSample}
+Element: '<input _ngcontent-xgp-c77 class="ng-untouched ng-pristine ng-valid" formcontrolname="sampleType" id="explSample" name="sampleType" ng-reflect-form-control-name="sampleType" ng-reflect-name="sampleType" ng-reflect-value="explizit" type="radio" value="explizit" displayed:false></input>'
+Actual value: visible:false
+Screenshot: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499449618.2.png
+Page source: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499449618.2.html
+Timeout: 4 s.
+	at Projekt.statisticsCalculatorTestingSelenium.MainPageTest.expSample(MainPageTest.java:60)
+
+absSample  Time elapsed: 4.883 s  <<< FAILURE!
+com.codeborne.selenide.ex.ElementShould: 
+Element should be visible {#absSample}
+Element: '<input _ngcontent-hun-c77 class="ng-untouched ng-pristine ng-valid" formcontrolname="sampleType" id="absSample" name="sampleType" ng-reflect-form-control-name="sampleType" ng-reflect-name="sampleType" ng-reflect-value="absolut" type="radio" value="absolut" displayed:false></input>'
+Actual value: visible:false
+Screenshot: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499454811.3.png
+Page source: file:/E:/StatisticsCalculator/statisticsCalculatorSeleniumTesting/build/reports/tests/1613499454811.3.html
+Timeout: 4 s.
+	at Projekt.statisticsCalculatorTestingSelenium.MainPageTest.absSample(MainPageTest.java:69)
+
