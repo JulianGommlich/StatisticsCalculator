@@ -41,16 +41,14 @@ class StatisticsCalculatorBackendApplicationTests {
 
 		Map<Double, Integer> freqDist = new HashMap<>();
 
-		//create key for each double or - if key already exists - add 1 to the value
 		for (double i : stichprobe) {
-
 			if (freqDist.containsKey(i)){
 				freqDist.replace(i, freqDist.get(i) + 1);
 			} else {
 				freqDist.put(i, 1);
 			}
 		}
-		//sort in ascending order
+
 		return freqDist.entrySet()
 				.stream()
 				.sorted(Map.Entry.<Double, Integer>comparingByKey())
@@ -61,7 +59,7 @@ class StatisticsCalculatorBackendApplicationTests {
 	}
 
 	/**
-	 * Tests for the calculation of the modal value
+	 * Tests for the calculation of the mode
 	 */
 	@Test
 	public void testCalcModal(){

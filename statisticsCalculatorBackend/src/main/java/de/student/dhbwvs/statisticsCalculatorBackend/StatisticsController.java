@@ -49,7 +49,6 @@ public class StatisticsController {
     }
 
     /**
-     *
      * This method is supposed to catch all exceptions thrown because of incorrect data sent by the frontend
      *
      * @param exception an unchecked exception
