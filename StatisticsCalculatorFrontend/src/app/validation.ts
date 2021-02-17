@@ -81,8 +81,8 @@ export class Validation {
                         return false;
                     }
                     // convert x to number
-                    var xNumber:number =+x;
-                    scope += xNumber;
+                    var yNumber:number =+y;
+                    scope += yNumber;
                     row += 1;
                 }
                 // if scope bigger than 100
