@@ -39,5 +39,4 @@ public class Ergebnisse {
         this.haeufigkeitsverteilung = haeufigkeitsverteilung;
         this.z = z;
     }
-
 }

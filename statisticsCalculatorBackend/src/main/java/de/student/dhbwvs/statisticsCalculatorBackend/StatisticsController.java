@@ -48,9 +48,18 @@ public class StatisticsController {
 
     }
 
+    /**
+     *
+     * This method is supposed to catch all exceptions thrown because of incorrect data sent by the frontend
+     *
+     * @param exception an unchecked exception
+     * @param request a web request interceptor
+     * @return an error message as a String
+     */
+
     @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleAllUncaughtException(
+    public String handleDataExceptions(
             RuntimeException exception,
             WebRequest request){
         return "Fehlerhafter Input";

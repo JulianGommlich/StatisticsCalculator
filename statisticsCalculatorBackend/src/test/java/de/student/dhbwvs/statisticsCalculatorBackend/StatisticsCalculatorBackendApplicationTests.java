@@ -31,12 +31,17 @@ class StatisticsCalculatorBackendApplicationTests {
 	double Z_Negativ = -3;
 	double Z_Null = 0;
 
-	//Umwandlungsmethode für den Modalwert
+	/**
+	 * This method creates a map from an array..
+	 * The test data is only available as a sample. To test calcModal, the sample has to be transformed into a map.
+	 * @param stichprobe the sample as an array of doubles
+	 * @return the data as a map
+	 */
 	public static Map<Double,Integer> freqDistribution(double[] stichprobe) {
 
 		Map<Double, Integer> freqDist = new HashMap<>();
 
-		//für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
+		//create key for each double or - if key already exists - add 1 to the value
 		for (double i : stichprobe) {
 
 			if (freqDist.containsKey(i)){
@@ -45,7 +50,7 @@ class StatisticsCalculatorBackendApplicationTests {
 				freqDist.put(i, 1);
 			}
 		}
-		//Sortiervorgang aufsteigend
+		//sort in ascending order
 		return freqDist.entrySet()
 				.stream()
 				.sorted(Map.Entry.<Double, Integer>comparingByKey())
@@ -55,7 +60,9 @@ class StatisticsCalculatorBackendApplicationTests {
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
 
-	// Test for calculating the modal value
+	/**
+	 * Tests for the calculation of the modal value
+	 */
 	@Test
 	public void testCalcModal(){
 		double[] result_optimal = {23,27};
@@ -71,7 +78,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertArrayEquals(result_gleich,calcModal(freqDistribution(W_Gleich)));
 	}
 
-	// Test for calculating the average
+	/**
+	 * Tests for the calculation of the average
+	 */
 	@Test
 	public void testCalcAverage(){
 		double result_optimal = 33.62;
@@ -87,7 +96,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcAverage(W_Gleich));
 	}
 
-	// Test for calculating the median
+	/**
+	 * Tests for the calculation of the median
+	 */
 	@Test
 	public void testCalcMedian(){
 		double result_optimal = 25;
@@ -103,7 +114,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcMedian(W_Gleich));
 	}
 
-	//Test for calculating the quantile
+	/**
+	 * Tests for the calculation of the quantiles
+	 */
 	@Test
 	public void testCalcQuantile(){
 
@@ -147,7 +160,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertArrayEquals(result_gleich, quantilen_gleich);
 	}
 
-	// Test for calculating the variance
+	/**
+	 * Tests for the calculation of the variance
+	 */
 	@Test
 	public void testCalcVariance(){
 		double result_optimal = 431.1;
@@ -163,7 +178,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcVariance(W_Gleich));
 	}
 
-	// Test for calculating the standard deviation
+	/**
+	 * Tests for the calculation of the standard deviation
+	 */
 	@Test
 	public void testCalcStandardDeviation(){
 		double var_optimal = 438.66;
@@ -185,7 +202,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcStandardDeviation(var_gleich));
 	}
 
-	//Test for calculating the average deviation to z
+	/**
+	 * Tests for the calculation of the average deviation to z
+	 */
 	@Test
 	public void testCalcAverageDeviation(){
 
@@ -232,7 +251,9 @@ class StatisticsCalculatorBackendApplicationTests {
 
 	}
 
-	//Test for calculating the gini coefficient
+	/**
+	 * Tests for the calculation of the gini coefficient
+	 */
 	@Test
 	public void testCalcGiniCoefficient(){
 

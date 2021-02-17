@@ -95,6 +95,7 @@ public class Calculations {
         //Gebe den Median zurück
         return limitDecimals(median);
     }
+
     /**
      * This method calculates the quantiles for a given percentage out of the array values
      * @param values The array transmitted by the frontend
@@ -170,16 +171,14 @@ public class Calculations {
         }
         return limitDecimals(sum/stichprobe.length);
     }
+
     /**
      * This method calculates the gini coefficient for the array values
      * @param values The array transmitted by the frontend
      * @return the value of the calculated gini coefficient or -1 in case of an error
      **/
     public static double calcGiniCoefficient(double[] values){
-        /* Gini Koeffizient berechnen berechnen
-          Input: Array mit double Werten
-          Return: Den berechneten Gini Koeffizient als double
-         */
+
         double gini;
         Arrays.sort(values);
         double height = 0;
