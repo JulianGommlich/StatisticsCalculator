@@ -27,6 +27,7 @@ button.h1 {
   padding: 0;
   position: absolute;
   width: auto;
+  outline: none;
 }
 
 /* CSS Formatierung der Überschrift H2 aus dem Header */
