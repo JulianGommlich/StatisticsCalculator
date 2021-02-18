@@ -11,6 +11,10 @@ import java.util.stream.Collectors;
 
 import static de.student.dhbwvs.statisticsCalculatorBackend.CalculationsTest.*;
 
+/**
+ * This class is for Unittests only. The calculation methods are tested using the test concept created by group 4.
+ */
+
 @SpringBootTest
 class StatisticsCalculatorBackendApplicationTests {
 
@@ -27,21 +31,24 @@ class StatisticsCalculatorBackendApplicationTests {
 	double Z_Negativ = -3;
 	double Z_Null = 0;
 
-	//Umwandlungsmethode für den Modalwert
+	/**
+	 * This method creates a map from an array..
+	 * The test data is only available as a sample. To test calcModal, the sample has to be transformed into a map.
+	 * @param stichprobe the sample as an array of doubles
+	 * @return the data as a map
+	 */
 	public static Map<Double,Integer> freqDistribution(double[] stichprobe) {
 
 		Map<Double, Integer> freqDist = new HashMap<>();
 
-		//für jedes double im Array wird ein neuer key angelegt, falls noch nicht vorhanden, oder der value(die Anzahl) um eins erhöht:
 		for (double i : stichprobe) {
-
 			if (freqDist.containsKey(i)){
 				freqDist.replace(i, freqDist.get(i) + 1);
 			} else {
 				freqDist.put(i, 1);
 			}
 		}
-		//Sortiervorgang aufsteigend
+
 		return freqDist.entrySet()
 				.stream()
 				.sorted(Map.Entry.<Double, Integer>comparingByKey())
@@ -51,7 +58,9 @@ class StatisticsCalculatorBackendApplicationTests {
 						(oldValue, newValue) -> oldValue, LinkedHashMap::new));
 	}
 
-	// Test for calculating the modal value --- BESTANDEN
+	/**
+	 * Tests for the calculation of the mode
+	 */
 	@Test
 	public void testCalcModal(){
 		double[] result_optimal = {23,27};
@@ -67,7 +76,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertArrayEquals(result_gleich,calcModal(freqDistribution(W_Gleich)));
 	}
 
-	// Test for calculating the average
+	/**
+	 * Tests for the calculation of the average
+	 */
 	@Test
 	public void testCalcAverage(){
 		double result_optimal = 33.62;
@@ -83,7 +94,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcAverage(W_Gleich));
 	}
 
-	// Test for calculating the median --- BESTANDEN
+	/**
+	 * Tests for the calculation of the median
+	 */
 	@Test
 	public void testCalcMedian(){
 		double result_optimal = 25;
@@ -99,14 +112,16 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcMedian(W_Gleich));
 	}
 
-	//Test for calculating the quantile
+	/**
+	 * Tests for the calculation of the quantiles
+	 */
 	@Test
 	public void testCalcQuantile(){
 
 		double[] percentages = {0.05, 0.1, 0.25, 0.75, 0.9, 0.95};
 
 		double[] result_optimal = {15, 18, 22, 36, 72, 98};
-		double[] result_negativ = {-5, -5, -4, -1, -1, -1};
+		double[] result_negativ = {-5, -5, -3, -1, -1, -1};
 		double[] result_null = {0, 0, 0, 0, 0, 0};
 		double[] result_einzelwert = {5, 5, 5, 5, 5, 5};
 		double[] result_gleich = {1, 1, 1, 1, 1, 1};
@@ -143,13 +158,15 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertArrayEquals(result_gleich, quantilen_gleich);
 	}
 
-	// Test for calculating the variance
+	/**
+	 * Tests for the calculation of the variance
+	 */
 	@Test
 	public void testCalcVariance(){
-		double result_optimal = 438.66;
-		double result_negativ = 3.67;
+		double result_optimal = 431.1;
+		double result_negativ = 2.75;
 		double result_null = 0;
-		double result_einzelwert = 5;
+		double result_einzelwert = 0;
 		double result_gleich = 0;
 
 		Assertions.assertEquals(result_optimal, calcVariance(W_Optimal));
@@ -159,7 +176,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcVariance(W_Gleich));
 	}
 
-	// Test for calculating the standard deviation
+	/**
+	 * Tests for the calculation of the standard deviation
+	 */
 	@Test
 	public void testCalcStandardDeviation(){
 		double var_optimal = 438.66;
@@ -181,7 +200,9 @@ class StatisticsCalculatorBackendApplicationTests {
 		Assertions.assertEquals(result_gleich, calcStandardDeviation(var_gleich));
 	}
 
-	//Test for calculating the average deviation to z
+	/**
+	 * Tests for the calculation of the average deviation to z
+	 */
 	@Test
 	public void testCalcAverageDeviation(){
 
@@ -228,19 +249,21 @@ class StatisticsCalculatorBackendApplicationTests {
 
 	}
 
-	//Test for calculating the gini coefficient
+	/**
+	 * Tests for the calculation of the gini coefficient
+	 */
 	@Test
 	public void testCalcGiniCoefficient(){
 
 		double result_optimal = 0.29;
-		//double result_negativ = -0.35; //auf Exception testen
-		//double result_null = 0; //auf Exception testen
+		double result_negativ = -1;
+		double result_null = -1;
 		double result_einzelwert = 0;
 		double result_gleich = 0;
 
 		Assertions.assertEquals(result_optimal, calcGiniCoefficient(W_Optimal));
-		//Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
-		//Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
+		Assertions.assertEquals(result_negativ, calcGiniCoefficient(W_Negativ));
+		Assertions.assertEquals(result_null, calcGiniCoefficient(W_Null));
 		Assertions.assertEquals(result_einzelwert, calcGiniCoefficient(W_Einzelwert));
 		Assertions.assertEquals(result_gleich, calcGiniCoefficient(W_Gleich));
 	}

@@ -1,4 +1,12 @@
 
+:host {
+    display: block;
+    width: 75%;
+    margin: auto;
+    height: auto;
+}
+
+/* Macht das hier irgendwas? --> es gibt keinen Body?  */
 body {
     width: 100vw;
     height: 100vh;
@@ -13,16 +21,19 @@ input.Button1 {
 }
 
 input#importFile {
+    width: 320px;
+    height: 37px;
     display: none;
 }
 
 input#loadFile {
-    width: 300px;
-    height: 35px;
+    width: 340px;
+    height: 40px;
     color: white;
     background-color: black;
     font-style: italic;
     left: 0%;
+    margin-bottom: 20px;
 }
 
 .radioBtn {
@@ -63,11 +74,13 @@ input#loadFile {
     width: auto;
     height: 75px;
     text-align: center;
-    margin: 15px 50px 15px 50px;
+    margin: 15px 60px 15px 5px;
 }
 
 .radioLine {
     display: inline-flex;
+    margin-bottom: 35px;
+    margin-top: 5px;
 }
 
 .radioLabel {
@@ -76,4 +89,16 @@ input#loadFile {
     margin-right: 0px;
     display: block;
     width: 150px;
+}
+
+#numSequence {
+    margin-bottom: 25px;
+}
+
+#buttonLine {
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
 }

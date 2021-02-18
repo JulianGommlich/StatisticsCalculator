@@ -28,6 +28,3 @@ Folgendermaßen werden die Tests aufgebaut:
 
  ### Probleme
 Die implementierung von automatisierten Tests mit Selenium könnte zeitauwendig und sogar den Rahmen des Projekts sprengen. Außerdem beinhaltet die Automatisierte Erstellung durch Intellij Punkte, die für dieses Projekt nicht benötigt werden.
-
-
-
