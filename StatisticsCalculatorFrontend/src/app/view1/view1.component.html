@@ -1,9 +1,7 @@
-
-<div class="main">
-
 <form id="inputValues" [formGroup]="inputForm">
 
     <h2>Eingabe:</h2>
+
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
     <div class="radioLine">
@@ -26,7 +24,11 @@
             </div>
         </div>
     </div>
-  
+
+    <P id="introduction">Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
+    
+    <input type="file" id="importFile" accept=".csv" multiple="false" (change)="uploadFile($event)">
+    <input type="button" class="Button1" id="loadFile" value="(.csv-Datei auswählen)" onclick="document.getElementById('importFile').click();"> 
     <br>
 
 
@@ -36,8 +38,7 @@
     </div>
     <P>Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per .csv-Datei):</P>
     
-    <input type="text" formControlName="numSequence" id="numSequence" placeholder="Zahlenreihe" required> 
-    oder 
+     
     <!--Der Button-Text von Type "File" kann nicht geändert werden. Damit der Text dennoch dem Design entspricht wird der 
         Upload-Button versteckt und durch einen separaten Button getriggert-->
     <input type="file" id="importFile" accept=".csv" multiple="false" (change)="uploadFile($event)">
@@ -81,11 +82,12 @@
 
     <br>
 
+
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
     <input type="number" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)" required>
-    <br> <br>
+    <br>
     <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
     <input type="submit" id="show" value="Starten" class="Button1" (click)="openDialog()">
+
 </form>
-</div>
