@@ -56,11 +56,11 @@ export class View1Component implements OnInit{
         cell2.innerHTML = "<input type='number'>";
         break;
       case "expl":
-        cell1.innerHTML = "<input type='number'>";
-        cell2.innerHTML = "<input type='number'>";
-        cell3.innerHTML = "<input type='number'>";
-        cell4.innerHTML = "<input type='number'>";
-        cell5.innerHTML = "<input type='number'>";
+        cell1.innerHTML = "<input _ngcontent-vul-c77 class='table1' type='number'>";
+        cell2.innerHTML = "<input _ngcontent-vul-c77 class='table1' type='number'>";
+        cell3.innerHTML = "<input _ngcontent-vul-c77 class='table1' type='number'>";
+        cell4.innerHTML = "<input _ngcontent-vul-c77 class='table1' type='number'>";
+        cell5.innerHTML = "<input _ngcontent-vul-c77 class='table1' type='number'>";
         break;
     }
   }

@@ -1,3 +1,6 @@
+
+<div class="main">
+
 <form id="inputValues" [formGroup]="inputForm">
 
     <h2>Eingabe:</h2>
@@ -45,29 +48,29 @@
     <br>
     <div *ngIf="sampleType !=null">
         <div *ngIf="sampleType">
-            <table id=expl>
+            <table id="expl">
                 <tr>
-                    <th colspan="4">Manuelle Eingabe der Stichprobe</th>
-                    <th><input type= Button value="+" (click)="createNewRow('expl')"><input type=Button value="-" (click)="removeRow('expl')"></th>
+                    <th colspan="4"> <h3>Manuelle Eingabe der Stichprobe</h3></th>
+                    <th> <input class="Button2" type="Button" value="-" (click)="removeRow('expl')"> <input class="Button3" type="Button" value="+" (click)="createNewRow('expl')"></th>
                 </tr>
                 <tr>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td> 
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td> 
                 </tr>
             </table>
         </div>
         <div *ngIf="!sampleType">
             <table id=abs>
                 <tr>
-                    <th colspan="1">Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit)</th>
-                    <th><input type= Button value="+" (click)="createNewRow('abs')"><input type=Button value="-" (click)="removeRow('abs')"></th>
+                    <th colspan="1"> <h3> Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit) </h3> </th>
+                    <th><input class="Button2" type="Button" value="-" (click)="removeRow('abs')"  ><input class="Button3" type="Button" value="+" (click)="createNewRow('abs')"></th>
                 </tr>
                 <tr>
-                  <td><input type="number"></td>
-                  <td><input type="number"></td> 
+                  <td><input class="table1" type="number"></td>
+                  <td><input class="table1" type="number"></td> 
                 </tr>
             </table>
         </div>
@@ -85,3 +88,4 @@
     <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
     <input type="submit" id="show" value="Starten" class="Button1" (click)="openDialog()">
 </form>
+</div>
