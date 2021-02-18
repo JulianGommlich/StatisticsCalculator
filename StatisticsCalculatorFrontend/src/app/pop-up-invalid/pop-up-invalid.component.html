@@ -1,6 +1,17 @@
-<mat-dialog-content class="mat-typography">
-  <h2 *ngIf="caseIsForm">Bitte füllen Sie alle Felder aus damit Ihre Stichprobe berechnet werden kann!</h2>
-  <h2 *ngIf="!caseIsForm">Die Daten, die im Pop-Up erfasst wurden, konnten nicht verarbeitet werden!</h2>
+<mat-dialog-content class="mat-typography popupFlex">
+  <div class="popupFlexElem">
+    <img id="warningIcon" src="../../assets/images/warning-signs-svgrepo-com.svg">
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase == 'form'">Bitte füllen Sie alle Felder aus damit Ihre Stichprobe berechnet werden kann!</h2>
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase == 'pop-up'">Die Daten, die im Pop-Up erfasst wurden, konnten nicht verarbeitet werden!</h2>
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase == 'csvHead'">Bitte fügen Sie eine ordungsgemäße CSV hinzu!</h2>
+  </div>
+  
 </mat-dialog-content>
 
 <mat-dialog-actions align="end">
