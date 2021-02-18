@@ -54,7 +54,7 @@ public class Calculations {
     /**
      * This method adds up all values inside the array "values" and divides them through the length of the array
      * @param values The Array transmitted by the frontend
-     * @return value of calculated Average
+     * @return value of calculated Average as double
      **/
     public static double calcAverage(double[] values) {
 
@@ -70,7 +70,7 @@ public class Calculations {
     /**
      * This method searches for the value, which is in the middle of the array.
      * @param values The Array transmitted by the frontend
-     * @return value of the calculated median
+     * @return value of the calculated median as double
      **/
     public static double calcMedian(double[] values){
     
@@ -93,7 +93,7 @@ public class Calculations {
      * This method calculates the quantiles for a given percentage out of the array values
      * @param values The array transmitted by the frontend
      * @param percentage The respective percentage
-     * @return value of the calculated quantile
+     * @return value of the calculated quantile as double
      **/
     public static double calcQuantile(double percentage, double[] values){
 
@@ -118,7 +118,7 @@ public class Calculations {
     /**
      * This method calculates the variance of the sample. It calls the calcAverage method to get the average of the array.
      * @param values the sample transmitted by the frontend
-     * @return the variance as a double
+     * @return the variance as double
      */
 
     public static double calcVariance(double[] values) {
@@ -139,7 +139,7 @@ public class Calculations {
     /**
      * This method calculates the average deviation, which is the square root of the variance.
      * @param variance as returned by calcVariance
-     * @return the standard deviation as a double
+     * @return the standard deviation as double
      */
     public static double calcStandardDeviation(double variance) {
         return limitDecimals(Math.sqrt(variance));
@@ -148,8 +148,8 @@ public class Calculations {
     /**
      * This method calculates the average deviation of the sample to a user given value z.
       @param stichprobe The first parameter is the sample as an array of doubles
-      @param z The second parameter is the value z as a double
-      @return The calculated average deviation as a double
+      @param z The second parameter is the value z as double
+      @return The calculated average deviation as double
      */
     public static double calcAverageDeviation(double[] stichprobe, double z){
         double sum = 0;
@@ -163,7 +163,7 @@ public class Calculations {
     /**
      * This method calculates the gini coefficient for the array values
      * @param values The array transmitted by the frontend
-     * @return the value of the calculated gini coefficient or -1 in case of an error
+     * @return the value of the calculated gini coefficient as double or -1 in case of an error
      **/
     public static double calcGiniCoefficient(double[] values){
 
