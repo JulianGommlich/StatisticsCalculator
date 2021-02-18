@@ -37,7 +37,7 @@ input#loadFile {
 
 input.table1 {
    
-    max-width:100%;
+    width:100%;
     border:3px red;
     height: 60px;
     color:red;
@@ -158,7 +158,6 @@ th {
 
 td {
     max-width:100%;
-    padding-right:1vw;
     height: 60px;
 }
 

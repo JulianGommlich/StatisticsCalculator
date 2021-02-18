@@ -113,6 +113,8 @@ export class View1Component implements OnInit {
 
     // Gespeicherte Werte in die Eingabefelder einsetzen
     this.savedValues$.subscribe(values => {
+      let expliziteStichprobe;
+      let absoluteStichprobe;
       const inputValues: string[] = Object.values(values);
       let numSequence = '';
       if (inputValues[1] === 'absolut') {
