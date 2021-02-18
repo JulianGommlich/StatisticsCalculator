@@ -1,6 +1,7 @@
 <form id="inputValues" [formGroup]="inputForm">
 
     <h2>Eingabe:</h2>
+
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
     <div class="radioLine">
@@ -23,7 +24,11 @@
             </div>
         </div>
     </div>
-  
+
+    <P id="introduction">Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per csv.-Datei):</P>
+    
+    <input type="file" id="importFile" accept=".csv" multiple="false" (change)="uploadFile($event)">
+    <input type="button" class="Button1" id="loadFile" value="(.csv-Datei auswählen)" onclick="document.getElementById('importFile').click();"> 
     <br>
 
 
@@ -44,29 +49,29 @@
     <br>
     <div *ngIf="sampleType !=null">
         <div *ngIf="sampleType">
-            <table id=expl>
+            <table id="expl">
                 <tr>
-                    <th colspan="4">Manuelle Eingabe der Stichprobe</th>
-                    <th><input type= Button value="+" (click)="createNewRow('expl')"><input type=Button value="-" (click)="removeRow('expl')"></th>
+                    <th colspan="4"> <h3 id="head3">Manuelle Eingabe der Stichprobe</h3></th>
+                    <th> <input class="Button2" type="Button" value="-" (click)="removeRow('expl')"> <input class="Button3" type="Button" value="+" (click)="createNewRow('expl')"></th>
                 </tr>
                 <tr>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td>
-                  <td><input type="number" ></td> 
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td>
+                  <td><input class="table1" type="number" ></td> 
                 </tr>
             </table>
         </div>
         <div *ngIf="!sampleType">
             <table id=abs>
                 <tr>
-                    <th colspan="1">Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit)</th>
-                    <th><input type= Button value="+" (click)="createNewRow('abs')"><input type=Button value="-" (click)="removeRow('abs')"></th>
+                    <th colspan="1"> <h3 id="head3"> Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit) </h3> </th>
+                    <th><input class="Button2" type="Button" value="-" (click)="removeRow('abs')"  ><input class="Button3" type="Button" value="+" (click)="createNewRow('abs')"></th>
                 </tr>
                 <tr>
-                  <td><input type="number"></td>
-                  <td><input type="number"></td> 
+                  <td><input class="table1" type="number"></td>
+                  <td><input class="table1" type="number"></td> 
                 </tr>
             </table>
         </div>
@@ -77,10 +82,12 @@
 
     <br>
 
+
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
     <input type="number" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)" required>
-    <br> <br>
+    <br>
     <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
     <input type="submit" id="show" value="Starten" class="Button1" (click)="openDialog()">
+
 </form>

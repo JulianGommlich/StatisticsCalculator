@@ -1,8 +1,14 @@
 
+:host {
+    display: block;
+    width: 75%;
+    margin: auto;
+    height: auto;
+}
+
+/* Macht das hier irgendwas? --> es gibt keinen Body?  */
 body {
     width: 100vw;
-    height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -10,19 +16,68 @@ body {
 input.Button1 {
     left: 70%;
     margin-right: 2%;
+
 }
 
 input#importFile {
+    width: 320px;
+    height: 37px;
     display: none;
 }
 
 input#loadFile {
-    width: 300px;
-    height: 35px;
+    width: 340px;
+    height: 40px;
     color: white;
     background-color: black;
     font-style: italic;
     left: 0%;
+    margin-bottom: 20px;
+}
+
+input.table1 {
+   
+    max-width:100%;
+    border:3px red;
+    height: 60px;
+    color:red;
+    
+}
+
+input.Button2 {
+    background-color:white;
+  border: 1px darkgray;
+  color: grey;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  
+  font-size: 30px;
+  max-width:40px;
+  max-height: 40px;
+  padding:0;
+  
+  float:right;
+  margin-right:5px;
+
+}
+
+
+input.Button3 {
+    background-color:white;
+  border: 1px darkgray;
+  color: grey;
+  border-radius: 50%;
+  text-align: center;
+  text-decoration: none;
+  
+  font-size: 30px;
+  max-width:40px;
+  max-height: 40px;
+  padding:0;
+  float:right;
+  margin-right:5px;
+
 }
 
 .radioBtn {
@@ -63,11 +118,13 @@ input#loadFile {
     width: auto;
     height: 75px;
     text-align: center;
-    margin: 15px 50px 15px 50px;
+    margin: 15px 60px 15px 5px;
 }
 
 .radioLine {
     display: inline-flex;
+    margin-bottom: 35px;
+    margin-top: 5px;
 }
 
 .radioLabel {
@@ -76,6 +133,66 @@ input#loadFile {
     margin-right: 0px;
     display: block;
     width: 150px;
+}
+
+table, th, td { border: 1px solid;
+                border-collapse: collapse;
+                text-align: left; 
+                
+            }
+
+table{
+    table-layout: fixed;
+    width:100%; 
+    padding:1px;
+}
+
+th {
+    background-color: lightgray;
+    border-inline: 3px lightgray; 
+    border:none;
+    max-width:100%;
+    height: 60px;
+
+}
+
+td {
+    max-width:100%;
+    padding-right:1vw;
+    height: 60px;
+}
+
+tr {
+
+    height: 60px;
+}
+
+
+h3#head3{
+    font-size:20px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
+    color: white;
+    margin-left: 1%;  
+   
+}
+
+.main {
+margin-left: 10%;
+margin-right: 10%;
+
+}
+
+#numSequence {
+    margin-bottom: 25px;
+}
+
+#buttonLine {
+    margin-bottom: 15px;
+}
+
+p {
+    margin-bottom: 15px;
 }
 
 #delete {
