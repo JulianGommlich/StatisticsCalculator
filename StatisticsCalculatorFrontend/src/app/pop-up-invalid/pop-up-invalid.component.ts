@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   templateUrl: './pop-up-invalid.component.html',
   styleUrls: ['./pop-up-invalid.component.css', '../app.component.css']
 })
-export class PopUpInvalidComponent implements OnInit {
+export class PopUpInvalidComponent {
 
   // caseIsForm: boolean;
   errorCase: String;
@@ -18,8 +18,5 @@ export class PopUpInvalidComponent implements OnInit {
     //   this.caseIsForm = true;
     // }
     this.errorCase = data.case;
-
   }
-
-  ngOnInit(): void {}
 }

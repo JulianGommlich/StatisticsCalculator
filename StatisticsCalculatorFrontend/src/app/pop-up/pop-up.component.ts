@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiEndpointService } from '../api-endpoint.service';
@@ -12,13 +12,13 @@ import { Validation } from '../validation';
   templateUrl: './pop-up.component.html',
   styleUrls: ['./pop-up.component.css', '../app.component.css']
 })
-export class PopUpComponent implements OnInit {
+export class PopUpComponent {
 
   expliziteStichprobe: string;
   absoluteHaeufigkeitsverteilung: string;
   error = false;
 
-  // Response vom Backend
+  // Response-Data vom Backend
   inputData: Stichprobe;
 
   constructor(
@@ -29,6 +29,7 @@ export class PopUpComponent implements OnInit {
   ) {
     this.inputData = data.inputData;
 
+    // Stichproben umformen, sodass sie im PopUp angezeigt werden können
     this.expliziteStichprobe = this.inputData.expliziteStichprobe.join(';');
     this.absoluteHaeufigkeitsverteilung = '';
     const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
@@ -40,15 +41,16 @@ export class PopUpComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void { }
-
+  /**
+   * Methode zum Abruf der Werte aus dem PopUp und nachfolgendem Absenden des HTTP-Requests
+   */
   getResults(): void {
     const validation = new Validation();
     const sampleInput = this.inputData.sampleType === 'explizit'
       ? (<HTMLInputElement>document.getElementById('explicitSample')).value
       : (<HTMLInputElement>document.getElementById('absoluteFrequency')).value;
 
-    if (validation.validateSequence(this.inputData.sampleType, sampleInput)) {
+    if (validation.validateSequence(this.inputData.sampleType, sampleInput)) {    // Validierung
       const calculationData = new Stichprobe(this.inputData.sampleType, [], {}, this.inputData.z);
 
       const sampleParser = new SampleParser();
@@ -61,9 +63,9 @@ export class PopUpComponent implements OnInit {
         calculationData.setExpSample();
       }
 
-      // Create logic to get data
+      // Navigation auf View 2
       this.router.navigate(['/results']);
-      //send sample data to backend
+      // Stichprobenwerte an den Api-Endpunkt des Frontends geben
       this.apiEndpoint.startCalculation(calculationData);
     } else {
       this.dialog.open( PopUpInvalidComponent, { data: { case: 'pop-up' } } );

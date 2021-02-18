@@ -26,7 +26,7 @@
     </div>
 
 
-    <div *ngIf="sampleType==null">
+    <div *ngIf="sampleType === null">
         <p>Bitte wählen Sie eine der beiden Möglichkeiten aus oder wählen Sie eine .CSV-Datei</p>
     </div>
     <P>Die Stichprobe ist explizit (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) oder als absolute Häufigkeitsverteilung (Stichprobenumfang ≤ 100, höchstens 30 verschiedene Werte aus ℝ) anzugeben (manuell oder per .csv-Datei):</P>
@@ -38,14 +38,17 @@
     <input type="button" class="Button1" id="loadFile" value="(.csv-Datei auswählen)" onclick="document.getElementById('importFile').click();">
     
     <br>
-
     <br>
-    <div *ngIf="sampleType !=null">
+
+    <div *ngIf="sampleType != null">
         <div *ngIf="sampleType">
             <table id="expl">
                 <tr>
-                    <th colspan="4"> <h3 id="head3">Manuelle Eingabe der Stichprobe</h3></th>
-                    <th> <input class="Button2" type="Button" value="-" (click)="removeRow('expl')"> <input class="Button3" type="Button" value="+" (click)="createNewRow('expl')"></th>
+                    <th colspan="4"> <h3 id="head3">Manuelle Eingabe der Stichprobe</h3> </th>
+                    <th> 
+                        <input class="Button2" type="Button" value="-" (click)="removeRow('expl')">
+                        <input class="Button3" type="Button" value="+" (click)="createNewRow('expl')">
+                    </th>
                 </tr>
                 <tr>
                   <td><input class="table1" type="number" ></td>
@@ -59,8 +62,13 @@
         <div *ngIf="!sampleType">
             <table id=abs>
                 <tr>
-                    <th colspan="1"> <h3 id="head3"> Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit) </h3> </th>
-                    <th><input class="Button2" type="Button" value="-" (click)="removeRow('abs')"  ><input class="Button3" type="Button" value="+" (click)="createNewRow('abs')"></th>
+                    <th colspan="1">
+                        <h3 id="head3"> Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit) </h3>
+                    </th>
+                    <th>
+                        <input class="Button2" type="Button" value="-" (click)="removeRow('abs')">
+                        <input class="Button3" type="Button" value="+" (click)="createNewRow('abs')">
+                    </th>
                 </tr>
                 <tr>
                   <td><input class="table1" type="number"></td>
@@ -71,10 +79,7 @@
     </div>
 
     <br>
-
-
     <br>
-
 
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
 
@@ -82,5 +87,4 @@
     <br>
     <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
     <input type="submit" id="show" value="Starten" class="Button1" (click)="openDialog()">
-
 </form>

@@ -24,17 +24,29 @@ export class ApiEndpointService {
 
   constructor(private http: HttpClient) { }
 
-  // post a sample to the java backend
+  /**
+   * Funktion zum Start des Backend-Requests
+   * @param sample Stichprobe    Stichprobendaten, die verrechnet werden sollen
+   */
   startCalculation(sample: Stichprobe): void {
     this.sample = sample;
     this.http.post<Ergebnisse>("/exchange", sample, httpOptions)
       .subscribe((data: Ergebnisse) => { this.subject.next(data); });
   }
 
+
+  /**
+   * Funktion, um die Ergebnisse aus der Berechnung der statistischen Kennzahlen abzurufen
+   */
   getSubject(): ReplaySubject<Ergebnisse> {
     return this.subject;
   }
 
+
+  /**
+   * Funktion, um die Stichprobendaten abzurufen
+   * Verwendung bei den Diagrammen
+   */
   getSample(): Stichprobe {
     return this.sample;
   }

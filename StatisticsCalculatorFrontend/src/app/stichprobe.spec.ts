@@ -1,4 +1,5 @@
-import { SampleType, Stichprobe } from "./stichprobe";
+import { SampleType } from "./sampleType";
+import { Stichprobe } from "./stichprobe";
 
 describe('Stichprobe', () => {
 

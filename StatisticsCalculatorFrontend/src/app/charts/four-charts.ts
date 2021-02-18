@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiEndpointService } from '../api-endpoint.service';
 import { Stichprobe } from '../stichprobe';
 
@@ -74,6 +74,7 @@ export class FourCharts implements OnInit {
   ngOnInit() {
     this.stichprobendaten = this.apiEndpoint.getSample();
 
+    // Stichproben sortieren, damit die Werte in der richtigen Reihenfolge im Diagramm angezeigt werden
     this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe.sort();
     this.haeufigkeitsverteilung = this.sortObject(this.stichprobendaten.haeufigkeitsverteilung);
 
@@ -85,6 +86,11 @@ export class FourCharts implements OnInit {
     this.setLorenzChartValues(freqDistKeys, freqDistValues)
   }
 
+  /**
+   * Methode zum Sortieren eines Objekts nach key
+   * @param object { [key: string]: number }    Objekt mit absoluter Häufigkeitsverteilung
+   * @returns { [key: string]: number }
+   */
   sortObject(object: { [key: string]: number }): { [key: string]: number } {
     let returnObject: { [key: string]: number } = {};
     const objectKeys = Object.keys(object);
@@ -95,7 +101,7 @@ export class FourCharts implements OnInit {
 
     objectKeysNumeric.forEach((key: number) => {
       Object.assign(returnObject, { [key]: object[key] });
-    })
+    });
 
     return returnObject;
   }
@@ -105,7 +111,7 @@ export class FourCharts implements OnInit {
    * @param freqDistKeys   number[]   Liste aller Stichprobenwerte
    * @param freqDistValues number[]   Liste der absoluten Häufigkeiten oben genannter Stichprobenwerte
    */
-  setBarAndPieChartValues(freqDistKeys: string[], freqDistValues: number[]) {
+  setBarAndPieChartValues(freqDistKeys: string[], freqDistValues: number[]): void {
     // Durch sämtliche Wertepaare der absoluten Häufigkeitsverteilung iterieren und dann Key und Value
     // als Parameter ('name' und 'value') in das Diagramm einsetzen
     for (let index = 0; index < freqDistKeys.length; index++) {
@@ -121,7 +127,7 @@ export class FourCharts implements OnInit {
    * @param freqDistKeys   number[]   Liste aller Stichprobenwerte
    * @param freqDistValues number[]   Liste der absoluten Häufigkeiten oben genannter Stichprobenwerte
    */
-  setEmpiricalDistributionChartValues(freqDistKeys: string[], freqDistValues: number[]) {
+  setEmpiricalDistributionChartValues(freqDistKeys: string[], freqDistValues: number[]): void {
     // Am Anfang wird "eine Linie" gezogen, die den Wert 0 hat.
     this.empiricalDistributionChartValues.push({
       'name': '0',
@@ -141,7 +147,7 @@ export class FourCharts implements OnInit {
     // die kleiner oder gleich dem Wert in der aktuellen Iteration sind
     let sumOfRelativeFrequencies = 0;
 
-    const numberOfKeys = freqDistKeys.length    // Wird mehrfach verwendet
+    const numberOfKeys = freqDistKeys.length;    // Wird mehrfach verwendet
 
     // Durch alle Wertepaare der absoluten Häufigkeitsverteilung (bis auf das letzte) iterieren, um
     // die "Linien" der empirischen Verteilungsfunktion zu "zeichnen"
@@ -185,7 +191,7 @@ export class FourCharts implements OnInit {
    * @param freqDistKeys   number[]   Liste aller Stichprobenwerte
    * @param freqDistValues number[]   Liste der absoluten Häufigkeiten oben genannter Stichprobenwerte
    */
-  setLorenzChartValues(freqDistKeys: string[], freqDistValues: number[]) {
+  setLorenzChartValues(freqDistKeys: string[], freqDistValues: number[]): void {
     // In der Variable valueSeries wird der Verlauf der Lorenzkurve beschrieben. Sie wird hier initial erstellt.
     // Die Lorenzkurze beginnt im Punkt (0|0)
     let valueSeries = [{
@@ -210,7 +216,6 @@ export class FourCharts implements OnInit {
         'name': (Math.round(sumOfAbsoluteFrequency/this.expliziteStichprobe.length * 1000)/1000).toString(),
         'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => Math.abs(a) + Math.abs(b), 0) * 1000)/1000
       });
-      console.log(this.expliziteStichprobe.reduce((a, b) => a + b, 0));
     }
 
     // Hier wird die Variable valueSeries in das Diagramm eingesetzt.

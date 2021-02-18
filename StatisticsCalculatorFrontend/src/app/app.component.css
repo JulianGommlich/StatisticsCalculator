@@ -1,28 +1,28 @@
 /* Eingabefeld */
+
 input {
-    width: 340px;
-    height: 40px;
+    box-sizing: border-box;
     font-size: 20;
     font-weight: light;
+    height: 40px;
     text-align: center;
-    box-sizing: border-box;
+    width: 340px;
 }
 
 /* Löschen/Starten Button */
+
 input.Button1, button {
     background-color: #000000;
+    border: none;
     color: #FFFFFF;
-    width: 110px;
-    height: 30px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
-    font-style: Bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
     font-size: 25at;
+    font-style: Bold;
+    height: 30px;
     padding: 0;
-    border: none;  
     position: relative;
+    width: 110px;
 }
-
-
 
 mat-dialog-content {
     width: 50vw;

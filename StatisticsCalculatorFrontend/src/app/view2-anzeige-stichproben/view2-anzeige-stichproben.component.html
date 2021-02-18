@@ -1,5 +1,7 @@
-<form [formGroup]="ergebnisseFormGroup" *ngIf="ergebnisseFormGroup" id="view2CalculatedValues">
+<form *ngIf="ergebnisseFormGroup" [formGroup]="ergebnisseFormGroup" id="view2CalculatedValues">
+
     <h2>Ausgabe:</h2>
+
     <div id="listOfCalculatedValues" class="outputFlexContainer">
         <div class="outputFlexElement">
             <div class="outputLabel">
@@ -35,10 +37,13 @@
             <div class="outputLabel">
                 <label for="giniValue">Gini-Koeffizient:</label>
             </div>
-            <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value != '-1'" type="text" id="giniValue" formControlName="giniValue" readonly>
-            <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value == '-1'" type="text" id="giniValue" value="Der Gini-Koeffizient konnte nicht berechnet werden." readonly>
+            <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value != '-1'" type="text" id="giniValue"
+                formControlName="giniValue" readonly>
+            <input *ngIf="ergebnisseFormGroup.get('giniValue')!.value == '-1'" type="text" id="giniValue"
+                value="Der Gini-Koeffizient konnte nicht berechnet werden." readonly>
         </div>
     </div>
+
     <div id="tableQuantile" class="outputFlexContainer">
         <div class="outputFlexElement">
             <div class="outputLabel">
@@ -83,19 +88,9 @@
             <input type="text" id="meanAbsoluteDeviation" formControlName="z" readonly>
         </div>
     </div>
-    
-    <div id="4HorsemenOfCharts">
-        <app-four-charts></app-four-charts>
-    </div>
+
+    <app-four-charts></app-four-charts>
 </form>
 
 <!--Neue Eingabe der Daten-->
-<input class="Button1" type="button" id="return" value="Zurück" (click)="goBackToCalculator()">
-
-
-
-
-
-
-
-
+<input type="button" class="Button1" id="return" value="Zurück" (click)="goBackToCalculator()">

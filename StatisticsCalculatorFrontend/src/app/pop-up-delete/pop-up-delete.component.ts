@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,11 +6,9 @@ import { Router } from '@angular/router';
     templateUrl: './pop-up-delete.component.html',
     styleUrls: ['./pop-up-delete.component.css', '../app.component.css']
 })
-export class PopUpDeleteComponent implements OnInit {
+export class PopUpDeleteComponent {
 
     constructor(private router: Router) { }
-
-    ngOnInit(): void {}
 
     /**
      * Leert sämtliche Eingabefelder, indem die Seite ohne Daten neugeladen wird.

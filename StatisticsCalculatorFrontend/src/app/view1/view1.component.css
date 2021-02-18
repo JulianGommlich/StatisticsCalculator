@@ -1,16 +1,14 @@
 :host {
     display: block;
-    width: 75%;
-    margin: auto;
-    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
-/* Macht das hier irgendwas? --> es gibt keinen Body?  */
-
-body {
-    width: 100vw;
-    justify-content: center;
-    align-items: center;
+form {
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
 }
 
 input.Button1 {
@@ -19,69 +17,68 @@ input.Button1 {
 }
 
 input#importFile {
-    width: 320px;
-    height: 37px;
     display: none;
+    height: 37px;
+    width: 320px;
 }
 
 input#loadFile {
-    width: 340px;
-    height: 40px;
-    color: white;
     background-color: black;
+    color: white;
     font-style: italic;
+    height: 40px;
     left: 0%;
     margin-bottom: 20px;
+    width: 340px;
 }
 
 input.table1 {
     border: 3px;
-    width: 100%;
     height: 60px;
+    width: 100%;
 }
 
 input.Button2 {
     background-color: white;
     border: 1px darkgray;
-    color: grey;
     border-radius: 50%;
-    text-align: center;
-    text-decoration: none;
+    color: grey;
+    float: right;
     font-size: 30px;
+    margin-right: 5px;
     max-width: 40px;
     max-height: 40px;
     padding: 0;
-    float: right;
-    margin-right: 5px;
+    text-align: center;
+    text-decoration: none;
 }
 
 input.Button3 {
     background-color: white;
     border: 1px darkgray;
-    color: grey;
     border-radius: 50%;
-    text-align: center;
-    text-decoration: none;
+    color: grey;
+    float: right;
     font-size: 30px;
+    margin-right: 5px;
     max-width: 40px;
     max-height: 40px;
     padding: 0;
-    float: right;
-    margin-right: 5px;
+    text-align: center;
+    text-decoration: none;
 }
 
 .radioBtn {
-    width: 13px;
-    height: 13px;
+    align-items: center;
     border: 3px solid black;
     border-radius: 50%;
-    display: flex;
-    /*vorher flex*/
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
+    display: flex;
+    height: 13px;
+    justify-content: center;
     margin-left: 50%;
     margin-right: 50%;
+    width: 13px;
 }
 
 .radioBtn input {
@@ -89,27 +86,27 @@ input.Button3 {
 }
 
 .radioBtn .checkmark {
-    width: calc(100% - 6px);
-    height: calc(100% - 6px);
-    border-radius: 50%;
     background: white;
-    opacity: 0;
+    border-radius: 50%;
     display: inline-block;
+    height: calc(100% - 6px);
+    opacity: 0;
     transition: opacity 0.3s ease;
+    width: calc(100% - 6px);
 }
 
 .radioBtn input:checked+span.checkmark {
-    opacity: 1;
     background-color: black;
-    width: 9px;
     height: 9px;
+    opacity: 1;
+    width: 9px;
 }
 
 .radioContainer {
-    width: auto;
     height: 75px;
-    text-align: center;
     margin: 15px 60px 15px 5px;
+    text-align: center;
+    width: auto;
 }
 
 .radioLine {
@@ -119,10 +116,10 @@ input.Button3 {
 }
 
 .radioLabel {
-    margin-top: 10px;
+    display: block;
     margin-left: 16px;
     margin-right: 0px;
-    display: block;
+    margin-top: 10px;
     width: 150px;
 }
 
@@ -133,22 +130,22 @@ table, th, td {
 }
 
 table {
+    padding: 1px;
     table-layout: fixed;
     width: 100%;
-    padding: 1px;
 }
 
 th {
     background-color: lightgray;
-    border-inline: 3px lightgray;
     border: none;
-    max-width: 100%;
+    border-inline: 3px lightgray;
     height: 60px;
+    max-width: 100%;
 }
 
 td {
-    max-width: 100%;
     height: 60px;
+    max-width: 100%;
 }
 
 tr {
@@ -156,10 +153,10 @@ tr {
 }
 
 h3#head3 {
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
     font-size: 20px;
     font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
-    color: white;
     margin-left: 1%;
 }
 

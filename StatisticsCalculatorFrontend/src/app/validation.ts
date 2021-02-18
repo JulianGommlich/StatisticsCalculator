@@ -1,8 +1,6 @@
-import { preserveWhitespacesDefault } from "@angular/compiler";
-
 export class Validation {
 
-    constructor() {}
+    constructor() { }
 
     /**
      * Checks if Input is full and correct according to our definition (not more than 100 numbers, not more than 30 different numbers)
@@ -18,7 +16,7 @@ export class Validation {
         if (valueZ.value.length === 0) {
             return false;
         }
-        if (expl.checked == true){
+        if (expl.checked == true) {
             var types = "explizit";
         } else {
             var types = "absolut";
@@ -28,14 +26,14 @@ export class Validation {
         }
         return true;
     }
- 
+
     /**
      * Checks if more than 100 or if more than 30 different values
      * @param types if expl or abs
      */
     validateSequence(types: string, numSequence: string): boolean {
-        
-        switch (types){
+
+        switch (types) {
             case "explizit":
                 let list = numSequence.split(';');
                 if (!(/^(\-?\d+\;?)+$/g).test(numSequence)) { return false }
@@ -51,28 +49,29 @@ export class Validation {
                 if (!(/^(\(-?\d+\;\d+\)(; )?)+$/g).test(numSequence)) { return false }
                 // over 30 rows equals to over 30 different values (if typed correctly, forcing to use all cells!) 
                 if (listOfObjects.length > 30) { return false; }
+
+                let tableIsNotFull = false;
                 listOfObjects.forEach(valuePair => {
                     let valuePairArray = valuePair.replace(/\(|\)/g, '').split(';');
                     let x = valuePairArray[0];
                     let y = valuePairArray[1];
                     console.log(valuePairArray);
 
-                    if (x === "") { // if table is not full
-                        return false;
-                    } 
-                    if (y === "") { // if table is not full
-                        return false;
+                    if (x === "" || y === "") { // if table is not full
+                        tableIsNotFull = true;
                     }
 
                     scope += Number(y);
                 });
                 // if scope bigger than 100
+                if (tableIsNotFull) { return false; }
                 if (scope > 100) { return false; }
                 break;
         }
         return true;
-        
     }
+
+
     /**
      * Converts array to object with key as number and value as count
      * gives back boolean if more than 30 numbers false
@@ -81,7 +80,7 @@ export class Validation {
     countNumbers(arraySeq: string[]): boolean {
         let newArraySequence: { [key: string]: number } = {};
 
-        arraySeq.forEach(function (key) {
+        arraySeq.forEach(key => {
             if (Object.keys(newArraySequence).includes(String(key))) {
                 newArraySequence[key] += 1;
             }
@@ -89,10 +88,7 @@ export class Validation {
                 Object.assign(newArraySequence, { [key]: 1 });
             }
         });
-        if (Object.keys(newArraySequence).length > 30) {
-            return false;
-        }
-        return true;
+
+        return !(Object.keys(newArraySequence).length > 30);
     }
 }
-//Math.max(...Object.values(newArraySequence)) >= 30

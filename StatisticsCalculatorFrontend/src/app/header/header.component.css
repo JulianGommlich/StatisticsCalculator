@@ -1,44 +1,41 @@
 /* CSS Formatierung für den Div der Klasse "Header" */
-.header{
 
-    width:100%;
-    height: calc(120px - 5vw);
-    min-height: 70px;
-    position: relative;
-    margin-top: 3%;
-    margin-bottom: 2%;
-    box-shadow: 0 8px 7px -5px lightgray;
+.header {
+  box-shadow: 0 8px 7px -5px lightgray;
+  height: calc(120px - 5vw);
+  margin-bottom: 2%;
+  margin-top: 3%;
+  min-height: 70px;
+  position: relative;
+  width: 100%;
 }
 
 /* CSS Formatierung des Buttons der Klasse "H1" (Gleichzeitig Überschrift, als auch Button im Header) */
-button.h1{
 
-    background: white;
-    border: 0px;
-    font-size: 24px;
-    float:left;
-    padding:0;
-    color: black;
-    width: auto;
-    margin-top: 0;
-
-    margin-left: 10%;
-    margin-right: 50%;
-    font-weight: bold;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
-    position: absolute;
-    max-width:40%;
-
-  }
+button.h1 {
+  background: white;
+  border: 0px;
+  color: black;
+  float: left;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
+  font-size: 24px;
+  font-weight: bold;
+  margin-left: 10%;
+  margin-right: 50%;
+  margin-top: 0;
+  max-width: 40%;
+  padding: 0;
+  position: absolute;
+  width: auto;
+}
 
 /* CSS Formatierung der Überschrift H2 aus dem Header */
-h2{
-    
-    font-size: 15px;
-    font-weight: lighter;
-    padding:0;
-    text-align:right;
-    margin-right: 10%;
-    margin-left: 50%;  
-  
-  }
+
+h2 {
+  font-size: 15px;
+  font-weight: lighter;
+  margin-left: 50%;
+  margin-right: 10%;
+  padding: 0;
+  text-align: right;
+}

@@ -1,13 +1,16 @@
+import { HttpClient } from "@angular/common/http";
+import { ApiEndpointService } from "../api-endpoint.service";
 import { FourCharts } from "./four-charts";
 
 describe('Four-Charts', () => {
 
-    let fourCharts: FourCharts
+    let apiEndpoint: ApiEndpointService;
+    let fourCharts: FourCharts;
     const mockFreqDistKeys = ['1', '2', '3'];
     const mockFreqDistValues = [2, 5, 4];
 
     beforeAll(() => {
-        fourCharts = new FourCharts();
+        fourCharts = new FourCharts(apiEndpoint);
         fourCharts.expliziteStichprobe = [1, 1, 2, 2, 2, 2, 2, 3, 3, 3, 3];
     });
 

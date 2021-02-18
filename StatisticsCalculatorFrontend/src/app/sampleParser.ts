@@ -1,7 +1,7 @@
 export class SampleParser {
-    
-    constructor() {}
-    
+
+    constructor() { }
+
     // Takes a String as Input and converts it to a number-Array (explSample)
     parseExplSample(inputStr: string): number[] {
         let numArr: number[] = [];
@@ -10,7 +10,7 @@ export class SampleParser {
             if ((/.*\d+.*/gm).test(key)) {
                 numArr.push(Number(key));
             }
-            else {
+            else { 
                 continue;
             }
         }
