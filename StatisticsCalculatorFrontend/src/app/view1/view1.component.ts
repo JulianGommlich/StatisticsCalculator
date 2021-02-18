@@ -177,7 +177,6 @@ export class View1Component implements OnInit {
     }
 
 
-    let inputData = this.buildFormModel();
     const validation = new Validation();
 
     if (validation.checkValidation( expl, abs, valueZ)) {
@@ -204,6 +203,7 @@ export class View1Component implements OnInit {
       stichprobe.setFreqDistribution();
     }
     else if (newSampleType === 'absolut') {
+      console.log(this.inputForm.get('numSequence')?.value)
       stichprobe.haeufigkeitsverteilung = sampleParser.parseFreqDist(this.inputForm.get('numSequence')?.value);
       stichprobe.setExpSample();
     }
