@@ -1,0 +1,149 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <title>StatisticsCalculatorFrontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><style>input[_ngcontent-sdc-c148] {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input.Button1[_ngcontent-sdc-c148], button[_ngcontent-sdc-c148] {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+mat-dialog-content[_ngcontent-sdc-c148] {
+    width: 50vw;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQUNoQjtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsc0JBQXNCO0FBQzFCO0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osWUFBWTtJQUNaLCtDQUErQztJQUMvQyxnQkFBZ0I7SUFDaEIsZUFBZTtJQUNmLFVBQVU7SUFDVixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBSUE7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBFaW5nYWJlZmVsZCAqL1xyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBmb250LXNpemU6IDIwO1xyXG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLyogTMO2c2NoZW4vU3RhcnRlbiBCdXR0b24gKi9cclxuaW5wdXQuQnV0dG9uMSwgYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA7XHJcbiAgICBjb2xvcjogI0ZGRkZGRjtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIGZvbnQtZmFtaWx5OidTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hO1xyXG4gICAgZm9udC1zdHlsZTogQm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMjVhdDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBib3JkZXI6IG5vbmU7ICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuXHJcblxyXG5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDUwdnc7XHJcbn0iXX0= */</style><style>.header[_ngcontent-sdc-c147]{
+
+    width:100%;
+    height: calc(120px - 5vw);
+    min-height: 70px;
+    position: relative;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    box-shadow: 0 8px 7px -5px lightgray;
+}
+
+button.h1[_ngcontent-sdc-c147]{
+
+    background: white;
+    border: 0px;
+    font-size: 24px;
+    float:left;
+    padding:0;
+    
+    margin-left: 10%;
+    margin-right: 50%;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
+    position: absolute;
+    max-width:40%;
+
+  }
+
+h2[_ngcontent-sdc-c147]{
+    
+    font-size: 15px;
+    font-weight: lighter;
+    padding:0;
+    text-align:right;
+    margin-right: 10%;
+    margin-left: 50%;  
+  
+  }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhlYWRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLHFEQUFxRDtBQUNyRDs7SUFFSSxVQUFVO0lBQ1YseUJBQXlCO0lBQ3pCLGdCQUFnQjtJQUNoQixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLGlCQUFpQjtJQUNqQixvQ0FBb0M7QUFDeEM7QUFFQSx1R0FBdUc7QUFDdkc7O0lBRUksaUJBQWlCO0lBQ2pCLFdBQVc7SUFDWCxlQUFlO0lBQ2YsVUFBVTtJQUNWLFNBQVM7O0lBRVQsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsZ0RBQWdEO0lBQ2hELGtCQUFrQjtJQUNsQixhQUFhOztFQUVmO0FBRUYsdURBQXVEO0FBQ3ZEOztJQUVJLGVBQWU7SUFDZixvQkFBb0I7SUFDcEIsU0FBUztJQUNULGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsZ0JBQWdCOztFQUVsQiIsImZpbGUiOiJoZWFkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIENTUyBGb3JtYXRpZXJ1bmcgZsO8ciBkZW4gRGl2IGRlciBLbGFzc2UgXCJIZWFkZXJcIiAqL1xyXG4uaGVhZGVye1xyXG5cclxuICAgIHdpZHRoOjEwMCU7XHJcbiAgICBoZWlnaHQ6IGNhbGMoMTIwcHggLSA1dncpO1xyXG4gICAgbWluLWhlaWdodDogNzBweDtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1hcmdpbi10b3A6IDMlO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMiU7XHJcbiAgICBib3gtc2hhZG93OiAwIDhweCA3cHggLTVweCBsaWdodGdyYXk7XHJcbn1cclxuXHJcbi8qIENTUyBGb3JtYXRpZXJ1bmcgZGVzIEJ1dHRvbnMgZGVyIEtsYXNzZSBcIkgxXCIgKEdsZWljaHplaXRpZyDDnGJlcnNjaHJpZnQsIGFscyBhdWNoIEJ1dHRvbiBpbSBIZWFkZXIpICovXHJcbmJ1dHRvbi5oMXtcclxuXHJcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcclxuICAgIGJvcmRlcjogMHB4O1xyXG4gICAgZm9udC1zaXplOiAyNHB4O1xyXG4gICAgZmxvYXQ6bGVmdDtcclxuICAgIHBhZGRpbmc6MDtcclxuICAgIFxyXG4gICAgbWFyZ2luLWxlZnQ6IDEwJTtcclxuICAgIG1hcmdpbi1yaWdodDogNTAlO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICBmb250LWZhbWlseTogJ1NlZ29lIFVJJywgVGFob21hLCBHZW5ldmEsIFZlcmRhbmE7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBtYXgtd2lkdGg6NDAlO1xyXG5cclxuICB9XHJcblxyXG4vKiBDU1MgRm9ybWF0aWVydW5nIGRlciDDnGJlcnNjaHJpZnQgSDIgYXVzIGRlbSBIZWFkZXIgKi9cclxuaDJ7XHJcbiAgICBcclxuICAgIGZvbnQtc2l6ZTogMTVweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xyXG4gICAgcGFkZGluZzowO1xyXG4gICAgdGV4dC1hbGlnbjpyaWdodDtcclxuICAgIG1hcmdpbi1yaWdodDogMTAlO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDUwJTsgIFxyXG4gIFxyXG4gIH1cclxuIl19 */</style><style>[_nghost-sdc-c146] {
+    display: block;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input.Button1[_ngcontent-sdc-c146] {
+    left: 85%;
+    margin-right: 2%;
+}
+
+.outputFlexContainer[_ngcontent-sdc-c146] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.outputLabel[_ngcontent-sdc-c146] {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    width: 250px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+input[_ngcontent-sdc-c146] {
+    width: 300px;
+}
+
+.outputFlexElement[_ngcontent-sdc-c146] {
+    display: inline-flex;
+    white-space: wrap;
+    margin: 5px 2% 10px 0px;
+}
+
+#tableQuantile[_ngcontent-sdc-c146] {
+    margin-bottom: 50px;
+}
+
+#newData[_ngcontent-sdc-c146] {
+    margin-bottom: 60px;
+}
+
+#return[_ngcontent-sdc-c146] {
+    margin-bottom: 30px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpZXcyLWFuemVpZ2Utc3RpY2hwcm9iZW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxVQUFVO0lBQ1Ysa0JBQWtCO0lBQ2xCLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLFNBQVM7SUFDVCxnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsZUFBZTtJQUNmLDhCQUE4QjtBQUNsQzs7QUFFQTtJQUNJLHFCQUFxQjtJQUNyQixZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsc0JBQXNCO0FBQzFCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLG9CQUFvQjtJQUNwQixpQkFBaUI7SUFDakIsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCIiwiZmlsZSI6InZpZXcyLWFuemVpZ2Utc3RpY2hwcm9iZW4uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgd2lkdGg6IDc1JTtcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG59XHJcblxyXG5pbnB1dC5CdXR0b24xIHtcclxuICAgIGxlZnQ6IDg1JTtcclxuICAgIG1hcmdpbi1yaWdodDogMiU7XHJcbn1cclxuXHJcbi5vdXRwdXRGbGV4Q29udGFpbmVyIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5vdXRwdXRMYWJlbCB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICBoZWlnaHQ6IDM4cHg7XHJcbiAgICBsaW5lLWhlaWdodDogMzhweDtcclxuICAgIHdpZHRoOiAyNTBweDtcclxuICAgIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xyXG59XHJcblxyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzAwcHg7XHJcbn1cclxuXHJcbi5vdXRwdXRGbGV4RWxlbWVudCB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcclxuICAgIHdoaXRlLXNwYWNlOiB3cmFwO1xyXG4gICAgbWFyZ2luOiA1cHggMiUgMTBweCAwcHg7XHJcbn1cclxuXHJcbiN0YWJsZVF1YW50aWxlIHtcclxuICAgIG1hcmdpbi1ib3R0b206IDUwcHg7XHJcbn1cclxuXHJcbiNuZXdEYXRhIHtcclxuICAgIG1hcmdpbi1ib3R0b206IDYwcHg7XHJcbn1cclxuXHJcbiNyZXR1cm4ge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcclxufSJdfQ== */</style><style>input[_ngcontent-sdc-c146] {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input.Button1[_ngcontent-sdc-c146], button[_ngcontent-sdc-c146] {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+mat-dialog-content[_ngcontent-sdc-c146] {
+    width: 50vw;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQUNoQjtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsc0JBQXNCO0FBQzFCO0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osWUFBWTtJQUNaLCtDQUErQztJQUMvQyxnQkFBZ0I7SUFDaEIsZUFBZTtJQUNmLFVBQVU7SUFDVixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBSUE7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBFaW5nYWJlZmVsZCAqL1xyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBmb250LXNpemU6IDIwO1xyXG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLyogTMO2c2NoZW4vU3RhcnRlbiBCdXR0b24gKi9cclxuaW5wdXQuQnV0dG9uMSwgYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA7XHJcbiAgICBjb2xvcjogI0ZGRkZGRjtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIGZvbnQtZmFtaWx5OidTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hO1xyXG4gICAgZm9udC1zdHlsZTogQm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMjVhdDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBib3JkZXI6IG5vbmU7ICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuXHJcblxyXG5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDUwdnc7XHJcbn0iXX0= */</style></head>
+<body class="mat-typography">
+  <app-root _nghost-sdc-c148="" ng-version="11.0.9"><app-header _ngcontent-sdc-c148="" _nghost-sdc-c147=""><div _ngcontent-sdc-c147="" class="header"><button _ngcontent-sdc-c147="" id="clickableTitle" class="h1"> Rechenmodul für explizit gegebene Stichproben </button><h2 _ngcontent-sdc-c147="">Projektkonzeption und Realisierung, 5. Semester, Kurs WI18C</h2></div></app-header><router-outlet _ngcontent-sdc-c148=""></router-outlet><app-view2-anzeige-stichproben _nghost-sdc-c146=""><!--bindings={}--><input _ngcontent-sdc-c146="" type="button" id="return" value="Zurück" class="Button1"></app-view2-anzeige-stichproben><!--container--></app-root>
+<script src="runtime.js" defer=""></script><script src="polyfills.js" defer=""></script><script src="styles.js" defer=""></script><script src="vendor.js" defer=""></script><script src="main.js" defer=""></script>
+
+</body></html>

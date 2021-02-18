@@ -1,0 +1,881 @@
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <title>StatisticsCalculatorFrontend</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="styles.css"><style>input[_ngcontent-gqf-c148] {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input.Button1[_ngcontent-gqf-c148], button[_ngcontent-gqf-c148] {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+mat-dialog-content[_ngcontent-gqf-c148] {
+    width: 50vw;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQUNoQjtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsc0JBQXNCO0FBQzFCO0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osWUFBWTtJQUNaLCtDQUErQztJQUMvQyxnQkFBZ0I7SUFDaEIsZUFBZTtJQUNmLFVBQVU7SUFDVixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBSUE7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBFaW5nYWJlZmVsZCAqL1xyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBmb250LXNpemU6IDIwO1xyXG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLyogTMO2c2NoZW4vU3RhcnRlbiBCdXR0b24gKi9cclxuaW5wdXQuQnV0dG9uMSwgYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA7XHJcbiAgICBjb2xvcjogI0ZGRkZGRjtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIGZvbnQtZmFtaWx5OidTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hO1xyXG4gICAgZm9udC1zdHlsZTogQm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMjVhdDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBib3JkZXI6IG5vbmU7ICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuXHJcblxyXG5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDUwdnc7XHJcbn0iXX0= */</style><style>.header[_ngcontent-gqf-c147]{
+
+    width:100%;
+    height: calc(120px - 5vw);
+    min-height: 70px;
+    position: relative;
+    margin-top: 3%;
+    margin-bottom: 2%;
+    box-shadow: 0 8px 7px -5px lightgray;
+}
+
+button.h1[_ngcontent-gqf-c147]{
+
+    background: white;
+    border: 0px;
+    font-size: 24px;
+    float:left;
+    padding:0;
+    
+    margin-left: 10%;
+    margin-right: 50%;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana;
+    position: absolute;
+    max-width:40%;
+
+  }
+
+h2[_ngcontent-gqf-c147]{
+    
+    font-size: 15px;
+    font-weight: lighter;
+    padding:0;
+    text-align:right;
+    margin-right: 10%;
+    margin-left: 50%;  
+  
+  }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhlYWRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLHFEQUFxRDtBQUNyRDs7SUFFSSxVQUFVO0lBQ1YseUJBQXlCO0lBQ3pCLGdCQUFnQjtJQUNoQixrQkFBa0I7SUFDbEIsY0FBYztJQUNkLGlCQUFpQjtJQUNqQixvQ0FBb0M7QUFDeEM7QUFFQSx1R0FBdUc7QUFDdkc7O0lBRUksaUJBQWlCO0lBQ2pCLFdBQVc7SUFDWCxlQUFlO0lBQ2YsVUFBVTtJQUNWLFNBQVM7O0lBRVQsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixpQkFBaUI7SUFDakIsZ0RBQWdEO0lBQ2hELGtCQUFrQjtJQUNsQixhQUFhOztFQUVmO0FBRUYsdURBQXVEO0FBQ3ZEOztJQUVJLGVBQWU7SUFDZixvQkFBb0I7SUFDcEIsU0FBUztJQUNULGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsZ0JBQWdCOztFQUVsQiIsImZpbGUiOiJoZWFkZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIENTUyBGb3JtYXRpZXJ1bmcgZsO8ciBkZW4gRGl2IGRlciBLbGFzc2UgXCJIZWFkZXJcIiAqL1xyXG4uaGVhZGVye1xyXG5cclxuICAgIHdpZHRoOjEwMCU7XHJcbiAgICBoZWlnaHQ6IGNhbGMoMTIwcHggLSA1dncpO1xyXG4gICAgbWluLWhlaWdodDogNzBweDtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1hcmdpbi10b3A6IDMlO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMiU7XHJcbiAgICBib3gtc2hhZG93OiAwIDhweCA3cHggLTVweCBsaWdodGdyYXk7XHJcbn1cclxuXHJcbi8qIENTUyBGb3JtYXRpZXJ1bmcgZGVzIEJ1dHRvbnMgZGVyIEtsYXNzZSBcIkgxXCIgKEdsZWljaHplaXRpZyDDnGJlcnNjaHJpZnQsIGFscyBhdWNoIEJ1dHRvbiBpbSBIZWFkZXIpICovXHJcbmJ1dHRvbi5oMXtcclxuXHJcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcclxuICAgIGJvcmRlcjogMHB4O1xyXG4gICAgZm9udC1zaXplOiAyNHB4O1xyXG4gICAgZmxvYXQ6bGVmdDtcclxuICAgIHBhZGRpbmc6MDtcclxuICAgIFxyXG4gICAgbWFyZ2luLWxlZnQ6IDEwJTtcclxuICAgIG1hcmdpbi1yaWdodDogNTAlO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICBmb250LWZhbWlseTogJ1NlZ29lIFVJJywgVGFob21hLCBHZW5ldmEsIFZlcmRhbmE7XHJcbiAgICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgICBtYXgtd2lkdGg6NDAlO1xyXG5cclxuICB9XHJcblxyXG4vKiBDU1MgRm9ybWF0aWVydW5nIGRlciDDnGJlcnNjaHJpZnQgSDIgYXVzIGRlbSBIZWFkZXIgKi9cclxuaDJ7XHJcbiAgICBcclxuICAgIGZvbnQtc2l6ZTogMTVweDtcclxuICAgIGZvbnQtd2VpZ2h0OiBsaWdodGVyO1xyXG4gICAgcGFkZGluZzowO1xyXG4gICAgdGV4dC1hbGlnbjpyaWdodDtcclxuICAgIG1hcmdpbi1yaWdodDogMTAlO1xyXG4gICAgbWFyZ2luLWxlZnQ6IDUwJTsgIFxyXG4gIFxyXG4gIH1cclxuIl19 */</style><style>[_nghost-gqf-c77] {
+    display: block;
+    width: 75%;
+    margin: auto;
+    height: auto;
+}
+
+
+
+body[_ngcontent-gqf-c77] {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input.Button1[_ngcontent-gqf-c77] {
+    left: 70%;
+    margin-right: 2%;
+}
+
+input#importFile[_ngcontent-gqf-c77] {
+    width: 320px;
+    height: 37px;
+    display: none;
+}
+
+input#loadFile[_ngcontent-gqf-c77] {
+    width: 340px;
+    height: 40px;
+    color: white;
+    background-color: black;
+    font-style: italic;
+    left: 0%;
+    margin-bottom: 20px;
+}
+
+.radioBtn[_ngcontent-gqf-c77] {
+    width: 13px;
+    height: 13px;
+    border: 3px solid black;
+    border-radius: 50%;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-left: 50%;
+    margin-right: 50%;
+}
+
+.radioBtn[_ngcontent-gqf-c77]   input[_ngcontent-gqf-c77] {
+    display: none;
+}
+
+.radioBtn[_ngcontent-gqf-c77]   .checkmark[_ngcontent-gqf-c77] {
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    display: inline-block;
+    transition: opacity 0.3s ease;
+}
+
+.radioBtn[_ngcontent-gqf-c77]   input[_ngcontent-gqf-c77]:checked    + span.checkmark[_ngcontent-gqf-c77] {
+    opacity: 1;
+    background-color: black;   
+    width: 9px;
+    height: 9px; 
+}
+
+.radioContainer[_ngcontent-gqf-c77] {
+    width: auto;
+    height: 75px;
+    text-align: center;
+    margin: 15px 60px 15px 5px;
+}
+
+.radioLine[_ngcontent-gqf-c77] {
+    display: inline-flex;
+    margin-bottom: 35px;
+    margin-top: 5px;
+}
+
+.radioLabel[_ngcontent-gqf-c77] {
+    margin-top: 10px;
+    margin-left: 16px;
+    margin-right: 0px;
+    display: block;
+    width: 150px;
+}
+
+#numSequence[_ngcontent-gqf-c77] {
+    margin-bottom: 25px;
+}
+
+#buttonLine[_ngcontent-gqf-c77] {
+    margin-bottom: 15px;
+}
+
+p[_ngcontent-gqf-c77] {
+    margin-bottom: 15px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpZXcxLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBO0lBQ0ksY0FBYztJQUNkLFVBQVU7SUFDVixZQUFZO0lBQ1osWUFBWTtBQUNoQjs7QUFFQSx3REFBd0Q7O0FBQ3hEO0lBQ0ksWUFBWTtJQUNaLGFBQWE7SUFDYixhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLFNBQVM7SUFDVCxnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osWUFBWTtJQUNaLGFBQWE7QUFDakI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osWUFBWTtJQUNaLFlBQVk7SUFDWix1QkFBdUI7SUFDdkIsa0JBQWtCO0lBQ2xCLFFBQVE7SUFDUixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsWUFBWTtJQUNaLHVCQUF1QjtJQUN2QixrQkFBa0I7SUFDbEIsYUFBYSxFQUFFLGNBQWM7SUFDN0IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixlQUFlO0lBQ2YsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLGFBQWE7QUFDakI7O0FBRUE7SUFDSSx1QkFBdUI7SUFDdkIsd0JBQXdCO0lBQ3hCLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsVUFBVTtJQUNWLHFCQUFxQjtJQUNyQiw2QkFBNkI7QUFDakM7O0FBRUE7SUFDSSxVQUFVO0lBQ1YsdUJBQXVCO0lBQ3ZCLFVBQVU7SUFDVixXQUFXO0FBQ2Y7O0FBRUE7SUFDSSxXQUFXO0lBQ1gsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQiwwQkFBMEI7QUFDOUI7O0FBRUE7SUFDSSxvQkFBb0I7SUFDcEIsbUJBQW1CO0lBQ25CLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLGlCQUFpQjtJQUNqQixjQUFjO0lBQ2QsWUFBWTtBQUNoQjs7QUFFQTtJQUNJLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLG1CQUFtQjtBQUN2Qjs7QUFFQTtJQUNJLG1CQUFtQjtBQUN2QiIsImZpbGUiOiJ2aWV3MS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbjpob3N0IHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgd2lkdGg6IDc1JTtcclxuICAgIG1hcmdpbjogYXV0bztcclxuICAgIGhlaWdodDogYXV0bztcclxufVxyXG5cclxuLyogTWFjaHQgZGFzIGhpZXIgaXJnZW5kd2FzPyAtLT4gZXMgZ2lidCBrZWluZW4gQm9keT8gICovXHJcbmJvZHkge1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG4gICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbmlucHV0LkJ1dHRvbjEge1xyXG4gICAgbGVmdDogNzAlO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiAyJTtcclxufVxyXG5cclxuaW5wdXQjaW1wb3J0RmlsZSB7XHJcbiAgICB3aWR0aDogMzIwcHg7XHJcbiAgICBoZWlnaHQ6IDM3cHg7XHJcbiAgICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG5pbnB1dCNsb2FkRmlsZSB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiBibGFjaztcclxuICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcclxuICAgIGxlZnQ6IDAlO1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcclxufVxyXG5cclxuLnJhZGlvQnRuIHtcclxuICAgIHdpZHRoOiAxM3B4O1xyXG4gICAgaGVpZ2h0OiAxM3B4O1xyXG4gICAgYm9yZGVyOiAzcHggc29saWQgYmxhY2s7XHJcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgICBkaXNwbGF5OiBmbGV4OyAvKnZvcmhlciBmbGV4Ki9cclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIG1hcmdpbi1sZWZ0OiA1MCU7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDUwJTtcclxufVxyXG5cclxuLnJhZGlvQnRuIGlucHV0IHtcclxuICAgIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuXHJcbi5yYWRpb0J0biAuY2hlY2ttYXJrIHtcclxuICAgIHdpZHRoOiBjYWxjKDEwMCUgLSA2cHgpO1xyXG4gICAgaGVpZ2h0OiBjYWxjKDEwMCUgLSA2cHgpO1xyXG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XHJcbiAgICBvcGFjaXR5OiAwO1xyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gICAgdHJhbnNpdGlvbjogb3BhY2l0eSAwLjNzIGVhc2U7XHJcbn1cclxuXHJcbi5yYWRpb0J0biBpbnB1dDpjaGVja2VkICsgc3Bhbi5jaGVja21hcmsge1xyXG4gICAgb3BhY2l0eTogMTtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IGJsYWNrOyAgIFxyXG4gICAgd2lkdGg6IDlweDtcclxuICAgIGhlaWdodDogOXB4OyBcclxufVxyXG5cclxuLnJhZGlvQ29udGFpbmVyIHtcclxuICAgIHdpZHRoOiBhdXRvO1xyXG4gICAgaGVpZ2h0OiA3NXB4O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgbWFyZ2luOiAxNXB4IDYwcHggMTVweCA1cHg7XHJcbn1cclxuXHJcbi5yYWRpb0xpbmUge1xyXG4gICAgZGlzcGxheTogaW5saW5lLWZsZXg7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAzNXB4O1xyXG4gICAgbWFyZ2luLXRvcDogNXB4O1xyXG59XHJcblxyXG4ucmFkaW9MYWJlbCB7XHJcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xyXG4gICAgbWFyZ2luLWxlZnQ6IDE2cHg7XHJcbiAgICBtYXJnaW4tcmlnaHQ6IDBweDtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgd2lkdGg6IDE1MHB4O1xyXG59XHJcblxyXG4jbnVtU2VxdWVuY2Uge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMjVweDtcclxufVxyXG5cclxuI2J1dHRvbkxpbmUge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMTVweDtcclxufVxyXG5cclxucCB7XHJcbiAgICBtYXJnaW4tYm90dG9tOiAxNXB4O1xyXG59XHJcbiJdfQ== */</style><style>input[_ngcontent-gqf-c77] {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input.Button1[_ngcontent-gqf-c77], button[_ngcontent-gqf-c77] {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+mat-dialog-content[_ngcontent-gqf-c77] {
+    width: 50vw;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQUNoQjtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsc0JBQXNCO0FBQzFCO0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osWUFBWTtJQUNaLCtDQUErQztJQUMvQyxnQkFBZ0I7SUFDaEIsZUFBZTtJQUNmLFVBQVU7SUFDVixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBSUE7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBFaW5nYWJlZmVsZCAqL1xyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBmb250LXNpemU6IDIwO1xyXG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLyogTMO2c2NoZW4vU3RhcnRlbiBCdXR0b24gKi9cclxuaW5wdXQuQnV0dG9uMSwgYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA7XHJcbiAgICBjb2xvcjogI0ZGRkZGRjtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIGZvbnQtZmFtaWx5OidTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hO1xyXG4gICAgZm9udC1zdHlsZTogQm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMjVhdDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBib3JkZXI6IG5vbmU7ICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuXHJcblxyXG5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDUwdnc7XHJcbn0iXX0= */</style><style>.mat-dialog-container{display:block;padding:24px;border-radius:4px;box-sizing:border-box;overflow:auto;outline:0;width:100%;height:100%;min-height:inherit;max-height:inherit}.cdk-high-contrast-active .mat-dialog-container{outline:solid 1px}.mat-dialog-content{display:block;margin:0 -24px;padding:0 24px;max-height:65vh;overflow:auto;-webkit-overflow-scrolling:touch}.mat-dialog-title{margin:0 0 20px;display:block}.mat-dialog-actions{padding:8px 0;display:flex;flex-wrap:wrap;min-height:52px;align-items:center;box-sizing:content-box;margin-bottom:-24px}.mat-dialog-actions[align=end]{justify-content:flex-end}.mat-dialog-actions[align=center]{justify-content:center}.mat-dialog-actions .mat-button-base+.mat-button-base,.mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{margin-left:8px}[dir=rtl] .mat-dialog-actions .mat-button-base+.mat-button-base,[dir=rtl] .mat-dialog-actions .mat-mdc-button-base+.mat-mdc-button-base{margin-left:0;margin-right:8px}
+</style><style>p#errorMessage[_ngcontent-gqf-c46] {
+    color: red;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBvcC11cC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksVUFBVTtBQUNkIiwiZmlsZSI6InBvcC11cC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsicCNlcnJvck1lc3NhZ2Uge1xyXG4gICAgY29sb3I6IHJlZDtcclxufSJdfQ== */</style><style>input[_ngcontent-gqf-c46] {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input.Button1[_ngcontent-gqf-c46], button[_ngcontent-gqf-c46] {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+mat-dialog-content[_ngcontent-gqf-c46] {
+    width: 50vw;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQUNoQjtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsc0JBQXNCO0FBQzFCO0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osWUFBWTtJQUNaLCtDQUErQztJQUMvQyxnQkFBZ0I7SUFDaEIsZUFBZTtJQUNmLFVBQVU7SUFDVixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBSUE7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBFaW5nYWJlZmVsZCAqL1xyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBmb250LXNpemU6IDIwO1xyXG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLyogTMO2c2NoZW4vU3RhcnRlbiBCdXR0b24gKi9cclxuaW5wdXQuQnV0dG9uMSwgYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA7XHJcbiAgICBjb2xvcjogI0ZGRkZGRjtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIGZvbnQtZmFtaWx5OidTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hO1xyXG4gICAgZm9udC1zdHlsZTogQm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMjVhdDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBib3JkZXI6IG5vbmU7ICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuXHJcblxyXG5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDUwdnc7XHJcbn0iXX0= */</style><style>[_nghost-gqf-c146] {
+    display: block;
+    width: 75%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+input.Button1[_ngcontent-gqf-c146] {
+    left: 85%;
+    margin-right: 2%;
+}
+
+.outputFlexContainer[_ngcontent-gqf-c146] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.outputLabel[_ngcontent-gqf-c146] {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    width: 250px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+input[_ngcontent-gqf-c146] {
+    width: 300px;
+}
+
+.outputFlexElement[_ngcontent-gqf-c146] {
+    display: inline-flex;
+    white-space: wrap;
+    margin: 5px 2% 10px 0px;
+}
+
+#tableQuantile[_ngcontent-gqf-c146] {
+    margin-bottom: 50px;
+}
+
+#newData[_ngcontent-gqf-c146] {
+    margin-bottom: 60px;
+}
+
+#return[_ngcontent-gqf-c146] {
+    margin-bottom: 30px;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInZpZXcyLWFuemVpZ2Utc3RpY2hwcm9iZW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxVQUFVO0lBQ1Ysa0JBQWtCO0lBQ2xCLGlCQUFpQjtBQUNyQjs7QUFFQTtJQUNJLFNBQVM7SUFDVCxnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsZUFBZTtJQUNmLDhCQUE4QjtBQUNsQzs7QUFFQTtJQUNJLHFCQUFxQjtJQUNyQixZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLFlBQVk7SUFDWixnQkFBZ0I7SUFDaEIsc0JBQXNCO0FBQzFCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLG9CQUFvQjtJQUNwQixpQkFBaUI7SUFDakIsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksbUJBQW1CO0FBQ3ZCIiwiZmlsZSI6InZpZXcyLWFuemVpZ2Utc3RpY2hwcm9iZW4uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIjpob3N0IHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgd2lkdGg6IDc1JTtcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG59XHJcblxyXG5pbnB1dC5CdXR0b24xIHtcclxuICAgIGxlZnQ6IDg1JTtcclxuICAgIG1hcmdpbi1yaWdodDogMiU7XHJcbn1cclxuXHJcbi5vdXRwdXRGbGV4Q29udGFpbmVyIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5vdXRwdXRMYWJlbCB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbiAgICBoZWlnaHQ6IDM4cHg7XHJcbiAgICBsaW5lLWhlaWdodDogMzhweDtcclxuICAgIHdpZHRoOiAyNTBweDtcclxuICAgIHRleHQtYWxpZ246IGxlZnQ7XHJcbiAgICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlO1xyXG59XHJcblxyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzAwcHg7XHJcbn1cclxuXHJcbi5vdXRwdXRGbGV4RWxlbWVudCB7XHJcbiAgICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcclxuICAgIHdoaXRlLXNwYWNlOiB3cmFwO1xyXG4gICAgbWFyZ2luOiA1cHggMiUgMTBweCAwcHg7XHJcbn1cclxuXHJcbiN0YWJsZVF1YW50aWxlIHtcclxuICAgIG1hcmdpbi1ib3R0b206IDUwcHg7XHJcbn1cclxuXHJcbiNuZXdEYXRhIHtcclxuICAgIG1hcmdpbi1ib3R0b206IDYwcHg7XHJcbn1cclxuXHJcbiNyZXR1cm4ge1xyXG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcclxufSJdfQ== */</style><style>input[_ngcontent-gqf-c146] {
+    width: 340px;
+    height: 40px;
+    font-size: 20;
+    font-weight: light;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+input.Button1[_ngcontent-gqf-c146], button[_ngcontent-gqf-c146] {
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 110px;
+    height: 30px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana;
+    font-style: Bold;
+    font-size: 25at;
+    padding: 0;
+    border: none;  
+    position: relative;
+}
+mat-dialog-content[_ngcontent-gqf-c146] {
+    width: 50vw;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLGdCQUFnQjtBQUNoQjtJQUNJLFlBQVk7SUFDWixZQUFZO0lBQ1osYUFBYTtJQUNiLGtCQUFrQjtJQUNsQixrQkFBa0I7SUFDbEIsc0JBQXNCO0FBQzFCO0FBRUEsMkJBQTJCO0FBQzNCO0lBQ0kseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osWUFBWTtJQUNaLCtDQUErQztJQUMvQyxnQkFBZ0I7SUFDaEIsZUFBZTtJQUNmLFVBQVU7SUFDVixZQUFZO0lBQ1osa0JBQWtCO0FBQ3RCO0FBSUE7SUFDSSxXQUFXO0FBQ2YiLCJmaWxlIjoiYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBFaW5nYWJlZmVsZCAqL1xyXG5pbnB1dCB7XHJcbiAgICB3aWR0aDogMzQwcHg7XHJcbiAgICBoZWlnaHQ6IDQwcHg7XHJcbiAgICBmb250LXNpemU6IDIwO1xyXG4gICAgZm9udC13ZWlnaHQ6IGxpZ2h0O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxufVxyXG5cclxuLyogTMO2c2NoZW4vU3RhcnRlbiBCdXR0b24gKi9cclxuaW5wdXQuQnV0dG9uMSwgYnV0dG9uIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDAwMDA7XHJcbiAgICBjb2xvcjogI0ZGRkZGRjtcclxuICAgIHdpZHRoOiAxMTBweDtcclxuICAgIGhlaWdodDogMzBweDtcclxuICAgIGZvbnQtZmFtaWx5OidTZWdvZSBVSScsIFRhaG9tYSwgR2VuZXZhLCBWZXJkYW5hO1xyXG4gICAgZm9udC1zdHlsZTogQm9sZDtcclxuICAgIGZvbnQtc2l6ZTogMjVhdDtcclxuICAgIHBhZGRpbmc6IDA7XHJcbiAgICBib3JkZXI6IG5vbmU7ICBcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxufVxyXG5cclxuXHJcblxyXG5tYXQtZGlhbG9nLWNvbnRlbnQge1xyXG4gICAgd2lkdGg6IDUwdnc7XHJcbn0iXX0= */</style><style>.flexContainer[_ngcontent-gqf-c145] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+div.row[_ngcontent-gqf-c145]   *[_ngcontent-gqf-c145] {
+    display: inline-block;
+    width: 500px;
+    
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImZvdXItY2hhcnRzLmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGFBQWE7SUFDYixlQUFlO0lBQ2YsOEJBQThCO0FBQ2xDOztBQUVBO0lBQ0kscUJBQXFCO0lBQ3JCLFlBQVk7SUFDWixtQkFBbUI7QUFDdkIiLCJmaWxlIjoiZm91ci1jaGFydHMuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmZsZXhDb250YWluZXIge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuZGl2LnJvdyAqIHtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIHdpZHRoOiA1MDBweDtcclxuICAgIC8qIG1hcmdpbjogMyUgOCU7ICovXHJcbn0iXX0= */</style><style>.ngx-charts{float:left;overflow:visible}.ngx-charts .arc,.ngx-charts .bar,.ngx-charts .circle{cursor:pointer}.ngx-charts .arc.active,.ngx-charts .arc:hover,.ngx-charts .bar.active,.ngx-charts .bar:hover,.ngx-charts .card.active,.ngx-charts .card:hover,.ngx-charts .cell.active,.ngx-charts .cell:hover{opacity:.8;transition:opacity .1s ease-in-out}.ngx-charts .arc:focus,.ngx-charts .bar:focus,.ngx-charts .card:focus,.ngx-charts .cell:focus{outline:none}.ngx-charts .arc.hidden,.ngx-charts .bar.hidden,.ngx-charts .card.hidden,.ngx-charts .cell.hidden{display:none}.ngx-charts g:focus{outline:none}.ngx-charts .area-series.inactive,.ngx-charts .line-series-range.inactive,.ngx-charts .line-series.inactive,.ngx-charts .polar-series-area.inactive,.ngx-charts .polar-series-path.inactive{opacity:.2;transition:opacity .1s ease-in-out}.ngx-charts .line-highlight{display:none}.ngx-charts .line-highlight.active{display:block}.ngx-charts .area{opacity:.6}.ngx-charts .circle:hover{cursor:pointer}.ngx-charts .label{font-size:12px;font-weight:400}.ngx-charts .tooltip-anchor{fill:#000}.ngx-charts .gridline-path{fill:none;stroke:#ddd;stroke-width:1}.ngx-charts .refline-path{stroke:#a8b2c7;stroke-dasharray:5;stroke-dashoffset:5;stroke-width:1}.ngx-charts .refline-label{font-size:9px}.ngx-charts .reference-area{fill:#000;fill-opacity:.05}.ngx-charts .gridline-path-dotted{fill:none;stroke:#ddd;stroke-dasharray:1,20;stroke-dashoffset:3;stroke-width:1}.ngx-charts .grid-panel rect{fill:none}.ngx-charts .grid-panel.odd rect{fill:rgba(0,0,0,.05)}</style><style>.pie-label{font-size:11px}.pie-label.animation{-webkit-animation:fadeIn .75s ease-in;animation:fadeIn .75s ease-in}@-webkit-keyframes fadeIn{0%{opacity:0}to{opacity:1}}@keyframes fadeIn{0%{opacity:0}to{opacity:1}}.pie-label-line{stroke-dasharray:100%}.pie-label-line.animation{-webkit-animation:drawOut 3s linear;animation:drawOut 3s linear;transition:d .75s}@-webkit-keyframes drawOut{0%{stroke-dashoffset:100%}to{stroke-dashoffset:0}}@keyframes drawOut{0%{stroke-dashoffset:100%}to{stroke-dashoffset:0}}</style></head>
+<body class="mat-typography">
+  <app-root _nghost-gqf-c148="" ng-version="11.0.9"><app-header _ngcontent-gqf-c148="" _nghost-gqf-c147=""><div _ngcontent-gqf-c147="" class="header"><button _ngcontent-gqf-c147="" id="clickableTitle" class="h1"> Rechenmodul für explizit gegebene Stichproben </button><h2 _ngcontent-gqf-c147="">Projektkonzeption und Realisierung, 5. Semester, Kurs WI18C</h2></div></app-header><router-outlet _ngcontent-gqf-c148=""></router-outlet><app-view2-anzeige-stichproben _nghost-gqf-c146="" class="ng-star-inserted"><form _ngcontent-gqf-c146="" novalidate="" id="view2CalculatedValues" ng-reflect-form="[object Object]" class="ng-untouched ng-pristine ng-valid ng-star-inserted"><h2 _ngcontent-gqf-c146="">Ausgabe:</h2><div _ngcontent-gqf-c146="" id="listOfCalculatedValues" class="outputFlexContainer"><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="modalValue">Modalwert:</label></div><input _ngcontent-gqf-c146="" type="text" id="modalValue" formcontrolname="modalValue" readonly="" ng-reflect-name="modalValue" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="meanValue">Mittelwert:</label></div><input _ngcontent-gqf-c146="" type="text" id="meanValue" formcontrolname="meanValue" readonly="" ng-reflect-name="meanValue" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="medianValue">Median:</label></div><input _ngcontent-gqf-c146="" type="text" id="medianValue" formcontrolname="median" readonly="" ng-reflect-name="median" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="varianceValue">Varianz:</label></div><input _ngcontent-gqf-c146="" type="text" id="varianceValue" formcontrolname="variance" readonly="" ng-reflect-name="variance" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="standardDeviation">Standardabweichung:</label></div><input _ngcontent-gqf-c146="" type="text" id="standardDeviation" formcontrolname="standardDev" readonly="" ng-reflect-name="standardDev" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="giniValue">Gini-Koeffizient:</label></div><input _ngcontent-gqf-c146="" type="text" id="giniValue" formcontrolname="giniValue" readonly="" ng-reflect-name="giniValue" class="ng-untouched ng-pristine ng-valid ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div></div><div _ngcontent-gqf-c146="" id="tableQuantile" class="outputFlexContainer"><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="quantil005">Quantil x<sub _ngcontent-gqf-c146="">0,05</sub>:</label></div><input _ngcontent-gqf-c146="" type="text" id="quantil005" formcontrolname="quantile005" readonly="" ng-reflect-name="quantile005" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="quantil01">Quantil x<sub _ngcontent-gqf-c146="">0,1</sub>:</label></div><input _ngcontent-gqf-c146="" type="text" id="quantil01" formcontrolname="quantile01" readonly="" ng-reflect-name="quantile01" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="quantil025">Quantil x<sub _ngcontent-gqf-c146="">0,25</sub>:</label></div><input _ngcontent-gqf-c146="" type="text" id="quantil025" formcontrolname="quantile025" readonly="" ng-reflect-name="quantile025" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="quantil075">Quantil x<sub _ngcontent-gqf-c146="">0,75</sub>:</label></div><input _ngcontent-gqf-c146="" type="text" id="quantil075" formcontrolname="quantile075" readonly="" ng-reflect-name="quantile075" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="quantil09">Quantil x<sub _ngcontent-gqf-c146="">0,9</sub>:</label></div><input _ngcontent-gqf-c146="" type="text" id="quantil09" formcontrolname="quantile09" readonly="" ng-reflect-name="quantile09" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="quantil095">Quantil x<sub _ngcontent-gqf-c146="">0,95</sub>:</label></div><input _ngcontent-gqf-c146="" type="text" id="quantil095" formcontrolname="quantile095" readonly="" ng-reflect-name="quantile095" class="ng-untouched ng-pristine ng-valid"></div><div _ngcontent-gqf-c146="" class="outputFlexElement"><div _ngcontent-gqf-c146="" class="outputLabel"><label _ngcontent-gqf-c146="" for="meanAbsoluteDeviation">Mittlere absolute Abweichung (Wert Z):</label></div><input _ngcontent-gqf-c146="" type="text" id="meanAbsoluteDeviation" formcontrolname="meanAbsoluteDeviation" readonly="" ng-reflect-name="meanAbsoluteDeviation" class="ng-untouched ng-pristine ng-valid"></div></div><div _ngcontent-gqf-c146="" id="4HorsemenOfCharts"><app-four-charts _ngcontent-gqf-c146="" _nghost-gqf-c145=""><div _ngcontent-gqf-c145="" class="flexContainer"><div _ngcontent-gqf-c145=""><ngx-charts-bar-vertical _ngcontent-gqf-c145="" id="barChart" ng-reflect-view="600,400" ng-reflect-scheme="[object Object]" ng-reflect-results="[object Object],[object Object" ng-reflect-gradient="true" ng-reflect-x-axis="true" ng-reflect-y-axis="true" ng-reflect-legend="false" ng-reflect-show-x-axis-label="true" ng-reflect-show-y-axis-label="true" ng-reflect-x-axis-label="Stichprobenwert" ng-reflect-y-axis-label="Absolute Häufigkeit"><ngx-charts-chart class="ng-tns-c79-3" ng-reflect-view="600,400" ng-reflect-show-legend="false" ng-reflect-legend-options="[object Object]" ng-reflect-active-entries="" ng-reflect-animations="true"><div class="ngx-charts-outer ng-tns-c79-3 ng-trigger ng-trigger-animationState" style="width: 600px;"><svg class="ngx-charts ng-tns-c79-3" width="600" height="400"><g class="bar-chart chart ng-tns-c79-3" transform="translate(73 , 10)"><g ngx-charts-x-axis="" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-dims="[object Object]" ng-reflect-show-label="true" ng-reflect-label-text="Stichprobenwert" ng-reflect-trim-ticks="true" ng-reflect-rotate-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-x-axis-offset="0" class="ng-star-inserted" style=""><g class="x axis" transform="translate(0,336)"><g ngx-charts-x-axis-ticks="" ng-reflect-trim-ticks="true" ng-reflect-rotate-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-tick-stroke="#ccc" ng-reflect-scale="function scale(d) {
+    var ke" ng-reflect-orient="bottom" ng-reflect-show-grid-lines="false" ng-reflect-grid-line-height="331" ng-reflect-width="512" class="ng-star-inserted"><g><g class="tick ng-star-inserted" transform="translate(22,20)"><title>15</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 15 </text></g><g class="tick ng-star-inserted" transform="translate(74,20)"><title>18</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 18 </text></g><g class="tick ng-star-inserted" transform="translate(126,20)"><title>20</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 20 </text></g><g class="tick ng-star-inserted" transform="translate(178,20)"><title>22</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 22 </text></g><g class="tick ng-star-inserted" transform="translate(230,20)"><title>23</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 23 </text></g><g class="tick ng-star-inserted" transform="translate(282,20)"><title>27</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 27 </text></g><g class="tick ng-star-inserted" transform="translate(334,20)"><title>36</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 36 </text></g><g class="tick ng-star-inserted" transform="translate(386,20)"><title>49</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 49 </text></g><g class="tick ng-star-inserted" transform="translate(438,20)"><title>72</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 72 </text></g><g class="tick ng-star-inserted" transform="translate(490,20)"><title>98</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 98 </text></g><!--bindings={
+  "ng-reflect-ng-for-of": "15,18,20,22,23,27,36,49,72,98"
+}--></g><g transform="translate(22,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(74,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(126,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(178,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(230,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(282,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(334,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(386,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(438,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><g transform="translate(490,20)" class="ng-star-inserted"><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-for-of": "15,18,20,22,23,27,36,49,72,98"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "function scale(d) {\n    var ke"
+}--><g ngx-charts-axis-label="" ng-reflect-label="Stichprobenwert" ng-reflect-offset="44" ng-reflect-orient="bottom" ng-reflect-height="331" ng-reflect-width="512" class="ng-star-inserted"><text stroke-width="0.01" x="256" y="44" text-anchor="middle" transform=""> Stichprobenwert </text></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-y-axis="" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-dims="[object Object]" ng-reflect-show-grid-lines="true" ng-reflect-show-label="true" ng-reflect-label-text="Absolute Häufigkeit" ng-reflect-trim-ticks="true" ng-reflect-max-tick-length="16" class="ng-star-inserted" style=""><g class="y axis" transform="translate(-5 , 0)"><g ngx-charts-y-axis-ticks="" ng-reflect-trim-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-tick-stroke="#CCC" ng-reflect-scale="function scale(x) {
+    return" ng-reflect-orient="left" ng-reflect-show-grid-lines="true" ng-reflect-grid-line-width="512" ng-reflect-height="331" class="ng-star-inserted"><g><g class="tick ng-star-inserted" transform="translate(0,331)"><title>0</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0 </text></g><g class="tick ng-star-inserted" transform="translate(0,264.8)"><title>2</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 2 </text></g><g class="tick ng-star-inserted" transform="translate(0,198.6)"><title>4</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 4 </text></g><g class="tick ng-star-inserted" transform="translate(0,132.4)"><title>6</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 6 </text></g><g class="tick ng-star-inserted" transform="translate(0,66.19999999999999)"><title>8</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 8 </text></g><g class="tick ng-star-inserted" transform="translate(0,0)"><title>10</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 10 </text></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,2,4,6,8,10"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><g transform="translate(0,331)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="512"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,264.8)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="512"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,198.6)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="512"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,132.4)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="512"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,66.19999999999999)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="512"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,0)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="512"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,2,4,6,8,10"
+}--><!--bindings={}--></g><!--bindings={
+  "ng-reflect-ng-if": "function scale(x) {\n    return"
+}--><g ngx-charts-axis-label="" ng-reflect-label="Absolute Häufigkeit" ng-reflect-offset="13" ng-reflect-orient="left" ng-reflect-height="331" ng-reflect-width="512" class="ng-star-inserted"><text stroke-width="0.01" x="-165.5" y="-43" text-anchor="middle" transform="rotate(270)"> Absolute Häufigkeit </text></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-series-vertical="" class="ng-tns-c115-4" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-series="[object Object],[object Object" ng-reflect-dims="[object Object]" ng-reflect-gradient="true" ng-reflect-tooltip-disabled="false" ng-reflect-show-data-label="false" ng-reflect-active-entries="" ng-reflect-round-edges="true" ng-reflect-animations="true" ng-reflect-no-bar-when-zero="true"><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="99.30000000000001" ng-reflect-x="0" ng-reflect-y="231.7" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="15 3" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradae52z" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradae52z" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M5,231.7h34a5,5 0 0 1 5,5v89v5h-5h-34h-5v-5v-89a5,5 0 0 1 5,-5z" aria-label="15 3" fill="url(#gradae52z)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="132.4" ng-reflect-x="52" ng-reflect-y="198.6" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="18 4" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradatcqu" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradatcqu" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M57,198.6h34a5,5 0 0 1 5,5v122v5h-5h-34h-5v-5v-122a5,5 0 0 1 5,-5z" aria-label="18 4" fill="url(#gradatcqu)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="165.5" ng-reflect-x="104" ng-reflect-y="165.5" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="20 5" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="grada06ti" ng-reflect-stops="[object Object],[object Object"><linearGradient id="grada06ti" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M109,165.5h34a5,5 0 0 1 5,5v155v5h-5h-34h-5v-5v-155a5,5 0 0 1 5,-5z" aria-label="20 5" fill="url(#grada06ti)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="231.7" ng-reflect-x="156" ng-reflect-y="99.30000000000001" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="22 7" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradacz58" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradacz58" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M161,99.30000000000001h34a5,5 0 0 1 5,5v221v5h-5h-34h-5v-5v-221a5,5 0 0 1 5,-5z" aria-label="22 7" fill="url(#gradacz58)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="331" ng-reflect-x="208" ng-reflect-y="0" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="23 10" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradav8v5" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradav8v5" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M213,0h34a5,5 0 0 1 5,5v321v5h-5h-34h-5v-5v-321a5,5 0 0 1 5,-5z" aria-label="23 10" fill="url(#gradav8v5)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="331" ng-reflect-x="260" ng-reflect-y="0" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="27 10" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradailni" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradailni" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M265,0h34a5,5 0 0 1 5,5v321v5h-5h-34h-5v-5v-321a5,5 0 0 1 5,-5z" aria-label="27 10" fill="url(#gradailni)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="231.7" ng-reflect-x="312" ng-reflect-y="99.30000000000001" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="36 7" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradad5aj" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradad5aj" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M317,99.30000000000001h34a5,5 0 0 1 5,5v221v5h-5h-34h-5v-5v-221a5,5 0 0 1 5,-5z" aria-label="36 7" fill="url(#gradad5aj)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="165.5" ng-reflect-x="364" ng-reflect-y="165.5" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="49 5" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradacclp" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradacclp" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M369,165.5h34a5,5 0 0 1 5,5v155v5h-5h-34h-5v-5v-155a5,5 0 0 1 5,-5z" aria-label="49 5" fill="url(#gradacclp)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="132.4" ng-reflect-x="416" ng-reflect-y="198.6" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="72 4" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradaa2xt" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradaa2xt" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M421,198.6h34a5,5 0 0 1 5,5v122v5h-5h-34h-5v-5v-122a5,5 0 0 1 5,-5z" aria-label="72 4" fill="url(#gradaa2xt)"></path></g><!--container--><g ngx-charts-bar="" ngx-tooltip="" class="ng-tns-c115-4 ng-trigger ng-trigger-animationState ng-star-inserted" ng-reflect-width="44" ng-reflect-height="99.30000000000001" ng-reflect-x="468" ng-reflect-y="231.7" ng-reflect-fill="#0404B4" ng-reflect-data="[object Object]" ng-reflect-orientation="vertical" ng-reflect-round-edges="true" ng-reflect-gradient="true" ng-reflect-aria-label="98 3" ng-reflect-is-active="false" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+        <span class=&quot;tooltip-" ng-reflect-tooltip-context="[object Object]" ng-reflect-no-bar-when-zero="true" ng-reflect-animations="true" style=""><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" ng-reflect-orientation="vertical" ng-reflect-name="gradax266" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradax266" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.2;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path stroke="none" role="img" tabIndex="-1" class="bar" d="M473,231.7h34a5,5 0 0 1 5,5v89v5h-5h-34h-5v-5v-89a5,5 0 0 1 5,-5z" aria-label="98 3" fill="url(#gradax266)"></path></g><!--container--><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g></g></svg><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div></ngx-charts-chart></ngx-charts-bar-vertical></div><div _ngcontent-gqf-c145=""><ngx-charts-pie-chart _ngcontent-gqf-c145="" id="pieChart" ng-reflect-view="600,400" ng-reflect-scheme="[object Object]" ng-reflect-results="[object Object],[object Object" ng-reflect-gradient="true" ng-reflect-legend="false" ng-reflect-legend-position="right" ng-reflect-labels="true" ng-reflect-doughnut="false"><ngx-charts-chart class="ng-tns-c79-5" ng-reflect-view="600,400" ng-reflect-show-legend="false" ng-reflect-legend-options="[object Object]" ng-reflect-active-entries="" ng-reflect-animations="true"><div class="ngx-charts-outer ng-tns-c79-5 ng-trigger ng-trigger-animationState" style="width: 600px;"><svg class="ngx-charts ng-tns-c79-5" width="600" height="400"><g class="pie-chart chart ng-tns-c79-5" transform="translate(300, 200)"><g ngx-charts-pie-series="" ng-reflect-colors="[object Object]" ng-reflect-series="[object Object],[object Object" ng-reflect-show-labels="true" ng-reflect-trim-labels="true" ng-reflect-max-label-length="10" ng-reflect-active-entries="" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-explode-slices="false" ng-reflect-gradient="true" ng-reflect-animations="true" ng-reflect-tooltip-disabled="false"><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#0404B4" ng-reflect-label="15" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="3" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>15</title><g style="transform: translate3d(170px, -167.761px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: start; shape-rendering: crispedges;"> 15 </text></g><path fill="none" class="pie-label-line line animation" d="M18.33529294264668,-111.84033922137296L27.502939413970026,-167.76050883205946L170,-167.76050883205946" stroke="#0404B4"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="0" ng-reflect-end-angle="0.3249923434748062" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#0404B4" ng-reflect-value="3" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#0404B4" ng-reflect-name="linearGradaosue" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGradaosue" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGradaosue)" style="pointer-events: auto;" d="M6.9396651951683345e-15,-113.33333333333333A113.33333333333333,113.33333333333333,0,0,1,36.18750674874442,-107.40069273405093L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#3494B4" ng-reflect-label="18" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="4" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>18</title><g style="transform: translate3d(170px, -145.666px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: start; shape-rendering: crispedges;"> 18 </text></g><path fill="none" class="pie-label-line line animation" d="M58.42943714672913,-97.11047996566012L87.64415572009368,-145.66571994849016L170,-145.66571994849016" stroke="#3494B4"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="0.3249923434748062" ng-reflect-end-angle="0.7583154681078812" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#3494B4" ng-reflect-value="4" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#3494B4" ng-reflect-name="linearGrada38xe" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada38xe" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(52, 148, 180); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(52, 148, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada38xe)" style="pointer-events: auto;" d="M36.18750674874442,-107.40069273405093A113.33333333333333,113.33333333333333,0,0,1,77.93927200338797,-82.27948908462147L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#84B4A4" ng-reflect-label="20" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="5" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>20</title><g style="transform: translate3d(170px, -87.6442px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: start; shape-rendering: crispedges;"> 20 </text></g><path fill="none" class="pie-label-line line animation" d="M97.11047996566013,-58.4294371467291L145.66571994849022,-87.64415572009366L170,-87.64415572009366" stroke="#84B4A4"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="0.7583154681078812" ng-reflect-end-angle="1.2999693738992248" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#84B4A4" ng-reflect-value="5" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#84B4A4" ng-reflect-name="linearGrada2w3n" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada2w3n" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(132, 180, 164); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(132, 180, 164); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada2w3n)" style="pointer-events: auto;" d="M77.93927200338797,-82.27948908462147A113.33333333333333,113.33333333333333,0,0,1,109.20233248551193,-30.31987836664501L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#B4C472" ng-reflect-label="22" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="7" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>22</title><g style="transform: translate3d(170px, 18.3802px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: start; shape-rendering: crispedges;"> 22 </text></g><path fill="none" class="pie-label-line line animation" d="M112.66896847749409,12.253488754713404L169.00345271624113,18.380233132070106L170,18.380233132070106" stroke="#B4C472"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="1.2999693738992248" ng-reflect-end-angle="2.058284842007106" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#B4C472" ng-reflect-value="7" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#B4C472" ng-reflect-name="linearGrada9dl5" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada9dl5" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(180, 196, 114); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(180, 196, 114); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada9dl5)" style="pointer-events: auto;" d="M109.20233248551193,-30.31987836664501A113.33333333333333,113.33333333333333,0,0,1,100.13136503721593,53.08628994597621L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#D1A442" ng-reflect-label="23" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="10" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>23</title><g style="transform: translate3d(170px, 145.666px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: start; shape-rendering: crispedges;"> 23 </text></g><path fill="none" class="pie-label-line line animation" d="M58.429437146729114,97.11047996566012L87.64415572009366,145.66571994849016L170,145.66571994849016" stroke="#D1A442"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="2.058284842007106" ng-reflect-end-angle="3.141592653589793" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#D1A442" ng-reflect-value="10" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#D1A442" ng-reflect-name="linearGrada50ie" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada50ie" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(209, 164, 66); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(209, 164, 66); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada50ie)" style="pointer-events: auto;" d="M100.13136503721593,53.08628994597621A113.33333333333333,113.33333333333333,0,0,1,6.9396651951683345e-15,113.33333333333333L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#C38212" ng-reflect-label="27" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="10" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>27</title><g style="transform: translate3d(-170px, 145.666px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: end; shape-rendering: crispedges;"> 27 </text></g><path fill="none" class="pie-label-line line animation" d="M-58.4294371467291,97.11047996566013L-87.64415572009365,145.6657199484902L-170,145.6657199484902" stroke="#C38212"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="3.141592653589793" ng-reflect-end-angle="4.22490046517248" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#C38212" ng-reflect-value="10" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#C38212" ng-reflect-name="linearGrada3qv8" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada3qv8" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(195, 130, 18); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(195, 130, 18); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada3qv8)" style="pointer-events: auto;" d="M6.9396651951683345e-15,113.33333333333333A113.33333333333333,113.33333333333333,0,0,1,-100.1313650372159,53.08628994597627L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#BB3B0A" ng-reflect-label="36" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="7" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>36</title><g style="transform: translate3d(-170px, 18.3802px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: end; shape-rendering: crispedges;"> 36 </text></g><path fill="none" class="pie-label-line line animation" d="M-112.66896847749409,12.253488754713468L-169.00345271624113,18.380233132070202L-170,18.380233132070202" stroke="#BB3B0A"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="4.22490046517248" ng-reflect-end-angle="4.983215933280361" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#BB3B0A" ng-reflect-value="7" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#BB3B0A" ng-reflect-name="linearGradabzfa" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGradabzfa" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(187, 59, 10); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(187, 59, 10); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGradabzfa)" style="pointer-events: auto;" d="M-100.1313650372159,53.08628994597627A113.33333333333333,113.33333333333333,0,0,1,-109.20233248551195,-30.31987836664495L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#A9245A" ng-reflect-label="49" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="5" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>49</title><g style="transform: translate3d(-170px, -87.6442px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: end; shape-rendering: crispedges;"> 49 </text></g><path fill="none" class="pie-label-line line animation" d="M-97.11047996566019,-58.429437146729L-145.6657199484903,-87.64415572009351L-170,-87.64415572009351" stroke="#A9245A"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="4.983215933280361" ng-reflect-end-angle="5.524869839071704" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#A9245A" ng-reflect-value="5" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#A9245A" ng-reflect-name="linearGradamvli" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGradamvli" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(169, 36, 90); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(169, 36, 90); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGradamvli)" style="pointer-events: auto;" d="M-109.20233248551195,-30.31987836664495A113.33333333333333,113.33333333333333,0,0,1,-77.93927200338806,-82.27948908462143L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#A21790" ng-reflect-label="72" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="4" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>72</title><g style="transform: translate3d(-170px, -145.666px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: end; shape-rendering: crispedges;"> 72 </text></g><path fill="none" class="pie-label-line line animation" d="M-58.4294371467292,-97.11047996566006L-87.6441557200938,-145.6657199484901L-170,-145.6657199484901" stroke="#A21790"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="5.524869839071704" ng-reflect-end-angle="5.9581929637047795" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#A21790" ng-reflect-value="4" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#A21790" ng-reflect-name="linearGrada0y5k" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada0y5k" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(162, 23, 144); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(162, 23, 144); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada0y5k)" style="pointer-events: auto;" d="M-77.93927200338806,-82.27948908462143A113.33333333333333,113.33333333333333,0,0,1,-36.187506748744475,-107.40069273405092L0,0Z"></path></g></g><!--container--></g><g class="ng-star-inserted" style=""><g ngx-charts-pie-label="" ng-reflect-data="[object Object]" ng-reflect-radius="113.33333333333333" ng-reflect-color="#8024A2" ng-reflect-label="98" ng-reflect-label-trim="true" ng-reflect-label-trim-size="10" ng-reflect-max="10" ng-reflect-value="3" ng-reflect-explode-slices="false" ng-reflect-animations="true" class="ng-star-inserted"><title>98</title><g style="transform: translate3d(-170px, -167.761px, 0px); transition: transform 0.75s ease 0s;"><text dy=".35em" class="pie-label animation" style="text-anchor: end; shape-rendering: crispedges;"> 98 </text></g><path fill="none" class="pie-label-line line animation" d="M-18.33529294264677,-111.84033922137294L-27.50293941397016,-167.76050883205943L-170,-167.76050883205943" stroke="#8024A2"></path></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-pie-arc="" ngx-tooltip="" ng-reflect-start-angle="5.9581929637047795" ng-reflect-end-angle="6.283185307179585" ng-reflect-inner-radius="0" ng-reflect-outer-radius="113.33333333333333" ng-reflect-fill="#8024A2" ng-reflect-value="3" ng-reflect-gradient="true" ng-reflect-data="[object Object]" ng-reflect-max="10" ng-reflect-explode-slices="false" ng-reflect-is-active="false" ng-reflect-animate="true" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="top" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-title="
+      <span class=&quot;tooltip-la" ng-reflect-tooltip-context="[object Object]"><g class="arc-group"><defs class="ng-star-inserted"><g ngx-charts-svg-radial-gradient="" orientation="vertical" ng-reflect-color="#8024A2" ng-reflect-name="linearGrada1dng" ng-reflect-start-opacity="0.5"><radialGradient gradientUnits="userSpaceOnUse" id="linearGrada1dng" cx="0" cy="0" r="30%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(128, 36, 162); stop-opacity: 0.5;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(128, 36, 162); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></radialGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="arc" fill="url(#linearGrada1dng)" style="pointer-events: auto;" d="M-36.187506748744475,-107.40069273405092A113.33333333333333,113.33333333333333,0,0,1,-1.214792164848525e-13,-113.33333333333333L0,0Z"></path></g></g><!--container--></g><!--bindings={
+  "ng-reflect-ng-for-track-by": "trackBy(index, item) {\n       "
+}--></g></g></svg><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div></ngx-charts-chart></ngx-charts-pie-chart></div><div _ngcontent-gqf-c145=""><ngx-charts-line-chart _ngcontent-gqf-c145="" id="empiricalDistributionChart" class="ng-tns-c124-1" ng-reflect-view="600,400" ng-reflect-scheme="[object Object]" ng-reflect-legend="false" ng-reflect-show-x-axis-label="true" ng-reflect-show-y-axis-label="true" ng-reflect-x-axis="true" ng-reflect-y-axis="true" ng-reflect-x-axis-label="Stichprobenwert" ng-reflect-y-axis-label="Relative Häufigkeit" ng-reflect-timeline="true" ng-reflect-results="[object Object],[object Object"><ngx-charts-chart class="ng-tns-c124-1 ng-tns-c79-6" ng-reflect-view="600,400" ng-reflect-show-legend="false" ng-reflect-legend-options="[object Object]" ng-reflect-active-entries="" ng-reflect-animations="true"><div class="ngx-charts-outer ng-tns-c79-6 ng-trigger ng-trigger-animationState" style="width: 600px;"><svg class="ngx-charts ng-tns-c79-6" width="600" height="400"><defs class="ng-tns-c79-6"><clipPath class="ng-tns-c124-1" id="clipavxvg"><rect class="ng-tns-c124-1" width="519" height="271" transform="translate(-5, -5)"></rect></clipPath></defs><g class="line-chart chart ng-tns-c79-6" transform="translate(76 , 10)"><g ngx-charts-x-axis="" class="ng-tns-c124-1 ng-star-inserted" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-dims="[object Object]" ng-reflect-show-grid-lines="true" ng-reflect-show-label="true" ng-reflect-label-text="Stichprobenwert" ng-reflect-trim-ticks="true" ng-reflect-rotate-ticks="true" ng-reflect-max-tick-length="16" style=""><g class="x axis" transform="translate(0,266)"><g ngx-charts-x-axis-ticks="" ng-reflect-trim-ticks="true" ng-reflect-rotate-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-tick-stroke="#ccc" ng-reflect-scale="function scale(d) {
+    var ke" ng-reflect-orient="bottom" ng-reflect-show-grid-lines="true" ng-reflect-grid-line-height="261" ng-reflect-width="509" class="ng-star-inserted"><g><g class="tick ng-star-inserted" transform="translate(4.544642857142833,20)"><title>5</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 5 </text></g><g class="tick ng-star-inserted" transform="translate(49.99107142857141,20)"><title>15</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 15 </text></g><g class="tick ng-star-inserted" transform="translate(95.43749999999999,20)"><title>18</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 18 </text></g><g class="tick ng-star-inserted" transform="translate(140.88392857142856,20)"><title>20</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 20 </text></g><g class="tick ng-star-inserted" transform="translate(186.33035714285714,20)"><title>22</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 22 </text></g><g class="tick ng-star-inserted" transform="translate(231.77678571428572,20)"><title>23</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 23 </text></g><g class="tick ng-star-inserted" transform="translate(277.2232142857143,20)"><title>27</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 27 </text></g><g class="tick ng-star-inserted" transform="translate(322.6696428571429,20)"><title>36</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 36 </text></g><g class="tick ng-star-inserted" transform="translate(368.11607142857144,20)"><title>49</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 49 </text></g><g class="tick ng-star-inserted" transform="translate(413.5625,20)"><title>72</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 72 </text></g><g class="tick ng-star-inserted" transform="translate(459.0089285714286,20)"><title>98</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 98 </text></g><g class="tick ng-star-inserted" transform="translate(504.45535714285717,20)"><title>108</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 108 </text></g><!--bindings={
+  "ng-reflect-ng-for-of": "5,15,18,20,22,23,27,36,49,72,9"
+}--></g><g transform="translate(4.544642857142833,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(49.99107142857141,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(95.43749999999999,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(140.88392857142856,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(186.33035714285714,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(231.77678571428572,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(277.2232142857143,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(322.6696428571429,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(368.11607142857144,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(413.5625,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(459.0089285714286,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(504.45535714285717,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><!--bindings={
+  "ng-reflect-ng-for-of": "5,15,18,20,22,23,27,36,49,72,9"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "function scale(d) {\n    var ke"
+}--><g ngx-charts-axis-label="" ng-reflect-label="Stichprobenwert" ng-reflect-offset="44" ng-reflect-orient="bottom" ng-reflect-height="261" ng-reflect-width="509" class="ng-star-inserted"><text stroke-width="0.01" x="254.5" y="44" text-anchor="middle" transform=""> Stichprobenwert </text></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-y-axis="" class="ng-tns-c124-1 ng-star-inserted" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-dims="[object Object]" ng-reflect-show-grid-lines="true" ng-reflect-show-label="true" ng-reflect-label-text="Relative Häufigkeit" ng-reflect-trim-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-show-ref-lines="false" ng-reflect-show-ref-labels="true" style=""><g class="y axis" transform="translate(-5 , 0)"><g ngx-charts-y-axis-ticks="" ng-reflect-trim-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-tick-stroke="#CCC" ng-reflect-scale="function scale(x) {
+    return" ng-reflect-orient="left" ng-reflect-show-grid-lines="true" ng-reflect-grid-line-width="509" ng-reflect-show-ref-lines="false" ng-reflect-show-ref-labels="true" ng-reflect-height="261" class="ng-star-inserted"><g><g class="tick ng-star-inserted" transform="translate(0,261)"><title>0.0</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.0 </text></g><g class="tick ng-star-inserted" transform="translate(0,208.8)"><title>0.2</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.2 </text></g><g class="tick ng-star-inserted" transform="translate(0,156.6)"><title>0.4</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.4 </text></g><g class="tick ng-star-inserted" transform="translate(0,104.4)"><title>0.6</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.6 </text></g><g class="tick ng-star-inserted" transform="translate(0,52.19999999999999)"><title>0.8</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.8 </text></g><g class="tick ng-star-inserted" transform="translate(0,0)"><title>1.0</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 1.0 </text></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,0.2,0.4,0.6,0.8,1"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><g transform="translate(0,261)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,208.8)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,156.6)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,104.4)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,52.19999999999999)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,0)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,0.2,0.4,0.6,0.8,1"
+}--><!--bindings={}--></g><!--bindings={
+  "ng-reflect-ng-if": "function scale(x) {\n    return"
+}--><g ngx-charts-axis-label="" ng-reflect-label="Relative Häufigkeit" ng-reflect-offset="16" ng-reflect-orient="left" ng-reflect-height="261" ng-reflect-width="509" class="ng-star-inserted"><text stroke-width="0.01" x="-130.5" y="-46" text-anchor="middle" transform="rotate(270)"> Relative Häufigkeit </text></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g class="ng-tns-c124-1" clip-path="url(#clipavxvg)"><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M4.544642857142833,261L49.9910" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="grada0rdf" ng-reflect-stops="[object Object],[object Object"><linearGradient id="grada0rdf" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#grada0rdf)" style="opacity: 0.25;" d="M4.544642857142833,261L49.99107142857141,261L49.99107142857141,261L4.544642857142833,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-8" ng-reflect-data="[object Object]" ng-reflect-path="M4.544642857142833,261L49.9910" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-8 ng-trigger ng-trigger-animationState" d="M4.544642857142833,261L49.99107142857141,261" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M49.99107142857141,247.428L95." ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradacojj" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradacojj" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradacojj)" style="opacity: 0.25;" d="M49.99107142857141,247.428L95.43749999999999,247.428L95.43749999999999,261L49.99107142857141,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-9" ng-reflect-data="[object Object]" ng-reflect-path="M49.99107142857141,247.428L95." ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-9 ng-trigger ng-trigger-animationState" d="M49.99107142857141,247.428L95.43749999999999,247.428" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M95.43749999999999,229.419L140" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradanurd" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradanurd" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradanurd)" style="opacity: 0.25;" d="M95.43749999999999,229.419L140.88392857142856,229.419L140.88392857142856,261L95.43749999999999,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-10" ng-reflect-data="[object Object]" ng-reflect-path="M95.43749999999999,229.419L140" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-10 ng-trigger ng-trigger-animationState" d="M95.43749999999999,229.419L140.88392857142856,229.419" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M140.88392857142856,206.973L18" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="grada0rgq" ng-reflect-stops="[object Object],[object Object"><linearGradient id="grada0rgq" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#grada0rgq)" style="opacity: 0.25;" d="M140.88392857142856,206.973L186.33035714285714,206.973L186.33035714285714,261L140.88392857142856,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-11" ng-reflect-data="[object Object]" ng-reflect-path="M140.88392857142856,206.973L18" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-11 ng-trigger ng-trigger-animationState" d="M140.88392857142856,206.973L186.33035714285714,206.973" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M186.33035714285714,175.392L23" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradaz0vp" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradaz0vp" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradaz0vp)" style="opacity: 0.25;" d="M186.33035714285714,175.392L231.77678571428572,175.392L231.77678571428572,261L186.33035714285714,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-12" ng-reflect-data="[object Object]" ng-reflect-path="M186.33035714285714,175.392L23" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-12 ng-trigger ng-trigger-animationState" d="M186.33035714285714,175.392L231.77678571428572,175.392" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M231.77678571428572,130.5L277." ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradayij5" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradayij5" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradayij5)" style="opacity: 0.25;" d="M231.77678571428572,130.5L277.2232142857143,130.5L277.2232142857143,261L231.77678571428572,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-13" ng-reflect-data="[object Object]" ng-reflect-path="M231.77678571428572,130.5L277." ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-13 ng-trigger ng-trigger-animationState" d="M231.77678571428572,130.5L277.2232142857143,130.5" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M277.2232142857143,85.60799999" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradarvd1" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradarvd1" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradarvd1)" style="opacity: 0.25;" d="M277.2232142857143,85.60799999999999L322.6696428571429,85.60799999999999L322.6696428571429,261L277.2232142857143,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-14" ng-reflect-data="[object Object]" ng-reflect-path="M277.2232142857143,85.60799999" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-14 ng-trigger ng-trigger-animationState" d="M277.2232142857143,85.60799999999999L322.6696428571429,85.60799999999999" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M322.6696428571429,54.02699999" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradadrmc" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradadrmc" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradadrmc)" style="opacity: 0.25;" d="M322.6696428571429,54.02699999999999L368.11607142857144,54.02699999999999L368.11607142857144,261L322.6696428571429,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-15" ng-reflect-data="[object Object]" ng-reflect-path="M322.6696428571429,54.02699999" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-15 ng-trigger ng-trigger-animationState" d="M322.6696428571429,54.02699999999999L368.11607142857144,54.02699999999999" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M368.11607142857144,31.581L413" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradao2my" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradao2my" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradao2my)" style="opacity: 0.25;" d="M368.11607142857144,31.581L413.5625,31.581L413.5625,261L368.11607142857144,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-16" ng-reflect-data="[object Object]" ng-reflect-path="M368.11607142857144,31.581L413" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-16 ng-trigger ng-trigger-animationState" d="M368.11607142857144,31.581L413.5625,31.581" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M413.5625,13.572000000000012L4" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradaad9y" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradaad9y" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradaad9y)" style="opacity: 0.25;" d="M413.5625,13.572000000000012L459.0089285714286,13.572000000000012L459.0089285714286,261L413.5625,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-17" ng-reflect-data="[object Object]" ng-reflect-path="M413.5625,13.572000000000012L4" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-17 ng-trigger ng-trigger-animationState" d="M413.5625,13.572000000000012L459.0089285714286,13.572000000000012" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-1 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-1" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M459.0089285714286,0L504.45535" ng-reflect-fill="#000000" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="graday7db" ng-reflect-stops="[object Object],[object Object"><linearGradient id="graday7db" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(0, 0, 0); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#graday7db)" style="opacity: 0.25;" d="M459.0089285714286,0L504.45535714285717,0L504.45535714285717,261L459.0089285714286,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-18" ng-reflect-data="[object Object]" ng-reflect-path="M459.0089285714286,0L504.45535" ng-reflect-stroke="#000000" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-18 ng-trigger ng-trigger-animationState" d="M459.0089285714286,0L504.45535714285717,0" fill="none" stroke="#000000"></path></g><!--bindings={}--></g></g></g><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-tooltip-area="" class="ng-tns-c124-1 ng-tns-c96-19" ng-reflect-dims="[object Object]" ng-reflect-x-set="5,15,18,20,22,23,27,36,49,72,9" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-results="[object Object],[object Object" ng-reflect-colors="[object Object]" ng-reflect-tooltip-disabled="false"><g class="ng-tns-c96-19"><rect y="0" class="tooltip-area ng-tns-c96-19" style="opacity: 0; cursor: auto;" x="0" width="509" height="261"></rect><!--container--><rect y="0" ngx-tooltip="" class="tooltip-anchor ng-tns-c96-19 ng-trigger ng-trigger-animationState" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="right" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-spacing="15" ng-reflect-tooltip-template="[object Object]" ng-reflect-tooltip-context="" ng-reflect-tooltip-immediate-exit="true" x="-1" width="1" height="261" style="opacity: 0; pointer-events: none;"></rect><!--container--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-47" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-48" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-49" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-50" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-51" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-52" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-53" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-54" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-55" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-56" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-1 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-1 ng-tns-c88-57" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></svg><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div></ngx-charts-chart></ngx-charts-line-chart></div><div _ngcontent-gqf-c145=""><ngx-charts-line-chart _ngcontent-gqf-c145="" id="lorenzChart" class="ng-tns-c124-2" ng-reflect-view="600,400" ng-reflect-scheme="[object Object]" ng-reflect-legend="false" ng-reflect-show-x-axis-label="true" ng-reflect-show-y-axis-label="true" ng-reflect-x-axis="true" ng-reflect-y-axis="true" ng-reflect-x-axis-label="Stichprobenwert" ng-reflect-y-axis-label="Gewicht" ng-reflect-timeline="true" ng-reflect-results="[object Object],[object Object"><ngx-charts-chart class="ng-tns-c124-2 ng-tns-c79-7" ng-reflect-view="600,400" ng-reflect-show-legend="false" ng-reflect-legend-options="[object Object]" ng-reflect-active-entries="" ng-reflect-animations="true"><div class="ngx-charts-outer ng-tns-c79-7 ng-trigger ng-trigger-animationState" style="width: 600px;"><svg class="ngx-charts ng-tns-c79-7" width="600" height="400"><defs class="ng-tns-c79-7"><clipPath class="ng-tns-c124-2" id="clipagub6"><rect class="ng-tns-c124-2" width="519" height="271" transform="translate(-5, -5)"></rect></clipPath></defs><g class="line-chart chart ng-tns-c79-7" transform="translate(76 , 10)"><g ngx-charts-x-axis="" class="ng-tns-c124-2 ng-star-inserted" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-dims="[object Object]" ng-reflect-show-grid-lines="true" ng-reflect-show-label="true" ng-reflect-label-text="Stichprobenwert" ng-reflect-trim-ticks="true" ng-reflect-rotate-ticks="true" ng-reflect-max-tick-length="16" style=""><g class="x axis" transform="translate(0,266)"><g ngx-charts-x-axis-ticks="" ng-reflect-trim-ticks="true" ng-reflect-rotate-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-tick-stroke="#ccc" ng-reflect-scale="function scale(d) {
+    var ke" ng-reflect-orient="bottom" ng-reflect-show-grid-lines="true" ng-reflect-grid-line-height="261" ng-reflect-width="509" class="ng-star-inserted"><g><g class="tick ng-star-inserted" transform="translate(4.990196078431353,20)"><title>0</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0 </text></g><g class="tick ng-star-inserted" transform="translate(54.89215686274508,20)"><title>0.052</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.052 </text></g><g class="tick ng-star-inserted" transform="translate(104.79411764705881,20)"><title>0.121</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.121 </text></g><g class="tick ng-star-inserted" transform="translate(154.69607843137254,20)"><title>0.207</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.207 </text></g><g class="tick ng-star-inserted" transform="translate(204.59803921568627,20)"><title>0.328</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.328 </text></g><g class="tick ng-star-inserted" transform="translate(254.5,20)"><title>0.5</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.5 </text></g><g class="tick ng-star-inserted" transform="translate(304.4019607843137,20)"><title>0.672</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.672 </text></g><g class="tick ng-star-inserted" transform="translate(354.3039215686275,20)"><title>0.793</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.793 </text></g><g class="tick ng-star-inserted" transform="translate(404.2058823529412,20)"><title>0.879</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.879 </text></g><g class="tick ng-star-inserted" transform="translate(454.1078431372549,20)"><title>0.948</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 0.948 </text></g><g class="tick ng-star-inserted" transform="translate(504.0098039215686,20)"><title>1</title><text stroke-width="0.01" text-anchor="middle" transform="" style="font-size: 12px;"> 1 </text></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,0.052,0.121,0.207,0.328,0.5,"
+}--></g><g transform="translate(4.990196078431353,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(54.89215686274508,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(104.79411764705881,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(154.69607843137254,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(204.59803921568627,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(254.5,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(304.4019607843137,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(354.3039215686275,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(404.2058823529412,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(454.1078431372549,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(504.0098039215686,20)" class="ng-star-inserted"><g transform="translate(0,-25)" class="ng-star-inserted"><line y2="0" class="gridline-path gridline-path-vertical" y1="-261"></line></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,0.052,0.121,0.207,0.328,0.5,"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "function scale(d) {\n    var ke"
+}--><g ngx-charts-axis-label="" ng-reflect-label="Stichprobenwert" ng-reflect-offset="44" ng-reflect-orient="bottom" ng-reflect-height="261" ng-reflect-width="509" class="ng-star-inserted"><text stroke-width="0.01" x="254.5" y="44" text-anchor="middle" transform=""> Stichprobenwert </text></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g ngx-charts-y-axis="" class="ng-tns-c124-2 ng-star-inserted" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-dims="[object Object]" ng-reflect-show-grid-lines="true" ng-reflect-show-label="true" ng-reflect-label-text="Gewicht" ng-reflect-trim-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-show-ref-lines="false" ng-reflect-show-ref-labels="true" style=""><g class="y axis" transform="translate(-5 , 0)"><g ngx-charts-y-axis-ticks="" ng-reflect-trim-ticks="true" ng-reflect-max-tick-length="16" ng-reflect-tick-stroke="#CCC" ng-reflect-scale="function scale(x) {
+    return" ng-reflect-orient="left" ng-reflect-show-grid-lines="true" ng-reflect-grid-line-width="509" ng-reflect-show-ref-lines="false" ng-reflect-show-ref-labels="true" ng-reflect-height="261" class="ng-star-inserted"><g><g class="tick ng-star-inserted" transform="translate(0,261)"><title>0.0</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.0 </text></g><g class="tick ng-star-inserted" transform="translate(0,208.8)"><title>0.2</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.2 </text></g><g class="tick ng-star-inserted" transform="translate(0,156.6)"><title>0.4</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.4 </text></g><g class="tick ng-star-inserted" transform="translate(0,104.4)"><title>0.6</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.6 </text></g><g class="tick ng-star-inserted" transform="translate(0,52.19999999999999)"><title>0.8</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 0.8 </text></g><g class="tick ng-star-inserted" transform="translate(0,0)"><title>1.0</title><text stroke-width="0.01" dy=".32em" x="-9" text-anchor="end" style="font-size: 12px;"> 1.0 </text></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,0.2,0.4,0.6,0.8,1"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><g transform="translate(0,261)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,208.8)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,156.6)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,104.4)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,52.19999999999999)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><g transform="translate(0,0)" class="ng-star-inserted"><g transform="translate(5,0)" class="ng-star-inserted"><line x1="0" class="gridline-path gridline-path-horizontal ng-star-inserted" x2="509"></line><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g><!--bindings={
+  "ng-reflect-ng-for-of": "0,0.2,0.4,0.6,0.8,1"
+}--><!--bindings={}--></g><!--bindings={
+  "ng-reflect-ng-if": "function scale(x) {\n    return"
+}--><g ngx-charts-axis-label="" ng-reflect-label="Gewicht" ng-reflect-offset="16" ng-reflect-orient="left" ng-reflect-height="261" ng-reflect-width="509" class="ng-star-inserted"><text stroke-width="0.01" x="-130.5" y="-46" text-anchor="middle" transform="rotate(270)"> Gewicht </text></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><g class="ng-tns-c124-2" clip-path="url(#clipagub6)"><g class="ng-tns-c124-2 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-2" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M4.990196078431353,261L54.8921" ng-reflect-fill="#A10A28" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradad02c" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradad02c" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(161, 10, 40); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(161, 10, 40); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradad02c)" style="opacity: 0.25;" d="M4.990196078431353,261L54.89215686274508,254.99699999999999L104.79411764705881,245.33999999999997L154.69607843137254,232.029L204.59803921568627,211.41000000000003L254.5,180.612L304.4019607843137,144.33299999999997L354.3039215686275,110.66400000000002L404.2058823529412,77.778L454.1078431372549,39.41100000000001L504.0098039215686,0L504.0098039215686,261L454.1078431372549,261L404.2058823529412,261L354.3039215686275,261L304.4019607843137,261L254.5,261L204.59803921568627,261L154.69607843137254,261L104.79411764705881,261L54.89215686274508,261L4.990196078431353,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-31" ng-reflect-data="[object Object]" ng-reflect-path="M4.990196078431353,261L54.8921" ng-reflect-stroke="#A10A28" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-31 ng-trigger ng-trigger-animationState" d="M4.990196078431353,261L54.89215686274508,254.99699999999999L104.79411764705881,245.33999999999997L154.69607843137254,232.029L204.59803921568627,211.41000000000003L254.5,180.612L304.4019607843137,144.33299999999997L354.3039215686275,110.66400000000002L404.2058823529412,77.778L454.1078431372549,39.41100000000001L504.0098039215686,0" fill="none" stroke="#A10A28"></path></g><!--bindings={}--></g></g></g><g class="ng-tns-c124-2 ng-trigger ng-trigger-animationState ng-star-inserted" style=""><g ngx-charts-line-series="" class="ng-tns-c124-2" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-active-entries="" ng-reflect-scale-type="ordinal" ng-reflect-curve="function(context) {
+  return n" ng-reflect-animations="true"><g><defs><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></defs><g ngx-charts-area="" class="line-highlight" ng-reflect-data="[object Object]" ng-reflect-path="M4.990196078431353,261L504.009" ng-reflect-fill="#0404B4" ng-reflect-opacity="0.25" ng-reflect-start-opacity="0" ng-reflect-gradient="true" ng-reflect-animations="true"><defs class="ng-star-inserted" style=""><g ngx-charts-svg-linear-gradient="" orientation="vertical" ng-reflect-orientation="vertical" ng-reflect-name="gradadqro" ng-reflect-stops="[object Object],[object Object"><linearGradient id="gradadqro" x1="0%" y1="100%" x2="0%" y2="0%"><stop offset="0%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 0;"></stop><stop offset="100%" class="ng-star-inserted" style="stop-color: rgb(4, 4, 180); stop-opacity: 1;"></stop><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></linearGradient></g></defs><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--><path class="area" fill="url(#gradadqro)" style="opacity: 0.25;" d="M4.990196078431353,261L504.0098039215686,0L504.0098039215686,261L4.990196078431353,261Z"></path></g><g ngx-charts-line="" class="line-series ng-tns-c123-32" ng-reflect-data="[object Object]" ng-reflect-path="M4.990196078431353,261L504.009" ng-reflect-stroke="#0404B4" ng-reflect-animations="true"><path stroke-width="1.5px" class="line ng-tns-c123-32 ng-trigger ng-trigger-animationState" d="M4.990196078431353,261L504.0098039215686,0" fill="none" stroke="#0404B4"></path></g><!--bindings={}--></g></g></g><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--><g class="ng-tns-c124-2 ng-star-inserted" style=""><g ngx-charts-tooltip-area="" class="ng-tns-c124-2 ng-tns-c96-33" ng-reflect-dims="[object Object]" ng-reflect-x-set="0,0.052,0.121,0.207,0.328,0.5," ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-results="[object Object],[object Object" ng-reflect-colors="[object Object]" ng-reflect-tooltip-disabled="false"><g class="ng-tns-c96-33"><rect y="0" class="tooltip-area ng-tns-c96-33" style="opacity: 0; cursor: auto;" x="0" width="509" height="261"></rect><!--container--><rect y="0" ngx-tooltip="" class="tooltip-anchor ng-tns-c96-33 ng-trigger ng-trigger-animationState" ng-reflect-tooltip-disabled="false" ng-reflect-tooltip-placement="right" ng-reflect-tooltip-type="tooltip" ng-reflect-tooltip-spacing="15" ng-reflect-tooltip-template="[object Object]" ng-reflect-tooltip-context="" ng-reflect-tooltip-immediate-exit="true" x="-1" width="1" height="261" style="opacity: 0; pointer-events: none;"></rect><!--container--></g></g><g class="ng-tns-c124-2 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-2 ng-tns-c88-60" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><g class="ng-tns-c124-2 ng-star-inserted" style=""><g ngx-charts-circle-series="" class="ng-tns-c124-2 ng-tns-c88-61" ng-reflect-x-scale="function scale(d) {
+    var ke" ng-reflect-y-scale="function scale(x) {
+    return" ng-reflect-colors="[object Object]" ng-reflect-data="[object Object]" ng-reflect-scale-type="ordinal" ng-reflect-active-entries="" ng-reflect-tooltip-disabled="false"><!--bindings={}--></g></g><!--bindings={
+  "ng-reflect-ng-for-of": "[object Object],[object Object"
+}--></g><!--bindings={
+  "ng-reflect-ng-if": "true"
+}--></g></g><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></svg><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--><!--bindings={
+  "ng-reflect-ng-if": "false"
+}--></div></ngx-charts-chart></ngx-charts-line-chart></div></div></app-four-charts></div></form><!--bindings={
+  "ng-reflect-ng-if": "[object Object]"
+}--><input _ngcontent-gqf-c146="" type="button" id="return" value="Zurück" class="Button1"></app-view2-anzeige-stichproben><!--container--></app-root>
+<script src="runtime.js" defer=""></script><script src="polyfills.js" defer=""></script><script src="styles.js" defer=""></script><script src="vendor.js" defer=""></script><script src="main.js" defer=""></script>
+
+<div class="cdk-overlay-container"></div></body></html>
