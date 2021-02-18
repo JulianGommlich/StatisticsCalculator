@@ -205,10 +205,10 @@ export class FourCharts implements OnInit {
       // Eine absolute Häufigkeit stellt dar, wie oft ein bestimmter Stichprobenwert in einer Stichprobe vorkommt
       sumOfAbsoluteFrequency += freqDistValues[index];
       // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
-      characteristicSum += freqDistValues[index] * Number(freqDistKeys[index])
+      characteristicSum += freqDistValues[index] * Math.abs(Number(freqDistKeys[index]));
       valueSeries.push({
         'name': (Math.round(sumOfAbsoluteFrequency/this.expliziteStichprobe.length * 1000)/1000).toString(),
-        'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => a + b, 0) * 1000)/1000
+        'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => Math.abs(a) + Math.abs(b), 0) * 1000)/1000
       });
       console.log(this.expliziteStichprobe.reduce((a, b) => a + b, 0));
     }

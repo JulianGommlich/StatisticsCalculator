@@ -33,7 +33,7 @@ export class PopUpComponent implements OnInit {
     this.absoluteHaeufigkeitsverteilung = '';
     const keys = Object.keys(this.inputData.haeufigkeitsverteilung);
     for (let index = 0; index < keys.length; index++) {
-      this.absoluteHaeufigkeitsverteilung += `(${keys[index]}; ${this.inputData.haeufigkeitsverteilung[keys[index]]})`;
+      this.absoluteHaeufigkeitsverteilung += `(${keys[index]};${this.inputData.haeufigkeitsverteilung[keys[index]]})`;
       if (index < keys.length - 1) {
         this.absoluteHaeufigkeitsverteilung += '; ';
       }
@@ -48,13 +48,12 @@ export class PopUpComponent implements OnInit {
       ? (<HTMLInputElement>document.getElementById('explicitSample')).value
       : (<HTMLInputElement>document.getElementById('absoluteFrequency')).value;
 
-    if (validation.validateSequence(sampleInput)) {
+    if (validation.validateSequence(this.inputData.sampleType, sampleInput)) {
       const calculationData = new Stichprobe(this.inputData.sampleType, [], {}, this.inputData.z);
 
       const sampleParser = new SampleParser();
       if (this.inputData.sampleType === 'explizit') {
         calculationData.expliziteStichprobe = sampleParser.parseExplSample(sampleInput);
-        console.log(calculationData.expliziteStichprobe);
         calculationData.setFreqDistribution();
       }
       else if (this.inputData.sampleType === 'absolut') {
