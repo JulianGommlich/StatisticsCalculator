@@ -113,7 +113,8 @@ export class View1Component implements OnInit {
 
     // Gespeicherte Werte in die Eingabefelder einsetzen
     this.savedValues$.subscribe(values => {
-      let expliziteStichprobe;
+      const parser = new SampleParser();
+      let expliziteStichprobe:Number[] = [];
       let absoluteStichprobe;
       const inputValues: string[] = Object.values(values);
       let numSequence = '';
@@ -127,9 +128,12 @@ export class View1Component implements OnInit {
           if (index < secondSplit[0].length - 1) {
             numSequence += '; ';
           }
+          this.convertToTable([] ,parser.parseFreqDist(numSequence) )
         }
       } else if (inputValues[1] === 'explizit') {
+        this.sampleType = true;
         numSequence = inputValues[0]?.replace(/,/gi, ';');
+        this.convertToTable(parser.parseExplSample(numSequence), {})
       }
 
       this.inputForm.setValue({
@@ -137,6 +141,7 @@ export class View1Component implements OnInit {
         sampleType: inputValues[1],
         valueZInput: inputValues[2]
       });
+      
     });
   }
 
@@ -216,7 +221,40 @@ export class View1Component implements OnInit {
     this.dialog.open(PopUpDeleteComponent, {});
   }
 
-
+  convertToTable(explSample:Number[], absSample:{ [key: string]: number }): void{
+        /* Schreibt die Werte in die Eingabe-Tabelle hinein. */
+    // Wenn eine explizite Stichprobe gegeben ist:
+    if (this.sampleType) {
+      let table: HTMLTableElement = <HTMLTableElement> document.getElementById("expl");
+      let tableCell: HTMLInputElement;
+      let rowNum = Math.ceil(explSample.length / 5);
+      for (let r = 1; r <= rowNum; r++) {
+        if (r != 1) {
+          this.createNewRow("expl");
+        }
+        for (let c = 0; c < 5; c++) {
+          tableCell = table.rows[r].cells.item(c)!.getElementsByTagName("input")[0]
+          tableCell.valueAsNumber = Number(explSample[c+5*(r-1)]);
+        }
+      }
+    }
+    // Sonst wenn eine abs. Stichprobe gegeben ist:
+    else if (!this.sampleType) {
+      let table: HTMLTableElement = <HTMLTableElement> document.getElementById("abs");
+      let tableCellKey, tableCellValue: HTMLInputElement;
+      let rowNum = Math.ceil(Object.keys(absSample).length / 5);
+      let i = 0;
+      for (let i = 0; i < Object.keys(absSample).length; i++) {
+        if (i != 0) {
+          this.createNewRow("abs");
+        }
+        tableCellKey = table.rows[i+1].cells.item(0)!.getElementsByTagName("input")[0];
+        tableCellKey.valueAsNumber = Number(Object.keys(absSample)[i]);
+        tableCellValue = table.rows[i+1].cells.item(1)!.getElementsByTagName("input")[0];
+        tableCellValue.valueAsNumber = Number(Object.values(absSample)[i]);
+      }
+    }
+  }
 
 
   /**
@@ -281,37 +319,6 @@ export class View1Component implements OnInit {
     // Wartet 400ms und führt dann den restlichen Code aus. Ansonsten wird der Code ausgeführt, bevor die HTML Elemente erstellt wurden. 
     await delay(400);
 
-    /* Schreibt die Werte in die Eingabe-Tabelle hinein. */
-    // Wenn eine explizite Stichprobe gegeben ist:
-    if (this.sampleType) {
-      let table: HTMLTableElement = <HTMLTableElement> document.getElementById("expl");
-      let tableCell: HTMLInputElement;
-      let rowNum = Math.ceil(explSample.length / 5);
-      for (let r = 1; r <= rowNum; r++) {
-        if (r != 1) {
-          this.createNewRow("expl");
-        }
-        for (let c = 0; c < 5; c++) {
-          tableCell = table.rows[r].cells.item(c)!.getElementsByTagName("input")[0]
-          tableCell.valueAsNumber = Number(explSample[c+5*(r-1)]);
-        }
-      }
-    }
-    // Sonst wenn eine abs. Stichprobe gegeben ist:
-    else if (!this.sampleType) {
-      let table: HTMLTableElement = <HTMLTableElement> document.getElementById("abs");
-      let tableCellKey, tableCellValue: HTMLInputElement;
-      let rowNum = Math.ceil(Object.keys(absSample).length / 5);
-      let i = 0;
-      for (let i = 0; i < Object.keys(absSample).length; i++) {
-        if (i != 0) {
-          this.createNewRow("abs");
-        }
-        tableCellKey = table.rows[i+1].cells.item(0)!.getElementsByTagName("input")[0];
-        tableCellKey.valueAsNumber = Number(Object.keys(absSample)[i]);
-        tableCellValue = table.rows[i+1].cells.item(1)!.getElementsByTagName("input")[0];
-        tableCellValue.valueAsNumber = Number(Object.values(absSample)[i]);
-      }
-    }
+    this.convertToTable(explSample, absSample);
   }
 }
