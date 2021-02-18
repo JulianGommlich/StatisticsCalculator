@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpInvalidComponent } from '../pop-up-invalid/pop-up-invalid.component';
 import { PopUpComponent } from '../pop-up/pop-up.component';
@@ -16,7 +16,8 @@ import { SampleParser } from '../sampleParser';
 @Component({
   selector: 'app-view1',
   templateUrl: './view1.component.html',
-  styleUrls: ['./view1.component.css', '../app.component.css']
+  styleUrls: ['./view1.component.css', '../app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class View1Component implements OnInit {
@@ -50,23 +51,30 @@ export class View1Component implements OnInit {
   createNewRow(types: string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
     var row = relevant_table.insertRow(-1);
-    var cell1 = row.insertCell(-1);
+/*     var cell1 = row.insertCell(-1);
     var cell2 = row.insertCell(-1);
     var cell3 = row.insertCell(-1);
     var cell4 = row.insertCell(-1);
-    var cell5 = row.insertCell(-1);
+    var cell5 = row.insertCell(-1); */
 
     switch (types) {
       case "abs":
-        cell1.innerHTML = "<input type='number'>";
-        cell2.innerHTML = "<input type='number'>";
+        var cell1 = row.insertCell(-1);
+        var cell2 = row.insertCell(-1);
+        cell1.innerHTML = "<input class='table1' type='number'>";
+        cell2.innerHTML = "<input class='table1' type='number'>";
         break;
       case "expl":
-        cell1.innerHTML = "<input type='number'>";
-        cell2.innerHTML = "<input type='number'>";
-        cell3.innerHTML = "<input type='number'>";
-        cell4.innerHTML = "<input type='number'>";
-        cell5.innerHTML = "<input type='number'>";
+        var cell1 = row.insertCell(-1);
+        var cell2 = row.insertCell(-1);
+        var cell3 = row.insertCell(-1);
+        var cell4 = row.insertCell(-1);
+        var cell5 = row.insertCell(-1);
+        cell1.innerHTML = "<input  class='table1' type='number'>";
+        cell2.innerHTML = "<input  class='table1' type='number'>";
+        cell3.innerHTML = "<input  class='table1' type='number'>";
+        cell4.innerHTML = "<input  class='table1' type='number'>";
+        cell5.innerHTML = "<input  class='table1' type='number'>";
         break;
     }
   }
