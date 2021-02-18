@@ -9,7 +9,19 @@
     <h2 *ngIf="errorCase === 'pop-up'">Die Daten, die im Pop-Up erfasst wurden, konnten nicht verarbeitet werden!</h2>
   </div>
   <div class="popupFlexElem">
-    <h2 *ngIf="errorCase === 'csvHead'">Bitte fügen Sie eine ordungsgemäße CSV hinzu!</h2>
+    <h2 *ngIf="errorCase === 'csvHead'">Bitte fügen Sie eine ordungsgemäße CSV hinzu! Die erste Zeile muss entweder "explizite Stichprobe" oder "Absolute Häufigkeitsverteilung" heißen!</h2>
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase === 'moreThanHundred'">Sie haben mehr als 100 Werte! Bitte auf 100 verringern!</h2>
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase === 'moreThanThirty'">Sie haben mehr als 30 verschiedene Werte! Bitte maximal nur 30 verschieden Werte!</h2>
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase === 'notFull'">Für die absolute Stichprobe sind immer Wertepaare nötig! Prüfen Sie ob ein Inputfeld leer ist!</h2>
+  </div>
+  <div class="popupFlexElem">
+    <h2 *ngIf="errorCase === 'removeRow'">Es kann keine weitere Reihe gelöscht werden!</h2>
   </div>
 </mat-dialog-content>
 

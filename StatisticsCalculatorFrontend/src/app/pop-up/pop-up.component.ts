@@ -50,7 +50,7 @@ export class PopUpComponent {
       ? (<HTMLInputElement>document.getElementById('explicitSample')).value
       : (<HTMLInputElement>document.getElementById('absoluteFrequency')).value;
 
-    if (validation.validateSequence(this.inputData.sampleType, sampleInput)) {    // Validierung
+    if (validation.validateSequence(this.inputData.sampleType, sampleInput) === "correct") {    // Validierung
       const calculationData = new Stichprobe(this.inputData.sampleType, [], {}, this.inputData.z);
 
       const sampleParser = new SampleParser();

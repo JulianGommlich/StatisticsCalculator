@@ -8,48 +8,45 @@ export class Validation {
      * @param abs gives the element of the abs radio button
      * @param valueZ gives the element of the valuez input field
      */
-    checkValidation(numSequence: string, expl: HTMLInputElement, abs: HTMLInputElement, valueZ: HTMLInputElement): boolean {
-
+    checkValidation(numSequence: string, expl: HTMLInputElement, abs: HTMLInputElement, valueZ: HTMLInputElement): string {
         if (expl.checked === false && abs.checked === false) {
-            return false;
+            return "form";
         }
         if (valueZ.value.length === 0) {
-            return false;
+            return "form";
         }
         if (expl.checked == true) {
             var types = "explizit";
         } else {
             var types = "absolut";
         }
-        if (!this.validateSequence(types, numSequence)) {
-            return false;
+        if (numSequence==""){
+            return "form";
         }
-        return true;
+        let errorCode : string = this.validateSequence(types, numSequence);
+        return (errorCode)
     }
 
-    /**
-     * Checks if more than 100 or if more than 30 different values
-     * @param types if expl or abs
-     */
-    validateSequence(types: string, numSequence: string): boolean {
+/**
+ * Checks for explizit or absolute different cases
+ * @param types gives types as explizit or absolut
+ * @param numSequence list of nummbers
+ */
+    validateSequence(types: string, numSequence: string): string {
 
         switch (types) {
             case "explizit":
                 let list = numSequence.split(';');
-                if (!(/^(\-?\d+\;?)+$/g).test(numSequence)) { return false }
+                if (!(/^(\-?\d+\;?)+$/g).test(numSequence)) { return "pop-up"; }
                 //if more than 100 numbers
-                if (list.length > 100) { return false; }
+                if (list.length > 100) { return "moreThanHundred"; }
                 //if more than 30
                 list.sort();
-                if (!this.countNumbers(list)) { return false; };
+                if (!this.countNumbers(list)) { return "moreThanThirty"; };
                 break;
             case "absolut":
                 let listOfObjects = numSequence.split('; ');
-                var scope: number = 0;
-                if (!(/^(\(-?\d+\;\d+\)(; )?)+$/g).test(numSequence)) { return false }
-                // over 30 rows equals to over 30 different values (if typed correctly, forcing to use all cells!) 
-                if (listOfObjects.length > 30) { return false; }
-
+                let scope: number = 0;
                 let tableIsNotFull = false;
                 listOfObjects.forEach(valuePair => {
                     let valuePairArray = valuePair.replace(/\(|\)/g, '').split(';');
@@ -62,12 +59,16 @@ export class Validation {
 
                     scope += Number(y);
                 });
+                if (tableIsNotFull) { return "notFull"; }
+                if (!(/^(\(-?\d+\;\d+\)(; )?)+$/g).test(numSequence)) { return "pop-up"; }
+                // over 30 rows equals to over 30 different values (if typed correctly, forcing to use all cells!) 
+                if (listOfObjects.length > 30) { return "moreThanThirty"; }
+
                 // if scope bigger than 100
-                if (tableIsNotFull) { return false; }
-                if (scope > 100) { return false; }
+                if (scope > 100) { return "moreThanHundred"; }
                 break;
         }
-        return true;
+        return "correct";
     }
 
 

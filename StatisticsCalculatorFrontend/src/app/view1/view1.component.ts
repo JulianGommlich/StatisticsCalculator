@@ -90,7 +90,7 @@ export class View1Component implements OnInit {
     if (relevant_table.rows.length > 2) {
       relevant_table.deleteRow(-1);
     } else {
-      alert("Es kann keine weitere Reihe gelöscht werden!")
+      this.dialog.open(PopUpInvalidComponent, { data: { case: "removeRow"  } })
     }
   }
 
@@ -164,8 +164,11 @@ export class View1Component implements OnInit {
 
     if (this.sampleType) {
       tempType = 'expl';
-    } else {
+    } else if(this.sampleType == false) {
       tempType = 'abs';
+    } else {
+      this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
+      return;
     }
 
     var relevant_table: HTMLTableElement = <HTMLTableElement>document.getElementById(tempType);
@@ -187,6 +190,9 @@ export class View1Component implements OnInit {
         const temp_absHäufigkeit = relevant_table.rows[i].cells.item(1)!.getElementsByTagName("input")[0].value;
         if (temp_stichprobenWert && temp_absHäufigkeit) {
           temp_string += `(${temp_stichprobenWert};${temp_absHäufigkeit})`;
+        } else if((temp_stichprobenWert == "" && !(temp_absHäufigkeit == "")) || (!(temp_stichprobenWert == "") && temp_absHäufigkeit == "")) {
+          this.dialog.open(PopUpInvalidComponent, { data: { case: "notFull"  } });
+          return;
         }
         if (i < relevant_table.rows.length-1) {
           temp_string += '; ';
@@ -195,13 +201,14 @@ export class View1Component implements OnInit {
     }
 
     const validation = new Validation();
-    if (validation.checkValidation(temp_string, expl, abs, valueZ)) {
+    if (validation.checkValidation(temp_string, expl, abs, valueZ) == "correct") {
       this.inputForm.patchValue({ numSequence: temp_string });
 
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
-      this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
+      let errorCode : string = validation.checkValidation(temp_string, expl, abs, valueZ);
+      this.dialog.open(PopUpInvalidComponent, { data: { case: errorCode  } });
     }
   }
 
@@ -318,7 +325,7 @@ export class View1Component implements OnInit {
       }
       // Falls eine nicht stimmige CSV übergeben wurde, wird das invalid Pop-Up gestartet.
       else {
-        this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
+        this.dialog.open(PopUpInvalidComponent, { data: { case: 'csvHead' } });
       }
       this.inputForm.setValue({
         numSequence: "",            // kann nach dem Entfernen des Input-Feldes gelöscht werden.
