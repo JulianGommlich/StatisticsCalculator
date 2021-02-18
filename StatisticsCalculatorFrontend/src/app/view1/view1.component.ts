@@ -112,13 +112,12 @@ export class View1Component implements OnInit {
     );
 
     // Gespeicherte Werte in die Eingabefelder einsetzen
-    this.savedValues$.subscribe(values => {
+    this.savedValues$.subscribe(async (values) => {
       const parser = new SampleParser();
-      let expliziteStichprobe:Number[] = [];
-      let absoluteStichprobe;
       const inputValues: string[] = Object.values(values);
       let numSequence = '';
       if (inputValues[1] === 'absolut') {
+        this.sampleType = false;
         let firstSplit = inputValues[0].split('|');
         let secondSplit = [];
         secondSplit.push(firstSplit[0].split(','));
@@ -128,12 +127,10 @@ export class View1Component implements OnInit {
           if (index < secondSplit[0].length - 1) {
             numSequence += '; ';
           }
-          this.convertToTable([] ,parser.parseFreqDist(numSequence) )
         }
       } else if (inputValues[1] === 'explizit') {
         this.sampleType = true;
         numSequence = inputValues[0]?.replace(/,/gi, ';');
-        this.convertToTable(parser.parseExplSample(numSequence), {})
       }
 
       this.inputForm.setValue({
@@ -141,7 +138,14 @@ export class View1Component implements OnInit {
         sampleType: inputValues[1],
         valueZInput: inputValues[2]
       });
-      
+
+      await delay(4000);
+
+      if (inputValues[1] === 'absolut') {
+        this.convertToTable([], parser.parseFreqDist(numSequence) )
+      } else if (inputValues[1] === 'explizit') {
+        this.convertToTable(parser.parseExplSample(numSequence), {})
+      }
     });
   }
 
@@ -167,7 +171,7 @@ export class View1Component implements OnInit {
         for(let j=0; j < relevant_table.rows[i].cells.length; j++){
           if(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value){
             console.log(relevant_table.rows[0]);
-            temp_string += String(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value)+';';
+            temp_string += `${relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value};`;
           }        
         }
       }
@@ -176,7 +180,7 @@ export class View1Component implements OnInit {
         const temp_stichprobenWert = relevant_table.rows[i].cells.item(0)!.getElementsByTagName("input")[0].value;
         const temp_absHäufigkeit = relevant_table.rows[i].cells.item(1)!.getElementsByTagName("input")[0].value;
         if(temp_stichprobenWert && temp_absHäufigkeit){
-          temp_string += '('+ temp_stichprobenWert + ';' + temp_absHäufigkeit + ');';
+          temp_string += `(${temp_stichprobenWert};${temp_absHäufigkeit}); `;
         }        
       }
     }
@@ -184,7 +188,7 @@ export class View1Component implements OnInit {
 
     const validation = new Validation();
 
-    if (validation.checkValidation( expl, abs, valueZ)) {
+    if (validation.checkValidation(temp_string, expl, abs, valueZ)) {
       this.inputForm.patchValue({numSequence: temp_string});
 
       let inputData = this.buildFormModel();
@@ -249,7 +253,7 @@ export class View1Component implements OnInit {
           this.createNewRow("abs");
         }
         tableCellKey = table.rows[i+1].cells.item(0)!.getElementsByTagName("input")[0];
-        tableCellKey.valueAsNumber = Number(Object.keys(absSample)[i]);
+        tableCellKey.valueAsNumber = Number((Object.keys(absSample)[i]).replace(',', '.'));
         tableCellValue = table.rows[i+1].cells.item(1)!.getElementsByTagName("input")[0];
         tableCellValue.valueAsNumber = Number(Object.values(absSample)[i]);
       }

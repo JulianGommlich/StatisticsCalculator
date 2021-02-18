@@ -10,7 +10,7 @@ export class Validation {
      * @param abs gives the element of the abs radio button
      * @param valueZ gives the element of the valuez input field
      */
-    checkValidation(expl: HTMLInputElement, abs: HTMLInputElement, valueZ: HTMLInputElement): boolean {
+    checkValidation(numSequence: string, expl: HTMLInputElement, abs: HTMLInputElement, valueZ: HTMLInputElement): boolean {
 
         if (expl.checked === false && abs.checked === false) {
             return false;
@@ -19,74 +19,55 @@ export class Validation {
             return false;
         }
         if (expl.checked == true){
-            var types = "expl";
+            var types = "explizit";
         } else {
-            var types = "abs";
+            var types = "absolut";
         }
-        if (!this.validateSequence(types)) {
+        if (!this.validateSequence(types, numSequence)) {
             return false;
         }
         return true;
     }
+ 
     /**
      * Checks if more than 100 or if more than 30 different values
      * @param types if expl or abs
      */
-    validateSequence(types: string): boolean {
-        var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
-        var rowsLength :number = relevant_table.rows.length; 
+    validateSequence(types: string, numSequence: string): boolean {
+        
         switch (types){
-            case "expl":
-                var i=0;
-                var row=1;
-                var list=[];
-                //check each row if each cell has number. if yes, add to i.
-                while (row!=rowsLength){
-                    var cell = 0;
-                    while (cell!=5){
-                        var value = relevant_table.rows[row].cells.item(cell)!.getElementsByTagName("input")[0].value;
-                        if (value == ""){
-                        } else {
-                            list.push(value);
-                            i += 1;
-                        }
-                        cell += 1;
-                    }
-                    row +=1;
-                }
+            case "explizit":
+                let list = numSequence.split(';');
+                if (!(/^(\-?\d+\;?)+$/g).test(numSequence)) { return false }
                 //if more than 100 numbers
-                if (i>100){
-                    return false;
-                }
+                if (list.length > 100) { return false; }
                 //if more than 30
                 list.sort();
-                if (!this.countNumbers(list)){
-                    return false;
-                };
-               return true;
-            case "abs":
-                var row=1;
-                var scope:number = 0;
+                if (!this.countNumbers(list)) { return false; };
+                break;
+            case "absolut":
+                let listOfObjects = numSequence.split('; ');
+                var scope: number = 0;
+                if (!(/^(\(-?\d+\;\d+\)(; )?)+$/g).test(numSequence)) { return false }
                 // over 30 rows equals to over 30 different values (if typed correctly, forcing to use all cells!) 
-                if (rowsLength > 30){
-                    return false;
-                }
-                while (row!=rowsLength){
-                    var x = relevant_table.rows[row].cells.item(0)!.getElementsByTagName("input")[0].value
-                    var y = relevant_table.rows[row].cells.item(1)!.getElementsByTagName("input")[0].value
-                    if (x == ""){ //if table is not full
+                if (listOfObjects.length > 30) { return false; }
+                listOfObjects.forEach(valuePair => {
+                    let valuePairArray = valuePair.replace(/\(|\)/g, '').split(';');
+                    let x = valuePairArray[0];
+                    let y = valuePairArray[1];
+                    console.log(valuePairArray);
+
+                    if (x === "") { // if table is not full
                         return false;
-                    } if(y == ""){ // if table is not full
+                    } 
+                    if (y === "") { // if table is not full
                         return false;
                     }
-                    // convert x to number
-                    var yNumber:number =+y;
-                    scope += yNumber;
-                    row += 1;
-                }
+
+                    scope += Number(y);
+                });
                 // if scope bigger than 100
-                if (scope > 100)
-                    return false;
+                if (scope > 100) { return false; }
                 break;
         }
         return true;

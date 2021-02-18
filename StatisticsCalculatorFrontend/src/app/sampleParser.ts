@@ -21,10 +21,10 @@ export class SampleParser {
     // Takes a String as Input and converts it to an object (freqDist)
     parseFreqDist(inputStr: string): { [key: string]: number } {
         let freqDist: { [key: string]: number } = {};
-        let matches = inputStr.matchAll(/\((?<value>\d*);(?<freq>\d*)\)/gm);
+        let matches = inputStr.matchAll(/\((?<value>\-?\d+(\,\d+)?);(?<freq>\d+)\)/gm);
 
         for (let match of matches) {
-            Object.assign(freqDist, { [String(match[1])]: Number(match[2]) })
+            Object.assign(freqDist, { [String(match.groups?.value)]: Number(match.groups?.freq) })
         }
 
         return freqDist;
