@@ -62,8 +62,8 @@ export class FourCharts implements OnInit {
 
   // lineChart - lorenz curve (lcl)
   lclLegend = false;
-  lclXAxisLabel = 'Stichprobenwert';
-  lclYAxisLabel = 'Gewicht';
+  lclXAxisLabel = 'Anteil an der Gesamtheit';
+  lclYAxisLabel = 'Kumulierter Anteil an der Merkmalssumme';
 
   stichprobendaten: Stichprobe;
   expliziteStichprobe: number[];
@@ -199,21 +199,16 @@ export class FourCharts implements OnInit {
       'value': 0
     }];
 
-    // sumOfAbsoluteFrequencies beinhaltet die Summe der absoluten Häufigkeiten der Stichprobenwerte, 
-    // die kleiner oder gleich dem Wert in der aktuellen Iteration sind
-    let sumOfAbsoluteFrequency = 0;
     let characteristicSum = 0;
 
     // Durch alle Wertepaare der absoluten Häufigkeitsverteilung iterieren, um
     // den Verlauf der Lorenzkurve zu "zeichnen"
-    for (let index = 0; index < freqDistKeys.length; index++) {
+    for (let index = 0; index < this.expliziteStichprobe.length; index++) {
 
-      // Eine absolute Häufigkeit stellt dar, wie oft ein bestimmter Stichprobenwert in einer Stichprobe vorkommt
-      sumOfAbsoluteFrequency += freqDistValues[index];
       // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
-      characteristicSum += freqDistValues[index] * Math.abs(Number(freqDistKeys[index]));
+      characteristicSum += Math.abs(this.expliziteStichprobe[index]);
       valueSeries.push({
-        'name': (Math.round(sumOfAbsoluteFrequency/this.expliziteStichprobe.length * 1000)/1000).toString(),
+        'name': (Math.round((index+1)/this.expliziteStichprobe.length * 1000)/1000).toString(),
         'value': Math.round(characteristicSum/this.expliziteStichprobe.reduce((a, b) => Math.abs(a) + Math.abs(b), 0) * 1000)/1000
       });
     }
