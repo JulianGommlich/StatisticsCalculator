@@ -1,8 +1,6 @@
 
 body {
     width: 100vw;
-    height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -157,7 +155,7 @@ tr {
 }
 
 
-h3{
+h3#head3{
     font-size:20px;
     font-weight: bold;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana;

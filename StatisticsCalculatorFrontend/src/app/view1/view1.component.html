@@ -50,7 +50,7 @@
         <div *ngIf="sampleType">
             <table id="expl">
                 <tr>
-                    <th colspan="4"> <h3>Manuelle Eingabe der Stichprobe</h3></th>
+                    <th colspan="4"> <h3 id="head3">Manuelle Eingabe der Stichprobe</h3></th>
                     <th> <input class="Button2" type="Button" value="-" (click)="removeRow('expl')"> <input class="Button3" type="Button" value="+" (click)="createNewRow('expl')"></th>
                 </tr>
                 <tr>
@@ -65,7 +65,7 @@
         <div *ngIf="!sampleType">
             <table id=abs>
                 <tr>
-                    <th colspan="1"> <h3> Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit) </h3> </th>
+                    <th colspan="1"> <h3 id="head3"> Manuelle Eingabe einer absoluten Häufigkeitsverteilung (Stichprobenwert | absolute Häufigkeit) </h3> </th>
                     <th><input class="Button2" type="Button" value="-" (click)="removeRow('abs')"  ><input class="Button3" type="Button" value="+" (click)="createNewRow('abs')"></th>
                 </tr>
                 <tr>
