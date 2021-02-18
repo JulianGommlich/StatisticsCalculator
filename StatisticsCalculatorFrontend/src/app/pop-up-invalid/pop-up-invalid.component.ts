@@ -8,14 +8,17 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class PopUpInvalidComponent implements OnInit {
 
-  caseIsForm: boolean;
+  // caseIsForm: boolean;
+  errorCase: String;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { case: string },) { 
-    if (data.case === 'pop-up') {
-      this.caseIsForm = false;
-    } else if (data.case === 'form') {
-      this.caseIsForm = true;
-    }
+    // if (data.case === 'pop-up') {
+    //   this.caseIsForm = false;
+    // } else if (data.case === 'form') {
+    //   this.caseIsForm = true;
+    // }
+    this.errorCase = data.case;
+
   }
 
   ngOnInit(): void {}
