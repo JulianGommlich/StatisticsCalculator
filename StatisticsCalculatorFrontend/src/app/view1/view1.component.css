@@ -91,6 +91,7 @@ input#loadFile {
     width: 150px;
 }
 
+
 #numSequence {
     margin-bottom: 25px;
 }
@@ -102,3 +103,8 @@ input#loadFile {
 p {
     margin-bottom: 15px;
 }
+
+#delete {
+    margin-bottom: 30px;
+}
+
