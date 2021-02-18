@@ -55,7 +55,6 @@ export class Validation {
                     let valuePairArray = valuePair.replace(/\(|\)/g, '').split(';');
                     let x = valuePairArray[0];
                     let y = valuePairArray[1];
-                    console.log(valuePairArray);
 
                     if (x === "" || y === "") { // if table is not full
                         tableIsNotFull = true;

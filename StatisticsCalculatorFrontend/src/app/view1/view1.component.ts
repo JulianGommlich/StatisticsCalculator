@@ -186,7 +186,10 @@ export class View1Component implements OnInit {
         const temp_stichprobenWert = relevant_table.rows[i].cells.item(0)!.getElementsByTagName("input")[0].value;
         const temp_absHäufigkeit = relevant_table.rows[i].cells.item(1)!.getElementsByTagName("input")[0].value;
         if (temp_stichprobenWert && temp_absHäufigkeit) {
-          temp_string += `(${temp_stichprobenWert};${temp_absHäufigkeit}); `;
+          temp_string += `(${temp_stichprobenWert};${temp_absHäufigkeit})`;
+        }
+        if (i < relevant_table.rows.length-1) {
+          temp_string += '; ';
         }
       }
     }
