@@ -76,8 +76,8 @@ export class View1Component implements OnInit {
    */
   removeRow(types : string){
     var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(types);
-    if (relevant_table.rows.length > 2){   
 
+    if (relevant_table.rows.length > 2){   
       relevant_table.deleteRow(-1);
     } else {
       alert("Es kann keine weitere Reihe gelöscht werden!")
@@ -131,22 +131,55 @@ export class View1Component implements OnInit {
     });
   }
 
-
   openDialog(): void {
     const expl = document.getElementById('explSample') as HTMLInputElement;
     const abs = document.getElementById('absSample') as HTMLInputElement;
     const valueZ = document.getElementById('valueZInput') as HTMLInputElement;
 
+    let tempType = '';
+
+    if(this.sampleType){
+      tempType = 'expl';
+    } else {
+      tempType = 'abs';
+    }
+
+    var relevant_table: HTMLTableElement = <HTMLTableElement> document.getElementById(tempType);
+
+    let temp_string = '';
+
+    if(tempType == 'expl'){
+      for(let i=1; i < relevant_table.rows.length; i++){
+        for(let j=0; j < relevant_table.rows[i].cells.length; j++){
+          if(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value){
+            console.log(relevant_table.rows[0]);
+            temp_string += String(relevant_table.rows[i].cells.item(j)!.getElementsByTagName("input")[0].value)+';';
+          }        
+        }
+      }
+    } else {
+      for(let i=1; i < relevant_table.rows.length; i++){
+        const temp_stichprobenWert = relevant_table.rows[i].cells.item(0)!.getElementsByTagName("input")[0].value;
+        const temp_absHäufigkeit = relevant_table.rows[i].cells.item(1)!.getElementsByTagName("input")[0].value;
+        if(temp_stichprobenWert && temp_absHäufigkeit){
+          temp_string += '('+ temp_stichprobenWert + ';' + temp_absHäufigkeit + ');';
+        }        
+      }
+    }
+
 
     let inputData = this.buildFormModel();
     const validation = new Validation();
 
-    if (validation.checkValidation(expl, abs, valueZ)) {
+    if (validation.checkValidation( expl, abs, valueZ)) {
+      this.inputForm.patchValue({numSequence: temp_string});
+
       let inputData = this.buildFormModel();
       this.dialog.open(PopUpComponent, { data: { inputData } });
     } else {
       this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
     }
+
   }
 
   buildFormModel(): Stichprobe {
@@ -173,8 +206,6 @@ export class View1Component implements OnInit {
   openDeleteDialog(): void {
     this.dialog.open(PopUpDeleteComponent, {});
   }
-
-
 
 
   /* Importiert eine CSV-Datei und schreibt die Werte in die Eingabe-Tabelle. */
