@@ -177,12 +177,17 @@ export class View1Component implements OnInit {
 
 
 
-  /* Importiert eine CSV-Datei und schreibt die Werte in die Eingabe-Tabelle. */
+
+  /**
+   * Importiert eine CSV-Datei und schreibt die Werte in die Eingabe-Tabelle.
+   * @param $event 
+   */
   async uploadFile($event: any) {
     let explSample: Number[] = [];
     let absSample: { [key: string]: number } = {};
     let newSampleType: String;
 
+    // Funktion, die ein paar MS wartet, bis der Code weiter ausgeführt wird
     function delay(ms: number) {
       return new Promise( resolve => setTimeout(resolve, ms) );
     }
@@ -221,6 +226,10 @@ export class View1Component implements OnInit {
           }
         }
       }
+      // Falls eine nicht stimmige CSV übergeben wurde, wird das invalid Pop-Up gestartet.
+      else {
+        this.dialog.open(PopUpInvalidComponent, { data: { case: 'form' } });
+      }
       this.inputForm.setValue({
         numSequence: "",            // kann nach dem Entfernen des Input-Feldes gelöscht werden.
         sampleType: newSampleType,
@@ -228,6 +237,7 @@ export class View1Component implements OnInit {
       });      
     };
 
+    // Wartet 400ms und führt dann den restlichen Code aus. Ansonsten wird der Code ausgeführt, bevor die HTML Elemente erstellt wurden. 
     await delay(400);
 
     /* Schreibt die Werte in die Eingabe-Tabelle hinein. */
