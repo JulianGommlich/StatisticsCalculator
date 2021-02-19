@@ -201,11 +201,11 @@ export class FourCharts implements OnInit {
 
     let characteristicSum = 0;
 
-    // Durch alle Wertepaare der absoluten Häufigkeitsverteilung iterieren, um
+    // Durch alle Werte der expliziten Stichprobe iterieren, um
     // den Verlauf der Lorenzkurve zu "zeichnen"
     for (let index = 0; index < this.expliziteStichprobe.length; index++) {
 
-      // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
+      // Hier wird diese der aktuelle Stichprobenwert addiert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
       characteristicSum += Math.abs(this.expliziteStichprobe[index]);
       valueSeries.push({
         'name': (Math.round((index+1)/this.expliziteStichprobe.length * 1000)/1000).toString(),
