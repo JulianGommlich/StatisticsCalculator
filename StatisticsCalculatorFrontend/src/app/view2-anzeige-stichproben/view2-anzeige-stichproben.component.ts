@@ -21,10 +21,16 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
     this.buildForm();
   }
 
+  /**
+   * on init Funktion, die bei Laden der Seite die Ergebnisse asynchron aus dem Api-Endpoint holt
+   */
   ngOnInit(): void {
     this.apiEndpoint.getSubject().subscribe((data: Ergebnisse) => this.inputFromBackend.next(data));
   }
 
+  /**
+   * Funktion einpflegen der Ergebnisse in die Oberfläche
+   */
   buildForm(): void {
     this.inputFromBackend.subscribe((data: Ergebnisse) => {
       this.ergebnisseFormGroup = this.fb.group({

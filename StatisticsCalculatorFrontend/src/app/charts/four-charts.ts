@@ -75,7 +75,7 @@ export class FourCharts implements OnInit {
     this.stichprobendaten = this.apiEndpoint.getSample();
 
     // Stichproben sortieren, damit die Werte in der richtigen Reihenfolge im Diagramm angezeigt werden
-    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe.sort();
+    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe.sort((n1, n2) => { return n1 - n2; } );
     this.haeufigkeitsverteilung = this.sortObject(this.stichprobendaten.haeufigkeitsverteilung);
 
     const freqDistKeys = Object.keys(this.haeufigkeitsverteilung);
@@ -83,7 +83,7 @@ export class FourCharts implements OnInit {
 
     this.setBarAndPieChartValues(freqDistKeys, freqDistValues);
     this.setEmpiricalDistributionChartValues(freqDistKeys, freqDistValues);
-    this.setLorenzChartValues(freqDistKeys, freqDistValues)
+    this.setLorenzChartValues();
   }
 
   /**
@@ -191,7 +191,7 @@ export class FourCharts implements OnInit {
    * @param freqDistKeys   number[]   Liste aller Stichprobenwerte
    * @param freqDistValues number[]   Liste der absoluten Häufigkeiten oben genannter Stichprobenwerte
    */
-  setLorenzChartValues(freqDistKeys: string[], freqDistValues: number[]): void {
+  setLorenzChartValues(): void {
     // In der Variable valueSeries wird der Verlauf der Lorenzkurve beschrieben. Sie wird hier initial erstellt.
     // Die Lorenzkurze beginnt im Punkt (0|0)
     let valueSeries = [{
@@ -201,11 +201,11 @@ export class FourCharts implements OnInit {
 
     let characteristicSum = 0;
 
-    // Durch alle Wertepaare der absoluten Häufigkeitsverteilung iterieren, um
+    // Durch alle Werte der expliziten Stichprobe iterieren, um
     // den Verlauf der Lorenzkurve zu "zeichnen"
     for (let index = 0; index < this.expliziteStichprobe.length; index++) {
 
-      // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
+      // Hier wird diese der aktuelle Stichprobenwert addiert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
       characteristicSum += Math.abs(this.expliziteStichprobe[index]);
       valueSeries.push({
         'name': (Math.round((index+1)/this.expliziteStichprobe.length * 1000)/1000).toString(),
