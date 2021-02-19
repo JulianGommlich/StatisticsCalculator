@@ -1,7 +1,7 @@
 <form id="inputValues" [formGroup]="inputForm">
 
     <h2>Eingabe:</h2>
-
+    <!--Radio Buttons zur Auswahl der Stichprobenart-->
     <p>Bitte wählen Sie aus, ob es sich um eine explizite Stichprobe oder eine absolute Häufigkeitsverteilung handelt:</p>
 
     <div class="radioLine">
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-
+    <!--Text, welcher bei noch nicht betätigter auswahl auftaucht-->
     <div *ngIf="sampleType === null">
         <p>Bitte wählen Sie eine der beiden Möglichkeiten aus oder wählen Sie eine .CSV-Datei</p>
     </div>
@@ -39,7 +39,7 @@
     
     <br>
     <br>
-
+    <!-- Tabelle wird generiert abhängig von dem Typ-->
     <div *ngIf="sampleType != null">
         <div *ngIf="sampleType">
             <table id="expl">
@@ -82,7 +82,7 @@
     <br>
 
     <p>Wert z für die Berechnung der mittlleren absoluten Abweichung:</p>
-
+    <!--Value Z-->
     <input type="number" formControlName="valueZInput" id="valueZInput" name="valueZInput" placeholder="(Wert Z)" required>
     <br>
     <input type="submit" id="delete" value="Löschen" class="Button1" (click)="openDeleteDialog()">
