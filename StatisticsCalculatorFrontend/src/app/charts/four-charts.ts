@@ -75,7 +75,7 @@ export class FourCharts implements OnInit {
     this.stichprobendaten = this.apiEndpoint.getSample();
 
     // Stichproben sortieren, damit die Werte in der richtigen Reihenfolge im Diagramm angezeigt werden
-    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe.sort();
+    this.expliziteStichprobe = this.stichprobendaten.expliziteStichprobe.sort((n1, n2) => { return n1 - n2; } );
     this.haeufigkeitsverteilung = this.sortObject(this.stichprobendaten.haeufigkeitsverteilung);
 
     const freqDistKeys = Object.keys(this.haeufigkeitsverteilung);
@@ -203,6 +203,7 @@ export class FourCharts implements OnInit {
 
     // Durch alle Wertepaare der absoluten Häufigkeitsverteilung iterieren, um
     // den Verlauf der Lorenzkurve zu "zeichnen"
+    console.log(this.expliziteStichprobe);
     for (let index = 0; index < this.expliziteStichprobe.length; index++) {
 
       // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
