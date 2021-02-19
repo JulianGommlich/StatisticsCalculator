@@ -154,7 +154,9 @@ export class View1Component implements OnInit {
     });
   }
 
-
+  /**
+   * Opens a pop up after validating. If validation was unsuccessfull, shows a pop up invalid text, else it goes to the finishing popup
+   */
   openDialog(): void {
     const expl = document.getElementById('explSample') as HTMLInputElement;
     const abs = document.getElementById('absSample') as HTMLInputElement;
@@ -199,7 +201,7 @@ export class View1Component implements OnInit {
         }
       }
     }
-
+    //stars validation
     const validation = new Validation();
     if (validation.checkValidation(temp_string, expl, abs, valueZ) == "correct") {
       this.inputForm.patchValue({ numSequence: temp_string });
@@ -233,7 +235,7 @@ export class View1Component implements OnInit {
     return stichprobe;
   }
 
-
+  //opens dialog when delete button is pressed
   openDeleteDialog(): void {
     this.dialog.open(PopUpDeleteComponent, {});
   }
