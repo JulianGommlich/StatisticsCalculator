@@ -83,7 +83,7 @@ export class FourCharts implements OnInit {
 
     this.setBarAndPieChartValues(freqDistKeys, freqDistValues);
     this.setEmpiricalDistributionChartValues(freqDistKeys, freqDistValues);
-    this.setLorenzChartValues(freqDistKeys, freqDistValues)
+    this.setLorenzChartValues();
   }
 
   /**
@@ -191,7 +191,7 @@ export class FourCharts implements OnInit {
    * @param freqDistKeys   number[]   Liste aller Stichprobenwerte
    * @param freqDistValues number[]   Liste der absoluten Häufigkeiten oben genannter Stichprobenwerte
    */
-  setLorenzChartValues(freqDistKeys: string[], freqDistValues: number[]): void {
+  setLorenzChartValues(): void {
     // In der Variable valueSeries wird der Verlauf der Lorenzkurve beschrieben. Sie wird hier initial erstellt.
     // Die Lorenzkurze beginnt im Punkt (0|0)
     let valueSeries = [{
@@ -203,7 +203,6 @@ export class FourCharts implements OnInit {
 
     // Durch alle Wertepaare der absoluten Häufigkeitsverteilung iterieren, um
     // den Verlauf der Lorenzkurve zu "zeichnen"
-    console.log(this.expliziteStichprobe);
     for (let index = 0; index < this.expliziteStichprobe.length; index++) {
 
       // Hier wird diese mit dem Stichprobenwert multipliziert, um den kumulierten Anzeil an der Merkmalssumme zu berechnen
