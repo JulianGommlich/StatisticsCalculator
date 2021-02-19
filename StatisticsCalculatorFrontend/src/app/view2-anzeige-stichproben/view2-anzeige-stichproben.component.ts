@@ -53,9 +53,6 @@ export class View2AnzeigeStichprobenComponent implements OnInit {
         giniValue: [data.giniKoeffizient]
       });
 
-      console.log(data);
-
-
       this.stichprobendaten = new Stichprobe(data.sampleType, data.expliziteStichprobe, data.haeufigkeitsverteilung, data.z);
     });
   }
